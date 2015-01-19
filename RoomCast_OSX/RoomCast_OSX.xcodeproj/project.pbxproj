@@ -1,0 +1,412 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ABAAB6D11A6DA52E0090CF68 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAAB6D01A6DA52E0090CF68 /* AppDelegate.swift */; };
+		ABAAB6D31A6DA52E0090CF68 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAAB6D21A6DA52E0090CF68 /* ViewController.swift */; };
+		ABAAB6D51A6DA52E0090CF68 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABAAB6D41A6DA52E0090CF68 /* Images.xcassets */; };
+		ABAAB6D81A6DA52E0090CF68 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABAAB6D61A6DA52E0090CF68 /* Main.storyboard */; };
+		ABAAB6E41A6DA52E0090CF68 /* RoomCast_OSXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAAB6E31A6DA52E0090CF68 /* RoomCast_OSXTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		ABAAB6DE1A6DA52E0090CF68 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ABAAB6C31A6DA52E0090CF68 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ABAAB6CA1A6DA52E0090CF68;
+			remoteInfo = RoomCast_OSX;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		ABAAB6CB1A6DA52E0090CF68 /* RoomCast_OSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoomCast_OSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ABAAB6CF1A6DA52E0090CF68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ABAAB6D01A6DA52E0090CF68 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		ABAAB6D21A6DA52E0090CF68 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		ABAAB6D41A6DA52E0090CF68 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		ABAAB6D71A6DA52E0090CF68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		ABAAB6DD1A6DA52E0090CF68 /* RoomCast_OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoomCast_OSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ABAAB6E21A6DA52E0090CF68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ABAAB6E31A6DA52E0090CF68 /* RoomCast_OSXTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCast_OSXTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ABAAB6C81A6DA52E0090CF68 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ABAAB6DA1A6DA52E0090CF68 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ABAAB6C21A6DA52E0090CF68 = {
+			isa = PBXGroup;
+			children = (
+				ABAAB6CD1A6DA52E0090CF68 /* RoomCast_OSX */,
+				ABAAB6E01A6DA52E0090CF68 /* RoomCast_OSXTests */,
+				ABAAB6CC1A6DA52E0090CF68 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		ABAAB6CC1A6DA52E0090CF68 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ABAAB6CB1A6DA52E0090CF68 /* RoomCast_OSX.app */,
+				ABAAB6DD1A6DA52E0090CF68 /* RoomCast_OSXTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ABAAB6CD1A6DA52E0090CF68 /* RoomCast_OSX */ = {
+			isa = PBXGroup;
+			children = (
+				ABAAB6D01A6DA52E0090CF68 /* AppDelegate.swift */,
+				ABAAB6D21A6DA52E0090CF68 /* ViewController.swift */,
+				ABAAB6D41A6DA52E0090CF68 /* Images.xcassets */,
+				ABAAB6D61A6DA52E0090CF68 /* Main.storyboard */,
+				ABAAB6CE1A6DA52E0090CF68 /* Supporting Files */,
+			);
+			path = RoomCast_OSX;
+			sourceTree = "<group>";
+		};
+		ABAAB6CE1A6DA52E0090CF68 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				ABAAB6CF1A6DA52E0090CF68 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		ABAAB6E01A6DA52E0090CF68 /* RoomCast_OSXTests */ = {
+			isa = PBXGroup;
+			children = (
+				ABAAB6E31A6DA52E0090CF68 /* RoomCast_OSXTests.swift */,
+				ABAAB6E11A6DA52E0090CF68 /* Supporting Files */,
+			);
+			path = RoomCast_OSXTests;
+			sourceTree = "<group>";
+		};
+		ABAAB6E11A6DA52E0090CF68 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				ABAAB6E21A6DA52E0090CF68 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ABAAB6CA1A6DA52E0090CF68 /* RoomCast_OSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ABAAB6E71A6DA52E0090CF68 /* Build configuration list for PBXNativeTarget "RoomCast_OSX" */;
+			buildPhases = (
+				ABAAB6C71A6DA52E0090CF68 /* Sources */,
+				ABAAB6C81A6DA52E0090CF68 /* Frameworks */,
+				ABAAB6C91A6DA52E0090CF68 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RoomCast_OSX;
+			productName = RoomCast_OSX;
+			productReference = ABAAB6CB1A6DA52E0090CF68 /* RoomCast_OSX.app */;
+			productType = "com.apple.product-type.application";
+		};
+		ABAAB6DC1A6DA52E0090CF68 /* RoomCast_OSXTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ABAAB6EA1A6DA52E0090CF68 /* Build configuration list for PBXNativeTarget "RoomCast_OSXTests" */;
+			buildPhases = (
+				ABAAB6D91A6DA52E0090CF68 /* Sources */,
+				ABAAB6DA1A6DA52E0090CF68 /* Frameworks */,
+				ABAAB6DB1A6DA52E0090CF68 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ABAAB6DF1A6DA52E0090CF68 /* PBXTargetDependency */,
+			);
+			name = RoomCast_OSXTests;
+			productName = RoomCast_OSXTests;
+			productReference = ABAAB6DD1A6DA52E0090CF68 /* RoomCast_OSXTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ABAAB6C31A6DA52E0090CF68 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Matteo Palvarini";
+				TargetAttributes = {
+					ABAAB6CA1A6DA52E0090CF68 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					ABAAB6DC1A6DA52E0090CF68 = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = ABAAB6CA1A6DA52E0090CF68;
+					};
+				};
+			};
+			buildConfigurationList = ABAAB6C61A6DA52E0090CF68 /* Build configuration list for PBXProject "RoomCast_OSX" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = ABAAB6C21A6DA52E0090CF68;
+			productRefGroup = ABAAB6CC1A6DA52E0090CF68 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ABAAB6CA1A6DA52E0090CF68 /* RoomCast_OSX */,
+				ABAAB6DC1A6DA52E0090CF68 /* RoomCast_OSXTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ABAAB6C91A6DA52E0090CF68 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABAAB6D51A6DA52E0090CF68 /* Images.xcassets in Resources */,
+				ABAAB6D81A6DA52E0090CF68 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ABAAB6DB1A6DA52E0090CF68 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ABAAB6C71A6DA52E0090CF68 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABAAB6D31A6DA52E0090CF68 /* ViewController.swift in Sources */,
+				ABAAB6D11A6DA52E0090CF68 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ABAAB6D91A6DA52E0090CF68 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABAAB6E41A6DA52E0090CF68 /* RoomCast_OSXTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		ABAAB6DF1A6DA52E0090CF68 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ABAAB6CA1A6DA52E0090CF68 /* RoomCast_OSX */;
+			targetProxy = ABAAB6DE1A6DA52E0090CF68 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		ABAAB6D61A6DA52E0090CF68 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ABAAB6D71A6DA52E0090CF68 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		ABAAB6E51A6DA52E0090CF68 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		ABAAB6E61A6DA52E0090CF68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		ABAAB6E81A6DA52E0090CF68 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = RoomCast_OSX/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		ABAAB6E91A6DA52E0090CF68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = RoomCast_OSX/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		ABAAB6EB1A6DA52E0090CF68 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = RoomCast_OSXTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RoomCast_OSX.app/Contents/MacOS/RoomCast_OSX";
+			};
+			name = Debug;
+		};
+		ABAAB6EC1A6DA52E0090CF68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = RoomCast_OSXTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RoomCast_OSX.app/Contents/MacOS/RoomCast_OSX";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ABAAB6C61A6DA52E0090CF68 /* Build configuration list for PBXProject "RoomCast_OSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ABAAB6E51A6DA52E0090CF68 /* Debug */,
+				ABAAB6E61A6DA52E0090CF68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ABAAB6E71A6DA52E0090CF68 /* Build configuration list for PBXNativeTarget "RoomCast_OSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ABAAB6E81A6DA52E0090CF68 /* Debug */,
+				ABAAB6E91A6DA52E0090CF68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		ABAAB6EA1A6DA52E0090CF68 /* Build configuration list for PBXNativeTarget "RoomCast_OSXTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ABAAB6EB1A6DA52E0090CF68 /* Debug */,
+				ABAAB6EC1A6DA52E0090CF68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = ABAAB6C31A6DA52E0090CF68 /* Project object */;
+}
