@@ -15,6 +15,11 @@ class MenuViewController: UICollectionViewController, UICollectionViewDelegateFl
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        /////////////////  SWIPE BACK + HIDE NAV CONTROLLER  /////////////////
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationController?.interactivePopGestureRecognizer.enabled = true
+        self.navigationController?.interactivePopGestureRecognizer.delegate = nil
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -28,6 +33,12 @@ class MenuViewController: UICollectionViewController, UICollectionViewDelegateFl
         channels.append(ch3)
         let ch4 = Channel(name:"Channel4", iconName: "ch04", description: "The fourth channel", contentUrl: "http://mpalva2.people.uic.edu/viz")
         channels.append(ch4)
+        
+        var i: Int
+        for i in 5...30 {
+            let ch = Channel(name:"Channel", iconName: "ch00", description: "Another channel", contentUrl: nil)
+            channels.append(ch)
+        }
         
     }
     
