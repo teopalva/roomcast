@@ -7,11 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB577DAC1A6E2340008B8D25 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB577DAB1A6E2340008B8D25 /* Channel.swift */; };
 		ABAAB6D11A6DA52E0090CF68 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAAB6D01A6DA52E0090CF68 /* AppDelegate.swift */; };
 		ABAAB6D31A6DA52E0090CF68 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAAB6D21A6DA52E0090CF68 /* ViewController.swift */; };
 		ABAAB6D51A6DA52E0090CF68 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABAAB6D41A6DA52E0090CF68 /* Images.xcassets */; };
 		ABAAB6D81A6DA52E0090CF68 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABAAB6D61A6DA52E0090CF68 /* Main.storyboard */; };
 		ABAAB6E41A6DA52E0090CF68 /* RoomCast_OSXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAAB6E31A6DA52E0090CF68 /* RoomCast_OSXTests.swift */; };
+		ABD19EE81A71630F0063E341 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD19EE71A71630F0063E341 /* WindowController.swift */; };
+		ABD19EEA1A7173B00063E341 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD19EE91A7173B00063E341 /* CollectionView.swift */; };
+		ABD19EEC1A7175260063E341 /* CollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD19EEB1A7175260063E341 /* CollectionViewItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB577DAB1A6E2340008B8D25 /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		ABAAB6CB1A6DA52E0090CF68 /* RoomCast_OSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoomCast_OSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABAAB6CF1A6DA52E0090CF68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABAAB6D01A6DA52E0090CF68 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -34,6 +39,9 @@
 		ABAAB6DD1A6DA52E0090CF68 /* RoomCast_OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoomCast_OSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABAAB6E21A6DA52E0090CF68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABAAB6E31A6DA52E0090CF68 /* RoomCast_OSXTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCast_OSXTests.swift; sourceTree = "<group>"; };
+		ABD19EE71A71630F0063E341 /* WindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
+		ABD19EE91A7173B00063E341 /* CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
+		ABD19EEB1A7175260063E341 /* CollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,10 +83,14 @@
 		ABAAB6CD1A6DA52E0090CF68 /* RoomCast_OSX */ = {
 			isa = PBXGroup;
 			children = (
+				AB577DAB1A6E2340008B8D25 /* Channel.swift */,
 				ABAAB6D01A6DA52E0090CF68 /* AppDelegate.swift */,
 				ABAAB6D21A6DA52E0090CF68 /* ViewController.swift */,
-				ABAAB6D41A6DA52E0090CF68 /* Images.xcassets */,
+				ABD19EE71A71630F0063E341 /* WindowController.swift */,
+				ABD19EE91A7173B00063E341 /* CollectionView.swift */,
+				ABD19EEB1A7175260063E341 /* CollectionViewItem.swift */,
 				ABAAB6D61A6DA52E0090CF68 /* Main.storyboard */,
+				ABAAB6D41A6DA52E0090CF68 /* Images.xcassets */,
 				ABAAB6CE1A6DA52E0090CF68 /* Supporting Files */,
 			);
 			path = RoomCast_OSX;
@@ -158,6 +170,7 @@
 				TargetAttributes = {
 					ABAAB6CA1A6DA52E0090CF68 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = F554V774C5;
 					};
 					ABAAB6DC1A6DA52E0090CF68 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -209,7 +222,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABAAB6D31A6DA52E0090CF68 /* ViewController.swift in Sources */,
+				ABD19EEA1A7173B00063E341 /* CollectionView.swift in Sources */,
+				ABD19EE81A71630F0063E341 /* WindowController.swift in Sources */,
+				AB577DAC1A6E2340008B8D25 /* Channel.swift in Sources */,
 				ABAAB6D11A6DA52E0090CF68 /* AppDelegate.swift in Sources */,
+				ABD19EEC1A7175260063E341 /* CollectionViewItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +341,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Matteo Palvarini";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = RoomCast_OSX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -335,6 +353,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Matteo Palvarini";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = RoomCast_OSX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -397,6 +416,7 @@
 				ABAAB6E91A6DA52E0090CF68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ABAAB6EA1A6DA52E0090CF68 /* Build configuration list for PBXNativeTarget "RoomCast_OSXTests" */ = {
 			isa = XCConfigurationList;
@@ -405,6 +425,7 @@
 				ABAAB6EC1A6DA52E0090CF68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
