@@ -15,4 +15,5 @@ class CollectionViewItem: NSCollectionViewItem {
         // Do view setup here.
     }
     
+    
 }

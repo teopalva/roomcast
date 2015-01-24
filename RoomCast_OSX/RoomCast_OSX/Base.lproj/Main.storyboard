@@ -663,6 +663,12 @@
                     </connections>
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <arrayController id="8DH-31-A9l">
+                    <connections>
+                        <binding destination="B8D-0N-5wS" name="contentArray" keyPath="self" id="myf-EA-PeE"/>
+                    </connections>
+                </arrayController>
+                <userDefaultsController representsSharedInstance="YES" id="sh7-lU-yjO"/>
             </objects>
             <point key="canvasLocation" x="75" y="250"/>
         </scene>

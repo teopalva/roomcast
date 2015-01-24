@@ -9,6 +9,7 @@
 import Foundation
 
 struct Channel {
+    
     var name : String
     var iconName : String
     var description : String
