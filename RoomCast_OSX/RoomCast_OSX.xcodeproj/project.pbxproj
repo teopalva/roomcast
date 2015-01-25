@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		AB4344C01A75978B00A31061 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4344BF1A75978B00A31061 /* AppDelegate.swift */; };
-		AB4344C21A75978B00A31061 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4344C11A75978B00A31061 /* ViewController.swift */; };
+		AB4344C21A75978B00A31061 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4344C11A75978B00A31061 /* MenuViewController.swift */; };
 		AB4344C41A75978B00A31061 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB4344C31A75978B00A31061 /* Images.xcassets */; };
 		AB4344C71A75978B00A31061 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB4344C51A75978B00A31061 /* Main.storyboard */; };
 		AB4344D31A75978B00A31061 /* RoomCast_OSXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4344D21A75978B00A31061 /* RoomCast_OSXTests.swift */; };
 		AB4344DD1A7598BC00A31061 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4344DC1A7598BC00A31061 /* Channel.swift */; };
+		ABBA69991A75AFAB0074C15E /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBA69981A75AFAB0074C15E /* WebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,13 +30,14 @@
 		AB4344BA1A75978B00A31061 /* RoomCast_OSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoomCast_OSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB4344BE1A75978B00A31061 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB4344BF1A75978B00A31061 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AB4344C11A75978B00A31061 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AB4344C11A75978B00A31061 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		AB4344C31A75978B00A31061 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		AB4344C61A75978B00A31061 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AB4344CC1A75978B00A31061 /* RoomCast_OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoomCast_OSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB4344D11A75978B00A31061 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB4344D21A75978B00A31061 /* RoomCast_OSXTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCast_OSXTests.swift; sourceTree = "<group>"; };
 		AB4344DC1A7598BC00A31061 /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		ABBA69981A75AFAB0074C15E /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +80,8 @@
 			isa = PBXGroup;
 			children = (
 				AB4344BF1A75978B00A31061 /* AppDelegate.swift */,
-				AB4344C11A75978B00A31061 /* ViewController.swift */,
+				AB4344C11A75978B00A31061 /* MenuViewController.swift */,
+				ABBA69981A75AFAB0074C15E /* WebViewController.swift */,
 				AB4344DC1A7598BC00A31061 /* Channel.swift */,
 				AB4344C51A75978B00A31061 /* Main.storyboard */,
 				AB4344C31A75978B00A31061 /* Images.xcassets */,
@@ -211,9 +214,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB4344C21A75978B00A31061 /* ViewController.swift in Sources */,
+				AB4344C21A75978B00A31061 /* MenuViewController.swift in Sources */,
 				AB4344DD1A7598BC00A31061 /* Channel.swift in Sources */,
 				AB4344C01A75978B00A31061 /* AppDelegate.swift in Sources */,
+				ABBA69991A75AFAB0074C15E /* WebViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +405,7 @@
 				AB4344D81A75978B00A31061 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AB4344D91A75978B00A31061 /* Build configuration list for PBXNativeTarget "RoomCast_OSXTests" */ = {
 			isa = XCConfigurationList;
@@ -409,6 +414,7 @@
 				AB4344DB1A75978B00A31061 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

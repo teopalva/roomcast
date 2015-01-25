@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MenuViewController.swift
 //  RoomCast_OSX
 //
 //  Created by Matteo Palvarini on 25/01/15.
@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ViewController: NSViewController {
+class MenuViewController: NSViewController {
     
     @IBOutlet weak var collectionView: NSCollectionView!
     
