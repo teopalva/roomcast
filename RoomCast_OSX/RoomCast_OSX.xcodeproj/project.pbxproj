@@ -7,52 +7,46 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AB577DAC1A6E2340008B8D25 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB577DAB1A6E2340008B8D25 /* Channel.swift */; };
-		ABAAB6D11A6DA52E0090CF68 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAAB6D01A6DA52E0090CF68 /* AppDelegate.swift */; };
-		ABAAB6D31A6DA52E0090CF68 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAAB6D21A6DA52E0090CF68 /* ViewController.swift */; };
-		ABAAB6D51A6DA52E0090CF68 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABAAB6D41A6DA52E0090CF68 /* Images.xcassets */; };
-		ABAAB6D81A6DA52E0090CF68 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABAAB6D61A6DA52E0090CF68 /* Main.storyboard */; };
-		ABAAB6E41A6DA52E0090CF68 /* RoomCast_OSXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAAB6E31A6DA52E0090CF68 /* RoomCast_OSXTests.swift */; };
-		ABD19EE81A71630F0063E341 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD19EE71A71630F0063E341 /* WindowController.swift */; };
-		ABD19EEA1A7173B00063E341 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD19EE91A7173B00063E341 /* CollectionView.swift */; };
-		ABD19EEC1A7175260063E341 /* CollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD19EEB1A7175260063E341 /* CollectionViewItem.swift */; };
+		AB4344C01A75978B00A31061 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4344BF1A75978B00A31061 /* AppDelegate.swift */; };
+		AB4344C21A75978B00A31061 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4344C11A75978B00A31061 /* ViewController.swift */; };
+		AB4344C41A75978B00A31061 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB4344C31A75978B00A31061 /* Images.xcassets */; };
+		AB4344C71A75978B00A31061 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB4344C51A75978B00A31061 /* Main.storyboard */; };
+		AB4344D31A75978B00A31061 /* RoomCast_OSXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4344D21A75978B00A31061 /* RoomCast_OSXTests.swift */; };
+		AB4344DD1A7598BC00A31061 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4344DC1A7598BC00A31061 /* Channel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		ABAAB6DE1A6DA52E0090CF68 /* PBXContainerItemProxy */ = {
+		AB4344CD1A75978B00A31061 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = ABAAB6C31A6DA52E0090CF68 /* Project object */;
+			containerPortal = AB4344B21A75978A00A31061 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = ABAAB6CA1A6DA52E0090CF68;
+			remoteGlobalIDString = AB4344B91A75978B00A31061;
 			remoteInfo = RoomCast_OSX;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		AB577DAB1A6E2340008B8D25 /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
-		ABAAB6CB1A6DA52E0090CF68 /* RoomCast_OSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoomCast_OSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		ABAAB6CF1A6DA52E0090CF68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ABAAB6D01A6DA52E0090CF68 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		ABAAB6D21A6DA52E0090CF68 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		ABAAB6D41A6DA52E0090CF68 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		ABAAB6D71A6DA52E0090CF68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		ABAAB6DD1A6DA52E0090CF68 /* RoomCast_OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoomCast_OSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		ABAAB6E21A6DA52E0090CF68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ABAAB6E31A6DA52E0090CF68 /* RoomCast_OSXTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCast_OSXTests.swift; sourceTree = "<group>"; };
-		ABD19EE71A71630F0063E341 /* WindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
-		ABD19EE91A7173B00063E341 /* CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
-		ABD19EEB1A7175260063E341 /* CollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewItem.swift; sourceTree = "<group>"; };
+		AB4344BA1A75978B00A31061 /* RoomCast_OSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoomCast_OSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB4344BE1A75978B00A31061 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB4344BF1A75978B00A31061 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AB4344C11A75978B00A31061 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AB4344C31A75978B00A31061 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		AB4344C61A75978B00A31061 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AB4344CC1A75978B00A31061 /* RoomCast_OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoomCast_OSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB4344D11A75978B00A31061 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB4344D21A75978B00A31061 /* RoomCast_OSXTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCast_OSXTests.swift; sourceTree = "<group>"; };
+		AB4344DC1A7598BC00A31061 /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		ABAAB6C81A6DA52E0090CF68 /* Frameworks */ = {
+		AB4344B71A75978B00A31061 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		ABAAB6DA1A6DA52E0090CF68 /* Frameworks */ = {
+		AB4344C91A75978B00A31061 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -62,61 +56,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		ABAAB6C21A6DA52E0090CF68 = {
+		AB4344B11A75978A00A31061 = {
 			isa = PBXGroup;
 			children = (
-				ABAAB6CD1A6DA52E0090CF68 /* RoomCast_OSX */,
-				ABAAB6E01A6DA52E0090CF68 /* RoomCast_OSXTests */,
-				ABAAB6CC1A6DA52E0090CF68 /* Products */,
+				AB4344BC1A75978B00A31061 /* RoomCast_OSX */,
+				AB4344CF1A75978B00A31061 /* RoomCast_OSXTests */,
+				AB4344BB1A75978B00A31061 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		ABAAB6CC1A6DA52E0090CF68 /* Products */ = {
+		AB4344BB1A75978B00A31061 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				ABAAB6CB1A6DA52E0090CF68 /* RoomCast_OSX.app */,
-				ABAAB6DD1A6DA52E0090CF68 /* RoomCast_OSXTests.xctest */,
+				AB4344BA1A75978B00A31061 /* RoomCast_OSX.app */,
+				AB4344CC1A75978B00A31061 /* RoomCast_OSXTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		ABAAB6CD1A6DA52E0090CF68 /* RoomCast_OSX */ = {
+		AB4344BC1A75978B00A31061 /* RoomCast_OSX */ = {
 			isa = PBXGroup;
 			children = (
-				AB577DAB1A6E2340008B8D25 /* Channel.swift */,
-				ABAAB6D01A6DA52E0090CF68 /* AppDelegate.swift */,
-				ABAAB6D21A6DA52E0090CF68 /* ViewController.swift */,
-				ABD19EE71A71630F0063E341 /* WindowController.swift */,
-				ABD19EE91A7173B00063E341 /* CollectionView.swift */,
-				ABD19EEB1A7175260063E341 /* CollectionViewItem.swift */,
-				ABAAB6D61A6DA52E0090CF68 /* Main.storyboard */,
-				ABAAB6D41A6DA52E0090CF68 /* Images.xcassets */,
-				ABAAB6CE1A6DA52E0090CF68 /* Supporting Files */,
+				AB4344BF1A75978B00A31061 /* AppDelegate.swift */,
+				AB4344C11A75978B00A31061 /* ViewController.swift */,
+				AB4344DC1A7598BC00A31061 /* Channel.swift */,
+				AB4344C51A75978B00A31061 /* Main.storyboard */,
+				AB4344C31A75978B00A31061 /* Images.xcassets */,
+				AB4344BD1A75978B00A31061 /* Supporting Files */,
 			);
 			path = RoomCast_OSX;
 			sourceTree = "<group>";
 		};
-		ABAAB6CE1A6DA52E0090CF68 /* Supporting Files */ = {
+		AB4344BD1A75978B00A31061 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				ABAAB6CF1A6DA52E0090CF68 /* Info.plist */,
+				AB4344BE1A75978B00A31061 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		ABAAB6E01A6DA52E0090CF68 /* RoomCast_OSXTests */ = {
+		AB4344CF1A75978B00A31061 /* RoomCast_OSXTests */ = {
 			isa = PBXGroup;
 			children = (
-				ABAAB6E31A6DA52E0090CF68 /* RoomCast_OSXTests.swift */,
-				ABAAB6E11A6DA52E0090CF68 /* Supporting Files */,
+				AB4344D21A75978B00A31061 /* RoomCast_OSXTests.swift */,
+				AB4344D01A75978B00A31061 /* Supporting Files */,
 			);
 			path = RoomCast_OSXTests;
 			sourceTree = "<group>";
 		};
-		ABAAB6E11A6DA52E0090CF68 /* Supporting Files */ = {
+		AB4344D01A75978B00A31061 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				ABAAB6E21A6DA52E0090CF68 /* Info.plist */,
+				AB4344D11A75978B00A31061 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -124,13 +115,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		ABAAB6CA1A6DA52E0090CF68 /* RoomCast_OSX */ = {
+		AB4344B91A75978B00A31061 /* RoomCast_OSX */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = ABAAB6E71A6DA52E0090CF68 /* Build configuration list for PBXNativeTarget "RoomCast_OSX" */;
+			buildConfigurationList = AB4344D61A75978B00A31061 /* Build configuration list for PBXNativeTarget "RoomCast_OSX" */;
 			buildPhases = (
-				ABAAB6C71A6DA52E0090CF68 /* Sources */,
-				ABAAB6C81A6DA52E0090CF68 /* Frameworks */,
-				ABAAB6C91A6DA52E0090CF68 /* Resources */,
+				AB4344B61A75978B00A31061 /* Sources */,
+				AB4344B71A75978B00A31061 /* Frameworks */,
+				AB4344B81A75978B00A31061 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -138,47 +129,46 @@
 			);
 			name = RoomCast_OSX;
 			productName = RoomCast_OSX;
-			productReference = ABAAB6CB1A6DA52E0090CF68 /* RoomCast_OSX.app */;
+			productReference = AB4344BA1A75978B00A31061 /* RoomCast_OSX.app */;
 			productType = "com.apple.product-type.application";
 		};
-		ABAAB6DC1A6DA52E0090CF68 /* RoomCast_OSXTests */ = {
+		AB4344CB1A75978B00A31061 /* RoomCast_OSXTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = ABAAB6EA1A6DA52E0090CF68 /* Build configuration list for PBXNativeTarget "RoomCast_OSXTests" */;
+			buildConfigurationList = AB4344D91A75978B00A31061 /* Build configuration list for PBXNativeTarget "RoomCast_OSXTests" */;
 			buildPhases = (
-				ABAAB6D91A6DA52E0090CF68 /* Sources */,
-				ABAAB6DA1A6DA52E0090CF68 /* Frameworks */,
-				ABAAB6DB1A6DA52E0090CF68 /* Resources */,
+				AB4344C81A75978B00A31061 /* Sources */,
+				AB4344C91A75978B00A31061 /* Frameworks */,
+				AB4344CA1A75978B00A31061 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				ABAAB6DF1A6DA52E0090CF68 /* PBXTargetDependency */,
+				AB4344CE1A75978B00A31061 /* PBXTargetDependency */,
 			);
 			name = RoomCast_OSXTests;
 			productName = RoomCast_OSXTests;
-			productReference = ABAAB6DD1A6DA52E0090CF68 /* RoomCast_OSXTests.xctest */;
+			productReference = AB4344CC1A75978B00A31061 /* RoomCast_OSXTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		ABAAB6C31A6DA52E0090CF68 /* Project object */ = {
+		AB4344B21A75978A00A31061 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Matteo Palvarini";
 				TargetAttributes = {
-					ABAAB6CA1A6DA52E0090CF68 = {
+					AB4344B91A75978B00A31061 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = F554V774C5;
 					};
-					ABAAB6DC1A6DA52E0090CF68 = {
+					AB4344CB1A75978B00A31061 = {
 						CreatedOnToolsVersion = 6.1.1;
-						TestTargetID = ABAAB6CA1A6DA52E0090CF68;
+						TestTargetID = AB4344B91A75978B00A31061;
 					};
 				};
 			};
-			buildConfigurationList = ABAAB6C61A6DA52E0090CF68 /* Build configuration list for PBXProject "RoomCast_OSX" */;
+			buildConfigurationList = AB4344B51A75978A00A31061 /* Build configuration list for PBXProject "RoomCast_OSX" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -186,28 +176,28 @@
 				en,
 				Base,
 			);
-			mainGroup = ABAAB6C21A6DA52E0090CF68;
-			productRefGroup = ABAAB6CC1A6DA52E0090CF68 /* Products */;
+			mainGroup = AB4344B11A75978A00A31061;
+			productRefGroup = AB4344BB1A75978B00A31061 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				ABAAB6CA1A6DA52E0090CF68 /* RoomCast_OSX */,
-				ABAAB6DC1A6DA52E0090CF68 /* RoomCast_OSXTests */,
+				AB4344B91A75978B00A31061 /* RoomCast_OSX */,
+				AB4344CB1A75978B00A31061 /* RoomCast_OSXTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		ABAAB6C91A6DA52E0090CF68 /* Resources */ = {
+		AB4344B81A75978B00A31061 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABAAB6D51A6DA52E0090CF68 /* Images.xcassets in Resources */,
-				ABAAB6D81A6DA52E0090CF68 /* Main.storyboard in Resources */,
+				AB4344C41A75978B00A31061 /* Images.xcassets in Resources */,
+				AB4344C71A75978B00A31061 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		ABAAB6DB1A6DA52E0090CF68 /* Resources */ = {
+		AB4344CA1A75978B00A31061 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -217,42 +207,39 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		ABAAB6C71A6DA52E0090CF68 /* Sources */ = {
+		AB4344B61A75978B00A31061 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABAAB6D31A6DA52E0090CF68 /* ViewController.swift in Sources */,
-				ABD19EEA1A7173B00063E341 /* CollectionView.swift in Sources */,
-				ABD19EE81A71630F0063E341 /* WindowController.swift in Sources */,
-				AB577DAC1A6E2340008B8D25 /* Channel.swift in Sources */,
-				ABAAB6D11A6DA52E0090CF68 /* AppDelegate.swift in Sources */,
-				ABD19EEC1A7175260063E341 /* CollectionViewItem.swift in Sources */,
+				AB4344C21A75978B00A31061 /* ViewController.swift in Sources */,
+				AB4344DD1A7598BC00A31061 /* Channel.swift in Sources */,
+				AB4344C01A75978B00A31061 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		ABAAB6D91A6DA52E0090CF68 /* Sources */ = {
+		AB4344C81A75978B00A31061 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABAAB6E41A6DA52E0090CF68 /* RoomCast_OSXTests.swift in Sources */,
+				AB4344D31A75978B00A31061 /* RoomCast_OSXTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		ABAAB6DF1A6DA52E0090CF68 /* PBXTargetDependency */ = {
+		AB4344CE1A75978B00A31061 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = ABAAB6CA1A6DA52E0090CF68 /* RoomCast_OSX */;
-			targetProxy = ABAAB6DE1A6DA52E0090CF68 /* PBXContainerItemProxy */;
+			target = AB4344B91A75978B00A31061 /* RoomCast_OSX */;
+			targetProxy = AB4344CD1A75978B00A31061 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		ABAAB6D61A6DA52E0090CF68 /* Main.storyboard */ = {
+		AB4344C51A75978B00A31061 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				ABAAB6D71A6DA52E0090CF68 /* Base */,
+				AB4344C61A75978B00A31061 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -260,7 +247,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		ABAAB6E51A6DA52E0090CF68 /* Debug */ = {
+		AB4344D41A75978B00A31061 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -302,7 +289,7 @@
 			};
 			name = Debug;
 		};
-		ABAAB6E61A6DA52E0090CF68 /* Release */ = {
+		AB4344D51A75978B00A31061 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -337,11 +324,10 @@
 			};
 			name = Release;
 		};
-		ABAAB6E81A6DA52E0090CF68 /* Debug */ = {
+		AB4344D71A75978B00A31061 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Matteo Palvarini";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = RoomCast_OSX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -349,11 +335,10 @@
 			};
 			name = Debug;
 		};
-		ABAAB6E91A6DA52E0090CF68 /* Release */ = {
+		AB4344D81A75978B00A31061 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Matteo Palvarini";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = RoomCast_OSX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -361,7 +346,7 @@
 			};
 			name = Release;
 		};
-		ABAAB6EB1A6DA52E0090CF68 /* Debug */ = {
+		AB4344DA1A75978B00A31061 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -381,7 +366,7 @@
 			};
 			name = Debug;
 		};
-		ABAAB6EC1A6DA52E0090CF68 /* Release */ = {
+		AB4344DB1A75978B00A31061 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -400,34 +385,32 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		ABAAB6C61A6DA52E0090CF68 /* Build configuration list for PBXProject "RoomCast_OSX" */ = {
+		AB4344B51A75978A00A31061 /* Build configuration list for PBXProject "RoomCast_OSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				ABAAB6E51A6DA52E0090CF68 /* Debug */,
-				ABAAB6E61A6DA52E0090CF68 /* Release */,
+				AB4344D41A75978B00A31061 /* Debug */,
+				AB4344D51A75978B00A31061 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		ABAAB6E71A6DA52E0090CF68 /* Build configuration list for PBXNativeTarget "RoomCast_OSX" */ = {
+		AB4344D61A75978B00A31061 /* Build configuration list for PBXNativeTarget "RoomCast_OSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				ABAAB6E81A6DA52E0090CF68 /* Debug */,
-				ABAAB6E91A6DA52E0090CF68 /* Release */,
+				AB4344D71A75978B00A31061 /* Debug */,
+				AB4344D81A75978B00A31061 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
-		ABAAB6EA1A6DA52E0090CF68 /* Build configuration list for PBXNativeTarget "RoomCast_OSXTests" */ = {
+		AB4344D91A75978B00A31061 /* Build configuration list for PBXNativeTarget "RoomCast_OSXTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				ABAAB6EB1A6DA52E0090CF68 /* Debug */,
-				ABAAB6EC1A6DA52E0090CF68 /* Release */,
+				AB4344DA1A75978B00A31061 /* Debug */,
+				AB4344DB1A75978B00A31061 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = ABAAB6C31A6DA52E0090CF68 /* Project object */;
+	rootObject = AB4344B21A75978A00A31061 /* Project object */;
 }

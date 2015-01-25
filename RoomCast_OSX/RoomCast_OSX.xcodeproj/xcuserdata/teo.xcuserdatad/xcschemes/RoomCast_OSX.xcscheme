@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "ABAAB6CA1A6DA52E0090CF68"
+               BlueprintIdentifier = "AB4344B91A75978B00A31061"
                BuildableName = "RoomCast_OSX.app"
                BlueprintName = "RoomCast_OSX"
                ReferencedContainer = "container:RoomCast_OSX.xcodeproj">
@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "ABAAB6DC1A6DA52E0090CF68"
+               BlueprintIdentifier = "AB4344CB1A75978B00A31061"
                BuildableName = "RoomCast_OSXTests.xctest"
                BlueprintName = "RoomCast_OSXTests"
                ReferencedContainer = "container:RoomCast_OSX.xcodeproj">
@@ -46,7 +46,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "ABAAB6DC1A6DA52E0090CF68"
+               BlueprintIdentifier = "AB4344CB1A75978B00A31061"
                BuildableName = "RoomCast_OSXTests.xctest"
                BlueprintName = "RoomCast_OSXTests"
                ReferencedContainer = "container:RoomCast_OSX.xcodeproj">
@@ -56,7 +56,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "ABAAB6CA1A6DA52E0090CF68"
+            BlueprintIdentifier = "AB4344B91A75978B00A31061"
             BuildableName = "RoomCast_OSX.app"
             BlueprintName = "RoomCast_OSX"
             ReferencedContainer = "container:RoomCast_OSX.xcodeproj">
@@ -75,7 +75,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "ABAAB6CA1A6DA52E0090CF68"
+            BlueprintIdentifier = "AB4344B91A75978B00A31061"
             BuildableName = "RoomCast_OSX.app"
             BlueprintName = "RoomCast_OSX"
             ReferencedContainer = "container:RoomCast_OSX.xcodeproj">
@@ -93,7 +93,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "ABAAB6CA1A6DA52E0090CF68"
+            BlueprintIdentifier = "AB4344B91A75978B00A31061"
             BuildableName = "RoomCast_OSX.app"
             BlueprintName = "RoomCast_OSX"
             ReferencedContainer = "container:RoomCast_OSX.xcodeproj">

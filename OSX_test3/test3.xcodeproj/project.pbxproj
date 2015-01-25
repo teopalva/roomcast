@@ -84,13 +84,13 @@
 			isa = PBXGroup;
 			children = (
 				AB4344841A740E1000A31061 /* AppDelegate.swift */,
-				AB4344A71A7426FD00A31061 /* Media.xcassets */,
 				AB43449F1A740E3600A31061 /* Channel.swift */,
 				AB4344A91A74457700A31061 /* MenuView.swift */,
+				AB4344AB1A74493A00A31061 /* MenuViewController.swift */,
 				AB4344881A740E1000A31061 /* MainMenu.xib */,
 				AB4344AD1A746E6F00A31061 /* WebView.xib */,
 				AB4344AF1A74822C00A31061 /* Main.storyboard */,
-				AB4344AB1A74493A00A31061 /* MenuViewController.swift */,
+				AB4344A71A7426FD00A31061 /* Media.xcassets */,
 				AB4344821A740E1000A31061 /* Supporting Files */,
 			);
 			path = test3;

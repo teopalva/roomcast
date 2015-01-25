@@ -641,34 +641,30 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="RoomCast_OSX" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="RoomCast_OSX" customModuleProvider="target">
+                    <connections>
+                        <outlet property="arrayController" destination="W4n-UO-5Qp" id="MjW-Il-0fd"/>
+                    </connections>
+                </customObject>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="H4f-0W-dMn"/>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController id="B8D-0N-5wS" customClass="WindowController" customModule="RoomCast_OSX" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="RoomCast" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-                        <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+                        <rect key="contentRect" x="196" y="240" width="600" height="400"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
-                        <value key="maxSize" type="size" width="480" height="270"/>
                     </window>
                     <connections>
-                        <outlet property="window" destination="IQv-IB-iLA" id="qdW-Wd-64z"/>
-                        <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="0bn-rn-R0X"/>
+                        <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
                     </connections>
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <arrayController id="8DH-31-A9l">
-                    <connections>
-                        <binding destination="B8D-0N-5wS" name="contentArray" keyPath="self" id="myf-EA-PeE"/>
-                    </connections>
-                </arrayController>
-                <userDefaultsController representsSharedInstance="YES" id="sh7-lU-yjO"/>
             </objects>
             <point key="canvasLocation" x="75" y="250"/>
         </scene>
@@ -677,71 +673,87 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="RoomCast_OSX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TRQ-vW-pXc">
-                                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
-                                <clipView key="contentView" id="YqI-TZ-GrL">
+                            <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aBG-T1-L53">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
+                                <clipView key="contentView" id="W0x-PN-fz8">
                                     <rect key="frame" x="1" y="1" width="248" height="158"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <collectionView id="gkU-R5-b0b" customClass="CollectionView" customModule="RoomCast_OSX" customModuleProvider="target">
+                                        <collectionView id="Khk-92-egb">
                                             <rect key="frame" x="0.0" y="0.0" width="248" height="158"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="primaryBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <binding destination="W4n-UO-5Qp" name="content" keyPath="arrangedObjects" id="O3g-MT-JgW"/>
+                                            </connections>
                                         </collectionView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="bRP-7e-ETE">
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="Eop-CI-0ia">
                                     <rect key="frame" x="1" y="144" width="233" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="w1h-Wb-sOT">
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="TNp-IS-3me">
                                     <rect key="frame" x="234" y="1" width="15" height="143"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="TRQ-vW-pXc" secondAttribute="trailing" id="LH0-cZ-cCV"/>
-                            <constraint firstItem="TRQ-vW-pXc" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="RoE-I3-egd"/>
-                            <constraint firstAttribute="bottom" secondItem="TRQ-vW-pXc" secondAttribute="bottom" id="Rtr-9z-QZA"/>
-                            <constraint firstItem="TRQ-vW-pXc" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="YJu-G1-KiM"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="75" y="655"/>
-        </scene>
-        <!--Collection View Item-->
-        <scene sceneID="H6f-rv-RWA">
-            <objects>
-                <collectionViewItem id="W8j-8O-AKa" customClass="CollectionViewItem" customModule="RoomCast_OSX" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="3J5-Gr-toO">
-                        <rect key="frame" x="0.0" y="0.0" width="281" height="189"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cco-jy-9GU">
-                                <rect key="frame" x="0.0" y="0.0" width="281" height="189"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="UWh-41-irh"/>
-                            </imageView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="cco-jy-9GU" firstAttribute="leading" secondItem="3J5-Gr-toO" secondAttribute="leading" id="7sN-nO-Dyd"/>
-                            <constraint firstAttribute="bottom" secondItem="cco-jy-9GU" secondAttribute="bottom" id="Wfb-Ky-Ny4"/>
-                            <constraint firstItem="cco-jy-9GU" firstAttribute="top" secondItem="3J5-Gr-toO" secondAttribute="top" id="pVa-aa-N9s"/>
-                            <constraint firstAttribute="trailing" secondItem="cco-jy-9GU" secondAttribute="trailing" id="sZ9-x3-Hla"/>
+                            <constraint firstItem="aBG-T1-L53" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="I1B-ia-9LV"/>
+                            <constraint firstAttribute="bottom" secondItem="aBG-T1-L53" secondAttribute="bottom" id="f0b-aI-q0F"/>
+                            <constraint firstAttribute="trailing" secondItem="aBG-T1-L53" secondAttribute="trailing" id="g3P-4W-raL"/>
+                            <constraint firstItem="aBG-T1-L53" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="sW8-Wo-GrI"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="view" destination="3J5-Gr-toO" id="X91-vG-qHB"/>
+                        <outlet property="arrayController" destination="W4n-UO-5Qp" id="PMc-55-CyI"/>
+                        <outlet property="collectionView" destination="Khk-92-egb" id="Dfy-iY-P7F"/>
                     </connections>
-                </collectionViewItem>
-                <customObject id="MIl-E6-rip" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <arrayController objectClassName="RoomCast_OSX.Channel" id="W4n-UO-5Qp">
+                    <declaredKeys>
+                        <string>icon</string>
+                        <string>contentUrl</string>
+                    </declaredKeys>
+                    <connections>
+                        <binding destination="XfG-lQ-9wD" name="contentArray" keyPath="channels" id="9BO-f4-bos"/>
+                    </connections>
+                </arrayController>
             </objects>
-            <point key="canvasLocation" x="497.5" y="614.5"/>
+            <point key="canvasLocation" x="75" y="811"/>
+        </scene>
+        <!--Collection View Item-->
+        <scene sceneID="mUy-XM-2bi">
+            <objects>
+                <collectionViewItem storyboardIdentifier="collectionViewItem" id="m0c-Ly-sYW" sceneMemberID="viewController">
+                    <view key="view" id="35O-Qb-yqs">
+                        <rect key="frame" x="0.0" y="0.0" width="170" height="170"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="C1f-8q-tQg">
+                                <rect key="frame" x="20" y="20" width="130" height="130"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="XHZ-fJ-JIQ"/>
+                                <connections>
+                                    <binding destination="m0c-Ly-sYW" name="value" keyPath="representedObject.icon" id="0wH-YH-YgE"/>
+                                </connections>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="C1f-8q-tQg" secondAttribute="bottom" constant="20" symbolic="YES" id="3Sb-6C-doy"/>
+                            <constraint firstItem="C1f-8q-tQg" firstAttribute="leading" secondItem="35O-Qb-yqs" secondAttribute="leading" constant="20" symbolic="YES" id="E7X-nr-h8W"/>
+                            <constraint firstItem="C1f-8q-tQg" firstAttribute="top" secondItem="35O-Qb-yqs" secondAttribute="top" constant="20" symbolic="YES" id="Mat-JB-PkV"/>
+                            <constraint firstAttribute="trailing" secondItem="C1f-8q-tQg" secondAttribute="trailing" constant="20" symbolic="YES" id="t42-Nk-61m"/>
+                        </constraints>
+                    </view>
+                </collectionViewItem>
+                <customObject id="vqL-SW-Tvl" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="75" y="1167"/>
         </scene>
     </scenes>
 </document>
