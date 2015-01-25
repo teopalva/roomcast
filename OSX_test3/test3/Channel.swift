@@ -7,13 +7,23 @@
 //
 
 import Foundation
+import AppKit
 
 class Channel: NSObject {
     
-    var name : String = "name"
-    var iconName : String = "iconName"
-    var chDescription : String = "descr"
+    var name : String = ""
+    var iconName : String = " "
+    var chDescription : String = ""
     var contentUrl: String?
+    
+    var icon: NSImage {
+        get {
+            if let img = NSImage(named: iconName) {
+                return img
+            }
+            return NSImage(named: "ch00")!
+        }
+    }
     
     override init() {
         super.init()
@@ -29,5 +39,4 @@ class Channel: NSObject {
     
     
 }
-
 

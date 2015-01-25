@@ -20,7 +20,8 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <arrayController objectClassName="test3.Channel" id="w2h-RL-ZoA">
             <declaredKeys>
-                <string>name</string>
+                <string>icon</string>
+                <string>contentUrl</string>
             </declaredKeys>
             <connections>
                 <binding destination="Voe-Tx-rLC" name="contentArray" keyPath="channels" id="uOE-7N-0g1"/>
@@ -677,22 +678,22 @@
         </menu>
         <window title="test3" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-            <rect key="contentRect" x="335" y="390" width="758" height="529"/>
+            <rect key="contentRect" x="335" y="248" width="758" height="529"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
-            <view key="contentView" id="EiT-Mj-1SZ">
+            <view key="contentView" id="EiT-Mj-1SZ" customClass="MenuView" customModule="test3" customModuleProvider="target">
                 <rect key="frame" x="0.0" y="0.0" width="758" height="529"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wDb-l6-5ZY">
-                        <rect key="frame" x="39" y="95" width="680" height="399"/>
+                        <rect key="frame" x="-1" y="-1" width="760" height="531"/>
                         <clipView key="contentView" id="ZpA-TH-wKD">
                             <rect key="frame" x="1" y="1" width="248" height="158"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <collectionView id="Qhz-If-im9">
+                                <collectionView canDrawConcurrently="YES" id="Qhz-If-im9">
                                     <rect key="frame" x="0.0" y="0.0" width="248" height="158"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="primaryBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <connections>
                                         <binding destination="w2h-RL-ZoA" name="content" keyPath="arrangedObjects" id="BMG-II-YpS"/>
                                         <outlet property="itemPrototype" destination="fW7-Kl-jXO" id="kbG-oA-o34"/>
@@ -709,24 +710,12 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
-                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="y0E-Ue-ASQ">
-                        <rect key="frame" x="347" y="30" width="64" height="32"/>
-                        <buttonCell key="cell" type="push" title="add" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="RLK-LA-N1C">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="add:" target="w2h-RL-ZoA" id="yzR-69-ESD"/>
-                        </connections>
-                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="wDb-l6-5ZY" secondAttribute="bottom" constant="95" id="3S4-y2-XqY"/>
-                    <constraint firstItem="wDb-l6-5ZY" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="39" id="DVh-q4-iCD"/>
-                    <constraint firstItem="wDb-l6-5ZY" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="35" id="WFd-Rw-Ppu"/>
-                    <constraint firstItem="wDb-l6-5ZY" firstAttribute="centerX" secondItem="EiT-Mj-1SZ" secondAttribute="centerX" id="kVX-gu-V9z"/>
-                    <constraint firstItem="y0E-Ue-ASQ" firstAttribute="top" secondItem="wDb-l6-5ZY" secondAttribute="bottom" constant="37" id="s0R-gU-6h2"/>
-                    <constraint firstItem="y0E-Ue-ASQ" firstAttribute="centerX" secondItem="wDb-l6-5ZY" secondAttribute="centerX" id="zqx-qn-rSo"/>
+                    <constraint firstAttribute="trailing" secondItem="wDb-l6-5ZY" secondAttribute="trailing" constant="-1" id="QYL-mY-osH"/>
+                    <constraint firstItem="wDb-l6-5ZY" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="-1" id="Tgz-AX-eLz"/>
+                    <constraint firstAttribute="bottom" secondItem="wDb-l6-5ZY" secondAttribute="bottom" constant="-1" id="f0o-ic-0t3"/>
+                    <constraint firstItem="wDb-l6-5ZY" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="-1" id="vid-iq-fut"/>
                 </constraints>
             </view>
             <point key="canvasLocation" x="566" y="466.5"/>
@@ -737,23 +726,30 @@
             </connections>
         </collectionViewItem>
         <view id="zQf-vW-I5T">
-            <rect key="frame" x="0.0" y="0.0" width="239" height="128"/>
+            <rect key="frame" x="0.0" y="0.0" width="170" height="170"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w9H-6G-nq7">
-                    <rect key="frame" x="52" y="56" width="134" height="17"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="5Qr-1x-5ln">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pWa-VC-88t">
+                    <rect key="frame" x="20" y="20" width="130" height="130"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="vKI-6H-AhL"/>
                     <connections>
-                        <binding destination="fW7-Kl-jXO" name="value" keyPath="representedObject.name" id="Roc-ti-B8w"/>
+                        <binding destination="fW7-Kl-jXO" name="value" keyPath="representedObject.icon" id="M9o-3u-5yl"/>
                     </connections>
-                </textField>
+                </imageView>
             </subviews>
-            <point key="canvasLocation" x="396.5" y="342"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="pWa-VC-88t" secondAttribute="trailing" constant="20" symbolic="YES" id="7BF-Ng-IPB"/>
+                <constraint firstAttribute="bottom" secondItem="pWa-VC-88t" secondAttribute="bottom" constant="20" symbolic="YES" id="ZeB-kD-W2h"/>
+                <constraint firstItem="pWa-VC-88t" firstAttribute="leading" secondItem="zQf-vW-I5T" secondAttribute="leading" constant="20" symbolic="YES" id="c2q-bY-X8m"/>
+                <constraint firstItem="pWa-VC-88t" firstAttribute="top" secondItem="zQf-vW-I5T" secondAttribute="top" constant="20" symbolic="YES" id="cdJ-Xe-pWX"/>
+            </constraints>
+            <point key="canvasLocation" x="354" y="341"/>
         </view>
+        <viewController id="MSv-Tb-RG3" customClass="MenuViewController" customModule="test3" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="EiT-Mj-1SZ" id="BhK-br-dLm"/>
+            </connections>
+        </viewController>
         <userDefaultsController representsSharedInstance="YES" id="nMe-xi-jGe"/>
     </objects>
 </document>
