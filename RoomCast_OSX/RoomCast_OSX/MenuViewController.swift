@@ -51,6 +51,27 @@ class MenuViewController: NSViewController {
         }
     }
     
+    // MARK: - Navigation
+    
+    override func prepareForSegue(segue: NSStoryboardSegue, sender: AnyObject?) {
+        
+        // Get the new view controller
+        var nextVC = segue.destinationController as ChannelViewController
+        
+        // Pass the selected object to the new view controller
+        let cell = sender as NSImageView
+        let indexPath = 0//self.collectionView!.sele
+        /*
+        if let i = indexPath?.item{
+            var url = channels[i].contentUrl
+            nextVC.url = url
+        }
+*/
+        nextVC.url = "http://google.com"
+        println("click")
+        
+    }
+    
     
 }
 

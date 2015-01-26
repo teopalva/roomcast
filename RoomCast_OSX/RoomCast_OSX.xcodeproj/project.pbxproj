@@ -13,7 +13,9 @@
 		AB4344C71A75978B00A31061 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB4344C51A75978B00A31061 /* Main.storyboard */; };
 		AB4344D31A75978B00A31061 /* RoomCast_OSXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4344D21A75978B00A31061 /* RoomCast_OSXTests.swift */; };
 		AB4344DD1A7598BC00A31061 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4344DC1A7598BC00A31061 /* Channel.swift */; };
-		ABBA69991A75AFAB0074C15E /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBA69981A75AFAB0074C15E /* WebViewController.swift */; };
+		ABBA69991A75AFAB0074C15E /* ChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBA69981A75AFAB0074C15E /* ChannelViewController.swift */; };
+		ABBA699B1A75B22E0074C15E /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBA699A1A75B22E0074C15E /* MainWindowController.swift */; };
+		ABBA699D1A75BF430074C15E /* CollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBA699C1A75BF430074C15E /* CollectionViewItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +39,9 @@
 		AB4344D11A75978B00A31061 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB4344D21A75978B00A31061 /* RoomCast_OSXTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCast_OSXTests.swift; sourceTree = "<group>"; };
 		AB4344DC1A7598BC00A31061 /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
-		ABBA69981A75AFAB0074C15E /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		ABBA69981A75AFAB0074C15E /* ChannelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelViewController.swift; sourceTree = "<group>"; };
+		ABBA699A1A75B22E0074C15E /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		ABBA699C1A75BF430074C15E /* CollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,9 +84,11 @@
 			isa = PBXGroup;
 			children = (
 				AB4344BF1A75978B00A31061 /* AppDelegate.swift */,
+				ABBA699A1A75B22E0074C15E /* MainWindowController.swift */,
 				AB4344C11A75978B00A31061 /* MenuViewController.swift */,
-				ABBA69981A75AFAB0074C15E /* WebViewController.swift */,
+				ABBA69981A75AFAB0074C15E /* ChannelViewController.swift */,
 				AB4344DC1A7598BC00A31061 /* Channel.swift */,
+				ABBA699C1A75BF430074C15E /* CollectionViewItem.swift */,
 				AB4344C51A75978B00A31061 /* Main.storyboard */,
 				AB4344C31A75978B00A31061 /* Images.xcassets */,
 				AB4344BD1A75978B00A31061 /* Supporting Files */,
@@ -217,7 +223,9 @@
 				AB4344C21A75978B00A31061 /* MenuViewController.swift in Sources */,
 				AB4344DD1A7598BC00A31061 /* Channel.swift in Sources */,
 				AB4344C01A75978B00A31061 /* AppDelegate.swift in Sources */,
-				ABBA69991A75AFAB0074C15E /* WebViewController.swift in Sources */,
+				ABBA69991A75AFAB0074C15E /* ChannelViewController.swift in Sources */,
+				ABBA699B1A75B22E0074C15E /* MainWindowController.swift in Sources */,
+				ABBA699D1A75BF430074C15E /* CollectionViewItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+        <plugIn identifier="com.apple.WebKitIBPlugin" version="6254"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -654,9 +655,10 @@
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
+                <windowController id="B8D-0N-5wS" customClass="MainWindowController" customModule="RoomCast_OSX" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="RoomCast" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
                         <rect key="contentRect" x="196" y="240" width="600" height="400"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                     </window>
@@ -727,23 +729,40 @@
             </objects>
             <point key="canvasLocation" x="75" y="811"/>
         </scene>
-        <!--Web View Controller-->
+        <!--Channel View Controller-->
         <scene sceneID="SVT-BG-MwE">
             <objects>
-                <viewController id="biv-nx-adL" customClass="WebViewController" customModule="RoomCast_OSX" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="biv-nx-adL" customClass="ChannelViewController" customModule="RoomCast_OSX" sceneMemberID="viewController">
                     <view key="view" id="dfz-Fx-IvW">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <webView translatesAutoresizingMaskIntoConstraints="NO" id="9Ah-70-tru">
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                                <webPreferences key="preferences" defaultFontSize="12" defaultFixedFontSize="12">
+                                    <nil key="identifier"/>
+                                </webPreferences>
+                            </webView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="9Ah-70-tru" firstAttribute="top" secondItem="dfz-Fx-IvW" secondAttribute="top" id="BGt-HB-JcP"/>
+                            <constraint firstItem="9Ah-70-tru" firstAttribute="leading" secondItem="dfz-Fx-IvW" secondAttribute="leading" id="bDY-j7-wbZ"/>
+                            <constraint firstAttribute="bottom" secondItem="9Ah-70-tru" secondAttribute="bottom" id="ksp-sq-Ie5"/>
+                            <constraint firstAttribute="trailing" secondItem="9Ah-70-tru" secondAttribute="trailing" id="rad-gY-FPJ"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="webView" destination="9Ah-70-tru" id="W7L-1B-ZqO"/>
+                    </connections>
                 </viewController>
                 <customObject id="RVa-g8-Vmf" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="767" y="761"/>
+            <point key="canvasLocation" x="703" y="1167"/>
         </scene>
         <!--Collection View Item-->
         <scene sceneID="mUy-XM-2bi">
             <objects>
-                <collectionViewItem storyboardIdentifier="collectionViewItem" id="m0c-Ly-sYW" sceneMemberID="viewController">
+                <collectionViewItem storyboardIdentifier="collectionViewItem" id="m0c-Ly-sYW" customClass="CollectionViewItem" customModule="RoomCast_OSX" sceneMemberID="viewController">
                     <view key="view" id="35O-Qb-yqs">
                         <rect key="frame" x="0.0" y="0.0" width="170" height="170"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -752,6 +771,7 @@
                                 <rect key="frame" x="20" y="20" width="130" height="130"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="XHZ-fJ-JIQ"/>
                                 <connections>
+                                    <action selector="channelSelected:" target="m0c-Ly-sYW" id="B2T-hg-M5T"/>
                                     <binding destination="m0c-Ly-sYW" name="value" keyPath="representedObject.icon" id="0wH-YH-YgE"/>
                                 </connections>
                             </imageView>
@@ -763,6 +783,9 @@
                             <constraint firstAttribute="trailing" secondItem="C1f-8q-tQg" secondAttribute="trailing" constant="20" symbolic="YES" id="t42-Nk-61m"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <segue destination="biv-nx-adL" kind="show" identifier="segue_channelSelection" id="SA9-2f-pEs"/>
+                    </connections>
                 </collectionViewItem>
                 <customObject id="vqL-SW-Tvl" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
