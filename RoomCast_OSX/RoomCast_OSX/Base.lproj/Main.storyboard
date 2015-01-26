@@ -771,21 +771,31 @@
                                 <rect key="frame" x="20" y="20" width="130" height="130"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="XHZ-fJ-JIQ"/>
                                 <connections>
-                                    <action selector="channelSelected:" target="m0c-Ly-sYW" id="B2T-hg-M5T"/>
                                     <binding destination="m0c-Ly-sYW" name="value" keyPath="representedObject.icon" id="0wH-YH-YgE"/>
                                 </connections>
                             </imageView>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="nJb-c9-cvq">
+                                <rect key="frame" x="20" y="20" width="130" height="130"/>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" transparent="YES" imageScaling="proportionallyDown" inset="2" id="JIh-Ni-yyU">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <segue destination="biv-nx-adL" kind="show" id="TOJ-DX-wgt"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="C1f-8q-tQg" secondAttribute="bottom" constant="20" symbolic="YES" id="3Sb-6C-doy"/>
                             <constraint firstItem="C1f-8q-tQg" firstAttribute="leading" secondItem="35O-Qb-yqs" secondAttribute="leading" constant="20" symbolic="YES" id="E7X-nr-h8W"/>
+                            <constraint firstItem="nJb-c9-cvq" firstAttribute="top" secondItem="C1f-8q-tQg" secondAttribute="top" id="Lbb-Nr-bjY"/>
                             <constraint firstItem="C1f-8q-tQg" firstAttribute="top" secondItem="35O-Qb-yqs" secondAttribute="top" constant="20" symbolic="YES" id="Mat-JB-PkV"/>
+                            <constraint firstItem="nJb-c9-cvq" firstAttribute="trailing" secondItem="C1f-8q-tQg" secondAttribute="trailing" id="OaR-KE-b44"/>
+                            <constraint firstItem="nJb-c9-cvq" firstAttribute="leading" secondItem="C1f-8q-tQg" secondAttribute="leading" id="sKF-Ww-RaX"/>
                             <constraint firstAttribute="trailing" secondItem="C1f-8q-tQg" secondAttribute="trailing" constant="20" symbolic="YES" id="t42-Nk-61m"/>
+                            <constraint firstItem="nJb-c9-cvq" firstAttribute="bottom" secondItem="C1f-8q-tQg" secondAttribute="bottom" id="y07-yH-HIh"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <segue destination="biv-nx-adL" kind="show" identifier="segue_channelSelection" id="SA9-2f-pEs"/>
-                    </connections>
                 </collectionViewItem>
                 <customObject id="vqL-SW-Tvl" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

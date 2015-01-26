@@ -9,11 +9,6 @@
 import Cocoa
 
 class CollectionViewItem: NSCollectionViewItem {
-    
-    
-    @IBAction func channelSelected(sender: AnyObject) {
-        self.performSegueWithIdentifier("segue_channelSelection", sender: sender)
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +25,7 @@ class CollectionViewItem: NSCollectionViewItem {
         var nextVC = segue.destinationController as ChannelViewController
         
         // Pass the selected object to the new view controller
-        let cell = sender as NSImageView
+        //let cell = sender as NSImageView
         let indexPath = 0//self.collectionView!.sele
         /*
         if let i = indexPath?.item{
