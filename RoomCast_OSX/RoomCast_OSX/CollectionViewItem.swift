@@ -9,27 +9,30 @@
 import Cocoa
 
 class CollectionViewItem: NSCollectionViewItem {
+    
+    var url: String? = nil
 
     @IBAction func onClick(sender: AnyObject) {
         
         var app = NSApplication.sharedApplication().delegate
-        if let ad = app as? AppDelegate {
-            ad.switchDelegate?.switchSubViews()
+
+        var ch: Channel = self.representedObject as Channel
+        if let url = ch.contentUrl {
+            if let ad = app as? AppDelegate {
+                ad.switchDelegate?.switchSubViews(webViewHasUrl: url)
+            }
         }
         
+        
     }
-    
-    
-    var switch_ : SwitchViewsDelegate?
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        
-        println("loaded item")
     }
     
+    
+    /*
     // MARK: - Navigation
     
     override func prepareForSegue(segue: NSStoryboardSegue, sender: AnyObject?) {
@@ -50,5 +53,6 @@ class CollectionViewItem: NSCollectionViewItem {
         println("click")
         
     }
+*/
     
 }

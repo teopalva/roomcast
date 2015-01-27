@@ -8,12 +8,17 @@
 
 import Cocoa
 import AppKit
+import WebKit
 
 class MenuViewController: NSViewController, SwitchViewsDelegate {
     
     @IBOutlet weak var collectionView: NSCollectionView!
     
     @IBOutlet var arrayController: NSArrayController!
+    
+    @IBOutlet weak var collectionview: NSScrollView!
+    @IBOutlet weak var webview: WebView!
+
     
     var channels: NSMutableArray!
     
@@ -50,6 +55,9 @@ class MenuViewController: NSViewController, SwitchViewsDelegate {
             ad.switchDelegate = self
         }
         
+        // Hide webview
+        webview.hidden = true
+        
         
     }
     
@@ -63,8 +71,7 @@ class MenuViewController: NSViewController, SwitchViewsDelegate {
     
     @IBOutlet var topView: NSView!
     
-    @IBOutlet var webView: NSView!
-    
+
     internal func removeAllSubviews() {
         for subview in topView.subviews {
                 subview.removeFromSuperview()
@@ -72,8 +79,10 @@ class MenuViewController: NSViewController, SwitchViewsDelegate {
     }
     
     
-    func switchSubViews() {
+    
+    func switchSubViews(webViewHasUrl url: String) {
         
+        /*
         removeAllSubviews()
         
         // fade out
@@ -88,9 +97,19 @@ class MenuViewController: NSViewController, SwitchViewsDelegate {
         // fade in
         topView.alphaValue = 1.0
         
+*/
+            let requestURL = NSURL(string:url)
+            let request = NSURLRequest(URL: requestURL!)
+            webview.mainFrame.loadRequest(request)
+            
+            // TODO: animation?
+            collectionview.hidden = true
+            webview.hidden = false
+        
         
     }
-
+    
+    
     
     
 }

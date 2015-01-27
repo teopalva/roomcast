@@ -10,7 +10,7 @@ import Foundation
 
 protocol SwitchViewsDelegate {
     
-    func switchSubViews()
+    func switchSubViews(webViewHasUrl url:String)
     func removeAllSubviews()
     
     

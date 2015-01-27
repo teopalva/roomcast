@@ -703,41 +703,31 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <webView translatesAutoresizingMaskIntoConstraints="NO" id="2wC-4l-kie">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
+                                <webPreferences key="preferences" defaultFontSize="12" defaultFixedFontSize="12"/>
+                            </webView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="aBG-T1-L53" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="I1B-ia-9LV"/>
-                            <constraint firstAttribute="bottom" secondItem="aBG-T1-L53" secondAttribute="bottom" id="f0b-aI-q0F"/>
-                            <constraint firstAttribute="trailing" secondItem="aBG-T1-L53" secondAttribute="trailing" id="g3P-4W-raL"/>
-                            <constraint firstItem="aBG-T1-L53" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="sW8-Wo-GrI"/>
+                            <constraint firstItem="2wC-4l-kie" firstAttribute="trailing" secondItem="aBG-T1-L53" secondAttribute="trailing" id="4ZG-Cy-1h3"/>
+                            <constraint firstItem="2wC-4l-kie" firstAttribute="leading" secondItem="aBG-T1-L53" secondAttribute="leading" id="Qtu-AC-yy2"/>
+                            <constraint firstAttribute="trailing" secondItem="2wC-4l-kie" secondAttribute="trailing" id="Uxd-mP-jww"/>
+                            <constraint firstItem="2wC-4l-kie" firstAttribute="bottom" secondItem="aBG-T1-L53" secondAttribute="bottom" id="XCp-ak-8Vw"/>
+                            <constraint firstItem="2wC-4l-kie" firstAttribute="top" secondItem="aBG-T1-L53" secondAttribute="top" id="cga-o9-vbp"/>
+                            <constraint firstItem="2wC-4l-kie" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="eXt-nF-waI"/>
+                            <constraint firstItem="2wC-4l-kie" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="nOD-of-xVp"/>
+                            <constraint firstAttribute="bottom" secondItem="2wC-4l-kie" secondAttribute="bottom" id="y4e-Hv-pBY"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="arrayController" destination="W4n-UO-5Qp" id="SzT-g1-BYK"/>
                         <outlet property="collectionView" destination="Khk-92-egb" id="j2d-sg-qqr"/>
-                        <outlet property="sourceItemView" destination="9Ah-70-tru" id="1LV-Nj-0Iv"/>
+                        <outlet property="collectionview" destination="aBG-T1-L53" id="3TI-4Y-qIp"/>
                         <outlet property="topView" destination="m2S-Jp-Qdl" id="bF2-Sl-LNz"/>
-                        <outlet property="webView" destination="dfz-Fx-IvW" id="F2t-XB-qvq"/>
+                        <outlet property="webview" destination="2wC-4l-kie" id="xEy-sv-dH8"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <view id="dfz-Fx-IvW">
-                    <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                    <autoresizingMask key="autoresizingMask"/>
-                    <subviews>
-                        <webView translatesAutoresizingMaskIntoConstraints="NO" id="9Ah-70-tru">
-                            <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                            <webPreferences key="preferences" defaultFontSize="12" defaultFixedFontSize="12">
-                                <nil key="identifier"/>
-                            </webPreferences>
-                        </webView>
-                    </subviews>
-                    <constraints>
-                        <constraint firstItem="9Ah-70-tru" firstAttribute="top" secondItem="dfz-Fx-IvW" secondAttribute="top" id="BGt-HB-JcP"/>
-                        <constraint firstItem="9Ah-70-tru" firstAttribute="leading" secondItem="dfz-Fx-IvW" secondAttribute="leading" id="bDY-j7-wbZ"/>
-                        <constraint firstAttribute="bottom" secondItem="9Ah-70-tru" secondAttribute="bottom" id="ksp-sq-Ie5"/>
-                        <constraint firstAttribute="trailing" secondItem="9Ah-70-tru" secondAttribute="trailing" id="rad-gY-FPJ"/>
-                    </constraints>
-                </view>
                 <arrayController objectClassName="RoomCast_OSX.Channel" id="W4n-UO-5Qp">
                     <declaredKeys>
                         <string>icon</string>
@@ -749,14 +739,6 @@
                 </arrayController>
             </objects>
             <point key="canvasLocation" x="75" y="811"/>
-        </scene>
-        <!--Channel View Controller-->
-        <scene sceneID="SVT-BG-MwE">
-            <objects>
-                <viewController id="biv-nx-adL" customClass="ChannelViewController" customModule="RoomCast_OSX" sceneMemberID="viewController"/>
-                <customObject id="RVa-g8-Vmf" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="703" y="1167"/>
         </scene>
         <!--Collection View Item-->
         <scene sceneID="mUy-XM-2bi">
@@ -797,6 +779,7 @@
                     </view>
                 </collectionViewItem>
                 <customObject id="vqL-SW-Tvl" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController id="WLV-N1-xxi"/>
             </objects>
             <point key="canvasLocation" x="75" y="1167"/>
         </scene>

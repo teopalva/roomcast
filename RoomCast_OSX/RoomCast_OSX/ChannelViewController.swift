@@ -11,19 +11,7 @@ import WebKit
 
 class ChannelViewController: NSViewController {
     
-    @IBOutlet weak var webView: WebView!
     
-    var url : String?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        if url != nil {
-            let requestURL = NSURL(string:url!)
-            let request = NSURLRequest(URL: requestURL!)
-            webView.mainFrame.loadRequest(request)
-        }
-        
-    }
+ 
     
 }
