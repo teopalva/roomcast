@@ -18,7 +18,7 @@ class MenuViewController: NSViewController, SwitchViewsDelegate {
     
     @IBOutlet weak var collectionview: NSScrollView!
     @IBOutlet weak var webview: WebView!
-
+    
     
     var channels: NSMutableArray!
     
@@ -71,10 +71,10 @@ class MenuViewController: NSViewController, SwitchViewsDelegate {
     
     @IBOutlet var topView: NSView!
     
-
+    
     internal func removeAllSubviews() {
         for subview in topView.subviews {
-                subview.removeFromSuperview()
+            subview.removeFromSuperview()
         }
     }
     
@@ -89,27 +89,25 @@ class MenuViewController: NSViewController, SwitchViewsDelegate {
         topView.alphaValue = 0.0
         
         // make the sub view the same size as our super view
-       // webView.setFrameSize(topView.frame.size)
+        // webView.setFrameSize(topView.frame.size)
         
         // push new subview
         topView.addSubview(webView)
         
         // fade in
         topView.alphaValue = 1.0
+        */
         
-*/
-            let requestURL = NSURL(string:url)
-            let request = NSURLRequest(URL: requestURL!)
-            webview.mainFrame.loadRequest(request)
-            
-            // TODO: animation?
-            collectionview.hidden = true
-            webview.hidden = false
+        let requestURL = NSURL(string:url)
+        let request = NSURLRequest(URL: requestURL!)
+        webview.mainFrame.loadRequest(request)
+        
+        // TODO: animation?
+        collectionview.hidden = true
+        webview.hidden = false
         
         
     }
-    
-    
     
     
 }
