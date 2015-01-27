@@ -7,8 +7,9 @@
 //
 
 import Cocoa
+import AppKit
 
-class MenuViewController: NSViewController {
+class MenuViewController: NSViewController, SwitchViewsDelegate {
     
     @IBOutlet weak var collectionView: NSCollectionView!
     
@@ -40,6 +41,13 @@ class MenuViewController: NSViewController {
         for i in 5...30 {
             let ch = Channel(name: "Channel", iconName: "ch00", chDescription: "Another channel", contentUrl: nil)
             arrayController.addObject(ch)
+            
+        }
+        
+        // Set self as delegate
+        var app = NSApplication.sharedApplication().delegate
+        if let ad = app as? AppDelegate {
+            ad.switchDelegate = self
         }
         
         
@@ -50,6 +58,39 @@ class MenuViewController: NSViewController {
             // Update the view, if already loaded.
         }
     }
+    
+    
+    
+    @IBOutlet var topView: NSView!
+    
+    @IBOutlet var webView: NSView!
+    
+    internal func removeAllSubviews() {
+        for subview in topView.subviews {
+                subview.removeFromSuperview()
+        }
+    }
+    
+    
+    func switchSubViews() {
+        
+        removeAllSubviews()
+        
+        // fade out
+        topView.alphaValue = 0.0
+        
+        // make the sub view the same size as our super view
+       // webView.setFrameSize(topView.frame.size)
+        
+        // push new subview
+        topView.addSubview(webView)
+        
+        // fade in
+        topView.alphaValue = 1.0
+        
+        
+    }
+
     
     
 }

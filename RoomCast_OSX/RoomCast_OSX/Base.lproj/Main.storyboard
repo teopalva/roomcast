@@ -656,7 +656,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" customClass="MainWindowController" customModule="RoomCast_OSX" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="RoomCast" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="RoomCast" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA" customClass="MainWindow" customModule="RoomCast_OSX">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
                         <rect key="contentRect" x="196" y="240" width="600" height="400"/>
@@ -714,9 +714,30 @@
                     <connections>
                         <outlet property="arrayController" destination="W4n-UO-5Qp" id="SzT-g1-BYK"/>
                         <outlet property="collectionView" destination="Khk-92-egb" id="j2d-sg-qqr"/>
+                        <outlet property="sourceItemView" destination="9Ah-70-tru" id="1LV-Nj-0Iv"/>
+                        <outlet property="topView" destination="m2S-Jp-Qdl" id="bF2-Sl-LNz"/>
+                        <outlet property="webView" destination="dfz-Fx-IvW" id="F2t-XB-qvq"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <view id="dfz-Fx-IvW">
+                    <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <subviews>
+                        <webView translatesAutoresizingMaskIntoConstraints="NO" id="9Ah-70-tru">
+                            <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                            <webPreferences key="preferences" defaultFontSize="12" defaultFixedFontSize="12">
+                                <nil key="identifier"/>
+                            </webPreferences>
+                        </webView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="9Ah-70-tru" firstAttribute="top" secondItem="dfz-Fx-IvW" secondAttribute="top" id="BGt-HB-JcP"/>
+                        <constraint firstItem="9Ah-70-tru" firstAttribute="leading" secondItem="dfz-Fx-IvW" secondAttribute="leading" id="bDY-j7-wbZ"/>
+                        <constraint firstAttribute="bottom" secondItem="9Ah-70-tru" secondAttribute="bottom" id="ksp-sq-Ie5"/>
+                        <constraint firstAttribute="trailing" secondItem="9Ah-70-tru" secondAttribute="trailing" id="rad-gY-FPJ"/>
+                    </constraints>
+                </view>
                 <arrayController objectClassName="RoomCast_OSX.Channel" id="W4n-UO-5Qp">
                     <declaredKeys>
                         <string>icon</string>
@@ -732,29 +753,7 @@
         <!--Channel View Controller-->
         <scene sceneID="SVT-BG-MwE">
             <objects>
-                <viewController id="biv-nx-adL" customClass="ChannelViewController" customModule="RoomCast_OSX" sceneMemberID="viewController">
-                    <view key="view" id="dfz-Fx-IvW">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <webView translatesAutoresizingMaskIntoConstraints="NO" id="9Ah-70-tru">
-                                <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                                <webPreferences key="preferences" defaultFontSize="12" defaultFixedFontSize="12">
-                                    <nil key="identifier"/>
-                                </webPreferences>
-                            </webView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="9Ah-70-tru" firstAttribute="top" secondItem="dfz-Fx-IvW" secondAttribute="top" id="BGt-HB-JcP"/>
-                            <constraint firstItem="9Ah-70-tru" firstAttribute="leading" secondItem="dfz-Fx-IvW" secondAttribute="leading" id="bDY-j7-wbZ"/>
-                            <constraint firstAttribute="bottom" secondItem="9Ah-70-tru" secondAttribute="bottom" id="ksp-sq-Ie5"/>
-                            <constraint firstAttribute="trailing" secondItem="9Ah-70-tru" secondAttribute="trailing" id="rad-gY-FPJ"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="webView" destination="9Ah-70-tru" id="W7L-1B-ZqO"/>
-                    </connections>
-                </viewController>
+                <viewController id="biv-nx-adL" customClass="ChannelViewController" customModule="RoomCast_OSX" sceneMemberID="viewController"/>
                 <customObject id="RVa-g8-Vmf" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="703" y="1167"/>
@@ -781,7 +780,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <segue destination="biv-nx-adL" kind="show" id="TOJ-DX-wgt"/>
+                                    <action selector="onClick:" target="m0c-Ly-sYW" id="VJN-Op-a25"/>
                                 </connections>
                             </button>
                         </subviews>

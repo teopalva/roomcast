@@ -10,6 +10,19 @@ import Cocoa
 
 class CollectionViewItem: NSCollectionViewItem {
 
+    @IBAction func onClick(sender: AnyObject) {
+        
+        var app = NSApplication.sharedApplication().delegate
+        if let ad = app as? AppDelegate {
+            ad.switchDelegate?.switchSubViews()
+        }
+        
+    }
+    
+    
+    var switch_ : SwitchViewsDelegate?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.

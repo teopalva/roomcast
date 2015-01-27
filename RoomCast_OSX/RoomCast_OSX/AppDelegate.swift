@@ -16,6 +16,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to initialize your application
     }
     
+    // SHARED DELEGATES
+    var switchDelegate : SwitchViewsDelegate?
+    
     
 }
 

@@ -16,6 +16,8 @@
 		ABBA69991A75AFAB0074C15E /* ChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBA69981A75AFAB0074C15E /* ChannelViewController.swift */; };
 		ABBA699B1A75B22E0074C15E /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBA699A1A75B22E0074C15E /* MainWindowController.swift */; };
 		ABBA699D1A75BF430074C15E /* CollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBA699C1A75BF430074C15E /* CollectionViewItem.swift */; };
+		ABD670271A775C4D00EA3456 /* MainWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD670261A775C4D00EA3456 /* MainWindow.swift */; };
+		ABD670291A7763A900EA3456 /* SwitchViewsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD670281A7763A900EA3456 /* SwitchViewsDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,8 @@
 		ABBA69981A75AFAB0074C15E /* ChannelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelViewController.swift; sourceTree = "<group>"; };
 		ABBA699A1A75B22E0074C15E /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		ABBA699C1A75BF430074C15E /* CollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewItem.swift; sourceTree = "<group>"; };
+		ABD670261A775C4D00EA3456 /* MainWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindow.swift; sourceTree = "<group>"; };
+		ABD670281A7763A900EA3456 /* SwitchViewsDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchViewsDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,8 @@
 			isa = PBXGroup;
 			children = (
 				AB4344BF1A75978B00A31061 /* AppDelegate.swift */,
+				ABD670261A775C4D00EA3456 /* MainWindow.swift */,
+				ABD670281A7763A900EA3456 /* SwitchViewsDelegate.swift */,
 				ABBA699A1A75B22E0074C15E /* MainWindowController.swift */,
 				AB4344C11A75978B00A31061 /* MenuViewController.swift */,
 				ABBA69981A75AFAB0074C15E /* ChannelViewController.swift */,
@@ -226,6 +232,8 @@
 				ABBA69991A75AFAB0074C15E /* ChannelViewController.swift in Sources */,
 				ABBA699B1A75B22E0074C15E /* MainWindowController.swift in Sources */,
 				ABBA699D1A75BF430074C15E /* CollectionViewItem.swift in Sources */,
+				ABD670271A775C4D00EA3456 /* MainWindow.swift in Sources */,
+				ABD670291A7763A900EA3456 /* SwitchViewsDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
