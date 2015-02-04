@@ -703,9 +703,11 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <webView translatesAutoresizingMaskIntoConstraints="NO" id="2wC-4l-kie">
+                            <webView translatesAutoresizingMaskIntoConstraints="NO" id="2wC-4l-kie" customClass="ChannelWebView" customModule="RoomCast_OSX">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
-                                <webPreferences key="preferences" defaultFontSize="12" defaultFixedFontSize="12"/>
+                                <webPreferences key="preferences" defaultFontSize="12" defaultFixedFontSize="12">
+                                    <nil key="identifier"/>
+                                </webPreferences>
                             </webView>
                         </subviews>
                         <constraints>

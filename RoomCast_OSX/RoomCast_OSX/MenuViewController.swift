@@ -109,6 +109,11 @@ class MenuViewController: NSViewController, SwitchViewsDelegate {
         
     }
     
+    func backToMenu() {
+        collectionview.hidden = false
+        webview.hidden = true
+    }
+    
     
 }
 

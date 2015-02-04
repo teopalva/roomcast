@@ -12,6 +12,6 @@ protocol SwitchViewsDelegate {
     
     func switchSubViews(webViewHasUrl url:String)
     func removeAllSubviews()
-    
+    func backToMenu()
     
 }

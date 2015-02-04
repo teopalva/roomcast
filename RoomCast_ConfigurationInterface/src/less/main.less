@@ -1,0 +1,49 @@
+@import "node_modules/material-ui/src/less/scaffolding.less";
+//Define a custom less file to override any variables defined in scaffolding.less
+@import "my_overrides.less";
+@import "node_modules/material-ui/src/less/components.less";
+
+//My custom app styles
+body {
+    overflow: auto;
+}
+.example-page {
+    text-align: center;
+    padding-top: 200px;
+}
+.resources-panel {
+    width: 50%;
+    position: absolute;
+    display: block;
+}
+.resources-panel:first-child {
+    margin-top: 20px;
+}
+.channels-panel {
+    width: 50%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: block;
+}
+.resource-family-pool {
+    position: static;
+    width: auto;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+.pool-row, .pool-header {
+    line-height: 50px;
+}
+.pool-row {
+    border-top: solid;
+    border-top-width: 1px;
+    border-top-color: rgb(224, 224, 224);
+}
+.channels-panel-paper {
+    height: 500px;
+    width: auto;
+    margin-top: 20px;
+    margin-right: 20px;
+}
