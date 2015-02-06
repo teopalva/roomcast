@@ -9,8 +9,7 @@ var ChannelsPanel = React.createClass({
             <div className="channels-panel">
 
                 <Paper className='channels-panel-paper'>
-                    <div >
-                    </div>
+
                 </Paper>
 
             </div> );

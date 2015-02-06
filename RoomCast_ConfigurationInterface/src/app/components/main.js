@@ -51,6 +51,9 @@ var CHANNELS = [
     {name: 'ch3', icon: ''},
     {name: 'ch4', icon: ''},
     {name: 'ch5', icon: ''},
+    {name: 'ch5', icon: ''},
+    {name: 'ch6', icon: ''},
+    {name: 'ch6', icon: ''},
     {name: 'ch6', icon: ''},
     {name: 'ch7', icon: ''}
 ];

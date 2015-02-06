@@ -1,6 +1,6 @@
 var React = require('react');
 var Mui = require('material-ui');
-var FlatButton = Mui.FlatButton;
+var Channel = require('./Channel');
 
 var PoolRow = React.createClass({
 
@@ -8,7 +8,7 @@ var PoolRow = React.createClass({
 
         var channelsList = [];
         this.props.channels.forEach(function (ch) {
-            channelsList.push(<FlatButton label={ch.name} />);
+            channelsList.push(<Channel name={ch.name} />);
         });
 
         return (

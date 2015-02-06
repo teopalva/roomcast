@@ -3,47 +3,82 @@
 @import "my_overrides.less";
 @import "node_modules/material-ui/src/less/components.less";
 
-//My custom app styles
+//////////// My custom app styles ////////////
+
+// VARIABLES
+@default-margin: 20px;
+@channel-icon-width: 127px /1.5;
+@channel-icon-height: 72px /1.5;
+
+// CODE
+
 body {
-    overflow: auto;
-}
-.example-page {
-    text-align: center;
-    padding-top: 200px;
+  overflow: auto;
 }
 .resources-panel {
-    width: 50%;
-    position: absolute;
-    display: block;
+  width: 50%;
+  position: absolute;
+  display: block;
 }
 .resources-panel:first-child {
-    margin-top: 20px;
+  margin-top: @default-margin;
 }
 .channels-panel {
-    width: 50%;
-    position: fixed;
-    top: 0;
-    right: 0;
-    display: block;
+  width: 50%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: block;
 }
 .resource-family-pool {
-    position: static;
-    width: auto;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 20px;
+  position: static;
+  width: auto;
+  margin-left: @default-margin;
+  margin-right: @default-margin;
+  margin-bottom: @default-margin;
 }
-.pool-row, .pool-header {
-    line-height: 50px;
+.resource-family-pool table {
+  width: 100%;
 }
 .pool-row {
-    border-top: solid;
-    border-top-width: 1px;
-    border-top-color: rgb(224, 224, 224);
+  border-top: solid;
+  border-top-width: 1px;
+  border-top-color: rgb(224, 224, 224);
+  td:first-child {
+    width: 10%;
+    text-align: center;
+  }
+  td:last-child {
+    width: 10%;
+  }
+}
+.pool-header{
+  line-height: 50px;
+  th:first-child {
+    width: 10%;
+    text-align: center;
+  }
 }
 .channels-panel-paper {
-    height: 500px;
-    width: auto;
-    margin-top: 20px;
-    margin-right: 20px;
+  height: calc(~"100% - 2*@{default-margin}");
+  width: auto;
+  margin-top: @default-margin;
+  margin-right: @default-margin;
+  margin-bottom: @default-margin;
 }
+
+// Channel
+.channelDiv {
+  display: inline-block;
+  text-align: center;
+  width: @channel-icon-width;
+}
+.channelIcon {
+  border-radius: 8px;
+  width: @channel-icon-width;
+  height: @channel-icon-height;
+  display: block;
+  margin: 0 auto;
+}
+
