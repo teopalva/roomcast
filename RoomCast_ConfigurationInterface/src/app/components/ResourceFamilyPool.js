@@ -6,12 +6,21 @@ var Paper = Mui.Paper;
 
 var ResourceFamilyPool = React.createClass({
 
+    handleSelectedChannel: function(ch) {
+        this.props.onSelectedChannel(ch);
+    },
+
     render: function(){
 
         var self=this;
         var rows=[];
-        this.props.resources.forEach(function(resource){
-            rows.push(<PoolRow resourceId={resource} channels={self.props.channels} />);
+        this.props.resourcesWithChannels.forEach(function(resource) {
+            rows.push(<PoolRow
+                resourceWithChannels={resource}
+                channels={self.props.channels}
+                selectedChannel={self.props.selectedChannel}
+                onSelectedChannel={self.handleSelectedChannel} />
+            );
         });
 
         return (
@@ -24,11 +33,11 @@ var ResourceFamilyPool = React.createClass({
 
                         <thead>
 
-                            <PoolHeader familyName={this.props.familyName} />
+                            <PoolHeader familyName={this.props.familyName} selectedChannel={self.props.selectedChannel} />
 
                         </thead>
 
-                        <tbody>{rows}</tbody>
+                        <tbody> {rows} </tbody>
 
                     </table>
 

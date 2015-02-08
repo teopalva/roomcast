@@ -1,3 +1,6 @@
+/* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
+
 @import "node_modules/material-ui/src/less/scaffolding.less";
 //Define a custom less file to override any variables defined in scaffolding.less
 @import "my_overrides.less";
@@ -37,14 +40,19 @@ body {
   margin-left: @default-margin;
   margin-right: @default-margin;
   margin-bottom: @default-margin;
-}
-.resource-family-pool table {
-  width: 100%;
+  table {
+    width: 100%;
+  }
 }
 .pool-row {
   border-top: solid;
   border-top-width: 1px;
   border-top-color: rgb(224, 224, 224);
+  td {
+    vertical-align: middle;
+    padding-top: 16px;
+    padding-bottom: 10px;
+  }
   td:first-child {
     width: 10%;
     text-align: center;
@@ -54,12 +62,37 @@ body {
   }
 }
 .pool-header{
-  line-height: 50px;
+  line-height: 60px;
   th:first-child {
     width: 10%;
     text-align: center;
   }
 }
+
+///////// Channel /////////
+.channel-div {
+  display: inline-block;
+  text-align: center;
+  width: @channel-icon-width;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.channel-icon {
+  border-radius: 8px;
+  width: @channel-icon-width;
+  height: @channel-icon-height;
+  display: block;
+  margin: 0 auto;
+}
+////////////////////////////
+
+.div-button-container {
+  display: inline-block;
+  margin-right: 10px;
+  line-height: 20px;
+}
+
+///////// ChannelsPanel /////////
 .channels-panel-paper {
   height: calc(~"100% - 2*@{default-margin}");
   width: auto;
@@ -67,18 +100,82 @@ body {
   margin-right: @default-margin;
   margin-bottom: @default-margin;
 }
-
-// Channel
-.channelDiv {
-  display: inline-block;
+.channels-catalogue-title-div-outer {
+  height: 10%;
+  width: 100%;
+  display: table;
+  //display: block;
+  //text-align: center;
+  p {
+    font-size: 2em;
+    font-weight: 300;
+    margin: 0;
+    padding: 0;
+  }
+}
+.channels-catalogue-title-div-middle {
+  padding: 0;
+  display: table-cell;
+  vertical-align: middle;
+}
+.channels-catalogue-title-div-inner {
   text-align: center;
-  width: @channel-icon-width;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
 }
-.channelIcon {
-  border-radius: 8px;
-  width: @channel-icon-width;
-  height: @channel-icon-height;
-  display: block;
-  margin: 0 auto;
-}
+/*
+.channels-panel-table {
+  height: 100%;
+  div:first-child {
+    height: 100%;
+    vertical-align: middle;
 
+  }
+  tbody {
+  }
+  tr:first-child{
+  }
+  th {
+    height: 100px;
+    text-align: center;
+    vertical-align: middle;
+
+    p {
+      font-size: 2em;
+      font-weight: 300;
+      margin: 0;
+      padding: 0;
+    }
+  }
+  td {
+    width: 100%;
+  }
+  td:first-child {
+    height: 30%;
+  }
+}
+*/
+////////////////////////////
+
+///////// Channel Info /////////
+.channel-info-div {
+  height: 40%;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    //-webkit-box-reflect: below 5px
+    //-webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.7, transparent), to(white));
+  }
+}
+.channels-list-div {
+  height: 50%;
+  width: 100%;
+  margin: auto;
+  padding: 20px;
+  overflow: scroll;
+}
+////////////////////////////
