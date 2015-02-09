@@ -9,7 +9,8 @@ var Main = React.createClass({
 
     getInitialState: function() {
         return {
-            selectedChannel: 'ch04'  // true when a specific channel is selected
+            selectedChannel: 'ch04',
+            mapping: RESOURCES
         };
     },
 
@@ -19,13 +20,29 @@ var Main = React.createClass({
         });
     },
 
+    handleUpdatedMapping: function(mapping) {
+        this.setState({
+            mapping: mapping
+        });
+        this.handleSavedUpdates();
+    },
+
+    handleSavedUpdates: function() {
+      console.log(this.state.mapping);
+    },
+
+    handleCancelledUpdates: function() {
+
+    },
+
     render: function () {
 
         return (
             <div className='outer-div'>
 
                 <ResourcesPanel
-                    resources={RESOURCES}
+                    mapping={this.state.mapping}
+                    onUpdatedMapping={this.handleUpdatedMapping}
                     channels={CHANNELS}
                     selectedChannel={this.state.selectedChannel}
                     onSelectedChannel={this.handleSelection} />
@@ -105,45 +122,45 @@ var CHANNELS = [
 */
 
 var CHANNELS = {
-    ch01: {icon: './assets/icon/channel_icon.png', description: 'description: first channel'},
-    ch02: {icon: './assets/icon/channel_icon.png', description: ''},
-    ch03: {icon: './assets/icon/channel_icon.png', description: ''},
-    ch04: {icon: './assets/icon/channel_icon.png', description: ''},
-    ch05: {icon: './assets/icon/channel_icon.png', description: ''},
-    ch06: {icon: './assets/icon/channel_icon.png', description: ''},
-    ch07: {icon: './assets/icon/channel_icon.png', description: ''},
-    ch08: {icon: './assets/icon/channel_icon.png', description: ''},
-    ch09: {icon: './assets/icon/channel_icon.png', description: ''},
-    ch10: {icon: './assets/icon/channel_icon.png', description: ''},
+    01: {name: 'first channel', icon: './assets/icon/channel_icon.png', description: 'description: first channel'},
+    02: {name: 'second channel', icon: './assets/icon/channel_icon.png', description: ''},
+    03: {name: 'third channel', icon: './assets/icon/channel_icon.png', description: ''},
+    04: {name: 'fourth channel', icon: './assets/icon/channel_icon.png', description: ''},
+    05: {name: 'fifth channel', icon: './assets/icon/channel_icon.png', description: ''},
+    06: {name: 'sixth channel', icon: './assets/icon/channel_icon.png', description: ''},
+    07: {name: 'seventh channel', icon: './assets/icon/channel_icon.png', description: ''},
+    08: {name: 'channel', icon: './assets/icon/channel_icon.png', description: ''},
+    09: {name: 'channel', icon: './assets/icon/channel_icon.png', description: ''},
+    10: {name: 'channel', icon: './assets/icon/channel_icon.png', description: ''},
     /*
-    ch11: {icon: './assets/icon/channel_icon.png', description: ''},
-    ch12: {icon: './assets/icon/channel_icon.png', description: ''},
-    ch13: {icon: './assets/icon/channel_icon.png', description: ''},
-    ch14: {icon: './assets/icon/channel_icon.png', description: ''},
-    ch15: {icon: './assets/icon/channel_icon.png', description: ''},
-    ch16: {icon: './assets/icon/channel_icon.png', description: ''},
-    ch17: {icon: './assets/icon/channel_icon.png', description: ''},
-    ch18: {icon: './assets/icon/channel_icon.png', description: ''},
-    ch19: {icon: './assets/icon/channel_icon.png', description: ''},
-    ch20: {icon: './assets/icon/channel_icon.png', description: ''},
-    ch21: {icon: './assets/icon/channel_icon.png', description: ''},
-    ch22: {icon: './assets/icon/channel_icon.png', description: ''},
-    ch23: {icon: './assets/icon/channel_icon.png', description: ''},
-    ch24: {icon: './assets/icon/channel_icon.png', description: ''},
-    ch25: {icon: './assets/icon/channel_icon.png', description: ''},
-    ch26: {icon: './assets/icon/channel_icon.png', description: ''},
-    ch27: {icon: './assets/icon/channel_icon.png', description: ''},
-    ch28: {icon: './assets/icon/channel_icon.png', description: ''},
-    ch29: {icon: './assets/icon/channel_icon.png', description: ''},
-    ch30: {icon: './assets/icon/channel_icon.png', description: ''},
-    ch31: {icon: './assets/icon/channel_icon.png', description: ''},
-    ch32: {icon: './assets/icon/channel_icon.png', description: ''},
-    ch33: {icon: './assets/icon/channel_icon.png', description: ''},
-    ch34: {icon: './assets/icon/channel_icon.png', description: ''},
-    ch35: {icon: './assets/icon/channel_icon.png', description: ''},
-    ch36: {icon: './assets/icon/channel_icon.png', description: ''},
-    ch37: {icon: './assets/icon/channel_icon.png', description: ''},
-    ch38: {icon: './assets/icon/channel_icon.png', description: ''},
+    11: {name: 'first channel', icon: './assets/icon/channel_icon.png', description: ''},
+    12: {name: 'first channel', icon: './assets/icon/channel_icon.png', description: ''},
+    13: {name: 'first channel', icon: './assets/icon/channel_icon.png', description: ''},
+    14: {name: 'first channel', icon: './assets/icon/channel_icon.png', description: ''},
+    15: {name: 'first channel', icon: './assets/icon/channel_icon.png', description: ''},
+    16: {name: 'first channel', icon: './assets/icon/channel_icon.png', description: ''},
+    17: {name: 'first channel', icon: './assets/icon/channel_icon.png', description: ''},
+    18: {name: 'first channel', icon: './assets/icon/channel_icon.png', description: ''},
+    19: {name: 'first channel', icon: './assets/icon/channel_icon.png', description: ''},
+    20: {name: 'first channel', icon: './assets/icon/channel_icon.png', description: ''},
+    21: {name: 'first channel', icon: './assets/icon/channel_icon.png', description: ''},
+    22: {name: 'first channel', icon: './assets/icon/channel_icon.png', description: ''},
+    23: {name: 'first channel', icon: './assets/icon/channel_icon.png', description: ''},
+    24: {name: 'first channel', icon: './assets/icon/channel_icon.png', description: ''},
+    25: {name: 'first channel', icon: './assets/icon/channel_icon.png', description: ''},
+    26: {name: 'first channel', icon: './assets/icon/channel_icon.png', description: ''},
+    27: {name: 'first channel', icon: './assets/icon/channel_icon.png', description: ''},
+    28: {name: 'first channel', icon: './assets/icon/channel_icon.png', description: ''},
+    29: {name: 'first channel', icon: './assets/icon/channel_icon.png', description: ''},
+    30: {name: 'first channel', icon: './assets/icon/channel_icon.png', description: ''},
+    31: {name: 'first channel', icon: './assets/icon/channel_icon.png', description: ''},
+    32: {name: 'first channel', icon: './assets/icon/channel_icon.png', description: ''},
+    33: {name: 'first channel', icon: './assets/icon/channel_icon.png', description: ''},
+    34: {name: 'first channel', icon: './assets/icon/channel_icon.png', description: ''},
+    35: {name: 'first channel', icon: './assets/icon/channel_icon.png', description: ''},
+    36: {name: 'first channel', icon: './assets/icon/channel_icon.png', description: ''},
+    37: {name: 'first channel', icon: './assets/icon/channel_icon.png', description: ''},
+    38: {name: 'first channel', icon: './assets/icon/channel_icon.png', description: ''},
     */
-    ch39: {icon: './assets/icon/channel_icon.png', description: ''}
+    39: {name: 'first channel', icon: './assets/icon/channel_icon.png', description: ''}
 }

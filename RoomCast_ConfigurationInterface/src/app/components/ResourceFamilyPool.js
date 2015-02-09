@@ -10,16 +10,31 @@ var ResourceFamilyPool = React.createClass({
         this.props.onSelectedChannel(ch);
     },
 
+    handleUpdatedMapping: function(resourceMapping) {
+
+        var mapping = this.props.mapping;
+        var family = this.props.familyName;
+        for(var i in mapping) {
+            if(mapping[i].family === family) {
+                mapping[i].channels = resourceMapping;
+            }
+        }
+        this.props.onUpdatedMapping(mapping);
+
+    },
+
     render: function(){
 
         var self=this;
         var rows=[];
         this.props.resourcesWithChannels.forEach(function(resource) {
             rows.push(<PoolRow
+                mapping={self.props.mapping}
                 resourceWithChannels={resource}
                 channels={self.props.channels}
                 selectedChannel={self.props.selectedChannel}
-                onSelectedChannel={self.handleSelectedChannel} />
+                onSelectedChannel={self.handleSelectedChannel}
+                onUpdatedMapping={self.handleUpdatedMapping} />
             );
         });
 

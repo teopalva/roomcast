@@ -10,6 +10,19 @@ var PoolRow = React.createClass({
         this.props.onSelectedChannel(ch);
     },
 
+    handleAddedChannel: function(ch) {
+
+        // retrieve state
+        // var mapping = this.props.mapping;
+        // console.log(mapping);
+
+        // update sub-state
+        var resourceMapping = this.props.resourceWithChannels.channels.push(ch);
+
+        // pass update upwards
+        this.props.onUpdatedMapping(resourceMapping);
+    },
+
     render: function () {
 
         var self=this;
@@ -21,8 +34,8 @@ var PoolRow = React.createClass({
          });
          */
 
-        this.props.resourceWithChannels.channels.forEach(function (chName) {
-            var itsChannel = self.props.channels[chName];
+        this.props.resourceWithChannels.channels.forEach(function (chId) {
+            var itsChannel = self.props.channels[chId];
             if(itsChannel) {
                 channelsList.push(<Channel
                     name={chName}
@@ -44,9 +57,15 @@ var PoolRow = React.createClass({
         var button;
         if( this.props.selectedChannel ) {
             if( isChannelAllowed(this.props.selectedChannel) ) {
-                button=<ContextButton type='remove' />;
+                button=<ContextButton
+                    type='remove'
+                    selectedChannel={self.props.selectedChannel}
+                    onRemovedChannel={self.handleRemovedChannel} />;
             } else {
-                button=<ContextButton type='add' />;
+                button=<ContextButton
+                    type='add'
+                    selectedChannel={self.props.selectedChannel}
+                    onAddedChannel={self.handleAddedChannel} />;
             }
         } else {
             button=<GlobalButton type='remove' />;

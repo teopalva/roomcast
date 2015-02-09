@@ -4,13 +4,23 @@ var FloatingActionButton_ = Mui.FloatingActionButton_;
 
 /**
  * @prop type
+ * @prop selectedChannel
+ * @prop onAddedChannel
  */
 var ContextButton = React.createClass({
 
+    addChannel: function() {
+        this.props.onAddedChannel(this.props.selectedChannel);
+    },
+
+    removeChannel: function() {
+
+    },
+
     render: function() {
 
-        var button = this.props.type==='add'? <FloatingActionButton_ icon='content-add' secondary={true} /> :
-            <FloatingActionButton_ icon='content-remove' primary={true} />;
+        var button = this.props.type==='add'? <FloatingActionButton_ icon='content-add' secondary={true} onTouchTap={this.addChannel} /> :
+            <FloatingActionButton_ icon='content-remove' primary={true} onTouchTap={this.removeChannel} />;
 
         return (
             <div className='div-button-container'>
