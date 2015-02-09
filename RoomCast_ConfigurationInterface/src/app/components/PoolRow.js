@@ -10,14 +10,47 @@ var PoolRow = React.createClass({
         this.props.onSelectedChannel(ch);
     },
 
-    handleAddedChannel: function(ch) {
-
-        // retrieve state
-        // var mapping = this.props.mapping;
-        // console.log(mapping);
+    handleAddedChannel: function(chId) {
 
         // update sub-state
-        var resourceMapping = this.props.resourceWithChannels.channels.push(ch);
+        //var resourceMapping = this.props.resourceWithChannels;
+
+
+        var channels = this.props.resourceWithChannels.channels;
+        var newChannels = [];
+        var found = false;
+        for(var i=0; i<channels.length; i++) {
+            if(+chId < +channels[i] && !found) {
+                newChannels.push(chId);
+                newChannels.push(channels[i]);
+                found = true;
+            } else {
+                newChannels.push(channels[i]);
+            }
+        }
+        if(!found) {
+            newChannels.push(chId);
+        }
+
+        resourceMapping = newChannels;
+
+        // create new object for single resource
+        var resourceMapping = {
+         name: this.props.resourceWithChannels.name,
+         channels: newChannels
+         };
+
+/*
+         // insert in order into channels list
+         var newChannels = this.props.resourceWithChannels.channels.slice(0);
+         console.log(newChannels);
+         for(var i=0; i<newChannels.length; i++) {
+         if(chId < newChannels[i]) {
+         continue;
+         }
+         newChannels.splice(i,0,chId);
+         }
+         */
 
         // pass update upwards
         this.props.onUpdatedMapping(resourceMapping);
@@ -38,7 +71,8 @@ var PoolRow = React.createClass({
             var itsChannel = self.props.channels[chId];
             if(itsChannel) {
                 channelsList.push(<Channel
-                    name={chName}
+                    id={chId}
+                    name={itsChannel.name}
                     imgPath={itsChannel.icon}
                     onSelectedChannel={self.handleSelectedChannel}
                     currentSelectedChannel={self.props.selectedChannel} />);

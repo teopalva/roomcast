@@ -9,7 +9,7 @@ var Main = React.createClass({
 
     getInitialState: function() {
         return {
-            selectedChannel: 'ch04',
+            selectedChannel: null,
             mapping: RESOURCES
         };
     },
@@ -67,23 +67,23 @@ var RESOURCES = [
         items: [
             {
                 name: 'iPad1',
-                channels: ['ch01','ch02']
+                channels: ['01','02']
             },
             {
                 name: 'iPad2',
-                channels: ['ch01','ch02','ch03','ch04','ch05']
+                channels: ['01','02','03','04','05']
             },
             {
                 name: 'iPad3',
-                channels: ['ch01']
+                channels: ['01']
             },
             {
                 name: 'iPad4',
-                channels: ['ch01','ch02','ch03','ch04','ch05','ch06']
+                channels: ['01','02','03','04','05','06']
             },
             {
                 name: 'iPad5',
-                channels: ['ch01','ch02']
+                channels: ['01','02']
             }
         ]
     },
@@ -92,15 +92,15 @@ var RESOURCES = [
         items: [
             {
                 name: 'mac1',
-                channels: ['ch01','ch02']
+                channels: ['01','02']
             },
             {
                 name: 'mac2',
-                channels: ['ch01']
+                channels: ['01']
             },
             {
                 name: 'mac3',
-                channels: ['ch01','ch02']
+                channels: ['01','02']
             }
         ]
     }
@@ -122,16 +122,16 @@ var CHANNELS = [
 */
 
 var CHANNELS = {
-    01: {name: 'first channel', icon: './assets/icon/channel_icon.png', description: 'description: first channel'},
-    02: {name: 'second channel', icon: './assets/icon/channel_icon.png', description: ''},
-    03: {name: 'third channel', icon: './assets/icon/channel_icon.png', description: ''},
-    04: {name: 'fourth channel', icon: './assets/icon/channel_icon.png', description: ''},
-    05: {name: 'fifth channel', icon: './assets/icon/channel_icon.png', description: ''},
-    06: {name: 'sixth channel', icon: './assets/icon/channel_icon.png', description: ''},
-    07: {name: 'seventh channel', icon: './assets/icon/channel_icon.png', description: ''},
-    08: {name: 'channel', icon: './assets/icon/channel_icon.png', description: ''},
-    09: {name: 'channel', icon: './assets/icon/channel_icon.png', description: ''},
-    10: {name: 'channel', icon: './assets/icon/channel_icon.png', description: ''},
+    '01': {name: 'channel1', icon: './assets/icon/channel_icon.png', description: 'description: first channel'},
+    '02': {name: 'channel2', icon: './assets/icon/channel_icon.png', description: ''},
+    '03': {name: 'channel3', icon: './assets/icon/channel_icon.png', description: ''},
+    '04': {name: 'channel4', icon: './assets/icon/channel_icon.png', description: ''},
+    '05': {name: 'channel5', icon: './assets/icon/channel_icon.png', description: ''},
+    '06': {name: 'channel6', icon: './assets/icon/channel_icon.png', description: ''},
+    '07': {name: 'channel7', icon: './assets/icon/channel_icon.png', description: ''},
+    '08': {name: 'channel8', icon: './assets/icon/channel_icon.png', description: ''},
+    '09': {name: 'channel9', icon: './assets/icon/channel_icon.png', description: ''},
+    '10': {name: 'channel10', icon: './assets/icon/channel_icon.png', description: ''},
     /*
     11: {name: 'first channel', icon: './assets/icon/channel_icon.png', description: ''},
     12: {name: 'first channel', icon: './assets/icon/channel_icon.png', description: ''},
@@ -162,5 +162,5 @@ var CHANNELS = {
     37: {name: 'first channel', icon: './assets/icon/channel_icon.png', description: ''},
     38: {name: 'first channel', icon: './assets/icon/channel_icon.png', description: ''},
     */
-    39: {name: 'first channel', icon: './assets/icon/channel_icon.png', description: ''}
+    '39': {name: 'channel39', icon: './assets/icon/channel_icon.png', description: ''}
 }

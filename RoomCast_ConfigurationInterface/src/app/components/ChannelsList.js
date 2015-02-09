@@ -21,7 +21,8 @@ var ChannelsList = React.createClass({
         for(var i = 0; i < Object.keys(chs).length; i++) {
             var key = Object.keys(chs)[i];
             channels.push(<Channel
-                name={key}
+                id={key}
+                name={chs[key].name}
                 imgPath={chs[key].icon}
                 onSelectedChannel={this.handleSelectedChannel}
                 currentSelectedChannel={this.props.selectedChannel} />);

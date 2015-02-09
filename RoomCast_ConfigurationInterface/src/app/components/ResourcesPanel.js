@@ -7,7 +7,21 @@ var ResourcesPanel = React.createClass({
         this.props.onSelectedChannel(ch);
     },
 
-    handleUpdatedMapping: function(mapping) {
+    handleUpdatedMapping: function(familyMapping) {
+
+        // create new object to update complete data structure (RESOURCES)
+        var mapping = [];
+        this.props.mapping.forEach(function(family) {
+            if(family.family===familyMapping.family) {
+                mapping.push(familyMapping);
+            } else {
+                mapping.push({
+                    family: family.family,
+                    items: family.items
+                });
+            }
+        });
+
         this.props.onUpdatedMapping(mapping);
     },
 

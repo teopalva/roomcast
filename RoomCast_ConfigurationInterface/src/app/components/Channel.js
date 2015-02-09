@@ -7,18 +7,17 @@ var FlatButton = Mui.FlatButton;
 var lastSelected=null;
 
 /**
- @prop name
- @prop imgPath
- @prop onClick
- @prop currentSelectedChannel
+ * @prop id
+ * @prop name
+ * @prop imgPath
+ * @prop onClick
+ * @prop currentSelectedChannel
  */
 var Channel = React.createClass({
 
     handleSelectedChannel: function() {
 
         var imgNode = this.refs.channelIcon.getDOMNode();
-
-        //if(this.props.name!==this.props.currentSelectedChannel) {
 
         if(lastSelected==imgNode) {
 
@@ -37,7 +36,7 @@ var Channel = React.createClass({
             d3.selectAll('.channel-icon').style('border', null);
 
             // set selected channel (state)
-            this.props.onSelectedChannel(this.props.name);
+            this.props.onSelectedChannel(this.props.id);
 
             // save last selected DOM element
             lastSelected = imgNode;
