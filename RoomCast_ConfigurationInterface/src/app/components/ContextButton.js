@@ -6,6 +6,7 @@ var FloatingActionButton_ = Mui.FloatingActionButton_;
  * @prop type
  * @prop selectedChannel
  * @prop onAddedChannel
+ * @prop onRemovedChannel
  */
 var ContextButton = React.createClass({
 
@@ -14,7 +15,7 @@ var ContextButton = React.createClass({
     },
 
     removeChannel: function() {
-
+        this.props.onRemovedChannel(this.props.selectedChannel);
     },
 
     render: function() {

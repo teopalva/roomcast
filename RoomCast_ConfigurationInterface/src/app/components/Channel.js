@@ -45,6 +45,7 @@ var Channel = React.createClass({
             imgNode.style.border = '1px solid black';
 
             // show channel info
+            // TODO
         }
 
     },

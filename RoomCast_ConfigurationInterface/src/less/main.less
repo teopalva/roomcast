@@ -45,10 +45,9 @@ body {
   }
 }
 .pool-row {
-  border-top: solid;
-  border-top-width: 1px;
-  border-top-color: rgb(224, 224, 224);
+  border-top: solid 1px rgb(224, 224, 224);
   td {
+    height: 100px;
     vertical-align: middle;
     padding-top: 16px;
     padding-bottom: 10px;
@@ -62,7 +61,10 @@ body {
   }
 }
 .pool-header{
-  line-height: 60px;
+  height: 80px;
+  th {
+    vertical-align: middle;
+  }
   th:first-child {
     width: 10%;
     text-align: center;
@@ -167,6 +169,7 @@ body {
   img {
     max-width: 100%;
     max-height: 100%;
+    border: solid 1px rgb(0,0,0);
     //-webkit-box-reflect: below 5px
     //-webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.7, transparent), to(white));
   }

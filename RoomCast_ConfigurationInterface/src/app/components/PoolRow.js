@@ -12,10 +12,7 @@ var PoolRow = React.createClass({
 
     handleAddedChannel: function(chId) {
 
-        // update sub-state
-        //var resourceMapping = this.props.resourceWithChannels;
-
-
+        // insert new channel in order
         var channels = this.props.resourceWithChannels.channels;
         var newChannels = [];
         var found = false;
@@ -32,41 +29,54 @@ var PoolRow = React.createClass({
             newChannels.push(chId);
         }
 
-        resourceMapping = newChannels;
+        this.handleUpdatedChannel(newChannels);
+
+    },
+
+    handleRemovedChannel: function(chId) {
+
+        // remove channel
+        var channels = this.props.resourceWithChannels.channels;
+        var newChannels = [];
+        for(var ch in channels) {
+            newChannels.push(channels[ch]);
+        }
+        for(var i = newChannels.length; i>=0; i--) {
+            if(newChannels[i] === chId) {
+                newChannels.splice(i, 1);
+            }
+        }
+
+        // TODO remove style from removed
+
+        // propagate upwards
+        this.handleUpdatedChannel(newChannels);
+
+    },
+
+    handleUpdatedChannel: function(newChannels) {
 
         // create new object for single resource
         var resourceMapping = {
-         name: this.props.resourceWithChannels.name,
-         channels: newChannels
-         };
-
-/*
-         // insert in order into channels list
-         var newChannels = this.props.resourceWithChannels.channels.slice(0);
-         console.log(newChannels);
-         for(var i=0; i<newChannels.length; i++) {
-         if(chId < newChannels[i]) {
-         continue;
-         }
-         newChannels.splice(i,0,chId);
-         }
-         */
+            name: this.props.resourceWithChannels.name,
+            channels: newChannels
+        };
 
         // pass update upwards
         this.props.onUpdatedMapping(resourceMapping);
     },
 
+    handleRemovedChannels: function() {
+        var newChannels = [];
+        this.handleUpdatedChannel(newChannels);
+    },
+
     render: function () {
 
         var self=this;
+
+        // populate row of channels
         var channelsList = [];
-
-        /*
-         this.props.channels.forEach(function (ch) {
-         channelsList.push(<Channel name={ch.name} />);
-         });
-         */
-
         this.props.resourceWithChannels.channels.forEach(function (chId) {
             var itsChannel = self.props.channels[chId];
             if(itsChannel) {
@@ -79,6 +89,7 @@ var PoolRow = React.createClass({
             }
         });
 
+        // check if the selected channel is already present in this row
         var itsChannels = self.props.resourceWithChannels.channels;
         var isChannelAllowed = function(ch) {
             if(!self.props.selectedChannel) return;
@@ -88,6 +99,7 @@ var PoolRow = React.createClass({
             return false;
         };
 
+        // set type of button based on context
         var button;
         if( this.props.selectedChannel ) {
             if( isChannelAllowed(this.props.selectedChannel) ) {
@@ -102,7 +114,9 @@ var PoolRow = React.createClass({
                     onAddedChannel={self.handleAddedChannel} />;
             }
         } else {
-            button=<GlobalButton type='remove' />;
+            button=<GlobalButton
+                type='remove'
+                onRemovedChannels={self.handleRemovedChannels} />;
         }
 
         var tdButtonStyle = {

@@ -18,8 +18,9 @@ var ChannelsList = React.createClass({
 
         var channels = [];
         var chs = this.props.channels;
-        for(var i = 0; i < Object.keys(chs).length; i++) {
-            var key = Object.keys(chs)[i];
+        var keys = Object.keys(chs).sort();
+        for(var i = 0; i < keys.length; i++) {
+            var key = keys[i];
             channels.push(<Channel
                 id={key}
                 name={chs[key].name}

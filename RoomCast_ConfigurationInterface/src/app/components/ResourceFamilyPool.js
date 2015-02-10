@@ -12,18 +12,6 @@ var ResourceFamilyPool = React.createClass({
 
     handleUpdatedMapping: function(resourceMapping) {
 
-        /*
-         var mapping = this.props.mapping;
-         var family = this.props.familyName;
-         for(var i in mapping) {
-         if(mapping[i].family === family) {
-         mapping[i].channels = resourceMapping;
-         }
-         }
-         console.log(mapping);
-         this.props.onUpdatedMapping(mapping);
-         */
-
         // create new object for single family of resources
         var familyItems = [];
         this.props.resourcesWithChannels.forEach(function(item) {
