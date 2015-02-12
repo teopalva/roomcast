@@ -3,8 +3,11 @@ var Mui = require('material-ui');
 var Channel = require('./Channel');
 var ContextButton = require('./ContextButton');
 var GlobalButton = require('./GlobalButton');
+var ButtonInteractionsMixin = require('./ButtonInteractionsMixin');
 
 var PoolRow = React.createClass({
+
+    mixins: [ButtonInteractionsMixin],
 
     handleSelectedChannel: function(ch) {
         this.props.onSelectedChannel(ch);
@@ -12,23 +15,7 @@ var PoolRow = React.createClass({
 
     handleAddedChannel: function(chId) {
 
-        // insert new channel in order
-        var channels = this.props.resourceWithChannels.channels;
-        var newChannels = [];
-        var found = false;
-        for(var i=0; i<channels.length; i++) {
-            if(+chId < +channels[i] && !found) {
-                newChannels.push(chId);
-                newChannels.push(channels[i]);
-                found = true;
-            } else {
-                newChannels.push(channels[i]);
-            }
-        }
-        if(!found) {
-            newChannels.push(chId);
-        }
-
+        var newChannels = this.insertNewChannel(this.props.resourceWithChannels.channels, chId);
         this.handleUpdatedChannel(newChannels);
 
     },
@@ -54,6 +41,11 @@ var PoolRow = React.createClass({
 
     },
 
+    /**
+     * Deep copy data structure at this level with the local changes.
+     * Has to be reimplemented at each level of the hierarchy.
+     * @param newChannels
+     */
     handleUpdatedChannel: function(newChannels) {
 
         // create new object for single resource
@@ -66,6 +58,9 @@ var PoolRow = React.createClass({
         this.props.onUpdatedMapping(resourceMapping);
     },
 
+    /**
+     * Remove all the channels from this row.
+     */
     handleRemovedChannels: function() {
         var newChannels = [];
         this.handleUpdatedChannel(newChannels);

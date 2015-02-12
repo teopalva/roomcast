@@ -7,8 +7,24 @@ var GlobalButton = require('./GlobalButton');
 /**
  * @prop familyName
  * @prop selectedChannel
+ * @prop onRemovedAllChannels
+ * @prop onAddedChannelToPool
+ * @prop onRemovedChannelFromPool
  */
 var PoolHeader = React.createClass({
+
+    handleAddedChannel: function(chId) {
+        this.props.onAddedChannelToPool(chId);
+    },
+
+    handleRemovedChannel: function(chId) {
+        this.props.onRemovedChannelFromPool(chId);
+    },
+
+    handleRemovedChannels: function() {
+        this.props.onRemovedAllChannels();
+    },
+
     render: function() {
 
         var buttonStyle = {
@@ -17,14 +33,20 @@ var PoolHeader = React.createClass({
 
         var buttonAdd, buttonRemove, headerButtons;
         if(this.props.selectedChannel) {
-            buttonAdd = <ContextButton type='add'/>;
-            buttonRemove = <ContextButton type='remove'/>;
+            buttonAdd = <ContextButton
+                type='add'
+                onAddedChannel={this.handleAddedChannel}
+                selectedChannel={this.props.selectedChannel} />;
+            buttonRemove = <ContextButton
+                type='remove'
+                onRemovedChannel={this.handleRemovedChannel}
+                selectedChannel={this.props.selectedChannel} />;
             headerButtons = <th>
                     {buttonAdd}
                     {buttonRemove}
             </th>
         } else {
-            buttonRemove = <GlobalButton type='remove'/>;
+            buttonRemove = <GlobalButton type='remove' onRemovedChannels={this.handleRemovedChannels} />;
             headerButtons = <th>
                     {buttonRemove}
             </th>
