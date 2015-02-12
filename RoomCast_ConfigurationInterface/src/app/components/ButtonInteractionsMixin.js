@@ -6,6 +6,9 @@ var ButtonInteractionsMixin = {
         var newChannels = [];
         var found = false;
         for(var i=0; i<channels.length; i++) {
+            if (+chId === +channels[i]) {
+                return channels;
+            }
             if(+chId < +channels[i] && !found) {
                 newChannels.push(chId);
                 newChannels.push(channels[i]);

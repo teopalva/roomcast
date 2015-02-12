@@ -15,8 +15,10 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 
 // CODE
 
-body {
-  overflow: auto;
+html, body {
+  height: 100%;
+  overflow-y: scroll;
+  background-color: #e9eaed;
 }
 .resources-panel {
   width: 50%;
@@ -25,14 +27,6 @@ body {
 }
 .resources-panel:first-child {
   margin-top: @default-margin;
-}
-.channels-panel {
-  width: 50%;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  right: 0;
-  display: block;
 }
 .resource-family-pool {
   position: static;
@@ -88,13 +82,21 @@ body {
 }
 ////////////////////////////
 
-.div-button-container {
+.div-button-container-header {
   display: inline-block;
   margin-right: 10px;
   line-height: 20px;
 }
 
 ///////// ChannelsPanel /////////
+.channels-panel {
+  width: 50%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: block;
+}
 .channels-panel-paper {
   height: calc(~"100% - 2*@{default-margin}");
   width: auto;
@@ -126,43 +128,31 @@ body {
   margin-right: auto;
   width: 100%;
 }
-/*
-.channels-panel-table {
-  height: 100%;
-  div:first-child {
-    height: 100%;
-    vertical-align: middle;
-
-  }
-  tbody {
-  }
-  tr:first-child{
-  }
-  th {
-    height: 100px;
-    text-align: center;
-    vertical-align: middle;
-
-    p {
-      font-size: 2em;
-      font-weight: 300;
-      margin: 0;
-      padding: 0;
-    }
-  }
-  td {
-    width: 100%;
-  }
-  td:first-child {
-    height: 30%;
-  }
+.channels-panel-save-buttons-div-outer {
+  height: 10%;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  position: relative;
 }
-*/
+.channels-panel-save-buttons-div-inner {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+.div-button-container-final-button {
+  display: inline-block;
+  //margin-top: 5px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  //line-height: 10px;
+}
+
 ////////////////////////////
 
 ///////// Channel Info /////////
 .channel-info-div {
-  height: 40%;
+  height: 35%;
   width: 100%;
   margin: auto;
   text-align: center;
@@ -175,10 +165,14 @@ body {
   }
 }
 .channels-list-div {
-  height: 50%;
+  height: 45%;
   width: 100%;
   margin: auto;
   padding: 20px;
   overflow: scroll;
 }
 ////////////////////////////
+
+.mui-paper {
+  background-color: #fff;
+}

@@ -24,10 +24,9 @@ var Main = React.createClass({
         this.setState({
             mapping: mapping
         });
-        this.handleSavedUpdates();
     },
 
-    handleSavedUpdates: function() {
+    handleSavedChanges: function() {
       console.log(this.state.mapping);
     },
 
@@ -50,7 +49,8 @@ var Main = React.createClass({
                 <ChannelsPanel
                     channels={CHANNELS}
                     selectedChannel={this.state.selectedChannel}
-                    onSelectedChannel={this.handleSelection} />
+                    onSelectedChannel={this.handleSelection}
+                    onSavedChanges={this.handleSavedChanges} />
 
             </div>
         );
