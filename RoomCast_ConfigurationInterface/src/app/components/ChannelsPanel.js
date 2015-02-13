@@ -3,8 +3,8 @@ var Mui = require('material-ui');
 var Paper = Mui.Paper;
 var ChannelInfo = require('./ChannelInfo');
 var ChannelsList = require('./ChannelsList');
-var RaisedButton = Mui.RaisedButton;
-var Dialog = Mui.Dialog;
+var RaisedButton = Mui.RaisedButton_;
+var Dialog = Mui.Dialog_;
 var FlatButton = Mui.FlatButton;
 
 var ChannelsPanel = React.createClass({
@@ -14,34 +14,56 @@ var ChannelsPanel = React.createClass({
     },
 
     handleUndoChanges: function() {
-        // TODO implement
-        console.log('Undo!');
+        console.log('undo!');
+    },
+
+    enableUndoDialog: function() {
+        this.refs.undoDialog.show();
+    },
+
+    disableUndoDialog: function() {
+        this.refs.undoDialog.dismiss();
     },
 
     handleSelectedChannel: function(ch) {
         this.props.onSelectedChannel(ch);
     },
 
-    enableDialog: function() {
-        this.refs.dialog.show();
+    enableSaveDialog: function() {
+        this.refs.saveDialog.show();
     },
 
-    disableDialog: function() {
-        this.refs.dialog.hide();
+    disableSaveDialog: function() {
+        this.refs.saveDialog.dismiss();
     },
 
 
     render: function() {
 
-        var dialogActions = [
-            <FlatButton
-                label='cancel'
-                secondary={true}
-                onTouchTap={this.disableDialog} />,
-            <FlatButton
-                label='confirm'
-                primary={true}
-                onTouchTap={this.handleSaveChanges} />
+        var customActionsSave = [
+            React.createElement(FlatButton, {
+                key: 2,
+                label: "Confirm",
+                secondary: true,
+                onTouchTap: this.handleSaveChanges}),
+            React.createElement(FlatButton, {
+                key: 1,
+                label: "Cancel",
+                primary: true,
+                onTouchTap: this.disableSaveDialog})
+        ];
+
+        var customActionsUndo = [
+            React.createElement(FlatButton, {
+                key: 2,
+                label: "Confirm",
+                secondary: true,
+                onTouchTap: this.handleUndoChanges}),
+            React.createElement(FlatButton, {
+                key: 1,
+                label: "Cancel",
+                primary: true,
+                onTouchTap: this.disableUndoDialog})
         ];
 
         return (
@@ -70,11 +92,11 @@ var ChannelsPanel = React.createClass({
                         <div className='channels-panel-save-buttons-div-inner' >
 
                             <div className='div-button-container-final-button'>
-                                <RaisedButton label='Save changes' secondary={true} onTouchTap={this.enableDialog} />
+                                <RaisedButton className='save-button' label='Save changes' saveButton={true} onTouchTap={this.enableSaveDialog} />
                             </div>
 
                             <div className='div-button-container-final-button'>
-                                <RaisedButton label='Undo changes' primary={true} onTouchTap={this.handleUndoChanges} />
+                                <RaisedButton className='undo-button' label='Undo changes' undoButton={true} onTouchTap={this.enableUndoDialog} />
                             </div>
 
                         </div>
@@ -83,7 +105,8 @@ var ChannelsPanel = React.createClass({
 
                 </Paper>
 
-                <Dialog ref='dialog' actions={dialogActions} > </Dialog>
+                <Dialog ref='saveDialog' actions={customActionsSave} > Do you want to save this configuration? </Dialog>
+                <Dialog ref='undoDialog' actions={customActionsUndo} > Do you want to reload the starting configuration? </Dialog>
 
             </div> );
     }

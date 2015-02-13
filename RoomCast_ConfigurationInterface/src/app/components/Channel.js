@@ -2,7 +2,6 @@ var React = require('react');
 var Mui = require('material-ui');
 var d3 = require('d3');
 var Paper = Mui.Paper;
-var FlatButton = Mui.FlatButton;
 
 var lastSelected=null;
 

@@ -36,9 +36,14 @@ html, body {
   margin-bottom: @default-margin;
   table {
     width: 100%;
+    //table-layout: fixed;
+    tbody {
+      width: 100%;
+    }
   }
 }
 .pool-row {
+  width: 100%;
   border-top: solid 1px rgb(224, 224, 224);
   td {
     height: 100px;
@@ -49,6 +54,9 @@ html, body {
   td:first-child {
     width: 10%;
     text-align: center;
+  }
+  td:nth-child(2) {
+    width: 80%;
   }
   td:last-child {
     width: 10%;
@@ -176,3 +184,9 @@ html, body {
 .mui-paper {
   background-color: #fff;
 }
+.mui-floating-action-button-container {
+  z-index: 0;
+}
+
+////////////////////////////
+

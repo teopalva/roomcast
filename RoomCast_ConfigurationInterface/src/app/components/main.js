@@ -31,7 +31,7 @@ var Main = React.createClass({
     },
 
     handleCancelledUpdates: function() {
-
+        // TODO
     },
 
     render: function () {
