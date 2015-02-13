@@ -5,13 +5,7 @@ var Channel = require('./Channel');
 var ChannelsList = React.createClass({
 
     handleSelectedChannel: function(ch) {
-
-        // set selected channel
         this.props.onSelectedChannel(ch);
-
-        // style selected channel
-
-        // show channel info
     },
 
     render: function() {
@@ -22,11 +16,13 @@ var ChannelsList = React.createClass({
         for(var i = 0; i < keys.length; i++) {
             var key = keys[i];
             channels.push(<Channel
+                ref={'channel' + key + '-from-list'}
                 id={key}
                 name={chs[key].name}
                 imgPath={chs[key].icon}
                 onSelectedChannel={this.handleSelectedChannel}
-                currentSelectedChannel={this.props.selectedChannel} />);
+                currentSelectedChannel={this.props.selectedChannel}
+                belongsTo='channels' />);
         }
 
         return (

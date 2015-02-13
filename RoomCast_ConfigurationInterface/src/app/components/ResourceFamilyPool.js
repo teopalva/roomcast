@@ -14,17 +14,6 @@ var ResourceFamilyPool = React.createClass({
     },
 
     handleRemovedAllChannels: function() {
-        var self=this;
-
-        /*
-         var i = 0;
-         this.props.resourcesWithChannels.forEach(function() {
-         console.log(self.refs['poolRow' + self.props.familyName + i]);
-         self.refs['poolRow' + self.props.familyName + i].handleRemovedChannels();
-         i++;
-         });
-         */
-
         var familyItems=[];
         this.props.resourcesWithChannels.forEach(function(res) {
             familyItems.push({
@@ -33,7 +22,6 @@ var ResourceFamilyPool = React.createClass({
             });
         });
         this.handleUpdatedFamily(familyItems);
-
     },
 
     handleAddedChannelToPool: function(chId) {
@@ -50,45 +38,20 @@ var ResourceFamilyPool = React.createClass({
     },
 
     handleRemovedChannelFromPool: function(chId) {
-
+        var self=this;
         var familyItems=[];
         this.props.resourcesWithChannels.forEach(function(res) {
-            // remove channel
-            var channels = res.channels;
-            var newChannels = [];
-            for (var ch in channels) {
-                newChannels.push(channels[ch]);
-            }
-            for (var i = newChannels.length; i >= 0; i--) {
-                if (newChannels[i] === chId) {
-                    newChannels.splice(i, 1);
-                }
-            }
-
-            var item = {
+            var newChannels = self.removeChannel(res.channels, chId);
+            familyItems.push({
                 name: res.name,
                 channels: newChannels
-            };
-
-            // TODO remove style from removed
-
-            familyItems.push(item);
+            });
         });
-
         this.handleUpdatedFamily(familyItems);
-
-    },
-
-    handleUpdatedFamily: function(familyItems) {
-        var familyMapping = {
-            family: this.props.familyName,
-            items: familyItems
-        };
-        this.props.onUpdatedMapping(familyMapping);
     },
 
     /**
-     * Handle updates at row level and push them upwards.
+     * Handles updates at row level and pushes them upwards.
      * @param resourceMapping
      */
     handleUpdatedMapping: function(resourceMapping) {
@@ -105,13 +68,19 @@ var ResourceFamilyPool = React.createClass({
                 });
             }
         });
+        this.handleUpdatedFamily(familyItems);
+    },
+
+    /**
+     * Wraps the items and pushes new data upwards.
+     * @param familyItems
+     */
+    handleUpdatedFamily: function(familyItems) {
         var familyMapping = {
             family: this.props.familyName,
             items: familyItems
         };
-
         this.props.onUpdatedMapping(familyMapping);
-
     },
 
     render: function(){

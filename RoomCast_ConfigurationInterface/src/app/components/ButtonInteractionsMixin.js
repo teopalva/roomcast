@@ -22,6 +22,24 @@ var ButtonInteractionsMixin = {
         }
 
         return newChannels;
+    },
+
+    removeChannel: function(channels, chId) {
+
+        var newChannels = [];
+        for(var ch in channels) {
+            newChannels.push(channels[ch]);
+        }
+        for(var i = newChannels.length; i>=0; i--) {
+            if(newChannels[i] === chId) {
+                newChannels.splice(i, 1);
+            }
+        }
+
+        // TODO remove style from removed
+
+        return newChannels;
+
     }
 
 };

@@ -14,35 +14,17 @@ var PoolRow = React.createClass({
     },
 
     handleAddedChannel: function(chId) {
-
         var newChannels = this.insertNewChannel(this.props.resourceWithChannels.channels, chId);
         this.handleUpdatedChannel(newChannels);
-
     },
 
     handleRemovedChannel: function(chId) {
-
-        // remove channel
-        var channels = this.props.resourceWithChannels.channels;
-        var newChannels = [];
-        for(var ch in channels) {
-            newChannels.push(channels[ch]);
-        }
-        for(var i = newChannels.length; i>=0; i--) {
-            if(newChannels[i] === chId) {
-                newChannels.splice(i, 1);
-            }
-        }
-
-        // TODO remove style from removed
-
-        // propagate upwards
+        var newChannels = this.removeChannel(this.props.resourceWithChannels.channels, chId);
         this.handleUpdatedChannel(newChannels);
-
     },
 
     /**
-     * Deep copy data structure at this level with the local changes.
+     * Deep copies data structure at this level with the local changes.
      * Has to be reimplemented at each level of the hierarchy.
      * @param newChannels
      */
@@ -59,7 +41,7 @@ var PoolRow = React.createClass({
     },
 
     /**
-     * Remove all the channels from this row.
+     * Removes all the channels from this row.
      */
     handleRemovedChannels: function() {
         var newChannels = [];
@@ -80,7 +62,8 @@ var PoolRow = React.createClass({
                     name={itsChannel.name}
                     imgPath={itsChannel.icon}
                     onSelectedChannel={self.handleSelectedChannel}
-                    currentSelectedChannel={self.props.selectedChannel} />);
+                    currentSelectedChannel={self.props.selectedChannel}
+                    belongsTo='resources' />);
             }
         });
 
