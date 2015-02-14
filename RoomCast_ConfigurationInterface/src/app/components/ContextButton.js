@@ -11,11 +11,11 @@ var FloatingActionButton_ = Mui.FloatingActionButton_;
 var ContextButton = React.createClass({
 
     addChannel: function() {
-        this.props.onAddedChannel(this.props.selectedChannel);
+        this.props.onAddedChannel(this.props.selectedChannel.id);
     },
 
     removeChannel: function() {
-        this.props.onRemovedChannel(this.props.selectedChannel);
+        this.props.onRemovedChannel(this.props.selectedChannel.id);
     },
 
     render: function() {

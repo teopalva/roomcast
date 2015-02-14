@@ -47,6 +47,7 @@ var Main = React.createClass({
                     onSelectedChannel={this.handleSelection} />
 
                 <ChannelsPanel
+                    ref={'channelsPanel'}
                     channels={CHANNELS}
                     selectedChannel={this.state.selectedChannel}
                     onSelectedChannel={this.handleSelection}

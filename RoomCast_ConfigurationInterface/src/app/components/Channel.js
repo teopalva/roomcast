@@ -3,8 +3,6 @@ var Mui = require('material-ui');
 var d3 = require('d3');
 var Paper = Mui.Paper;
 
-var lastSelected=null;
-
 /**
  * @prop id
  * @prop name
@@ -15,10 +13,14 @@ var lastSelected=null;
  */
 var Channel = React.createClass({
 
+    /**
+     * Manages the interactions with the channels.
+     */
     handleSelectedChannel: function() {
 
         var self = this;
         var imgNode = this.refs.channelIcon.getDOMNode();
+        var currentSelected = this.props.currentSelectedChannel;
 
         /**
          * Returns true if the clicked channel, has the same id, belongs to the channels list and the user is coming from the resources pool.
@@ -30,41 +32,24 @@ var Channel = React.createClass({
             return id === self.props.id && belongsTo === 'resources' && self.props.belongsTo === 'channels';
         };
 
-        if(lastSelected && (lastSelected[0] == imgNode || isRespectiveChannel(lastSelected[1], lastSelected[2]))) {
-
-            // remove style from all channels
-            d3.selectAll('.channel-icon').style('border', null);
+        if(currentSelected && currentSelected.id===this.props.id && (currentSelected.imgNode == imgNode || isRespectiveChannel(currentSelected.id, currentSelected.belongsTo))) {
 
             // set not selected
             this.props.onSelectedChannel(null);
 
-            // reset last selected
-            lastSelected = null;
-
         } else {
 
-            // remove style from all channels
-            d3.selectAll('.channel-icon').style('border', null);
-
             // set selected channel (state)
-            this.props.onSelectedChannel(this.props.id);
-
-            // save last selected DOM element
-            lastSelected = [imgNode, this.props.id, this.props.belongsTo];
-
-            // style selected channel
-            imgNode.style.border = '1px solid black';
-
-            // style respective channel
-            console.log(d3.selectAll('.channel-from-list'));
+            var newSelected = {
+                id: this.props.id,
+                belongsTo: this.props.belongsTo,
+                imgNode: imgNode,
+                channel: this
+            };
+            this.props.onSelectedChannel(newSelected);
 
             // show channel info
             // TODO
-        }
-
-        // if click on channel from resources pool, propagate info to channels list
-        if(this.props.belongsTo==='resources') {
-            this.props.onSelectedChannel(this.props.id);
         }
 
     },
@@ -75,15 +60,43 @@ var Channel = React.createClass({
             paddingTop:'3px',
             marginBottom:'0'};
 
+        var imgStyle = null;
         var selectedStyle = {
             border: '1px solid black'
         };
-
         var deselectedStyle = {
             border: null
         };
 
-        var imgStyle = null;
+        // style channels in channels list
+        if(this.props.belongsTo==='channels') {
+            if(this.props.respectiveSelected) {
+                imgStyle = selectedStyle;
+            } else {
+                imgStyle = deselectedStyle;
+            }
+        }
+/*
+        // style channels in resources list
+        if(this.props.belongsTo==='resources') {
+            if(this.props.resourcesSelected) {
+                imgStyle = selectedStyle;
+            } else {
+                imgStyle = deselectedStyle;
+            }
+        }
+*/
+        //console.log(this.getDOMNode());
+
+        // style channels in resources list
+        if(this.props.belongsTo==='resources') {
+            var currentSelected = this.props.currentSelectedChannel;
+            if(currentSelected && (currentSelected.channel == this) && currentSelected.id===this.props.id) {
+                imgStyle = selectedStyle;
+            } else {
+                imgStyle = deselectedStyle;
+            }
+        }
 
         return (
             <div className='channel-div' onClick={this.handleSelectedChannel}>

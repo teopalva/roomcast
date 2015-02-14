@@ -55,24 +55,33 @@ var PoolRow = React.createClass({
         // populate row of channels
         var channelsList = [];
         this.props.resourceWithChannels.channels.forEach(function (chId) {
+
+            // set selected channel in resources list
+            var resourcesSelected = null;
+            if(self.props.selectedChannel && self.props.selectedChannel.imgNode == self.refs.channel) {
+                resourcesSelected = true;
+            }
+
             var itsChannel = self.props.channels[chId];
             if(itsChannel) {
                 channelsList.push(<Channel
+                    ref={'channel'}
                     id={chId}
                     name={itsChannel.name}
                     imgPath={itsChannel.icon}
                     onSelectedChannel={self.handleSelectedChannel}
                     currentSelectedChannel={self.props.selectedChannel}
-                    belongsTo='resources' />);
+                    belongsTo='resources'
+                    resourcesSelected={true} />);
             }
         });
 
         // check if the selected channel is already present in this row
         var itsChannels = self.props.resourceWithChannels.channels;
         var isChannelAllowed = function(ch) {
-            if(!self.props.selectedChannel) return;
+            if(!self.props.selectedChannel.id) return;
             for(var i=0; i<itsChannels.length; i++){
-                if(itsChannels[i]===self.props.selectedChannel) return true;
+                if(itsChannels[i]===self.props.selectedChannel.id) return true;
             }
             return false;
         };

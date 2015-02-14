@@ -8,6 +8,17 @@ var ChannelsList = React.createClass({
         this.props.onSelectedChannel(ch);
     },
 
+    handleStyleRespectiveChannel: function() {
+        var selected = this.props.selectedChannel;
+        for(ref in this.refs) {
+            console.log(ref, selected);
+            if(this.refs[ref].props.id===selected.id) {
+                console.log(selected.imgNode);
+                break;
+            }
+        }
+    },
+
     render: function() {
 
         var channels = [];
@@ -15,14 +26,21 @@ var ChannelsList = React.createClass({
         var keys = Object.keys(chs).sort();
         for(var i = 0; i < keys.length; i++) {
             var key = keys[i];
+
+            // set respective selected channel in channels list
+            var respectiveSelected = null;
+            if(this.props.selectedChannel && key===this.props.selectedChannel.id) {
+                respectiveSelected = true;
+            }
+
             channels.push(<Channel
-                ref={'channel' + key + '-from-list'}
                 id={key}
                 name={chs[key].name}
                 imgPath={chs[key].icon}
                 onSelectedChannel={this.handleSelectedChannel}
                 currentSelectedChannel={this.props.selectedChannel}
-                belongsTo='channels' />);
+                belongsTo='channels'
+                respectiveSelected={respectiveSelected} />);
         }
 
         return (
