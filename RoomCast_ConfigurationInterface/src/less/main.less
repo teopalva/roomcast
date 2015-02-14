@@ -48,8 +48,8 @@ html, body {
   td {
     height: 100px;
     vertical-align: middle;
-    padding-top: 16px;
-    padding-bottom: 10px;
+    //padding-top: 16px;
+    //padding-bottom: 10px;
   }
   td:first-child {
     width: 10%;
@@ -78,7 +78,9 @@ html, body {
   display: inline-block;
   text-align: center;
   width: @channel-icon-width;
-  margin-right: 10px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
   cursor: pointer;
 }
 .channel-icon {
@@ -90,7 +92,7 @@ html, body {
 }
 ////////////////////////////
 
-.div-button-container-header {
+.div-button-container {
   display: inline-block;
   margin-right: 10px;
   line-height: 20px;
@@ -113,13 +115,13 @@ html, body {
   margin-bottom: @default-margin;
 }
 .channels-catalogue-title-div-outer {
-  height: 10%;
+  height: 15%;
   width: 100%;
   display: table;
   //display: block;
   //text-align: center;
   p {
-    font-size: 2em;
+    font-size: 7vh;
     font-weight: 300;
     margin: 0;
     padding: 0;
@@ -160,27 +162,47 @@ html, body {
 
 ///////// Channel Info /////////
 .channel-info-div {
-  height: 35%;
+  height: 40%;
+  max-height: 40%;
   width: 100%;
   margin: auto;
   text-align: center;
+  overflow: hidden;
   img {
     max-width: 100%;
-    max-height: 100%;
+    max-height: 85%;
     border: solid 1px rgb(0,0,0);
-    //-webkit-box-reflect: below 5px
-    //-webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.7, transparent), to(white));
+    -webkit-box-reflect: below 0
+    -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.7, transparent), to(rgba(255,255,255,.5)));
+    -webkit-transition: all 0.3s;
+    -webkit-transform-origin: 50% 100%;
   }
 }
+.dock-base {
+  width: 90%;
+  height: 80px;
+  margin: 0 auto;
+  z-index: -10;
+  background-color: #888;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#000000));
+  background-image: -webkit-linear-gradient(top, #333, #999);
+  opacity: .5;
+  border-bottom: 2px #aaa solid;
+  -webkit-transform-origin: 50% 100%;
+  -webkit-transform: rotateX(20deg);
+}
+////////////////////////////
+
+///////// Channels List /////////
 .channels-list-div {
-  height: 45%;
+  height: 35%;
   width: 100%;
-  margin: auto;
   padding: 20px;
   overflow: scroll;
 }
 ////////////////////////////
 
+/////////// Mui ///////////
 .mui-paper {
   background-color: #fff;
 }

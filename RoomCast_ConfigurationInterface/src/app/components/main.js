@@ -107,29 +107,15 @@ var RESOURCES = [
     }
 ];
 
-/*
-var CHANNELS = [
-    {name: 'ch1', icon: ''},
-    {name: 'ch2', icon: ''},
-    {name: 'ch3', icon: ''},
-    {name: 'ch4', icon: ''},
-    {name: 'ch5', icon: ''},
-    {name: 'ch5', icon: ''},
-    {name: 'ch6', icon: ''},
-    {name: 'ch6', icon: ''},
-    {name: 'ch6', icon: ''},
-    {name: 'ch7', icon: ''}
-];
-*/
-
 var CHANNELS = {
-    '01': {name: 'channel1', icon: './assets/icon/channel_icon.png', description: 'description: first channel'},
-    '02': {name: 'channel2', icon: './assets/icon/channel_icon.png', description: ''},
-    '03': {name: 'channel3', icon: './assets/icon/channel_icon.png', description: ''},
-    '04': {name: 'channel4', icon: './assets/icon/channel_icon.png', description: ''},
-    '05': {name: 'channel5', icon: './assets/icon/channel_icon.png', description: ''},
-    '06': {name: 'channel6', icon: './assets/icon/channel_icon.png', description: ''},
-    '07': {name: 'channel7', icon: './assets/icon/channel_icon.png', description: ''},
+    '01': {name: 'Admin', icon: './assets/channels/Roomquake/Admin.png', description: 'description: first channel'},
+    '02': {name: 'AggregateView', icon: './assets/channels/Roomquake/AggregateView.png', description: ''},
+    '03': {name: 'Seismograph1', icon: './assets/channels/Roomquake/Seismograph1.png', description: ''},
+    '04': {name: 'Seismograph2', icon: './assets/channels/Roomquake/Seismograph2.png', description: ''},
+    '05': {name: 'Seismograph3', icon: './assets/channels/Roomquake/Seismograph3.png', description: ''},
+    '06': {name: 'Seismograph4', icon: './assets/channels/Roomquake/Seismograph4.png', description: ''},
+    '07': {name: 'StudentsForms', icon: './assets/channels/Roomquake/StudentsForms.png', description: ''}
+    /*
     '08': {name: 'channel8', icon: './assets/icon/channel_icon.png', description: ''},
     '09': {name: 'channel9', icon: './assets/icon/channel_icon.png', description: ''},
     '10': {name: 'channel10', icon: './assets/icon/channel_icon.png', description: ''},
@@ -139,4 +125,5 @@ var CHANNELS = {
     '14': {name: 'channel14', icon: './assets/icon/channel_icon.png', description: ''},
     '15': {name: 'channel15', icon: './assets/icon/channel_icon.png', description: ''},
     '16': {name: 'channel16', icon: './assets/icon/channel_icon.png', description: ''}
+    */
 }

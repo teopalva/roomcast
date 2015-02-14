@@ -24,7 +24,7 @@ var ContextButton = React.createClass({
             <FloatingActionButton_ icon='content-remove' primary={true} onTouchTap={this.removeChannel} />;
 
         return (
-            <div className='div-button-container-header'>
+            <div className='div-button-container'>
                 {button}
             </div>
         );

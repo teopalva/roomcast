@@ -80,7 +80,8 @@ var ChannelsPanel = React.createClass({
                     </div>
 
                     <ChannelInfo
-                        selectedChannel={this.props.selectedChannel} />
+                        selectedChannel={this.props.selectedChannel}
+                        channels={this.props.channels} />
 
                     <ChannelsList
                         channels={this.props.channels}

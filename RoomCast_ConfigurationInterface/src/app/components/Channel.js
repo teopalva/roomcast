@@ -62,7 +62,7 @@ var Channel = React.createClass({
 
         var imgStyle = null;
         var selectedStyle = {
-            border: '1px solid black'
+            border: '3px solid black'
         };
         var deselectedStyle = {
             border: null
@@ -76,17 +76,6 @@ var Channel = React.createClass({
                 imgStyle = deselectedStyle;
             }
         }
-/*
-        // style channels in resources list
-        if(this.props.belongsTo==='resources') {
-            if(this.props.resourcesSelected) {
-                imgStyle = selectedStyle;
-            } else {
-                imgStyle = deselectedStyle;
-            }
-        }
-*/
-        //console.log(this.getDOMNode());
 
         // style channels in resources list
         if(this.props.belongsTo==='resources') {
