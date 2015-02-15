@@ -28,6 +28,7 @@ var Main = React.createClass({
 
     handleSavedChanges: function() {
       console.log(this.state.mapping);
+        //nutella.publish('mapping/update', 'Update Message');
     },
 
     handleCancelledUpdates: function() {

@@ -1,0 +1,6 @@
+{
+  "name": "roomcast-bot",
+  "version": "0.0.1",
+  "type": "bot",
+  "description": "This bot stores and manages the information on the mapping of channels on resources."
+}

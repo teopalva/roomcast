@@ -1,0 +1,29 @@
+{
+  "name": "configuration-interface",
+  "version": "0.1.0",
+  "authors": [
+    "Matteo Palvarini <matteo.palvarini@gmail.com>"
+  ],
+  "description": "This interface allows the user to set the mapping of the available channels on the resources.",
+  "main": "index.html",
+  "keywords": [
+    "nutella",
+    "interface",
+    "web"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "resolutions": {
+    "nutella_lib": "~0.2.0"
+  },
+  "dependencies": {
+    "nutella_lib": "~0.2.0"
+  }
+}
