@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Nutella
 
 class MenuViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
@@ -25,6 +26,13 @@ class MenuViewController: UICollectionViewController, UICollectionViewDelegateFl
         
         // Do any additional setup after loading the view.
         
+        // Fetch channels from back end
+        
+        // Fetch mapping form back end
+        var nutella = Nutella(host: "10.0.0.3", clientId: nil)
+        //nutella.syncRequest("mapping/update")
+        
+        /*
         let ch1 = Channel(name:"Channel1", iconName: "ch01", description: "The first channel", contentUrl: "http://apple.com")
         channels.append(ch1)
         let ch2 = Channel(name:"Channel2", iconName: "ch02", description: "The second channel", contentUrl: "http://google.com")
@@ -39,6 +47,7 @@ class MenuViewController: UICollectionViewController, UICollectionViewDelegateFl
             let ch = Channel(name:"Channel", iconName: "ch00", description: "Another channel", contentUrl: nil)
             channels.append(ch)
         }
+        */
         
     }
     
