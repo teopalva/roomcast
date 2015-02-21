@@ -7,7 +7,7 @@
         <!--Navigation Controller-->
         <scene sceneID="qeE-nf-pMP">
             <objects>
-                <navigationController id="ipO-oB-Ny3" customClass="NavigationController" customModule="RoomCast_iPad" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="ipO-oB-Ny3" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="COe-Hh-bbR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -60,7 +60,6 @@
                                 </constraints>
                                 <connections>
                                     <outlet property="imageView" destination="nV6-Vz-9rU" id="Oz0-PK-cJz"/>
-                                    <segue destination="Rcr-gF-bt9" kind="show" id="KKk-sS-GAn"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -70,6 +69,9 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="4ig-dk-KRP"/>
+                    <connections>
+                        <segue destination="Rcr-gF-bt9" kind="show" identifier="webviewSegue" id="pgk-ke-bkj"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iaU-60-wzO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

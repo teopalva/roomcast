@@ -29,7 +29,7 @@ class MenuViewController: UICollectionViewController, UICollectionViewDelegateFl
         // Fetch channels from back end
         
         // Fetch mapping form back end
-        var nutella = Nutella(host: "10.0.0.3", clientId: nil)
+        //var nutella = Nutella(host: "10.0.0.3", clientId: nil)
         //nutella.syncRequest("mapping/update")
         
         /*
@@ -77,8 +77,15 @@ class MenuViewController: UICollectionViewController, UICollectionViewDelegateFl
         ch.imageView.image = image1
         ch.imageView.setCornerRadius()
         
+        var tgr = UITapGestureRecognizer(target:self, action:Selector("imageTapped:"))
+        ch.imageView.addGestureRecognizer(tgr)
+        
         return ch
         
+    }
+    
+    func imageTapped(img: AnyObject) {
+        self.performSegueWithIdentifier("webviewSegue", sender: self)
     }
     
     // MARK: UICollectionViewDelegate
