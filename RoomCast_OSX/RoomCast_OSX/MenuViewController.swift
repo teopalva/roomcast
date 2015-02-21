@@ -25,7 +25,7 @@ class MenuViewController: NSViewController, SwitchViewsDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Fix Xcode bug
+        // Fix Xcode bug (missing relationship in storyboard)
         let itemPrototype = self.storyboard?.instantiateControllerWithIdentifier("collectionViewItem") as NSCollectionViewItem
         self.collectionView.itemPrototype = itemPrototype
         
@@ -37,7 +37,7 @@ class MenuViewController: NSViewController, SwitchViewsDelegate {
         arrayController.addObject(ch1)
         let ch2 = Channel(name: "Channel2", iconName: "ch02", chDescription: "The second channel", contentUrl: "http://google.com")
         arrayController.addObject(ch2)
-        let ch3 = Channel(name: "Channel3", iconName: "ch03", chDescription: "The third channel", contentUrl: nil)
+        let ch3 = Channel(name: "Channel3", iconName: "ch03", chDescription: "The third channel", contentUrl: "http://uic.edu")
         arrayController.addObject(ch3)
         let ch4 = Channel(name: "Channel4", iconName: "ch04", chDescription: "The fourth channel", contentUrl: "http://mpalva2.people.uic.edu/viz")
         arrayController.addObject(ch4)
@@ -58,6 +58,9 @@ class MenuViewController: NSViewController, SwitchViewsDelegate {
         // Hide webview
         webview.hidden = true
         
+        if let ad = app as? AppDelegate {
+           // println(ad.)
+        }
         
     }
     
@@ -98,9 +101,7 @@ class MenuViewController: NSViewController, SwitchViewsDelegate {
         topView.alphaValue = 1.0
         */
         
-        let requestURL = NSURL(string:url)
-        let request = NSURLRequest(URL: requestURL!)
-        webview.mainFrame.loadRequest(request)
+        loadPage(url)
         
         // TODO: animation?
         collectionview.hidden = true
@@ -111,7 +112,14 @@ class MenuViewController: NSViewController, SwitchViewsDelegate {
     
     func backToMenu() {
         collectionview.hidden = false
+        loadPage("")
         webview.hidden = true
+    }
+    
+    func loadPage(url:String) {
+        let requestURL = NSURL(string:url)
+        let request = NSURLRequest(URL: requestURL!)
+        webview.mainFrame.loadRequest(request)
     }
     
     

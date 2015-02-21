@@ -10,5 +10,10 @@ import Cocoa
 
 class MainWindow: NSWindow {
     
+
+    override var canBecomeKeyWindow: Bool {return true}
+        
+
+
  
 }
