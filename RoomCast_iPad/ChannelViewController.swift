@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WebKit
 
 class ChannelViewController: UIViewController {
 
@@ -18,7 +19,16 @@ class ChannelViewController: UIViewController {
     }
     */
     
-    @IBOutlet weak var webView: UIWebView!
+    var webView: WKWebView?
+    
+    override func loadView() {
+        self.webView = WKWebView()
+        
+        //If you want to implement the delegate
+        //self.webView!.navigationDelegate = self
+        
+        self.view = self.webView
+    }
     
     var url : String?
     
@@ -28,7 +38,7 @@ class ChannelViewController: UIViewController {
         if url != nil {
             let requestURL = NSURL(string:url!)
             let request = NSURLRequest(URL: requestURL!)
-            webView.loadRequest(request)
+            self.webView!.loadRequest(request)
         }
         
     }

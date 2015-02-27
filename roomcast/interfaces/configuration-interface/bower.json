@@ -21,9 +21,9 @@
     "tests"
   ],
   "resolutions": {
-    "nutella_lib": "~0.2.0"
+    "nutella_lib": "~0.3.0"
   },
   "dependencies": {
-    "nutella_lib": "~0.2.0"
+    "nutella_lib": "~0.3.0"
   }
 }

@@ -10,7 +10,7 @@ import UIKit
 import Foundation;
 import Nutella
 
-class MenuViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate {
+class MenuViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate, NutellaDelegate {
     
     var channels = [Channel]()
     
@@ -30,9 +30,9 @@ class MenuViewController: UICollectionViewController, UICollectionViewDelegateFl
         // Fetch channels from back end
         
         // Fetch mapping form back end
-        //var nutella = Nutella(host: "10.0.0.3", clientId: nil)
-        //nutella.syncRequest("mapping/update")
-        
+        var nutella = Nutella(host: "10.0.0.3", actorName: "iPad1", runId: "roomcast", clientId: nil)
+        //nutella.net.subscribe("mapping/updated")
+        nutella.net.asyncRequest("mapping/requestMapping", message: "message", requestName: nil)
         
         let ch1 = Channel(name:"Channel1", iconName: "ch01", description: "The first channel", contentUrl: "http://apple.com")
         channels.append(ch1)
@@ -40,7 +40,7 @@ class MenuViewController: UICollectionViewController, UICollectionViewDelegateFl
         channels.append(ch2)
         let ch3 = Channel(name:"Channel3", iconName: "ch03", description: "The third channel", contentUrl: "roomquake.seismometer://?param1=value")
         channels.append(ch3)
-        let ch4 = Channel(name:"Channel4", iconName: "ch04", description: "The fourth channel", contentUrl: "http://mpalva2.people.uic.edu/viz")
+        let ch4 = Channel(name:"Channel4", iconName: "ch04", description: "The fourth channel", contentUrl: "http://matteopalvarini.com/viz/Project3/webapp/")
         channels.append(ch4)
         
         var i: Int
@@ -50,6 +50,13 @@ class MenuViewController: UICollectionViewController, UICollectionViewDelegateFl
         }
         
         
+    }
+    
+    func responseReceived(channelName: String, requestName: String?, response: AnyObject) {
+        if(channelName=="mapping/requestMapping") {
+            var mapping = response as String
+            println("new mapping: " + mapping )
+        }
     }
     
     override func didReceiveMemoryWarning() {

@@ -8,12 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		AB16F62E1A69ABC8008259FA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB16F62D1A69ABC8008259FA /* Images.xcassets */; };
-		AB6B622C1A91447C0097F788 /* Nutella.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB6B622B1A91447C0097F788 /* Nutella.framework */; };
-		AB6B622E1A91448D0097F788 /* SimpleMQTTClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB6B622D1A91448D0097F788 /* SimpleMQTTClient.framework */; };
-		AB6B622F1A91449C0097F788 /* SimpleMQTTClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB6B622D1A91448D0097F788 /* SimpleMQTTClient.framework */; };
-		AB6B62301A91449C0097F788 /* SimpleMQTTClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AB6B622D1A91448D0097F788 /* SimpleMQTTClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AB6B62311A91449C0097F788 /* Nutella.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB6B622B1A91447C0097F788 /* Nutella.framework */; };
-		AB6B62321A91449C0097F788 /* Nutella.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AB6B622B1A91447C0097F788 /* Nutella.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AB729AC41A68D90E004E4A78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB729AC31A68D90E004E4A78 /* AppDelegate.swift */; };
 		AB729AC91A68D90E004E4A78 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB729AC71A68D90E004E4A78 /* Main.storyboard */; };
 		AB729ACE1A68D90E004E4A78 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB729ACC1A68D90E004E4A78 /* LaunchScreen.xib */; };
@@ -22,6 +16,10 @@
 		AB729AE61A68F138004E4A78 /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB729AE51A68F138004E4A78 /* ChannelCell.swift */; };
 		ABBE9BD61A6A29EF00D473D3 /* ChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBE9BD51A6A29EF00D473D3 /* ChannelViewController.swift */; };
 		ABBEF5A81A69F1A500F711D1 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBEF5A71A69F1A500F711D1 /* Channel.swift */; };
+		ABF24E6E1A9FCD17004C0D44 /* Nutella.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB69E7CC1A9EE23200CD2D8A /* Nutella.framework */; };
+		ABF24E6F1A9FCD17004C0D44 /* Nutella.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AB69E7CC1A9EE23200CD2D8A /* Nutella.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		ABF24E701A9FCD17004C0D44 /* SimpleMQTTClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB69E7CE1A9EE23F00CD2D8A /* SimpleMQTTClient.framework */; };
+		ABF24E711A9FCD17004C0D44 /* SimpleMQTTClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AB69E7CE1A9EE23F00CD2D8A /* SimpleMQTTClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,14 +33,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		AB6B62331A91449C0097F788 /* Embed Frameworks */ = {
+		ABF24E721A9FCD17004C0D44 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				AB6B62321A91449C0097F788 /* Nutella.framework in Embed Frameworks */,
-				AB6B62301A91449C0097F788 /* SimpleMQTTClient.framework in Embed Frameworks */,
+				ABF24E6F1A9FCD17004C0D44 /* Nutella.framework in Embed Frameworks */,
+				ABF24E711A9FCD17004C0D44 /* SimpleMQTTClient.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -51,8 +49,8 @@
 
 /* Begin PBXFileReference section */
 		AB16F62D1A69ABC8008259FA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		AB6B622B1A91447C0097F788 /* Nutella.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Nutella.framework; sourceTree = "<group>"; };
-		AB6B622D1A91448D0097F788 /* SimpleMQTTClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SimpleMQTTClient.framework; sourceTree = "<group>"; };
+		AB69E7CC1A9EE23200CD2D8A /* Nutella.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nutella.framework; path = ../Nutella.framework; sourceTree = "<group>"; };
+		AB69E7CE1A9EE23F00CD2D8A /* SimpleMQTTClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SimpleMQTTClient.framework; path = ../SimpleMQTTClient.framework; sourceTree = "<group>"; };
 		AB729ABE1A68D90E004E4A78 /* RoomCast_iPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoomCast_iPad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB729AC21A68D90E004E4A78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB729AC31A68D90E004E4A78 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -72,10 +70,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB6B622C1A91447C0097F788 /* Nutella.framework in Frameworks */,
-				AB6B622E1A91448D0097F788 /* SimpleMQTTClient.framework in Frameworks */,
-				AB6B62311A91449C0097F788 /* Nutella.framework in Frameworks */,
-				AB6B622F1A91449C0097F788 /* SimpleMQTTClient.framework in Frameworks */,
+				ABF24E6E1A9FCD17004C0D44 /* Nutella.framework in Frameworks */,
+				ABF24E701A9FCD17004C0D44 /* SimpleMQTTClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,9 +113,9 @@
 				ABBEF5A71A69F1A500F711D1 /* Channel.swift */,
 				AB729AC71A68D90E004E4A78 /* Main.storyboard */,
 				AB729ACC1A68D90E004E4A78 /* LaunchScreen.xib */,
-				AB6B622D1A91448D0097F788 /* SimpleMQTTClient.framework */,
-				AB6B622B1A91447C0097F788 /* Nutella.framework */,
 				AB16F62D1A69ABC8008259FA /* Images.xcassets */,
+				AB69E7CC1A9EE23200CD2D8A /* Nutella.framework */,
+				AB69E7CE1A9EE23F00CD2D8A /* SimpleMQTTClient.framework */,
 				AB729AC11A68D90E004E4A78 /* Supporting Files */,
 			);
 			path = RoomCast_iPad;
@@ -160,7 +156,7 @@
 				AB729ABA1A68D90E004E4A78 /* Sources */,
 				AB729ABB1A68D90E004E4A78 /* Frameworks */,
 				AB729ABC1A68D90E004E4A78 /* Resources */,
-				AB6B62331A91449C0097F788 /* Embed Frameworks */,
+				ABF24E721A9FCD17004C0D44 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -386,6 +382,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/RoomCast_iPad",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = RoomCast_iPad/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -404,6 +401,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/RoomCast_iPad",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = RoomCast_iPad/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;

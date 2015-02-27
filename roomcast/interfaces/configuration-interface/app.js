@@ -35243,7 +35243,7 @@ var Main = React.createClass({displayName: "Main",
 
     handleSavedChanges: function() {
       console.log(this.state.mapping);
-        nutella.publish('mapping/update', this.state.mapping);
+        nutella.net.publish('mapping/update', this.state.mapping);
     },
 
     handleCancelledUpdates: function() {
