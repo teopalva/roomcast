@@ -20,3 +20,195 @@ html, body {
   overflow-y: scroll;
   background-color: #e9eaed;
 }
+.resources-panel {
+  width: 50%;
+  position: absolute;
+  display: block;
+}
+.resources-panel:first-child {
+  margin-top: @default-margin;
+}
+.resource-family-pool {
+  position: static;
+  width: auto;
+  margin-left: @default-margin;
+  margin-right: @default-margin;
+  margin-bottom: @default-margin;
+  table {
+    width: 100%;
+    //table-layout: fixed;
+    tbody {
+      width: 100%;
+    }
+  }
+}
+.pool-row {
+  width: 100%;
+  border-top: solid 1px rgb(224, 224, 224);
+  td {
+    height: 100px;
+    vertical-align: middle;
+    //padding-top: 16px;
+    //padding-bottom: 10px;
+  }
+  td:first-child {
+    width: 10%;
+    text-align: center;
+  }
+  td:nth-child(2) {
+    width: 80%;
+  }
+  td:last-child {
+    width: 10%;
+  }
+}
+.pool-header{
+  height: 80px;
+  th {
+    vertical-align: middle;
+  }
+  th:first-child {
+    width: 10%;
+    text-align: center;
+  }
+}
+
+///////// Channel /////////
+.channel-div {
+  display: inline-block;
+  text-align: center;
+  width: @channel-icon-width;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.channel-icon {
+  border-radius: 8px;
+  width: @channel-icon-width;
+  height: @channel-icon-height;
+  display: block;
+  margin: 0 auto;
+}
+////////////////////////////
+
+.div-button-container {
+  display: inline-block;
+  margin-right: 10px;
+  line-height: 20px;
+}
+
+///////// ChannelsPanel /////////
+.channels-panel {
+  width: 50%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: block;
+}
+.channels-panel-paper {
+  height: calc(~"100% - 2*@{default-margin}");
+  width: auto;
+  margin-top: @default-margin;
+  margin-right: @default-margin;
+  margin-bottom: @default-margin;
+}
+.channels-catalogue-title-div-outer {
+  height: 15%;
+  width: 100%;
+  display: table;
+  //display: block;
+  //text-align: center;
+  p {
+    font-size: 7vh;
+    font-weight: 300;
+    margin: 0;
+    padding: 0;
+  }
+}
+.channels-catalogue-title-div-middle {
+  padding: 0;
+  display: table-cell;
+  vertical-align: middle;
+}
+.channels-catalogue-title-div-inner {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.channels-panel-save-buttons-div-outer {
+  height: 10%;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  position: relative;
+}
+.channels-panel-save-buttons-div-inner {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+.div-button-container-final-button {
+  display: inline-block;
+  //margin-top: 5px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  //line-height: 10px;
+}
+
+////////////////////////////
+
+///////// Channel Info /////////
+.channel-info-div {
+  height: 40%;
+  max-height: 40%;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  overflow: hidden;
+  img {
+    max-width: 100%;
+    max-height: 85%;
+    border: solid 1px rgb(0,0,0);
+    -webkit-box-reflect: below 0
+    -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.7, transparent), to(rgba(255,255,255,.5)));
+    -webkit-transition: all 0.3s;
+    -webkit-transform-origin: 50% 100%;
+  }
+}
+.dock-base {
+  width: 90%;
+  height: 80px;
+  margin: 0 auto;
+  z-index: -10;
+  background-color: #888;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#000000));
+  background-image: -webkit-linear-gradient(top, #333, #999);
+  opacity: .5;
+  border-bottom: 2px #aaa solid;
+  -webkit-transform-origin: 50% 100%;
+  -webkit-transform: rotateX(20deg);
+}
+////////////////////////////
+
+///////// Channels List /////////
+.channels-list-div {
+  height: 35%;
+  width: 100%;
+  padding: 20px;
+  overflow: scroll;
+}
+////////////////////////////
+
+/////////// Mui ///////////
+.mui-paper {
+  background-color: #fff;
+}
+.mui-floating-action-button-container {
+  z-index: 0;
+}
+
+////////////////////////////
+
