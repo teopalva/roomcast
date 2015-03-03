@@ -109,13 +109,13 @@ var RESOURCES = [
 ];
 
 var CHANNELS = {
-    '01': {name: 'Admin', icon: './assets/channels/Roomquake/Admin.png', description: 'description: first channel'},
-    '02': {name: 'AggregateView', icon: './assets/channels/Roomquake/AggregateView.png', description: ''},
-    '03': {name: 'Seismograph1', icon: './assets/channels/Roomquake/Seismograph1.png', description: ''},
-    '04': {name: 'Seismograph2', icon: './assets/channels/Roomquake/Seismograph2.png', description: ''},
-    '05': {name: 'Seismograph3', icon: './assets/channels/Roomquake/Seismograph3.png', description: ''},
-    '06': {name: 'Seismograph4', icon: './assets/channels/Roomquake/Seismograph4.png', description: ''},
-    '07': {name: 'StudentsForms', icon: './assets/channels/Roomquake/StudentsForms.png', description: ''}
+    '01': {name: 'Admin', icon: '', screenshot: './assets/channels/Roomquake/Admin.png', description: 'description: first channel'},
+    '02': {name: 'AggregateView', icon: '', screenshot: './assets/channels/Roomquake/AggregateView.png',  description: ''},
+    '03': {name: 'Seismograph1', icon: '', screenshot: './assets/channels/Roomquake/Seismograph1.png',  description: ''},
+    '04': {name: 'Seismograph2', icon: '', screenshot: './assets/channels/Roomquake/Seismograph2.png',  description: ''},
+    '05': {name: 'Seismograph3', icon: '', screenshot: './assets/channels/Roomquake/Seismograph3.png',  description: ''},
+    '06': {name: 'Seismograph4', icon: '', screenshot: './assets/channels/Roomquake/Seismograph4.png',  description: ''},
+    '07': {name: 'StudentsForms', icon: '', screenshot: './assets/channels/Roomquake/StudentsForms.png',  description: ''}
     /*
     '08': {name: 'channel8', icon: './assets/icon/channel_icon.png', description: ''},
     '09': {name: 'channel9', icon: './assets/icon/channel_icon.png', description: ''},
