@@ -17,9 +17,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="eFh-YB-l4h" kind="show" identifier="playChannelSegue" id="8jG-xt-FlD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--Channel View Controller-->
+        <scene sceneID="OHE-oJ-b8d">
+            <objects>
+                <viewController id="eFh-YB-l4h" customClass="ChannelViewController" customModule="RoomCast_iPad_webapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="p0q-ig-R2U"/>
+                        <viewControllerLayoutGuide type="bottom" id="2Ws-7X-Jcf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eMB-FK-quC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OZM-yb-ijD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1296" y="477"/>
         </scene>
     </scenes>
 </document>

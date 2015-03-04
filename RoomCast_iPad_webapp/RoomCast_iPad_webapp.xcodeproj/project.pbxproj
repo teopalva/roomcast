@@ -21,6 +21,7 @@
 		AB39433B1AA440FD00C288D8 /* roomcast.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB3943321AA440FD00C288D8 /* roomcast.jpg */; };
 		ABBC0C3D1AA669D400EA5FED /* mqttws31.js in Resources */ = {isa = PBXBuildFile; fileRef = ABBC0C3C1AA669D400EA5FED /* mqttws31.js */; };
 		ABBC0C3F1AA669E400EA5FED /* nutella_lib.js in Resources */ = {isa = PBXBuildFile; fileRef = ABBC0C3E1AA669E400EA5FED /* nutella_lib.js */; };
+		ABBC0C411AA6E31700EA5FED /* ChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBC0C401AA6E31700EA5FED /* ChannelViewController.swift */; };
 		ABD0E5551AA0D09600248C1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD0E5541AA0D09600248C1E /* AppDelegate.swift */; };
 		ABD0E5571AA0D09600248C1E /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD0E5561AA0D09600248C1E /* MenuViewController.swift */; };
 		ABD0E55A1AA0D09600248C1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABD0E5581AA0D09600248C1E /* Main.storyboard */; };
@@ -54,6 +55,7 @@
 		AB3943321AA440FD00C288D8 /* roomcast.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = roomcast.jpg; sourceTree = "<group>"; };
 		ABBC0C3C1AA669D400EA5FED /* mqttws31.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = mqttws31.js; sourceTree = "<group>"; };
 		ABBC0C3E1AA669E400EA5FED /* nutella_lib.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = nutella_lib.js; sourceTree = "<group>"; };
+		ABBC0C401AA6E31700EA5FED /* ChannelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelViewController.swift; sourceTree = "<group>"; };
 		ABD0E54F1AA0D09600248C1E /* RoomCast_iPad_webapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoomCast_iPad_webapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABD0E5531AA0D09600248C1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABD0E5541AA0D09600248C1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 			children = (
 				ABD0E5541AA0D09600248C1E /* AppDelegate.swift */,
 				ABD0E5561AA0D09600248C1E /* MenuViewController.swift */,
+				ABBC0C401AA6E31700EA5FED /* ChannelViewController.swift */,
 				ABD0E5581AA0D09600248C1E /* Main.storyboard */,
 				ABD0E55B1AA0D09600248C1E /* Images.xcassets */,
 				ABD0E55D1AA0D09600248C1E /* LaunchScreen.xib */,
@@ -311,6 +314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABD0E5571AA0D09600248C1E /* MenuViewController.swift in Sources */,
+				ABBC0C411AA6E31700EA5FED /* ChannelViewController.swift in Sources */,
 				ABD0E5551AA0D09600248C1E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

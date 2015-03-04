@@ -22,7 +22,12 @@
             
             // Get an instance of nutella.
             //var nutella = NUTELLA.init(query_parameters.run_id, query_parameters.broker, 'main-interface');
-            var nutella = NUTELLA.init('roomcast', '52.1.142.215', 'main-interface');
+            try {
+                var nutella = NUTELLA.init('roomcast', '52.1.142.215', 'main-interface');
+            } catch (e) {
+                console.warn('nutella init error');
+            }
+
 
             console.log('nutella.js ready');
             // (Optional) Set the resourceId

@@ -7,6 +7,26 @@ var Paper = Mui.Paper;
  */
 var Channel = React.createClass({
 
+    handleClick: function() {
+
+        console.log('click', this.props.channel);
+/*
+        // JavaScript to send an action to iOS code
+        var appName = 'roomcast';
+        var actionType = 'playChannel';
+        // TODO generalize
+        var actionParameters = {
+            'chId': '02',
+            'url': 'd3js.org'
+        };
+        var jsonString = (JSON.stringify(actionParameters));
+        var escapedJsonParameters = escape(jsonString);
+        var url = appName + '://' + actionType + "#" + escapedJsonParameters;
+        console.log('launching url: ', url);
+        document.location.href = url;
+*/
+    },
+
     render: function() {
 
         var style = {
@@ -17,7 +37,7 @@ var Channel = React.createClass({
         //<img className='channel-screenshot' src={this.props.channel.screenshot}> </img>
 
         return (
-            <Paper className='channel' style={style}>
+            <Paper className='channel' style={style} onClick={this.handleClick}>
 
                 <div className='channel-div' >
 

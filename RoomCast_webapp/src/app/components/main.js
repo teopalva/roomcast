@@ -1,7 +1,7 @@
 
 var React = require('react');
 var Channel = require('./Channel');
-var NutellaMixin = require('./NutellaMixin');
+//var NutellaMixin = require('./NutellaMixin');
 
 var Main = React.createClass({
 
@@ -12,20 +12,23 @@ var Main = React.createClass({
 
         // TODO move all after rid has been set
 
-        // Get current assigned channels (mapping)
-        nutella.net.request('mapping/retrieve', 'all', function(response) {
-            self.updateChannelsForRid(response, 'iPad1');
-        });
+        try {
+            // Get current assigned channels (mapping)
+            nutella.net.request('mapping/retrieve', 'all', function (response) {
+                self.updateChannelsForRid(response, 'iPad1');
+            });
 
-        // Subscribe for future changes
-        nutella.net.subscribe('mapping/updated', function(message, channel, from_component_id, from_resource_id) {
-            self.updateChannelsForRid(message, 'iPad1');
-        });
+            // Subscribe for future changes
+            nutella.net.subscribe('mapping/updated', function (message, channel, from_component_id, from_resource_id) {
+                self.updateChannelsForRid(message, 'iPad1');
+            });
+        } catch(e) {
+            console.warn('nutella error')
+        }
 
     },
 
     updateChannelsForRid: function(message, rid) {
-        console.log('updating...');
         var myChannelsId = [];
         var myChannels = [];
         message.forEach(function(f) {
