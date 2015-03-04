@@ -36,7 +36,7 @@ var ChannelsList = React.createClass({
             channels.push(<Channel
                 id={key}
                 name={chs[key].name}
-                imgPath={chs[key].icon}
+                imgPath={chs[key].screenshot}
                 onSelectedChannel={this.handleSelectedChannel}
                 currentSelectedChannel={this.props.selectedChannel}
                 belongsTo='channels'

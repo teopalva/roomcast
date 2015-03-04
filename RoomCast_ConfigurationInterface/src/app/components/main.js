@@ -7,10 +7,17 @@ var ChannelsPanel = require('./ChannelsPanel');
 
 var Main = React.createClass({
 
+    componentDidMount: function() {
+        var self = this;
+        nutella.net.request('mapping/retrieve', 'all', function(response) {
+            self.handleUpdatedMapping(response);
+        });
+    },
+
     getInitialState: function() {
         return {
             selectedChannel: null,
-            mapping: RESOURCES
+            mapping: []
         };
     },
 
@@ -26,13 +33,17 @@ var Main = React.createClass({
         });
     },
 
-    handleSavedChanges: function() {
-      console.log(this.state.mapping);
-        //nutella.publish('mapping/update', 'Update Message');
+    handleSaveChanges: function() {
+        console.log(this.state.mapping);
+        nutella.net.publish('mapping/update', this.state.mapping);
     },
 
-    handleCancelledUpdates: function() {
-        // TODO
+    handleUndoChanges: function() {
+        var self = this;
+        nutella.net.request('mapping/retrieve', 'all', function(response) {
+            console.log('reply');
+            self.handleUpdatedMapping(response);
+        });
     },
 
     render: function () {
@@ -52,7 +63,8 @@ var Main = React.createClass({
                     channels={CHANNELS}
                     selectedChannel={this.state.selectedChannel}
                     onSelectedChannel={this.handleSelection}
-                    onSavedChanges={this.handleSavedChanges} />
+                    onSaveChanges={this.handleSaveChanges}
+                    onUndoChanges={this.handleUndoChanges} />
 
             </div>
         );
@@ -62,7 +74,7 @@ var Main = React.createClass({
 
 module.exports = Main;
 
-var RESOURCES = [
+var MAPPING = [
 
     {
         family: 'iPad',
@@ -117,14 +129,14 @@ var CHANNELS = {
     '06': {name: 'Seismograph4', icon: '', screenshot: './assets/channels/Roomquake/Seismograph4.png',  description: ''},
     '07': {name: 'StudentsForms', icon: '', screenshot: './assets/channels/Roomquake/StudentsForms.png',  description: ''}
     /*
-    '08': {name: 'channel8', icon: './assets/icon/channel_icon.png', description: ''},
-    '09': {name: 'channel9', icon: './assets/icon/channel_icon.png', description: ''},
-    '10': {name: 'channel10', icon: './assets/icon/channel_icon.png', description: ''},
-    '11': {name: 'channel11', icon: './assets/icon/channel_icon.png', description: ''},
-    '12': {name: 'channel12', icon: './assets/icon/channel_icon.png', description: ''},
-    '13': {name: 'channel13', icon: './assets/icon/channel_icon.png', description: ''},
-    '14': {name: 'channel14', icon: './assets/icon/channel_icon.png', description: ''},
-    '15': {name: 'channel15', icon: './assets/icon/channel_icon.png', description: ''},
-    '16': {name: 'channel16', icon: './assets/icon/channel_icon.png', description: ''}
-    */
+     '08': {name: 'channel8', icon: './assets/icon/channel_icon.png', description: ''},
+     '09': {name: 'channel9', icon: './assets/icon/channel_icon.png', description: ''},
+     '10': {name: 'channel10', icon: './assets/icon/channel_icon.png', description: ''},
+     '11': {name: 'channel11', icon: './assets/icon/channel_icon.png', description: ''},
+     '12': {name: 'channel12', icon: './assets/icon/channel_icon.png', description: ''},
+     '13': {name: 'channel13', icon: './assets/icon/channel_icon.png', description: ''},
+     '14': {name: 'channel14', icon: './assets/icon/channel_icon.png', description: ''},
+     '15': {name: 'channel15', icon: './assets/icon/channel_icon.png', description: ''},
+     '16': {name: 'channel16', icon: './assets/icon/channel_icon.png', description: ''}
+     */
 }

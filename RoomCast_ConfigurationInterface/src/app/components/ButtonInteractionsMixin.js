@@ -36,8 +36,6 @@ var ButtonInteractionsMixin = {
             }
         }
 
-        // TODO remove style from removed
-
         return newChannels;
 
     }

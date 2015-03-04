@@ -1,42 +1,55 @@
 
 var React = require('react');
 var Channel = require('./Channel');
+var NutellaMixin = require('./NutellaMixin');
 
 var Main = React.createClass({
 
- componentDidMount: function() {
+    //mixins: [NutellaMixin],
+
+    componentDidMount: function() {
         var self=this;
 
-        nutella.net.subscribe('mapping/updated', function(message, channel, from_component_id, from_resource_id) {
-            var myChannelsId = [];
-            // TODO hp: always iPad1
-            message.forEach(function(f) {
-                for (var i in f.items) {
-                    var item = f.items[i];
-                    if (item.name === 'iPad1') {
-                        myChannelsId = item.channels;
-                        break;
-                    }
-                }
-            });
+        // TODO move all after rid has been set
 
-            var myChannels = [];
-            myChannelsId.forEach(function(id) {
-                myChannels.push(CHANNELS[id]);
-            });
-
-            if(myChannels.length === 0) {
-                // TODO show message 'no available channels' on screen
-            }
-
-            self.handleUpdatedChannels(myChannels);
-
+        // Get current assigned channels (mapping)
+        nutella.net.request('mapping/retrieve', 'all', function(response) {
+            self.updateChannelsForRid(response, 'iPad1');
         });
+
+        // Subscribe for future changes
+        nutella.net.subscribe('mapping/updated', function(message, channel, from_component_id, from_resource_id) {
+            self.updateChannelsForRid(message, 'iPad1');
+        });
+
+    },
+
+    updateChannelsForRid: function(message, rid) {
+        console.log('updating...');
+        var myChannelsId = [];
+        var myChannels = [];
+        message.forEach(function(f) {
+            for (var i in f.items) {
+                var item = f.items[i];
+                if (item.name === 'iPad1') {
+                    myChannelsId = item.channels;
+                    break;
+                }
+            }
+        });
+        myChannelsId.forEach(function(id) {
+            myChannels.push(CHANNELS[id]);
+        });
+        if(myChannels.length === 0) {
+            // TODO show message 'no available channels' on screen
+        }
+        this.handleUpdatedChannels(myChannels);
+
     },
 
     getInitialState: function() {
         return {
-            channels: CHANNELS
+            channels: []
         };
     },
 

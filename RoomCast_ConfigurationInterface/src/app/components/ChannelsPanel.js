@@ -10,11 +10,11 @@ var FlatButton = Mui.FlatButton;
 var ChannelsPanel = React.createClass({
 
     handleSaveChanges: function() {
-        this.props.onSavedChanges();
+        this.props.onSaveChanges();
     },
 
     handleUndoChanges: function() {
-        console.log('undo!');
+        this.props.onUndoChanges();
     },
 
     enableUndoDialog: function() {
@@ -40,12 +40,19 @@ var ChannelsPanel = React.createClass({
 
     render: function() {
 
+        var self = this;
+
+        var handleOnSave = function() {
+            self.handleSaveChanges();
+            self.disableSaveDialog();
+        };
+
         var customActionsSave = [
             React.createElement(FlatButton, {
                 key: 2,
                 label: "Confirm",
                 secondary: true,
-                onTouchTap: this.handleSaveChanges}),
+                onTouchTap: handleOnSave}),
             React.createElement(FlatButton, {
                 key: 1,
                 label: "Cancel",
@@ -53,12 +60,17 @@ var ChannelsPanel = React.createClass({
                 onTouchTap: this.disableSaveDialog})
         ];
 
+        var handleOnUndo = function() {
+            self.handleUndoChanges();
+            self.disableUndoDialog();
+        };
+
         var customActionsUndo = [
             React.createElement(FlatButton, {
                 key: 2,
                 label: "Confirm",
                 secondary: true,
-                onTouchTap: this.handleUndoChanges}),
+                onTouchTap: handleOnUndo}),
             React.createElement(FlatButton, {
                 key: 1,
                 label: "Cancel",

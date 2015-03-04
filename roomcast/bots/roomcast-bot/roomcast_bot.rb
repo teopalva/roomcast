@@ -24,7 +24,7 @@ nutella.net.subscribe('mapping/update', lambda do |message, component_id, resour
                         # Update
                         if new_mapping != nil
                           mapping_db.transaction {
-                            mapping_db[:mapping] = {:mapping => new_mapping}
+                            mapping_db[:mapping] = new_mapping
                           }
                         end
 
@@ -36,6 +36,23 @@ nutella.net.subscribe('mapping/update', lambda do |message, component_id, resour
                         }
 
                                       end)
+
+nutella.net.handle_requests('mapping/retrieve', lambda do |request, component_id, resource_id|
+                              puts 'request: ' + request
+                              reply = {}
+                              if request == {}
+                                reply
+                              elsif request == 'all'
+                                mapping_db.transaction {
+                                  reply = mapping_db['mapping']
+                                }
+                                puts reply
+                                reply
+                              else
+                                # TODO: request on specific rid...
+                              end
+                                              end)
+
 
 def publish_mapping_update(mapping)
   nutella.net.publish('mapping/updated', mapping)

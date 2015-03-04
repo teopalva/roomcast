@@ -23,15 +23,16 @@ class MenuViewController: UIViewController { //WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Load from external website
         /*
-        var url : String? = "http://localhost:3000/"
+        // Load from external website
+        var url : String? = "http://52.1.142.215:57880/roomcast/main-interface/index.html?run_id=roomcast&broker=52.1.142.215"
         if let url = url {
             let requestURL = NSURL(string:url)
             let request = NSURLRequest(URL: requestURL!)
             self.webView!.loadRequest(request)
         }
         */
+        
         // Load from local files
         var htmlFile: NSString? = NSBundle.mainBundle().pathForResource("index", ofType: "html")
         var htmlString: NSString?
@@ -48,7 +49,6 @@ class MenuViewController: UIViewController { //WKNavigationDelegate {
         } else {
             println("File not found.")
         }
-        
         
     }
     
