@@ -1,0 +1,62 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Loading...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+
+  <script src="d3.min.js" charset="utf-8"></script>
+  <script>
+
+      d3.xml("./Logo_grid.svg", "image/svg+xml", function (logo) {
+
+          document.body.appendChild(logo.documentElement);
+
+          var colorBlue = function(id) {
+              d3.select(id).style({
+                  'fill': '#00bcd4'
+              });
+          };
+
+          var colorPink = function(id) {
+              d3.select(id).style({
+                  'fill': '#e91e63'
+              });
+          };
+
+          var removeColor = function() {
+              d3.selectAll('rect').style({
+                  'fill': null
+              });
+          };
+
+          var sequence = [1,2,3,4,8,7,6,5];
+          var i = 0;
+          var action = function() {
+              removeColor();
+              if(sequence[i] < 5) {
+                  colorBlue('#ch' + sequence[i]);
+              } else {
+                  colorPink('#ch' + sequence[i]);
+              }
+              i++;
+              if(i===sequence.length) {
+                  i = 0;
+              }
+          };
+
+          setInterval(action, 200);
+
+      });
+
+
+  </script>
+</body>
+
+</html>

@@ -19,12 +19,7 @@ class BasicWebView: UIWebView {
     */
     
     override func canPerformAction(action: Selector, withSender sender: AnyObject?) -> Bool {
-        println("action")
-        if action == "paste:" || action == "copy:" || action == "cut:" || action == "define:" {
-            println("block")
-            return false
-        }
-        return super.canPerformAction(action, withSender: sender)
+       return true
     }
 
 }

@@ -11,8 +11,6 @@ import UIKit
 class NativeView: UIView {
 
     override func awakeFromNib() {
-        println("view")
-        println(self)
     }
     
     override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {

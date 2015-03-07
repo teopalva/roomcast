@@ -38,15 +38,14 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
         */
         
         // Load from local files
-        var htmlFile: NSString? = NSBundle.mainBundle().pathForResource("index", ofType: "html")
+        var htmlFile: NSString? = NSBundle.mainBundle().pathForResource("index", ofType: "html", inDirectory: "./assets/menu")
         var htmlString: NSString?
         
         if let htmlFile = htmlFile {
             htmlString = NSString(contentsOfFile: htmlFile, encoding: NSUTF8StringEncoding, error: nil)!
             if let htmlString = htmlString {
                 var bundle: String = NSBundle.mainBundle().bundlePath
-                webView?.loadHTMLString(htmlString, baseURL: NSURL(fileURLWithPath: "\(bundle)/")!)
-                //println(NSBundle.mainBundle().pathForResource("app", ofType: "js")!)
+                webView?.loadHTMLString(htmlString, baseURL: NSURL(fileURLWithPath: "\(bundle)/assets/menu")!)
             } else {
                 println("Bundle not found.")
             }
@@ -94,8 +93,6 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
     
     // Controller for the web view
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        
-        println("url called")
         
         // These need to match the values defined in JavaScript: roomcast://playChannel
         var appScheme: NSString = "roomcast"
