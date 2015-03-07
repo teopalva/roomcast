@@ -18,8 +18,9 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
     
     override func loadView() {
         // TODO: currently using UIWebView because of bug of WK when loading local files
-        self.webView = UIWebView()
-        //self.webView!.navigationDelegate = self
+        self.webView = BasicWebView()
+        self.webView!.scrollView.bounces = false
+        self.webView!.delegate = self
         self.view = self.webView
     }
     
@@ -53,10 +54,6 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
             println("File not found.")
         }
         
-    }
-    
-    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        return true
     }
     
     override func didReceiveMemoryWarning() {
@@ -96,7 +93,9 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
     */
     
     // Controller for the web view
-    func webView(webView: UIWebView, request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        
+        println("url called")
         
         // These need to match the values defined in JavaScript: roomcast://playChannel
         var appScheme: NSString = "roomcast"
@@ -127,8 +126,11 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
                 parameters[keyName] = keyValue
             }
             
-            url = parameters["url"]
+            url = parameters["url"] as String?
             if let url = url {
+                if(countElements(url) < 7) {
+                    return false
+                }
                 if (url.substringWithRange(Range<String.Index>(start: url.startIndex, end: advance(url.startIndex, 7))) == "http://") {
                     self.performSegueWithIdentifier("playChannelSegue", sender: self)
                 } else {
@@ -151,6 +153,10 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var nextVC = segue.destinationViewController as ChannelViewController
         nextVC.url = url
+    }
+    
+    @IBAction func unwindToMenu(unwindSegue: UIStoryboardSegue) {
+        
     }
     
     

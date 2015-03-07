@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Menu View Controller-->
@@ -18,29 +19,62 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="eFh-YB-l4h" kind="show" identifier="playChannelSegue" id="8jG-xt-FlD"/>
+                        <segue destination="icA-u6-ddF" kind="show" identifier="playChannelSegue" id="7vT-Et-L4G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
         <!--Channel View Controller-->
-        <scene sceneID="OHE-oJ-b8d">
+        <scene sceneID="tec-eb-pNy">
             <objects>
-                <viewController id="eFh-YB-l4h" customClass="ChannelViewController" customModule="RoomCast_iPad_webapp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="icA-u6-ddF" customClass="ChannelViewController" customModule="RoomCast_iPad_webapp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="p0q-ig-R2U"/>
-                        <viewControllerLayoutGuide type="bottom" id="2Ws-7X-Jcf"/>
+                        <viewControllerLayoutGuide type="top" id="xFh-9m-iCD"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZDc-3Z-qvT"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="eMB-FK-quC">
+                    <view key="view" contentMode="scaleToFill" id="Lfu-Ti-wQr" customClass="NativeView" customModule="RoomCast_iPad_webapp" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button-menu" translatesAutoresizingMaskIntoConstraints="NO" id="edM-xM-MK8">
+                                <rect key="frame" x="16" y="20" width="43" height="43"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="43" id="0FT-dY-OB5"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FSZ-Mg-MlT">
+                                <rect key="frame" x="16" y="20" width="43" height="43"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="M3H-RX-LSL" kind="unwind" identifier="unwindSegue" unwindAction="unwindToMenu:" id="WYw-b5-vHo"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="edM-xM-MK8" firstAttribute="top" secondItem="xFh-9m-iCD" secondAttribute="bottom" id="4an-Kf-AP9"/>
+                            <constraint firstItem="edM-xM-MK8" firstAttribute="leading" secondItem="Lfu-Ti-wQr" secondAttribute="leadingMargin" id="BGG-XL-sPo"/>
+                            <constraint firstItem="ZDc-3Z-qvT" firstAttribute="top" secondItem="edM-xM-MK8" secondAttribute="bottom" constant="537" id="Cb1-53-cF9"/>
+                            <constraint firstItem="FSZ-Mg-MlT" firstAttribute="bottom" secondItem="edM-xM-MK8" secondAttribute="bottom" id="JSU-BN-KJC"/>
+                            <constraint firstItem="FSZ-Mg-MlT" firstAttribute="leading" secondItem="edM-xM-MK8" secondAttribute="leading" id="Owt-WI-UBy"/>
+                            <constraint firstItem="FSZ-Mg-MlT" firstAttribute="top" secondItem="edM-xM-MK8" secondAttribute="top" id="rOT-Qz-Fhx"/>
+                            <constraint firstItem="FSZ-Mg-MlT" firstAttribute="trailing" secondItem="edM-xM-MK8" secondAttribute="trailing" id="tMM-3T-Pos"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="homeButton" destination="edM-xM-MK8" id="Bns-1B-KcG"/>
+                        <outlet property="nativeView" destination="Lfu-Ti-wQr" id="qfe-Uo-ffp"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OZM-yb-ijD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f0O-00-Kc6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="M3H-RX-LSL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1296" y="477"/>
+            <point key="canvasLocation" x="1348" y="405"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="button-menu" width="124" height="126"/>
+    </resources>
 </document>

@@ -7,24 +7,52 @@ var Paper = Mui.Paper;
  */
 var Channel = React.createClass({
 
+    componentDidMount: function() {
+
+        /*
+        // Manually handle touches from mobile
+        try {
+            //this.refs.channelRef.onTouchStart(handleStart);
+            //this.refs.channelRef.onTouchStart(handleEnd);
+            console.log(this.refs.channelRef);
+            var ongoingTouches = [];
+
+            function handleStart(evt) {
+                evt.preventDefault();
+                ongoingTouches.push(evt);
+                console.log(ongoingTouches);
+            }
+
+            function handleEnd(evt) {
+                evt.preventDefault();
+                ongoingTouches.pop();
+                console.log(ongoingTouches);
+            }
+        } catch(e) {
+            console.error(e.stack);
+        }
+        */
+
+    },
+
     handleClick: function() {
 
         console.log('click', this.props.channel);
-/*
+
         // JavaScript to send an action to iOS code
         var appName = 'roomcast';
         var actionType = 'playChannel';
         // TODO generalize
         var actionParameters = {
-            'chId': '02',
-            'url': 'd3js.org'
+            'name': this.props.channel.name,
+            'url': this.props.channel.url
         };
         var jsonString = (JSON.stringify(actionParameters));
         var escapedJsonParameters = escape(jsonString);
         var url = appName + '://' + actionType + "#" + escapedJsonParameters;
         console.log('launching url: ', url);
         document.location.href = url;
-*/
+
     },
 
     render: function() {
@@ -35,9 +63,10 @@ var Channel = React.createClass({
         };
 
         //<img className='channel-screenshot' src={this.props.channel.screenshot}> </img>
+        //onTouchStart={this.handleClick} >
 
         return (
-            <Paper className='channel' style={style} onClick={this.handleClick}>
+            <Paper className='channel' style={style} ref='channelRef' onTouchTap={this.handleClick} >
 
                 <div className='channel-div' >
 
@@ -58,7 +87,6 @@ var Channel = React.createClass({
 
                 </div>
             </Paper>);
-
 
     }
 

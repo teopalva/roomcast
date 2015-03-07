@@ -22,9 +22,13 @@ html, body {
 }
 *, *:before, *:after {
   box-sizing: inherit;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
 }
-
+.outerDiv {
+}
 .grid {
+  z-index: 1;
   width: 100%;
   padding: @pad1 0 @pad1 @pad1;
   display: table;
@@ -111,5 +115,11 @@ html, body {
 
     }
   }
-
+}
+.controlButton {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  //margin: auto 10px auto 10px;
+  z-index: 100;
 }
