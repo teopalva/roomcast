@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB5B4FE41AAD00EE00BA57C3 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB5B4FE31AAD00EE00BA57C3 /* Launch Screen.xib */; };
 		AB5CEECD1AABA18600EE48C9 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = AB5CEECC1AABA18600EE48C9 /* assets */; };
 		AB6BEC921AAA892900478F8E /* BasicWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6BEC911AAA892900478F8E /* BasicWebView.swift */; };
 		ABBB69191AA7C2BE00B781E4 /* NativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBB69181AA7C2BE00B781E4 /* NativeView.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB5B4FE31AAD00EE00BA57C3 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		AB5CEECC1AABA18600EE48C9 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		AB6BEC911AAA892900478F8E /* BasicWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicWebView.swift; sourceTree = "<group>"; };
 		ABBB69181AA7C2BE00B781E4 /* NativeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeView.swift; sourceTree = "<group>"; };
@@ -38,7 +40,6 @@
 		ABD0E5561AA0D09600248C1E /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		ABD0E5591AA0D09600248C1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ABD0E55B1AA0D09600248C1E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		ABD0E55E1AA0D09600248C1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		ABD0E5641AA0D09600248C1E /* RoomCast_iPad_webappTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoomCast_iPad_webappTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABD0E5691AA0D09600248C1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABD0E56A1AA0D09600248C1E /* RoomCast_iPad_webappTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCast_iPad_webappTests.swift; sourceTree = "<group>"; };
@@ -88,10 +89,10 @@
 				AB6BEC911AAA892900478F8E /* BasicWebView.swift */,
 				ABBC0C401AA6E31700EA5FED /* ChannelViewController.swift */,
 				ABBB69181AA7C2BE00B781E4 /* NativeView.swift */,
+				AB5B4FE31AAD00EE00BA57C3 /* Launch Screen.xib */,
 				ABD0E5581AA0D09600248C1E /* Main.storyboard */,
 				ABD0E55B1AA0D09600248C1E /* Images.xcassets */,
 				AB5CEECC1AABA18600EE48C9 /* assets */,
-				ABD0E55D1AA0D09600248C1E /* LaunchScreen.xib */,
 				ABD0E5521AA0D09600248C1E /* Supporting Files */,
 			);
 			path = RoomCast_iPad_webapp;
@@ -205,6 +206,7 @@
 			files = (
 				ABD0E55C1AA0D09600248C1E /* Images.xcassets in Resources */,
 				AB5CEECD1AABA18600EE48C9 /* assets in Resources */,
+				AB5B4FE41AAD00EE00BA57C3 /* Launch Screen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,14 +257,6 @@
 				ABD0E5591AA0D09600248C1E /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		ABD0E55D1AA0D09600248C1E /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				ABD0E55E1AA0D09600248C1E /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

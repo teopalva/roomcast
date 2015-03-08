@@ -147,6 +147,10 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
         return false;
     }
     
+    func webViewDidFinishLoad(webView: UIWebView) {
+        
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var nextVC = segue.destinationViewController as ChannelViewController
         nextVC.url = url
