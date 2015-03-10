@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="RoomQuake___Seismometer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Content here" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2nS-sa-Gwo">
+                                <rect key="frame" x="250" y="289" width="100" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="iOg-5j-LrP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vjy-OW-1rE">
+                                <rect key="frame" x="25" y="152" width="551" height="66"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button-menu" translatesAutoresizingMaskIntoConstraints="NO" id="eFO-nM-ajq">
+                                <rect key="frame" x="5" y="5" width="45" height="47"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="8JN-hl-zX9"/>
+                                    <constraint firstAttribute="height" constant="47" id="9ox-dT-NAA"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fmn-Rp-CmS">
+                                <rect key="frame" x="5" y="5" width="45" height="47"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="backToMenuAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wIV-6S-jCJ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Vjy-OW-1rE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="9" id="6PW-Wv-o3R"/>
+                            <constraint firstItem="eFO-nM-ajq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-11" id="6sc-kU-5x3"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="2nS-sa-Gwo" secondAttribute="bottom" constant="290" id="7u8-5j-bFz"/>
+                            <constraint firstItem="2nS-sa-Gwo" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="269" id="9bm-jU-JIN"/>
+                            <constraint firstItem="2nS-sa-Gwo" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Lzv-Ms-IaR"/>
+                            <constraint firstItem="2nS-sa-Gwo" firstAttribute="top" secondItem="Vjy-OW-1rE" secondAttribute="bottom" constant="71" id="Ur1-yn-t0e"/>
+                            <constraint firstItem="Vjy-OW-1rE" firstAttribute="centerX" secondItem="2nS-sa-Gwo" secondAttribute="centerX" id="fTd-yL-4qz"/>
+                            <constraint firstItem="eFO-nM-ajq" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="5" id="xnr-1L-jfO"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="appTitleLabel" destination="Vjy-OW-1rE" id="FMn-VC-7ow"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="474" y="477"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="button-menu" width="124" height="126"/>
+    </resources>
+</document>

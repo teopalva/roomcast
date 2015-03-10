@@ -37,8 +37,6 @@ var Channel = React.createClass({
 
     handleClick: function() {
 
-        console.log('click', this.props.channel);
-
         // JavaScript to send an action to iOS code
         var appName = 'roomcast';
         var actionType = 'playChannel';

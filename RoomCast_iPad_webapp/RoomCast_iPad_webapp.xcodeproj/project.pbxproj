@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB56F5C81AAD1F3700457AC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABD0E5581AA0D09600248C1E /* Main.storyboard */; };
 		AB5B4FE41AAD00EE00BA57C3 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB5B4FE31AAD00EE00BA57C3 /* Launch Screen.xib */; };
+		AB5B4FE61AAD0DD600BA57C3 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5B4FE51AAD0DD600BA57C3 /* LaunchView.swift */; };
 		AB5CEECD1AABA18600EE48C9 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = AB5CEECC1AABA18600EE48C9 /* assets */; };
 		AB6BEC921AAA892900478F8E /* BasicWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6BEC911AAA892900478F8E /* BasicWebView.swift */; };
 		ABBB69191AA7C2BE00B781E4 /* NativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBB69181AA7C2BE00B781E4 /* NativeView.swift */; };
@@ -16,6 +18,8 @@
 		ABD0E5571AA0D09600248C1E /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD0E5561AA0D09600248C1E /* MenuViewController.swift */; };
 		ABD0E55C1AA0D09600248C1E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABD0E55B1AA0D09600248C1E /* Images.xcassets */; };
 		ABD0E56B1AA0D09600248C1E /* RoomCast_iPad_webappTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD0E56A1AA0D09600248C1E /* RoomCast_iPad_webappTests.swift */; };
+		ABE93AB31AAEAA16000C5562 /* Locksmith.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE93AB11AAEAA16000C5562 /* Locksmith.swift */; };
+		ABE93AB41AAEAA16000C5562 /* LocksmithRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE93AB21AAEAA16000C5562 /* LocksmithRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +34,7 @@
 
 /* Begin PBXFileReference section */
 		AB5B4FE31AAD00EE00BA57C3 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
+		AB5B4FE51AAD0DD600BA57C3 /* LaunchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		AB5CEECC1AABA18600EE48C9 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		AB6BEC911AAA892900478F8E /* BasicWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicWebView.swift; sourceTree = "<group>"; };
 		ABBB69181AA7C2BE00B781E4 /* NativeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeView.swift; sourceTree = "<group>"; };
@@ -43,6 +48,8 @@
 		ABD0E5641AA0D09600248C1E /* RoomCast_iPad_webappTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoomCast_iPad_webappTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABD0E5691AA0D09600248C1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABD0E56A1AA0D09600248C1E /* RoomCast_iPad_webappTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCast_iPad_webappTests.swift; sourceTree = "<group>"; };
+		ABE93AB11AAEAA16000C5562 /* Locksmith.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locksmith.swift; sourceTree = "<group>"; };
+		ABE93AB21AAEAA16000C5562 /* LocksmithRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocksmithRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,11 +93,13 @@
 			children = (
 				ABD0E5541AA0D09600248C1E /* AppDelegate.swift */,
 				ABD0E5561AA0D09600248C1E /* MenuViewController.swift */,
+				AB5B4FE51AAD0DD600BA57C3 /* LaunchView.swift */,
 				AB6BEC911AAA892900478F8E /* BasicWebView.swift */,
 				ABBC0C401AA6E31700EA5FED /* ChannelViewController.swift */,
 				ABBB69181AA7C2BE00B781E4 /* NativeView.swift */,
 				AB5B4FE31AAD00EE00BA57C3 /* Launch Screen.xib */,
 				ABD0E5581AA0D09600248C1E /* Main.storyboard */,
+				ABE93AB01AAEA9FA000C5562 /* Keychain */,
 				ABD0E55B1AA0D09600248C1E /* Images.xcassets */,
 				AB5CEECC1AABA18600EE48C9 /* assets */,
 				ABD0E5521AA0D09600248C1E /* Supporting Files */,
@@ -121,6 +130,15 @@
 				ABD0E5691AA0D09600248C1E /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		ABE93AB01AAEA9FA000C5562 /* Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				ABE93AB11AAEAA16000C5562 /* Locksmith.swift */,
+				ABE93AB21AAEAA16000C5562 /* LocksmithRequest.swift */,
+			);
+			name = Keychain;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,6 +222,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB56F5C81AAD1F3700457AC9 /* Main.storyboard in Resources */,
 				ABD0E55C1AA0D09600248C1E /* Images.xcassets in Resources */,
 				AB5CEECD1AABA18600EE48C9 /* assets in Resources */,
 				AB5B4FE41AAD00EE00BA57C3 /* Launch Screen.xib in Resources */,
@@ -224,11 +243,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABE93AB41AAEAA16000C5562 /* LocksmithRequest.swift in Sources */,
 				ABD0E5571AA0D09600248C1E /* MenuViewController.swift in Sources */,
 				ABBB69191AA7C2BE00B781E4 /* NativeView.swift in Sources */,
 				ABBC0C411AA6E31700EA5FED /* ChannelViewController.swift in Sources */,
 				AB6BEC921AAA892900478F8E /* BasicWebView.swift in Sources */,
 				ABD0E5551AA0D09600248C1E /* AppDelegate.swift in Sources */,
+				AB5B4FE61AAD0DD600BA57C3 /* LaunchView.swift in Sources */,
+				ABE93AB31AAEAA16000C5562 /* Locksmith.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

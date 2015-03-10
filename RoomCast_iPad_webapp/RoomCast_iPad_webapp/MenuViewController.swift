@@ -11,18 +11,21 @@ import WebKit
 
 class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDelegate {
     
-    var webView: UIWebView?
+    var webView: UIWebView!
+    @IBOutlet var launchView: UIView!
     
     // Channel's url
     var url: String? = nil
     
-    override func loadView() {
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
         // TODO: currently using UIWebView because of bug of WK when loading local files
         self.webView = BasicWebView()
-        self.webView!.scrollView.bounces = false
-        self.webView!.delegate = self
-        self.view = self.webView
+        self.webView.scrollView.bounces = false
+        self.webView.delegate = self
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +40,7 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
         }
         */
         
-        // Load from local files
+        // Load main menu from local files
         var htmlFile: NSString? = NSBundle.mainBundle().pathForResource("index", ofType: "html", inDirectory: "./assets/menu")
         var htmlString: NSString?
         
@@ -45,7 +48,7 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
             htmlString = NSString(contentsOfFile: htmlFile, encoding: NSUTF8StringEncoding, error: nil)!
             if let htmlString = htmlString {
                 var bundle: String = NSBundle.mainBundle().bundlePath
-                webView?.loadHTMLString(htmlString, baseURL: NSURL(fileURLWithPath: "\(bundle)/assets/menu")!)
+                webView.loadHTMLString(htmlString, baseURL: NSURL(fileURLWithPath: "\(bundle)/assets/menu")!)
             } else {
                 println("Bundle not found.")
             }
@@ -66,31 +69,6 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
         return true;
     }
     
-    /*
-    func switchViews () {
-    (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    // Load the first request in place, because there is no web view currently showing
-    if (self.makingFirstRequest) {
-    self.makingFirstRequest = NO;
-    return YES;
-    }
-    // The web view that is currently showing originated the request
-    if (webView == self.visibleWebView) {
-    [self.hiddenWebView loadRequest:request];
-    [UIView animateWithDuration:duration animations:^{
-    // Some desired animation here
-    } completion:^(BOOL finished) {
-    UIWebView *oldVisibleWebView = self.visibleWebView;
-    self.visibleWebView = self.hiddenWebView;
-    self.hiddenWebView = oldVisibleWebView;
-    }
-    return NO;
-    }
-    return YES;
-    }
-    }
-    */
-    
     // Controller for the web view
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         
@@ -109,46 +87,70 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
         // Deserialize the request JSON
         var jsonDictString: String! = request.URL.fragment!.stringByReplacingPercentEscapesUsingEncoding(NSASCIIStringEncoding)
         
-        // Act based on actionType
-        if(actionType == "playChannel") {
-            
-            // Deserialize JSON fragment string into Swift dictionary
-            var parameters = Dictionary<String, String>()
-            var error : NSError?
-            let JSONData = jsonDictString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
-            let JSONDictionary: Dictionary = NSJSONSerialization.JSONObjectWithData(JSONData!, options: nil, error: &error) as NSDictionary
-            for (key, value) in JSONDictionary {
-                let keyName = key as String
-                let keyValue: String = value as String
-                parameters[keyName] = keyValue
-            }
-            
-            url = parameters["url"] as String?
-            if let url = url {
-                if(countElements(url) < 7) {
-                    return false
-                }
-                if (url.substringWithRange(Range<String.Index>(start: url.startIndex, end: advance(url.startIndex, 7))) == "http://") {
-                    self.performSegueWithIdentifier("playChannelSegue", sender: self)
-                } else {
-                    let customUrl: NSURL = NSURL(string:url)!
-                    if (UIApplication.sharedApplication().canOpenURL(customUrl)) {
-                        UIApplication.sharedApplication().openURL(customUrl)
-                    } else {
-                        println("Could not open " + url)
-                    }
-                }
-            } else {
-                println("Empty Channel!")
-            }
-            
+        // Deserialize JSON fragment string into Swift dictionary
+        var parameters = Dictionary<String, String>()
+        var error : NSError?
+        let JSONData = jsonDictString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+        let JSONDictionary: Dictionary = NSJSONSerialization.JSONObjectWithData(JSONData!, options: nil, error: &error) as NSDictionary
+        for (key, value) in JSONDictionary {
+            let keyName = key as String
+            let keyValue: String = value as String
+            parameters[keyName] = keyValue
         }
         
-        return false;
+        // Act based on actionType
+        switch actionType {
+        case "playChannel":
+            playChannel(parameters)
+        case "getResourceIdentity":
+            getResourceIdentity()
+        case "setResourceIdentity":
+            setResourceIdentity(parameters)
+        default:
+            return false
+        }
+        
+        return false
+    }
+    
+    func playChannel(parameters: Dictionary<String, String>) {
+        url = parameters["url"] as String?
+        if let url = url {
+            if(countElements(url) < 7) {
+                return
+            }
+            if (url.substringWithRange(Range<String.Index>(start: url.startIndex, end: advance(url.startIndex, 7))) == "http://") {
+                self.performSegueWithIdentifier("playChannelSegue", sender: self)
+            } else {
+                let customUrl: NSURL = NSURL(string:url)!
+                if (UIApplication.sharedApplication().canOpenURL(customUrl)) {
+                    UIApplication.sharedApplication().openURL(customUrl)
+                } else {
+                    println("Could not open " + url)
+                }
+            }
+        } else {
+            println("Empty Channel!")
+        }
+    }
+    
+    func getResourceIdentity() {
+        let rid = retrieveResourceIdentity()
+        if let rid = rid {
+            println("set rid = \(rid) in js and we're done")
+        } else {
+            println("tell js to show modal until rid gets set")
+        }
+    }
+    
+    func setResourceIdentity(parameters: Dictionary<String, String>) {
+        let rid = parameters["rid"] as String!
+        storeResourceIdentity(rid)
+        println("set rid = \(rid) in js and we're done - same function as above")
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
-        
+        self.view = self.webView
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -158,6 +160,23 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
     
     @IBAction func unwindToMenu(unwindSegue: UIStoryboardSegue) {
         
+    }
+    
+    func retrieveResourceIdentity() -> String? {
+        let (dictionary, error) = Locksmith.loadDataForUserAccount("roomcast")
+        if let dictionary = dictionary {
+            return dictionary.objectForKey("rid") as? String
+        } else {
+            return nil
+        }
+    }
+    
+    func storeResourceIdentity(rid: String) {
+        if let storedRid = retrieveResourceIdentity() {
+            let error = Locksmith.updateData(["rid": rid], forUserAccount: "roomcast")
+        } else {
+            let error = Locksmith.saveData(["rid": rid], forUserAccount: "roomcast")
+        }
     }
     
     

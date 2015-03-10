@@ -39,7 +39,6 @@ class ChannelViewController: UIViewController, WKNavigationDelegate, UIWebViewDe
         super.viewDidLoad()
         
         // Once the native view has been loaded, we can switch order of views
-        //self.view = self.webView!
         self.view = self.loadingWebView
         self.view.addSubview(self.nativeView)
         

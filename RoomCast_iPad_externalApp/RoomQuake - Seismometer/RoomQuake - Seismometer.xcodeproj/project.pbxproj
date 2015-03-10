@@ -1,0 +1,424 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AB7D61121A9900630087C280 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7D61111A9900630087C280 /* AppDelegate.swift */; };
+		AB7D61141A9900630087C280 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7D61131A9900630087C280 /* ViewController.swift */; };
+		AB7D61171A9900630087C280 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB7D61151A9900630087C280 /* Main.storyboard */; };
+		AB7D61191A9900630087C280 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB7D61181A9900630087C280 /* Images.xcassets */; };
+		AB7D611C1A9900630087C280 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB7D611A1A9900630087C280 /* LaunchScreen.xib */; };
+		AB7D61281A9900630087C280 /* RoomQuake___SeismometerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7D61271A9900630087C280 /* RoomQuake___SeismometerTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AB7D61221A9900630087C280 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AB7D61041A9900630087C280 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AB7D610B1A9900630087C280;
+			remoteInfo = "RoomQuake - Seismometer";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		AB7D610C1A9900630087C280 /* RoomQuake - Seismometer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RoomQuake - Seismometer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB7D61101A9900630087C280 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB7D61111A9900630087C280 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AB7D61131A9900630087C280 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AB7D61161A9900630087C280 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AB7D61181A9900630087C280 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		AB7D611B1A9900630087C280 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		AB7D61211A9900630087C280 /* RoomQuake - SeismometerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RoomQuake - SeismometerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB7D61261A9900630087C280 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB7D61271A9900630087C280 /* RoomQuake___SeismometerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoomQuake___SeismometerTests.swift"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AB7D61091A9900630087C280 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB7D611E1A9900630087C280 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AB7D61031A9900630087C280 = {
+			isa = PBXGroup;
+			children = (
+				AB7D610E1A9900630087C280 /* RoomQuake - Seismometer */,
+				AB7D61241A9900630087C280 /* RoomQuake - SeismometerTests */,
+				AB7D610D1A9900630087C280 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AB7D610D1A9900630087C280 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AB7D610C1A9900630087C280 /* RoomQuake - Seismometer.app */,
+				AB7D61211A9900630087C280 /* RoomQuake - SeismometerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AB7D610E1A9900630087C280 /* RoomQuake - Seismometer */ = {
+			isa = PBXGroup;
+			children = (
+				AB7D61111A9900630087C280 /* AppDelegate.swift */,
+				AB7D61131A9900630087C280 /* ViewController.swift */,
+				AB7D61151A9900630087C280 /* Main.storyboard */,
+				AB7D611A1A9900630087C280 /* LaunchScreen.xib */,
+				AB7D61181A9900630087C280 /* Images.xcassets */,
+				AB7D610F1A9900630087C280 /* Supporting Files */,
+			);
+			path = "RoomQuake - Seismometer";
+			sourceTree = "<group>";
+		};
+		AB7D610F1A9900630087C280 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AB7D61101A9900630087C280 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AB7D61241A9900630087C280 /* RoomQuake - SeismometerTests */ = {
+			isa = PBXGroup;
+			children = (
+				AB7D61271A9900630087C280 /* RoomQuake___SeismometerTests.swift */,
+				AB7D61251A9900630087C280 /* Supporting Files */,
+			);
+			path = "RoomQuake - SeismometerTests";
+			sourceTree = "<group>";
+		};
+		AB7D61251A9900630087C280 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AB7D61261A9900630087C280 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AB7D610B1A9900630087C280 /* RoomQuake - Seismometer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AB7D612B1A9900630087C280 /* Build configuration list for PBXNativeTarget "RoomQuake - Seismometer" */;
+			buildPhases = (
+				AB7D61081A9900630087C280 /* Sources */,
+				AB7D61091A9900630087C280 /* Frameworks */,
+				AB7D610A1A9900630087C280 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "RoomQuake - Seismometer";
+			productName = "RoomQuake - Seismometer";
+			productReference = AB7D610C1A9900630087C280 /* RoomQuake - Seismometer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AB7D61201A9900630087C280 /* RoomQuake - SeismometerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AB7D612E1A9900630087C280 /* Build configuration list for PBXNativeTarget "RoomQuake - SeismometerTests" */;
+			buildPhases = (
+				AB7D611D1A9900630087C280 /* Sources */,
+				AB7D611E1A9900630087C280 /* Frameworks */,
+				AB7D611F1A9900630087C280 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AB7D61231A9900630087C280 /* PBXTargetDependency */,
+			);
+			name = "RoomQuake - SeismometerTests";
+			productName = "RoomQuake - SeismometerTests";
+			productReference = AB7D61211A9900630087C280 /* RoomQuake - SeismometerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AB7D61041A9900630087C280 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Matteo Palvarini";
+				TargetAttributes = {
+					AB7D610B1A9900630087C280 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					AB7D61201A9900630087C280 = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = AB7D610B1A9900630087C280;
+					};
+				};
+			};
+			buildConfigurationList = AB7D61071A9900630087C280 /* Build configuration list for PBXProject "RoomQuake - Seismometer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AB7D61031A9900630087C280;
+			productRefGroup = AB7D610D1A9900630087C280 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AB7D610B1A9900630087C280 /* RoomQuake - Seismometer */,
+				AB7D61201A9900630087C280 /* RoomQuake - SeismometerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AB7D610A1A9900630087C280 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB7D61171A9900630087C280 /* Main.storyboard in Resources */,
+				AB7D611C1A9900630087C280 /* LaunchScreen.xib in Resources */,
+				AB7D61191A9900630087C280 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB7D611F1A9900630087C280 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AB7D61081A9900630087C280 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB7D61141A9900630087C280 /* ViewController.swift in Sources */,
+				AB7D61121A9900630087C280 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB7D611D1A9900630087C280 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB7D61281A9900630087C280 /* RoomQuake___SeismometerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AB7D61231A9900630087C280 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AB7D610B1A9900630087C280 /* RoomQuake - Seismometer */;
+			targetProxy = AB7D61221A9900630087C280 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		AB7D61151A9900630087C280 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AB7D61161A9900630087C280 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		AB7D611A1A9900630087C280 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AB7D611B1A9900630087C280 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AB7D61291A9900630087C280 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		AB7D612A1A9900630087C280 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AB7D612C1A9900630087C280 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "RoomQuake - Seismometer/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		AB7D612D1A9900630087C280 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "RoomQuake - Seismometer/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		AB7D612F1A9900630087C280 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "RoomQuake - SeismometerTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RoomQuake - Seismometer.app/RoomQuake - Seismometer";
+			};
+			name = Debug;
+		};
+		AB7D61301A9900630087C280 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "RoomQuake - SeismometerTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RoomQuake - Seismometer.app/RoomQuake - Seismometer";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AB7D61071A9900630087C280 /* Build configuration list for PBXProject "RoomQuake - Seismometer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB7D61291A9900630087C280 /* Debug */,
+				AB7D612A1A9900630087C280 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AB7D612B1A9900630087C280 /* Build configuration list for PBXNativeTarget "RoomQuake - Seismometer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB7D612C1A9900630087C280 /* Debug */,
+				AB7D612D1A9900630087C280 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AB7D612E1A9900630087C280 /* Build configuration list for PBXNativeTarget "RoomQuake - SeismometerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB7D612F1A9900630087C280 /* Debug */,
+				AB7D61301A9900630087C280 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AB7D61041A9900630087C280 /* Project object */;
+}

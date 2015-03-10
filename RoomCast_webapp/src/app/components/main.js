@@ -15,7 +15,14 @@ var Main = React.createClass({
 
         // TODO move all after rid has been set
         // TODO send request with MAC, get rid (name)
-        this.handleUpdatedRid('iPad1');
+        //this.handleUpdatedRid('iPad1');
+        var actionParameters = {
+            'rid': 'iPad4'
+        };
+        var jsonString = (JSON.stringify(actionParameters));
+        var escapedJsonParameters = escape(jsonString);
+        var url = 'roomcast' + '://' + 'setResourceIdentity' + "#" + escapedJsonParameters;
+        document.location.href = url;
 
         try {
             // Get current assigned channels (mapping)
@@ -149,12 +156,12 @@ module.exports = Main;
 
 var CHANNELS = {
     '01': {name: 'Admin', icon: '', screenshot: './assets/channels/Roomquake/Admin.png', description: 'description: first channel', url: 'http://matteopalvarini.com/viz/Project3'},
-    '02': {name: 'AggregateView', icon: '', screenshot: './assets/channels/Roomquake/AggregateView.png',  description: '', url:''},
-    '03': {name: 'Seismograph1', icon: '', screenshot: './assets/channels/Roomquake/Seismograph1.png',  description: '', url:'http://google.it'},
+    '02': {name: 'AggregateView', icon: '', screenshot: './assets/channels/Roomquake/AggregateView.png',  description: '', url:'http://google.it'},
+    '03': {name: 'Seismograph1', icon: '', screenshot: './assets/channels/Roomquake/Seismograph1.png',  description: '', url:'roomquake.seismometer://'},
     '04': {name: 'Seismograph2', icon: '', screenshot: './assets/channels/Roomquake/Seismograph2.png',  description: '', url:'http://d3js.org'},
-    '05': {name: 'Seismograph3', icon: '', screenshot: './assets/channels/Roomquake/Seismograph3.png',  description: '', url:''},
-    '06': {name: 'Seismograph4', icon: '', screenshot: './assets/channels/Roomquake/Seismograph4.png',  description: '', url:''},
-    '07': {name: 'StudentsForms', icon: '', screenshot: './assets/channels/Roomquake/StudentsForms.png',  description: '', url:''}
+    '05': {name: 'Seismograph3', icon: '', screenshot: './assets/channels/Roomquake/Seismograph3.png',  description: '', url:'roomquake.seismometer://'},
+    '06': {name: 'Seismograph4', icon: '', screenshot: './assets/channels/Roomquake/Seismograph4.png',  description: '', url:'roomquake.seismometer://'},
+    '07': {name: 'StudentsForms', icon: '', screenshot: './assets/channels/Roomquake/StudentsForms.png',  description: '', url:'http://uic.edu'}
     /*
      '08': {name: 'channel8', icon: './assets/icon/channel_icon.png', description: ''},
      '09': {name: 'channel9', icon: './assets/icon/channel_icon.png', description: ''},
