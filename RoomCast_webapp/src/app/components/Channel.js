@@ -55,8 +55,10 @@ var Channel = React.createClass({
 
     render: function() {
 
+        var broker = query_parameters.broker, runId = 'RoomQuake', imgType = 'screenshot';
+
         var style = {
-            backgroundImage: 'url(' + this.props.channel.screenshot + ')',
+            backgroundImage: 'url(' + 'http://' + broker + ':57880/roomcast/main-interface/assets/channels/' + runId + '/' + imgType + '/' + this.props.channel.screenshot + ')',
             backgroundSize: '100% 100%'
         };
 

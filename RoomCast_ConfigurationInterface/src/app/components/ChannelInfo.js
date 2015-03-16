@@ -9,7 +9,9 @@ var ChannelInfo = React.createClass({
 
     render: function() {
 
-        imgSource = this.props.selectedChannel? this.props.channels[this.props.selectedChannel.id].icon : './assets/roomcast.jpg';
+        var broker = query_parameters.broker, runId = 'RoomQuake', imgType = 'screenshot_rect';
+
+        imgSource = this.props.selectedChannel? 'http://' + broker + ':57880/roomcast/main-interface/assets/channels/' + runId + '/' + imgType + '/' + this.props.channels[this.props.selectedChannel.id].screenshot : 'http://' + broker + ':57880/roomcast/main-interface/assets/roomcast.jpg';
 
         // <div className='dock-base'> </div>
 

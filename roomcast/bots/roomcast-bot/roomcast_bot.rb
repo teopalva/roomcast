@@ -13,6 +13,7 @@ puts 'Initializing RoomCast...'
 
 # Open the database
 mapping_db = nutella.persist.getJsonStore('db/mapping.json')
+channels_db = nutella.persist.getJsonStore('db/channels.json')
 
 nutella.net.subscribe('mapping/update', lambda do |message, component_id, resource_id|
 
@@ -53,10 +54,46 @@ nutella.net.handle_requests('mapping/retrieve', lambda do |request, component_id
                               end
                                               end)
 
+nutella.net.subscribe('channels/update', lambda do |message, component_id, resource_id|
+
+                                        new_channels = message
+
+                                        # Update
+                                        if new_channels != nil
+                                          channels_db.transaction {
+                                            channels_db[:channels] = new_channels
+                                          }
+                                        end
+
+                                        # Notify Update
+                                        channels_db.transaction {
+                                          publish_channels_update(new_channels)
+                                        }
+
+                                      end)
+
+nutella.net.handle_requests('channels/retrieve', lambda do |request, component_id, resource_id|
+                                                reply = {}
+                                                if request == {}
+                                                  reply
+                                                elsif request == 'all'
+                                                  channels_db.transaction {
+                                                    reply = channels_db['channels']
+                                                  }
+                                                  puts reply
+                                                  reply
+                                                end
+                                              end)
+
 
 def publish_mapping_update(mapping)
   nutella.net.publish('mapping/updated', mapping)
   puts 'Sent mapping/updated'
+end
+
+def publish_channels_update(channels)
+  nutella.net.publish('channels/updated', channels)
+  puts 'Sent channels/updated'
 end
 
 puts 'Initialization complete.'

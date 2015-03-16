@@ -8,31 +8,37 @@ var RightNav = Mui.RightNav;
 
 var Main = React.createClass({
 
-    //mixins: [NutellaMixin],
-
     componentDidMount: function() {
         var self=this;
 
-        // TODO move all after rid has been set
-        // TODO send request with MAC, get rid (name)
-        //this.handleUpdatedRid('iPad1');
-        var actionParameters = {
-            'rid': 'iPad4'
-        };
-        var jsonString = (JSON.stringify(actionParameters));
-        var escapedJsonParameters = escape(jsonString);
-        var url = 'roomcast' + '://' + 'setResourceIdentity' + "#" + escapedJsonParameters;
+        // TODO just a fallback - remove
+        this.handleUpdatedRid('iPad1');
+
+        // Fetch from iOS device
+        var url = 'roomcast' + '://' + 'getResourceIdentity';
         document.location.href = url;
 
+        // TODO add componentDidMountCallback to be called from iOS
         try {
-            // Get current assigned channels (mapping)
-            nutella.net.request('mapping/retrieve', 'all', function (response) {
-                self.updateChannelsForRid(response, self.state.rid);
+
+            // Get current channels catalogue
+            nutella.net.request('channels/retrieve', 'all', function (response) {
+                self.handleUpdatedChannelsCatalogue(response);
             });
+
+            if(self.state.rid) {
+                // Get current assigned channels (mapping)
+                nutella.net.request('mapping/retrieve', 'all', function (response) {
+                    self.updateChannelsForRid(response, self.state.rid);
+                });
+            }
 
             // Subscribe for future changes
             nutella.net.subscribe('mapping/updated', function (message, channel, from_component_id, from_resource_id) {
                 self.updateChannelsForRid(message, self.state.rid);
+            });
+            nutella.net.subscribe('channels/updated', function (message, channel, from_component_id, from_resource_id) {
+                self.handleUpdatedChannelsCatalogue(message);
             });
         } catch(e) {
             console.warn('nutella error -> fetching from fake data');
@@ -42,6 +48,7 @@ var Main = React.createClass({
     },
 
     updateChannelsForRid: function(message, rid) {
+        var self = this;
         var myChannelsId = [];
         var myChannels = [];
         message.forEach(function (f) {
@@ -54,7 +61,7 @@ var Main = React.createClass({
             }
         });
         myChannelsId.forEach(function (id) {
-            myChannels.push(CHANNELS[id]);
+            myChannels.push(self.state.channelsCatalogue[id]);
         });
         if (myChannels.length === 0) {
             // TODO show message 'no available channels' on screen
@@ -66,7 +73,8 @@ var Main = React.createClass({
         return {
             rid: null,
             channels: [],
-            mapping: []
+            mapping: [],
+            channelsCatalogue: {}
         };
     },
 
@@ -74,6 +82,9 @@ var Main = React.createClass({
         this.setState({
             rid: rid
         });
+        if(rid) {
+            this.setModalRightNav();
+        }
     },
 
     handleUpdatedChannels: function(channels) {
@@ -85,6 +96,12 @@ var Main = React.createClass({
     handleUpdatedMapping: function(mapping) {
         this.setState({
             mapping: mapping
+        });
+    },
+
+    handleUpdatedChannelsCatalogue: function(cat) {
+        this.setState({
+            channelsCatalogue: cat
         });
     },
 
@@ -108,6 +125,33 @@ var Main = React.createClass({
 
     handleItemTap: function(menuItem) {
         this.handleSelectedResource(menuItem.id);
+
+        // Store in iOS
+        var actionParameters = {
+            'rid': menuItem.id
+        };
+        var jsonString = (JSON.stringify(actionParameters));
+        var escapedJsonParameters = escape(jsonString);
+        var url = 'roomcast' + '://' + 'setResourceIdentity' + "#" + escapedJsonParameters;
+        document.location.href = url;
+    },
+
+    setModalRightNav: function() {
+        var self = this;
+        if(!this.state.rid) {
+            this.refs.rightNav.open();
+            this.refs.rightNav.setState({
+                modal: true
+            });
+            // Force update menu with resources
+            nutella.net.request('mapping/retrieve', 'all', function (response) {
+                self.handleUpdatedMapping(response);
+            });
+        } else {
+            this.refs.rightNav.setState({
+                modal: false
+            });
+        }
     },
 
     render: function() {
@@ -142,7 +186,7 @@ var Main = React.createClass({
 
                 <FloatingActionButton className='controlButton' iconClassName="muidocs-icon-action-grade" secondary={true} onTouchTap={this.handleControlButton} />
 
-                <RightNav ref='rightNav' docked={false} menuItems={menuItems} onItemTap={this.handleItemTap} />
+                <RightNav ref='rightNav' docked={false} modal={false} menuItems={menuItems} onItemTap={this.handleItemTap} />
 
             </div>
 
@@ -154,6 +198,7 @@ var Main = React.createClass({
 
 module.exports = Main;
 
+/*
 var CHANNELS = {
     '01': {name: 'Admin', icon: '', screenshot: './assets/channels/Roomquake/Admin.png', description: 'description: first channel', url: 'http://matteopalvarini.com/viz/Project3'},
     '02': {name: 'AggregateView', icon: '', screenshot: './assets/channels/Roomquake/AggregateView.png',  description: '', url:'http://google.it'},
@@ -162,19 +207,8 @@ var CHANNELS = {
     '05': {name: 'Seismograph3', icon: '', screenshot: './assets/channels/Roomquake/Seismograph3.png',  description: '', url:'roomquake.seismometer://'},
     '06': {name: 'Seismograph4', icon: '', screenshot: './assets/channels/Roomquake/Seismograph4.png',  description: '', url:'roomquake.seismometer://'},
     '07': {name: 'StudentsForms', icon: '', screenshot: './assets/channels/Roomquake/StudentsForms.png',  description: '', url:'http://uic.edu'}
-    /*
-     '08': {name: 'channel8', icon: './assets/icon/channel_icon.png', description: ''},
-     '09': {name: 'channel9', icon: './assets/icon/channel_icon.png', description: ''},
-     '10': {name: 'channel10', icon: './assets/icon/channel_icon.png', description: ''},
-     '11': {name: 'channel11', icon: './assets/icon/channel_icon.png', description: ''},
-     '12': {name: 'channel12', icon: './assets/icon/channel_icon.png', description: ''},
-     '13': {name: 'channel13', icon: './assets/icon/channel_icon.png', description: ''},
-     '14': {name: 'channel14', icon: './assets/icon/channel_icon.png', description: ''},
-     '15': {name: 'channel15', icon: './assets/icon/channel_icon.png', description: ''},
-     '16': {name: 'channel16', icon: './assets/icon/channel_icon.png', description: ''}
-     */
-
 };
+*/
 
 var MAPPING = [{
     "family": "iPad",

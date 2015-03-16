@@ -87,9 +87,11 @@ var Channel = React.createClass({
             }
         }
 
+        var broker = query_parameters.broker, runId = 'RoomQuake', imgType = 'screenshot_rect';
+
         return (
             <div className='channel-div' onClick={this.handleSelectedChannel}>
-                <img className='channel-icon' ref='channelIcon' style={imgStyle} src={this.props.imgPath}> </img>
+                <img className='channel-icon' ref='channelIcon' style={imgStyle} src={'http://' + broker + ':57880/roomcast/main-interface/assets/channels/' + runId + '/' + imgType + '/' + this.props.imgPath}> </img>
                 <p style={pStyle}> {this.props.name} </p>
             </div>);
 

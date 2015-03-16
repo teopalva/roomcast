@@ -26,7 +26,6 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
         self.webView.delegate = self
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -85,17 +84,19 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
         var actionType: NSString = request.URL.host!
         
         // Deserialize the request JSON
-        var jsonDictString: String! = request.URL.fragment!.stringByReplacingPercentEscapesUsingEncoding(NSASCIIStringEncoding)
+        var jsonDictString: String? = request.URL.fragment?.stringByReplacingPercentEscapesUsingEncoding(NSASCIIStringEncoding)
         
-        // Deserialize JSON fragment string into Swift dictionary
         var parameters = Dictionary<String, String>()
-        var error : NSError?
-        let JSONData = jsonDictString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
-        let JSONDictionary: Dictionary = NSJSONSerialization.JSONObjectWithData(JSONData!, options: nil, error: &error) as NSDictionary
-        for (key, value) in JSONDictionary {
-            let keyName = key as String
-            let keyValue: String = value as String
-            parameters[keyName] = keyValue
+        // Deserialize JSON fragment string into Swift dictionary
+        if let jsonDictString = jsonDictString {
+            var error : NSError?
+            let JSONData = jsonDictString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+            let JSONDictionary: Dictionary = NSJSONSerialization.JSONObjectWithData(JSONData!, options: nil, error: &error) as NSDictionary
+            for (key, value) in JSONDictionary {
+                let keyName = key as String
+                let keyValue: String = value as String
+                parameters[keyName] = keyValue
+            }
         }
         
         // Act based on actionType
@@ -137,16 +138,16 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
     func getResourceIdentity() {
         let rid = retrieveResourceIdentity()
         if let rid = rid {
-            println("set rid = \(rid) in js and we're done")
+            handleUpdatedRid(rid)
         } else {
-            println("tell js to show modal until rid gets set")
+            setModalRightNav();
         }
     }
     
     func setResourceIdentity(parameters: Dictionary<String, String>) {
         let rid = parameters["rid"] as String!
         storeResourceIdentity(rid)
-        println("set rid = \(rid) in js and we're done - same function as above")
+        handleUpdatedRid(rid)
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
@@ -163,6 +164,7 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
     }
     
     func retrieveResourceIdentity() -> String? {
+        println("fetching rid")
         let (dictionary, error) = Locksmith.loadDataForUserAccount("roomcast")
         if let dictionary = dictionary {
             return dictionary.objectForKey("rid") as? String
@@ -172,6 +174,7 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
     }
     
     func storeResourceIdentity(rid: String) {
+        println("storing \(rid)")
         if let storedRid = retrieveResourceIdentity() {
             let error = Locksmith.updateData(["rid": rid], forUserAccount: "roomcast")
         } else {
@@ -179,6 +182,19 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
         }
     }
     
+    //////////// REACT.js METHODS ////////////
+    
+    func handleUpdatedRid(rid: String) {
+        let script: String = "ReactMain.handleSelectedResource('\(rid)')"
+        self.webView.stringByEvaluatingJavaScriptFromString(script)
+    }
+    
+    func setModalRightNav() {
+        let script: String = "ReactMain.setModalRightNav()"
+        self.webView.stringByEvaluatingJavaScriptFromString(script)
+    }
+    
+    //////////////////////////////////////////
     
 }
 

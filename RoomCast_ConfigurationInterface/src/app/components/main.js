@@ -9,6 +9,12 @@ var Main = React.createClass({
 
     componentDidMount: function() {
         var self = this;
+
+        // Get current channels catalogue
+        nutella.net.request('channels/retrieve', 'all', function (response) {
+            self.handleUpdatedChannelsCatalogue(response);
+        });
+
         nutella.net.request('mapping/retrieve', 'all', function(response) {
             self.handleUpdatedMapping(response);
         });
@@ -17,7 +23,8 @@ var Main = React.createClass({
     getInitialState: function() {
         return {
             selectedChannel: null,
-            mapping: []
+            mapping: [],
+            channelsCatalogue: {}
         };
     },
 
@@ -33,15 +40,19 @@ var Main = React.createClass({
         });
     },
 
+    handleUpdatedChannelsCatalogue: function(cat) {
+        this.setState({
+            channelsCatalogue: cat
+        });
+    },
+
     handleSaveChanges: function() {
-        console.log(this.state.mapping);
         nutella.net.publish('mapping/update', this.state.mapping);
     },
 
     handleUndoChanges: function() {
         var self = this;
         nutella.net.request('mapping/retrieve', 'all', function(response) {
-            console.log('reply');
             self.handleUpdatedMapping(response);
         });
     },
@@ -54,13 +65,13 @@ var Main = React.createClass({
                 <ResourcesPanel
                     mapping={this.state.mapping}
                     onUpdatedMapping={this.handleUpdatedMapping}
-                    channels={CHANNELS}
+                    channels={this.state.channelsCatalogue}
                     selectedChannel={this.state.selectedChannel}
                     onSelectedChannel={this.handleSelection} />
 
                 <ChannelsPanel
                     ref={'channelsPanel'}
-                    channels={CHANNELS}
+                    channels={this.state.channelsCatalogue}
                     selectedChannel={this.state.selectedChannel}
                     onSelectedChannel={this.handleSelection}
                     onSaveChanges={this.handleSaveChanges}
@@ -120,6 +131,7 @@ var MAPPING = [
     }
 ];
 
+/*
 var CHANNELS = {
     '01': {name: 'Admin', icon: '', screenshot: './assets/channels/Roomquake/Admin.png', description: 'description: first channel'},
     '02': {name: 'AggregateView', icon: '', screenshot: './assets/channels/Roomquake/AggregateView.png',  description: ''},
@@ -128,15 +140,5 @@ var CHANNELS = {
     '05': {name: 'Seismograph3', icon: '', screenshot: './assets/channels/Roomquake/Seismograph3.png',  description: ''},
     '06': {name: 'Seismograph4', icon: '', screenshot: './assets/channels/Roomquake/Seismograph4.png',  description: ''},
     '07': {name: 'StudentsForms', icon: '', screenshot: './assets/channels/Roomquake/StudentsForms.png',  description: ''}
-    /*
-     '08': {name: 'channel8', icon: './assets/icon/channel_icon.png', description: ''},
-     '09': {name: 'channel9', icon: './assets/icon/channel_icon.png', description: ''},
-     '10': {name: 'channel10', icon: './assets/icon/channel_icon.png', description: ''},
-     '11': {name: 'channel11', icon: './assets/icon/channel_icon.png', description: ''},
-     '12': {name: 'channel12', icon: './assets/icon/channel_icon.png', description: ''},
-     '13': {name: 'channel13', icon: './assets/icon/channel_icon.png', description: ''},
-     '14': {name: 'channel14', icon: './assets/icon/channel_icon.png', description: ''},
-     '15': {name: 'channel15', icon: './assets/icon/channel_icon.png', description: ''},
-     '16': {name: 'channel16', icon: './assets/icon/channel_icon.png', description: ''}
-     */
-}
+};
+*/
