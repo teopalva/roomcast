@@ -140,8 +140,9 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
         if let rid = rid {
             handleUpdatedRid(rid)
         } else {
-            setModalRightNav();
+            setModalRightNav(); 
         }
+        //componentDidMountCallback()
     }
     
     func setResourceIdentity(parameters: Dictionary<String, String>) {
@@ -191,6 +192,11 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
     
     func setModalRightNav() {
         let script: String = "ReactMain.setModalRightNav()"
+        self.webView.stringByEvaluatingJavaScriptFromString(script)
+    }
+    
+    func componentDidMountCallback() {
+        let script: String = "componentDidMountCallback()";
         self.webView.stringByEvaluatingJavaScriptFromString(script)
     }
     

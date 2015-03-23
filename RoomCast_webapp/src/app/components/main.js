@@ -1,7 +1,6 @@
 
 var React = require('react');
 var Channel = require('./Channel');
-//var NutellaMixin = require('./NutellaMixin');
 var Mui = require('material-ui');
 var FloatingActionButton = Mui.FloatingActionButton;
 var RightNav = Mui.RightNav;
@@ -11,43 +10,52 @@ var Main = React.createClass({
     componentDidMount: function() {
         var self=this;
 
-        // TODO just a fallback - remove
-        this.handleUpdatedRid('iPad1');
-
+        /*
         // Fetch from iOS device
-        var url = 'roomcast' + '://' + 'getResourceIdentity';
-        document.location.href = url;
+        var iOS = (window.navigator.userAgent.match(/(iPad|iPhone)/g) ? true : false);
+        if(iOS) {
+            console.log('iOS version');
 
-        // TODO add componentDidMountCallback to be called from iOS
+        } else {
+            console.log('Browser version');
+        }
+        */
+
         try {
 
             // Get current channels catalogue
             nutella.net.request('channels/retrieve', 'all', function (response) {
                 self.handleUpdatedChannelsCatalogue(response);
-            });
 
-            if(self.state.rid) {
-                // Get current assigned channels (mapping)
-                nutella.net.request('mapping/retrieve', 'all', function (response) {
-                    self.updateChannelsForRid(response, self.state.rid);
+                var url = 'roomcast' + '://' + 'getResourceIdentity';
+                document.location.href = url;
+
+                if(self.state.rid) {
+                    // Get current assigned channels (mapping)
+                    nutella.net.request('mapping/retrieve', 'all', function (response) {
+                        self.updateChannelsForRid(response, self.state.rid);
+                    });
+                }
+
+                // Subscribe for future changes
+                nutella.net.subscribe('mapping/updated', function (message, channel, from_component_id, from_resource_id) {
+                    self.updateChannelsForRid(message, self.state.rid);
                 });
-            }
+                nutella.net.subscribe('channels/updated', function (message, channel, from_component_id, from_resource_id) {
+                    self.handleUpdatedChannelsCatalogue(message);
+                });
+            });
 
-            // Subscribe for future changes
-            nutella.net.subscribe('mapping/updated', function (message, channel, from_component_id, from_resource_id) {
-                self.updateChannelsForRid(message, self.state.rid);
-            });
-            nutella.net.subscribe('channels/updated', function (message, channel, from_component_id, from_resource_id) {
-                self.handleUpdatedChannelsCatalogue(message);
-            });
+
         } catch(e) {
-            console.warn('nutella error -> fetching from fake data');
+            console.warn('Nutella error -> fetching from fake data');
             self.updateChannelsForRid(MAPPING, self.state.rid);
         }
 
     },
 
     updateChannelsForRid: function(message, rid) {
+
         var self = this;
         var myChannelsId = [];
         var myChannels = [];

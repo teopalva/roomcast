@@ -1,5 +1,6 @@
 var React = require('react');
 var Mui = require('material-ui');
+var NutellaMixin = require('./NutellaMixin');
 
 /**
  * @prop selectedChannel
@@ -7,11 +8,11 @@ var Mui = require('material-ui');
  */
 var ChannelInfo = React.createClass({
 
+    mixins: [NutellaMixin],
+
     render: function() {
 
-        var broker = query_parameters.broker, runId = 'RoomQuake', imgType = 'screenshot_rect';
-
-        imgSource = this.props.selectedChannel? 'http://' + broker + ':57880/roomcast/main-interface/assets/channels/' + runId + '/' + imgType + '/' + this.props.channels[this.props.selectedChannel.id].screenshot : 'http://' + broker + ':57880/roomcast/main-interface/assets/roomcast.jpg';
+        imgSource = this.props.selectedChannel? this.getUrlForAsset(this.props.channels[this.props.selectedChannel.id].screenshot, 'screenshot') : this.getUrlForAsset('roomcast.jpg');
 
         // <div className='dock-base'> </div>
 

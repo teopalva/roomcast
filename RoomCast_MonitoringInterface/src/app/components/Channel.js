@@ -1,40 +1,13 @@
 var React = require('react');
 var Mui = require('material-ui');
 var Paper = Mui.Paper;
-var NutellaMixin = require('./NutellaMixin');
 
 /**
  * @prop channel
  */
 var Channel = React.createClass({
 
-    mixins: [NutellaMixin],
-
     componentDidMount: function() {
-
-        /*
-        // Manually handle touches from mobile
-        try {
-            //this.refs.channelRef.onTouchStart(handleStart);
-            //this.refs.channelRef.onTouchStart(handleEnd);
-            console.log(this.refs.channelRef);
-            var ongoingTouches = [];
-
-            function handleStart(evt) {
-                evt.preventDefault();
-                ongoingTouches.push(evt);
-                console.log(ongoingTouches);
-            }
-
-            function handleEnd(evt) {
-                evt.preventDefault();
-                ongoingTouches.pop();
-                console.log(ongoingTouches);
-            }
-        } catch(e) {
-            console.error(e.stack);
-        }
-        */
 
     },
 
@@ -58,8 +31,10 @@ var Channel = React.createClass({
 
     render: function() {
 
+        var broker = '52.1.142.215', runId = 'RoomQuake', imgType = 'screenshot';
+
         var style = {
-            backgroundImage: 'url(' + this.getUrlForAsset(this.props.channel.screenshot, 'screenshot') + ')',
+            backgroundImage: 'url(' + 'http://' + broker + ':57880/roomcast/main-interface/assets/channels/' + runId + '/' + imgType + '/' + this.props.channel.screenshot + ')',
             backgroundSize: '100% 100%'
         };
 
@@ -87,6 +62,7 @@ var Channel = React.createClass({
                     </div>
 
                 </div>
+
             </Paper>);
 
     }

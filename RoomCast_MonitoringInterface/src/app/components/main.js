@@ -3,11 +3,13 @@ var React = require('react');
 var MonitoringStore = require('../stores/MonitoringStore');
 var Mui = require('material-ui');
 var D3canvas = require('./D3canvas');
+var ChannelSelector = require('./ChannelSelector');
 
 function getMonitoringState() {
     return {
         groups: MonitoringStore.getGroups(),
-        playing: MonitoringStore.getPlaying()
+        playing: MonitoringStore.getPlaying(),
+        channels: MonitoringStore.getChannels()
     };
 }
 
@@ -29,9 +31,16 @@ var Main = React.createClass({
 
         return (
 
+            <div>
+
             <D3canvas
                 groups={this.state.groups}
                 playing={this.state.playing} />
+
+            <ChannelSelector
+                channels={this.state.channels} />
+
+            </div>
 
         );
     },

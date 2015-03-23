@@ -1,4 +1,7 @@
-(function() {
+
+var d3 = require('d3');
+
+var GridLayout= (function() {
     d3.layout.grid = function() {
         var mode = "equal",
             layout = _distributeEqually,
@@ -101,3 +104,5 @@
         return grid;
     };
 })();
+
+module.exports = GridLayout;

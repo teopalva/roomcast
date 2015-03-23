@@ -20,8 +20,8 @@ var NutellaMixin = {
 
     getUrlForAsset: function(assetName, assetType) {
 
-        var broker = null;
-        if(query_parameters.broker) {
+        var broker;
+        if('nutella' in window) {
             broker = query_parameters.broker;
         } else {
             broker = '52.1.142.215';    // TODO hardcoded broker

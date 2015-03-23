@@ -1,6 +1,7 @@
 var React = require('react');
 var Mui = require('material-ui');
 var d3 = require('d3');
+var GridLayer = require('./GridLayer');
 
 /**
  * @prop groups
@@ -25,13 +26,20 @@ var D3canvas = React.createClass({
 
         var svg = d3.select('body').append('svg');
 
+        /*
         var _groups = [];
-        for(var g in this.props.groups) {
-            _groups.push(this.props.groups[g]);
-        }
 
+        */
+
+        var data = [];
+        for(var g in this.props.groups) {
+            if(this.props.groups.hasOwnProperty(g)) {
+                data.push({label: g});
+            }
+        }
         return (
-            <div> {_groups} </div>
+            <GridLayer
+                data={data} />
         );
     }
 

@@ -1,4 +1,4 @@
-var dest = './build',
+var dest = '../roomcast/interfaces/main-interface',
     src = './src',
     mui = './node_modules/material-ui/src';
 
