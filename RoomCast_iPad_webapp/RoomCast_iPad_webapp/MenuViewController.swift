@@ -23,6 +23,8 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
         // TODO: currently using UIWebView because of bug of WK when loading local files
         self.webView = BasicWebView()
         self.webView.scrollView.bounces = false
+        self.webView.scalesPageToFit = false
+        self.webView.multipleTouchEnabled = false
         self.webView.delegate = self
     }
     
@@ -107,6 +109,8 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
             getResourceIdentity()
         case "setResourceIdentity":
             setResourceIdentity(parameters)
+        case "logout":
+            logout()
         default:
             return false
         }
@@ -183,6 +187,10 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
         }
     }
     
+    func logout() {
+        let error = Locksmith.deleteDataForUserAccount("roomcast")
+    }
+    
     //////////// REACT.js METHODS ////////////
     
     func handleUpdatedRid(rid: String) {
@@ -195,8 +203,8 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
         self.webView.stringByEvaluatingJavaScriptFromString(script)
     }
     
-    func componentDidMountCallback() {
-        let script: String = "componentDidMountCallback()";
+    func handleLogout() {
+        let script: String = "ReactMain.handleLogout()";
         self.webView.stringByEvaluatingJavaScriptFromString(script)
     }
     

@@ -3,7 +3,7 @@ var React = require('react');
 var Channel = require('./Channel');
 var Mui = require('material-ui');
 var FloatingActionButton = Mui.FloatingActionButton;
-var RightNav = Mui.RightNav;
+var RightNav = require('./material-ui/right-nav.jsx');
 
 var Main = React.createClass({
 
@@ -11,7 +11,6 @@ var Main = React.createClass({
         var self=this;
 
         /*
-        // Fetch from iOS device
         var iOS = (window.navigator.userAgent.match(/(iPad|iPhone)/g) ? true : false);
         if(iOS) {
             console.log('iOS version');
@@ -20,6 +19,9 @@ var Main = React.createClass({
             console.log('Browser version');
         }
         */
+        if(!self.state.rid) {
+            self.handleUpdatedBackgroundMessage('No identity set');
+        }
 
         try {
 
@@ -27,6 +29,7 @@ var Main = React.createClass({
             nutella.net.request('channels/retrieve', 'all', function (response) {
                 self.handleUpdatedChannelsCatalogue(response);
 
+                // Fetch from iOS device
                 var url = 'roomcast' + '://' + 'getResourceIdentity';
                 document.location.href = url;
 
@@ -54,6 +57,28 @@ var Main = React.createClass({
 
     },
 
+    /**
+     * Manages the modal sidebar after right after state change
+     */
+    componentWillReceiveProps: function() {
+        // TODO modal disabled on start - remove?
+        var self = this;
+        if(!this.state.rid) {
+            this.refs.rightNav.open();
+            this.refs.rightNav.setState({
+                modal: true
+            });
+            // Force update menu with resources
+            nutella.net.request('mapping/retrieve', 'all', function (response) {
+                self.handleUpdatedMapping(response);
+            });
+        } else {
+            this.refs.rightNav.setState({
+                modal: false
+            });
+        }
+    },
+
     updateChannelsForRid: function(message, rid) {
 
         var self = this;
@@ -72,7 +97,12 @@ var Main = React.createClass({
             myChannels.push(self.state.channelsCatalogue[id]);
         });
         if (myChannels.length === 0) {
-            // TODO show message 'no available channels' on screen
+            self.handleUpdatedBackgroundMessage('No available channels');
+            if(!self.state.rid) {
+                self.handleUpdatedBackgroundMessage('No identity set');
+            }
+        } else {
+            self.handleUpdatedBackgroundMessage(null);
         }
         this.handleUpdatedChannels(myChannels);
     },
@@ -82,7 +112,8 @@ var Main = React.createClass({
             rid: null,
             channels: [],
             mapping: [],
-            channelsCatalogue: {}
+            channelsCatalogue: {},
+            backgroundMessage: null
         };
     },
 
@@ -90,9 +121,6 @@ var Main = React.createClass({
         this.setState({
             rid: rid
         });
-        if(rid) {
-            this.setModalRightNav();
-        }
     },
 
     handleUpdatedChannels: function(channels) {
@@ -110,6 +138,12 @@ var Main = React.createClass({
     handleUpdatedChannelsCatalogue: function(cat) {
         this.setState({
             channelsCatalogue: cat
+        });
+    },
+
+    handleUpdatedBackgroundMessage: function(m) {
+        this.setState({
+            backgroundMessage: m
         });
     },
 
@@ -144,26 +178,17 @@ var Main = React.createClass({
         document.location.href = url;
     },
 
-    setModalRightNav: function() {
-        var self = this;
-        if(!this.state.rid) {
-            this.refs.rightNav.open();
-            this.refs.rightNav.setState({
-                modal: true
-            });
-            // Force update menu with resources
-            nutella.net.request('mapping/retrieve', 'all', function (response) {
-                self.handleUpdatedMapping(response);
-            });
-        } else {
-            this.refs.rightNav.setState({
-                modal: false
-            });
-        }
+    handleLogout: function() {
+        this.handleSelectedResource(null);
+
+        // Logout from iOS
+        var url = 'roomcast' + '://' + 'logout';
+        document.location.href = url;
     },
 
     render: function() {
 
+        var self = this;
         var channels = [];
         for (ch in this.state.channels) {
             if (this.state.channels.hasOwnProperty(ch)) {
@@ -180,21 +205,46 @@ var Main = React.createClass({
             for (var i in f.items) {
                 menuItems.push({
                         id: f.items[i].name,
-                        text: f.items[i].name
+                        text: f.items[i].name,
+                        currentSelected: f.items[i].name === self.state.rid
                     }
                 );
             }
         });
 
+        var backgroundMessageStyle = {
+            position: 'fixed',
+            left: '0',
+            bottom: '50%',
+            width: '100%',
+            fontSize: '2.5vw',
+            textAlign: 'center',
+            color: '#9197a3',
+            fontWeight: '300'
+
+        };
+
+        var backgroundMessage = null;
+        if(this.state.backgroundMessage) {
+            backgroundMessage = <p style={backgroundMessageStyle} > {this.state.backgroundMessage} </p>;
+        }
+
+        var canLogout = true;
+        if(!this.state.rid) {
+            canLogout = false;
+        }
+
         return (
 
             <div className='outerDiv'>
+
+                {backgroundMessage}
 
                 <div className="grid"> {channels} </div>
 
                 <FloatingActionButton className='controlButton' iconClassName="muidocs-icon-action-grade" secondary={true} onTouchTap={this.handleControlButton} />
 
-                <RightNav ref='rightNav' docked={false} modal={false} menuItems={menuItems} onItemTap={this.handleItemTap} />
+                <RightNav ref='rightNav' docked={false} modal={false} menuItems={menuItems} onItemTap={this.handleItemTap} canLogout={canLogout} onLogout={this.handleLogout} />
 
             </div>
 
