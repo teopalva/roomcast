@@ -19,6 +19,7 @@ html, body {
   height: 100%;
   overflow-y: scroll;
   background-color: #e9eaed;
+  -webkit-user-select: none;
 }
 .resources-panel {
   width: 50%;
@@ -41,6 +42,13 @@ html, body {
       width: 100%;
     }
   }
+}
+.configurations-panel-div {
+  position: static;
+  width: auto;
+  margin-left: @default-margin;
+  margin-right: @default-margin;
+  margin-bottom: @default-margin;
 }
 .pool-row {
   width: 100%;
@@ -153,9 +161,11 @@ html, body {
   //text-align: center;
   p {
     font-size: 7vh;
-    font-weight: 300;
+    font-weight: 100;
     margin: 0;
     padding: 0;
+    -webkit-user-select: none;
+    cursor: default;
   }
 }
 .channels-catalogue-title-div-middle {

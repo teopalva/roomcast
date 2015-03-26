@@ -1,5 +1,6 @@
 var React = require('react');
 var ResourceFamilyPool = require('./ResourceFamilyPool');
+var ConfigurationsPanel = require('./ConfigurationsPanel');
 
 var ResourcesPanel = React.createClass({
 
@@ -50,6 +51,8 @@ var ResourcesPanel = React.createClass({
 
         return (
             <div className="resources-panel">
+
+                <ConfigurationsPanel/>
 
                 {pools}
 

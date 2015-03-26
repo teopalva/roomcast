@@ -67,7 +67,6 @@ var ResourceFamilyPool = React.createClass({
         var added = false;
         if(rowIndex != null) {
             this.props.resourcesWithChannels.forEach(function(item, i) {
-                console.log(i, rowIndex);
                 if(i===rowIndex) {
                     familyItems.push(resourceMapping);
                     added = true;
