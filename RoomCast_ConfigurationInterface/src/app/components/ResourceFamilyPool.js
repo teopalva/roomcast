@@ -4,10 +4,15 @@ var PoolRow = require('./PoolRow');
 var Mui = require('material-ui');
 var Paper = Mui.Paper;
 var ButtonInteractionsMixin = require('./ButtonInteractionsMixin');
+var d3 = require('d3');
 
 var ResourceFamilyPool = React.createClass({
 
     mixins: [ButtonInteractionsMixin],
+
+    handleAddRow: function() {
+        this.props.onAddRow(this.props.familyName);
+    },
 
     handleSelectedChannel: function(ch) {
         this.props.onSelectedChannel(ch);
@@ -53,21 +58,31 @@ var ResourceFamilyPool = React.createClass({
     /**
      * Handles updates at row level and pushes them upwards.
      * @param resourceMapping
+     * @param rowIndex
      */
-    handleUpdatedMapping: function(resourceMapping) {
+    handleUpdatedMapping: function(resourceMapping, rowIndex) {
 
         // create new object for single family of resources
         var familyItems = [];
-        this.props.resourcesWithChannels.forEach(function(item) {
-            if(item.name===resourceMapping.name) {
+        var added = false;
+        if(rowIndex) {
+            this.props.resourcesWithChannels.forEach(function(item, i) {
+                if(i===rowIndex) {
+                    familyItems.push(resourceMapping);
+                    added = true;
+                } else {
+                    familyItems.push({
+                        name: item.name,
+                        channels: item.channels
+                    });
+                }
+            });
+        } else {
+            // handle new empty row
+            if(!added) {
                 familyItems.push(resourceMapping);
-            } else {
-                familyItems.push({
-                    name: item.name,
-                    channels: item.channels
-                });
             }
-        });
+        }
         this.handleUpdatedFamily(familyItems);
     },
 
@@ -95,7 +110,8 @@ var ResourceFamilyPool = React.createClass({
                     channels={self.props.channels}
                     selectedChannel={self.props.selectedChannel}
                     onSelectedChannel={self.handleSelectedChannel}
-                    onUpdatedMapping={self.handleUpdatedMapping} />
+                    onUpdatedMapping={self.handleUpdatedMapping}
+                    rowIndex={i} />
             );
             i++;
         });
@@ -118,7 +134,12 @@ var ResourceFamilyPool = React.createClass({
 
                         </thead>
 
-                        <tbody> {rows} </tbody>
+                        <tbody>
+
+                            {rows}
+                            <tr className='pool-row pool-add-row' ref={this.props.familyName + 'pool'} onTouchTap={this.handleAddRow}> <td colSpan='4'> Add Row </td> </tr>
+
+                        </tbody>
 
                     </table>
 

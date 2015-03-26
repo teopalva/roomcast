@@ -55,6 +55,7 @@ var PoolHeader = React.createClass({
         return (
 
             <tr className='pool-header'>
+                <th></th>
                 <th> {this.props.familyName} </th>
                     {headerButtons}
                 <th></th>

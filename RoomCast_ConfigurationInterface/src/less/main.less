@@ -52,15 +52,37 @@ html, body {
     //padding-bottom: 10px;
   }
   td:first-child {
-    width: 10%;
-    text-align: center;
+    width: 10px;
+    .remove-row-div {
+      width: 100%;
+      height: 100%;
+    }
   }
   td:nth-child(2) {
-    width: 80%;
+    width: 20%;
+    text-align: center;
+  }
+  td:nth-child(3) {
+    width: 65%;
   }
   td:last-child {
-    width: 10%;
+    //width: 10%;
   }
+  &.pool-add-row {
+    text-align: center;
+    cursor: pointer;
+    -webkit-user-select: none;
+    td {
+      height: 0;
+    }
+    :hover {
+      color: #ffffff;
+      background-color: #00bcd4;
+    }
+  }
+}
+.pool-row:hover .remove-row-div {
+  background-color: #e91e63;
 }
 .pool-header{
   height: 80px;
@@ -68,8 +90,16 @@ html, body {
     vertical-align: middle;
   }
   th:first-child {
+    // delete row width
+    width: 10px;
+  }
+  th:nth-child(2) {
     width: 10%;
     text-align: center;
+    font-size: 2em;
+    font-weight: 300;
+    -webkit-user-select: none;
+    cursor: default;
   }
 }
 
@@ -208,6 +238,20 @@ html, body {
 }
 .mui-floating-action-button-container {
   z-index: 0;
+}
+.text-field-div {
+  width: 100%;
+}
+.mui-text-field {
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  .mui-text-field-underline {
+    position: relative;
+  }
+  .mui-text-field-focus-underline {
+    position: relative;
+  }
 }
 
 ////////////////////////////

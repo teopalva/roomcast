@@ -4,6 +4,8 @@ var Channel = require('./Channel');
 var ContextButton = require('./ContextButton');
 var GlobalButton = require('./GlobalButton');
 var ButtonInteractionsMixin = require('./ButtonInteractionsMixin');
+var TextField = Mui.TextField;
+var FloatingActionButton = Mui.FloatingActionButton;
 
 var PoolRow = React.createClass({
 
@@ -30,14 +32,16 @@ var PoolRow = React.createClass({
      */
     handleUpdatedChannel: function(newChannels) {
 
+        var textFieldValue = this.refs['textField' + this.props.rowIndex].getValue();
+
         // create new object for single resource
         var resourceMapping = {
-            name: this.props.resourceWithChannels.name,
+            name: textFieldValue,
             channels: newChannels
         };
 
         // pass update upwards
-        this.props.onUpdatedMapping(resourceMapping);
+        this.props.onUpdatedMapping(resourceMapping, this.props.rowIndex);
     },
 
     /**
@@ -46,6 +50,18 @@ var PoolRow = React.createClass({
     handleRemovedChannels: function() {
         var newChannels = [];
         this.handleUpdatedChannel(newChannels);
+    },
+
+    /**
+     * Updates the mapping structure at each text field input change.
+     * TODO performance?
+     */
+    handleTextFieldChange: function() {
+        this.handleUpdatedChannel(this.props.resourceWithChannels.channels);
+    },
+
+    handleDeleteRow: function() {
+
     },
 
     render: function () {
@@ -114,7 +130,23 @@ var PoolRow = React.createClass({
 
             <tr className='pool-row'>
 
-                <td> {this.props.resourceWithChannels.name} </td>
+                <td>
+
+                    <div className='remove-row-div' onTouchTap={this.handleDeleteRow}> </div>
+
+                </td>
+
+                <td>
+                    <div className='text-field-div'>
+                        <TextField
+                            ref={'textField' + this.props.rowIndex}
+                            hintText={'Group name'}
+                            defaultValue={this.props.resourceWithChannels.name}
+                            multiLine={true}
+                            onChange={this.handleTextFieldChange}/>
+                    </div>
+                </td>
+
                 <td> {channelsList} </td>
                 <td style={tdButtonStyle}> {button} </td>
 

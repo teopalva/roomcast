@@ -25,6 +25,10 @@ var ResourcesPanel = React.createClass({
         this.props.onUpdatedMapping(mapping);
     },
 
+    handleAddRow: function(family) {
+        this.props.onAddRow(family);
+    },
+
     render: function(){
 
         var self=this;
@@ -39,7 +43,8 @@ var ResourcesPanel = React.createClass({
                 channels={channels}
                 selectedChannel={self.props.selectedChannel}
                 onSelectedChannel={self.handleSelectedChannel}
-                onUpdatedMapping={self.handleUpdatedMapping} />
+                onUpdatedMapping={self.handleUpdatedMapping}
+                onAddRow={self.handleAddRow} />
             );
         });
 
