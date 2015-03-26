@@ -61,7 +61,7 @@ var PoolRow = React.createClass({
     },
 
     handleDeleteRow: function() {
-
+        this.props.onDeleteRow(this.props.rowIndex);
     },
 
     render: function () {
@@ -141,7 +141,7 @@ var PoolRow = React.createClass({
                         <TextField
                             ref={'textField' + this.props.rowIndex}
                             hintText={'Group name'}
-                            defaultValue={this.props.resourceWithChannels.name}
+                            value={this.props.resourceWithChannels.name}
                             multiLine={true}
                             onChange={this.handleTextFieldChange}/>
                     </div>

@@ -38,6 +38,7 @@ var Main = React.createClass({
         this.setState({
             mapping: mapping
         });
+        console.log('new mapping', mapping);
     },
 
     handleUpdatedChannelsCatalogue: function(cat) {

@@ -65,8 +65,9 @@ var ResourceFamilyPool = React.createClass({
         // create new object for single family of resources
         var familyItems = [];
         var added = false;
-        if(rowIndex) {
+        if(rowIndex != null) {
             this.props.resourcesWithChannels.forEach(function(item, i) {
+                console.log(i, rowIndex);
                 if(i===rowIndex) {
                     familyItems.push(resourceMapping);
                     added = true;
@@ -98,6 +99,16 @@ var ResourceFamilyPool = React.createClass({
         this.props.onUpdatedMapping(familyMapping);
     },
 
+    handleDeleteRow: function(rowIndex) {
+        var familyItems = [];
+        this.props.resourcesWithChannels.forEach(function(item, i) {
+            if(i!==rowIndex) {
+                familyItems.push(item)
+            }
+        });
+        this.handleUpdatedFamily(familyItems);
+    },
+
     render: function(){
 
         var self=this;
@@ -111,6 +122,7 @@ var ResourceFamilyPool = React.createClass({
                     selectedChannel={self.props.selectedChannel}
                     onSelectedChannel={self.handleSelectedChannel}
                     onUpdatedMapping={self.handleUpdatedMapping}
+                    onDeleteRow={self.handleDeleteRow}
                     rowIndex={i} />
             );
             i++;
