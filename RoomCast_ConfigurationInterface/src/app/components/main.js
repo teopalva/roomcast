@@ -13,19 +13,34 @@ var Main = React.createClass({
         // Get current channels catalogue
         nutella.net.request('channels/retrieve', 'all', function (response) {
             self.handleUpdatedChannelsCatalogue(response);
+            self.nutellaRequestConfigs();
         });
 
-        nutella.net.request('mapping/retrieve', 'all', function(response) {
-            self.handleUpdatedMapping(response);
-        });
     },
 
+    /**
+     * @state selectedChannel: the current selected channel from UI
+     * @state configs: the list of configurations fetched from server
+     * @state currentConfig: the current selected configuration, also called 'mapping'
+     * @state channelsCatalogue: the list of available channels fetched from server
+     */
     getInitialState: function() {
         return {
             selectedChannel: null,
-            mapping: [],
+            configs: [],
+            currentConfigId: null,
+            currentConfig: [],
             channelsCatalogue: {}
         };
+    },
+
+    nutellaRequestConfigs: function() {
+        var self = this;
+        nutella.net.request('configs/retrieve', 'all', function(response) {
+            self.handleUpdatedConfigs(response);
+            self.handleUpdatedCurrentConfigId(+Object.keys(response)[Object.keys(response).length - 1]);
+            self.handleUpdatedCurrentConfig(response[Object.keys(response)[Object.keys(response).length - 1]].mapping)
+        });
     },
 
     handleSelection: function(selectedChannel) {
@@ -34,9 +49,27 @@ var Main = React.createClass({
         });
     },
 
-    handleUpdatedMapping: function(mapping) {
+    handleUpdatedConfigs: function(configs, publish) {
+        var self = this;
+        var callback = function() {
+            if(publish) {
+                nutella.net.publish('configs/update', self.state.configs);
+            }
+        };
         this.setState({
-            mapping: mapping
+            configs: configs
+        }, callback());
+    },
+
+    handleUpdatedCurrentConfigId: function(id) {
+        this.setState({
+            currentConfigId: id
+        });
+    },
+
+    handleUpdatedCurrentConfig: function(config) {
+        this.setState({
+            currentConfig: config
         });
     },
 
@@ -47,18 +80,16 @@ var Main = React.createClass({
     },
 
     handleSaveChanges: function() {
-        nutella.net.publish('mapping/update', this.state.mapping);
+        var publish = true;
+        this.saveLocalConfigs(publish);
     },
 
     handleUndoChanges: function() {
-        var self = this;
-        nutella.net.request('mapping/retrieve', 'all', function(response) {
-            self.handleUpdatedMapping(response);
-        });
+        this.nutellaRequestConfigs();
     },
 
     handleAddRow: function(family) {
-        var mapping = this.state.mapping;
+        var mapping = this.state.currentConfig;
         var newMapping = [];
         mapping.forEach(function(f) {
             if(f.family === family) {
@@ -66,7 +97,31 @@ var Main = React.createClass({
             }
             newMapping.push(f);
         });
-        this.handleUpdatedMapping(newMapping);
+        this.handleUpdatedCurrentConfig(newMapping);
+    },
+
+    /**
+     * Synchronizes the local copy of the current mapping with the shared state configs
+     * @param publish true if you also want to save the changes to the server
+     */
+    saveLocalConfigs: function(publish) {
+        var configs = this.state.configs;
+        configs[this.state.currentConfigId].mapping = this.state.currentConfig;
+        if (publish) {
+            this.handleUpdatedConfigs(configs, publish);
+        } else {
+            this.handleUpdatedConfigs(configs);
+        }
+    },
+
+    handleChangeConfig: function(configId) {
+
+        // update local configs copy
+        this.saveLocalConfigs();
+
+        // update current local configuration to selected one
+        this.handleUpdatedCurrentConfigId(configId);
+        this.handleUpdatedCurrentConfig(this.state.configs[configId].mapping)
     },
 
     render: function () {
@@ -75,12 +130,14 @@ var Main = React.createClass({
             <div className='outer-div'>
 
                 <ResourcesPanel
-                    mapping={this.state.mapping}
-                    onUpdatedMapping={this.handleUpdatedMapping}
+                    configs={this.state.configs}
+                    mapping={this.state.currentConfig}
+                    onUpdatedMapping={this.handleUpdatedCurrentConfig}
                     channels={this.state.channelsCatalogue}
                     selectedChannel={this.state.selectedChannel}
                     onSelectedChannel={this.handleSelection}
-                    onAddRow={this.handleAddRow} />
+                    onAddRow={this.handleAddRow}
+                    onChangeConfig={this.handleChangeConfig} />
 
                 <ChannelsPanel
                     ref={'channelsPanel'}

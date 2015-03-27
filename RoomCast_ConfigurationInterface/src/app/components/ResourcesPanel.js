@@ -30,6 +30,10 @@ var ResourcesPanel = React.createClass({
         this.props.onAddRow(family);
     },
 
+    handleChangeConfig: function(configId) {
+        this.props.onChangeConfig(configId);
+    },
+
     render: function(){
 
         var self=this;
@@ -52,7 +56,9 @@ var ResourcesPanel = React.createClass({
         return (
             <div className="resources-panel">
 
-                <ConfigurationsPanel/>
+                <ConfigurationsPanel
+                    configs={this.props.configs}
+                    onChangeConfig={this.handleChangeConfig} />
 
                 {pools}
 

@@ -12,40 +12,40 @@ nutella.set_resource_id 'my_resource_id'
 puts 'Initializing RoomCast...'
 
 # Open the database
-mapping_db = nutella.persist.getJsonStore('db/mapping.json')
+configs_db = nutella.persist.getJsonStore('db/configs.json')
 channels_db = nutella.persist.getJsonStore('db/channels.json')
 
-nutella.net.subscribe('mapping/update', lambda do |message, component_id, resource_id|
+nutella.net.subscribe('configs/update', lambda do |message, component_id, resource_id|
 
-                        new_mapping = message
+                        new_configs = message
 
-                        puts 'mapping/update:'
-                        puts new_mapping
+                        puts 'configs/update:'
+                        puts new_configs
 
                         # Update
-                        if new_mapping != nil
-                          mapping_db.transaction {
-                            mapping_db[:mapping] = new_mapping
+                        if new_configs != nil
+                          configs_db.transaction {
+                            configs_db[:configs] = new_configs
                           }
                         end
 
                         puts 'Updated DB'
 
                         # Notify Update
-                        mapping_db.transaction {
-                          publish_mapping_update(new_mapping)
+                        configs_db.transaction {
+                          publish_configs_update(new_configs)
                         }
 
                                       end)
 
-nutella.net.handle_requests('mapping/retrieve', lambda do |request, component_id, resource_id|
+nutella.net.handle_requests('configs/retrieve', lambda do |request, component_id, resource_id|
                               puts 'request: ' + request
                               reply = {}
                               if request == {}
                                 reply
                               elsif request == 'all'
-                                mapping_db.transaction {
-                                  reply = mapping_db['mapping']
+                                configs_db.transaction {
+                                  reply = configs_db['configs']
                                 }
                                 puts reply
                                 reply
@@ -86,9 +86,9 @@ nutella.net.handle_requests('channels/retrieve', lambda do |request, component_i
                                               end)
 
 
-def publish_mapping_update(mapping)
-  nutella.net.publish('mapping/updated', mapping)
-  puts 'Sent mapping/updated'
+def publish_configs_update(configs)
+  nutella.net.publish('configs/updated', configs)
+  puts 'Sent configs/updated'
 end
 
 def publish_channels_update(channels)

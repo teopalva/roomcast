@@ -10,22 +10,46 @@ var ConfigurationsPanel = React.createClass({
 
     mixins: [NutellaMixin],
 
+    shouldComponentUpdate: function() {
+        return this.props.configs.length !== 0;
+    },
+
+    handleChangeConfig: function(e, selectedIndex, menuItem) {
+        this.props.onChangeConfig(menuItem.configId);
+    },
+
     render: function() {
 
-        var menuItems = [
-            { payload: '1', text: 'Never' },
-            { payload: '2', text: 'Every Night' },
-            { payload: '3', text: 'Weeknights' },
-            { payload: '4', text: 'Weekends' },
-            { payload: '5', text: 'Weekly' },
-        ];
+        var dropdown = null;
+        var menuItems = [];
+
+        var configs = this.props.configs;
+        if(configs.length !== 0) {
+            var ids = [];
+            for(var c in configs) {
+                if(configs.hasOwnProperty(c)) {
+                    ids.push(+c);
+                }
+            }
+
+            function sortNumber(a,b) {
+                return b - a;
+            }
+            ids.sort(sortNumber);
+
+            ids.forEach(function(id, i) {
+                menuItems.push({configId: id, text: configs[id].name});
+            });
+
+            dropdown = (<DropDownMenu menuItems={menuItems} onChange={this.handleChangeConfig} />);
+        }
 
         return (
             <div className='configurations-panel-div'>
 
                 <Paper>
 
-                    <DropDownMenu menuItems={menuItems} />
+                {dropdown}
 
                 </Paper>
 
