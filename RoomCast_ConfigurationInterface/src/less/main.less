@@ -12,6 +12,9 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 @default-margin: 20px;
 @channel-icon-width: 127px /1.5;
 @channel-icon-height: 72px /1.5;
+@color-mui-blue: #00bcd4;
+@color-mui-pink: #e91e63;
+@menu-item-hover-color: rgba(0, 0, 0, .035);
 
 // CODE
 
@@ -49,6 +52,19 @@ html, body {
   margin-left: @default-margin;
   margin-right: @default-margin;
   margin-bottom: @default-margin;
+  .config-title {
+    font-size: 1.3vw;
+    font-weight: 300;
+    -webkit-user-select: none;
+    cursor: default;
+    margin-left: 30px;
+    vertical-align: middle;
+    float: left;
+  }
+  .mui-paper {
+    height: 60px;
+    line-height: 60px;
+  }
 }
 .pool-row {
   width: 100%;
@@ -85,12 +101,12 @@ html, body {
     }
     :hover {
       color: #ffffff;
-      background-color: #00bcd4;
+      background-color: @color-mui-blue;
     }
   }
 }
 .pool-row:hover .remove-row-div {
-  background-color: #e91e63;
+  background-color: @color-mui-pink;
   cursor: pointer;
 }
 .pool-header{
@@ -264,6 +280,50 @@ html, body {
     position: relative;
   }
 }
-
+.mui-menu .mui-menu-item {
+  cursor: default;
+}
+.mui-drop-down-menu {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.mui-drop-down-menu .mui-menu .mui-menu-item {
+  padding-right: 0;
+}
+///////// Config Dropdown ///////////////////
+.check-config-icon {
+  float: right;
+  cursor: pointer;
+  margin-left: 20px;
+  i {
+    color: @color-mui-blue;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+}
+.delete-config-icon {
+  float: right;
+  cursor: pointer;
+  margin-left: 20px;
+  margin-right: 20px;
+  i {
+    color: @color-mui-pink;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+}
+.config-text-field-div {
+  position: relative;
+  input {
+    float: left;
+    line-height: inherit;
+    border: none;
+    outline:0 !important;
+    -webkit-appearance: none;
+      &:focus {
+    }
+  }
+}
 ////////////////////////////
 

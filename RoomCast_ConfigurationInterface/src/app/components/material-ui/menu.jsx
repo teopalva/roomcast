@@ -4,7 +4,6 @@ var Paper = Mui.Paper;
 var Dom = require('../../../../node_modules/material-ui/src/js/utils/dom');
 var KeyLine = require('../../../../node_modules/material-ui/src/js/utils/key-line');
 var MenuItem = require('./menu-item.jsx');
-var RaisedButton = Mui.RaisedButton;
 
 var Menu = React.createClass({
 
@@ -37,10 +36,15 @@ var Menu = React.createClass({
         var el = this.getDOMNode();
 
         //Set the menu with
-        this._setKeyWidth(el);
+        //this._setKeyWidth(el);
+        var menuWidth = document.getElementsByClassName('resources-panel')[0].offsetWidth / 3;
+        //Update the menu width
+        el.style.width = menuWidth + 'px';
 
         //Save the initial menu height for later
-        this._initialMenuHeight = el.offsetHeight + KeyLine.Desktop.GUTTER_LESS;
+        this._initialMenuHeight = el.offsetHeight + KeyLine.Desktop.MENU_ITEM_HEIGHT;
+
+        console.log(el, el.offsetHeight, this._initialMenuHeight);
 
         //Show or Hide the menu according to visibility
         this._renderVisibility();
@@ -101,18 +105,46 @@ var Menu = React.createClass({
                 number={menuItem.number}
                 toggle={menuItem.toggle}
                 onClick={this._onItemClick}
-                onTouchTap={this._onItemTap}>
+                onTouchTap={this._onItemTap}
+                lastItem={i===this.props.menuItems.length}>
+
               {menuItem.text}
+
             </MenuItem>
         );
         children.push(itemComponent);
     }
 
-    var logoutButton =  <div className='logout-button-div'>
-                            <RaisedButton className='logout-button' label='Logout' primary={true} onTouchTap={this.handleLogout} />
-                        </div>;
-    if(this.props.canLogout) {
-        children.push(logoutButton);
+    if(this.props.configMenu) {
+
+        var newField = (
+            <div className='config-text-field-div'>
+                <input className='config-input'
+                    placeholder={'New name'}
+                    onChange={console.log('change')} />
+            </div>
+        );
+
+        var lastItem = (
+            <MenuItem
+              {...other}
+            selected={isSelected}
+            key={i}
+            index={i}
+            data={menuItem.data}
+            attribute={menuItem.attribute}
+            number={menuItem.number}
+            toggle={menuItem.toggle}
+            onClick={this._onItemClick}
+            onTouchTap={this._onItemTap}
+            lastItem={true} >
+
+              {newField}
+
+        </MenuItem>);
+
+        children.push(lastItem);
+
     }
 
     return children;

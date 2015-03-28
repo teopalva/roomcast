@@ -1,5 +1,4 @@
 var React = require('react');
-//var FontIcon = require('./font-icon');
 
 var MenuItem = React.createClass({
 
@@ -43,13 +42,19 @@ var MenuItem = React.createClass({
     if (this.props.data) data = <span className="mui-menu-item-data">{this.props.data}</span>;
     if (this.props.number !== undefined) number = <span className="mui-menu-item-number">{this.props.number}</span>;
     if (this.props.attribute !== undefined) attribute = <span className="mui-menu-item-attribute">{this.props.attribute}</span>;
+      if(this.props.lastItem) {
+
+      }
+
+     // if(this.props.)
+
+      var useIcon = <div className='check-config-icon' onTouchTap={this._handleTouchTap} onClick={this._handleOnClick} > <i className="fa fa-check"></i> </div>;
+      var deleteIcon = <div className='delete-config-icon'> <i className="fa fa-times"></i> </div>;
 
     return (
       <div
         key={this.props.index}
-        className={classes}
-        onTouchTap={this._handleTouchTap}
-        onClick={this._handleOnClick}>
+        className={classes} >
 
         {icon}
         {this.props.children}
@@ -57,7 +62,10 @@ var MenuItem = React.createClass({
         {attribute}
         {number}
         {iconRight}
-        
+
+      {deleteIcon}
+      {useIcon}
+
       </div>
     );
   },

@@ -41,13 +41,15 @@ var ConfigurationsPanel = React.createClass({
                 menuItems.push({configId: id, text: configs[id].name});
             });
 
-            dropdown = (<DropDownMenu menuItems={menuItems} onChange={this.handleChangeConfig} />);
+            dropdown = (<DropDownMenu menuItems={menuItems} configMenu={true} autoWidth={false} onChange={this.handleChangeConfig} />);
         }
 
         return (
             <div className='configurations-panel-div'>
 
                 <Paper>
+
+                    <span className='config-title'> Configuration: </span>
 
                 {dropdown}
 

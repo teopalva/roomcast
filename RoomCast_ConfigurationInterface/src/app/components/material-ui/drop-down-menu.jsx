@@ -34,6 +34,7 @@ var DropDownMenu = React.createClass({
 
     componentDidMount: function() {
         if (this.props.autoWidth) this._setWidth();
+        this._setWidth();
     },
 
     componentWillReceiveProps: function(nextProps) {
@@ -65,6 +66,7 @@ var DropDownMenu = React.createClass({
                     menuItems={this.props.menuItems}
                     hideable={true}
                     visible={this.state.open}
+                    configMenu={this.props.configMenu}
                     onItemClick={this._onMenuItemClick} />
             </div>
         );
