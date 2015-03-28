@@ -14,6 +14,7 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 @channel-icon-height: 72px /1.5;
 @color-mui-blue: #00bcd4;
 @color-mui-pink: #e91e63;
+@color-mui-deselected: #cdcdcd;
 @menu-item-hover-color: rgba(0, 0, 0, .035);
 
 // CODE
@@ -283,6 +284,12 @@ html, body {
 .mui-menu .mui-menu-item {
   cursor: default;
 }
+.mui-menu .mui-menu-item:hover .check-config-icon i {
+    color: @color-mui-blue;
+  }
+.mui-menu .mui-menu-item:hover .delete-config-icon i {
+  color: @color-mui-pink;
+}
 .mui-drop-down-menu {
   display: block;
   margin-left: auto;
@@ -297,7 +304,7 @@ html, body {
   cursor: pointer;
   margin-left: 20px;
   i {
-    color: @color-mui-blue;
+    color: @color-mui-deselected;
     margin-left: 5px;
     margin-right: 5px;
   }
@@ -308,7 +315,7 @@ html, body {
   margin-left: 20px;
   margin-right: 20px;
   i {
-    color: @color-mui-pink;
+    color: @color-mui-deselected;
     margin-left: 5px;
     margin-right: 5px;
   }
@@ -321,6 +328,7 @@ html, body {
     border: none;
     outline:0 !important;
     -webkit-appearance: none;
+    background: transparent;
       &:focus {
     }
   }
