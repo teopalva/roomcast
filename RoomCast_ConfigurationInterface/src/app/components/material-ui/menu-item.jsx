@@ -24,12 +24,12 @@ var MenuItem = React.createClass({
 
   render: function() {
     var classes = 'mui-menu-item';
-      if(this.props.selected) {
-          classes += ' mui-is-selected';
-      }
-      if(this.props.currentSelected) {
-          classes += ' mui-is-current-selected';
-      }
+    if(this.props.selected) {
+      classes += ' mui-is-selected';
+    }
+    if(this.props.currentSelected) {
+      classes += ' mui-is-current-selected';
+    }
 
     var icon;
     var data;
@@ -42,44 +42,57 @@ var MenuItem = React.createClass({
     if (this.props.data) data = <span className="mui-menu-item-data">{this.props.data}</span>;
     if (this.props.number !== undefined) number = <span className="mui-menu-item-number">{this.props.number}</span>;
     if (this.props.attribute !== undefined) attribute = <span className="mui-menu-item-attribute">{this.props.attribute}</span>;
-      if(this.props.lastItem) {
 
-      }
+    var useIcon;
+    var deleteIcon;
 
-     // if(this.props.)
+    var hiddenStyle = {
+      color: 'transparent',
+      cursor: 'default'
+    };
 
-      var useIcon = <div className='check-config-icon' onTouchTap={this._handleTouchTap} onClick={this._handleOnClick} > <i className="fa fa-check"></i> </div>;
-      var deleteIcon = <div className='delete-config-icon'> <i className="fa fa-times"></i> </div>;
+    if(!this.props.lastConfig && !this.props.lastItem) {
+      useIcon = <div className='check-config-icon' onTouchTap={this.handleChangeConfig} > <i className="fa fa-check"></i> </div>;
+      deleteIcon = <div className='delete-config-icon'> <i className="fa fa-times" onTouchTap={this.handleDeleteConfig}></i> </div>;
+    }
+    if(this.props.lastConfig && !this.props.lastItem) {
+      useIcon = <div className='check-config-icon' onTouchTap={this.handleChangeConfig} > <i className="fa fa-check"></i> </div>
+      deleteIcon = <div className='delete-config-icon' style={hiddenStyle} > <i className="fa fa-times" style={hiddenStyle} ></i> </div>;
+    }
+    if(this.props.lastItem) {
+      useIcon = <div className='check-config-icon' onTouchTap={this.handleAddEmptyConfig} > <i className="fa fa-check"></i> </div>
+      deleteIcon = <div className='delete-config-icon' style={hiddenStyle} > <i className="fa fa-times" style={hiddenStyle} ></i> </div>;
+    }
 
     return (
-      <div
-        key={this.props.index}
-        className={classes} >
+        <div
+            key={this.props.index}
+            className={classes} >
 
-        {icon}
-        {this.props.children}
-        {data}
-        {attribute}
-        {number}
-        {iconRight}
+          {icon}
+          {this.props.children}
+          {data}
+          {attribute}
+          {number}
+          {iconRight}
 
-      {deleteIcon}
-      {useIcon}
+          {deleteIcon}
+          {useIcon}
 
-      </div>
+        </div>
     );
   },
 
-  _handleTouchTap: function(e) {
-    if (this.props.onTouchTap) this.props.onTouchTap(e, this.props.index);
+  handleChangeConfig: function(e) {
+    if (this.props.onTouchTap) this.props.onTouchTap(e, this.props.index, 'change');
   },
 
-  _handleOnClick: function(e) {
-    if (this.props.onClick) this.props.onClick(e, this.props.index);
+  handleDeleteConfig: function(e) {
+    if (this.props.onTouchTap) this.props.onTouchTap(e, this.props.index, 'delete');
   },
 
-  _handleToggle: function(e, toggled) {
-    if (this.props.onToggle) this.props.onToggle(e, this.props.index, toggled);
+  handleAddEmptyConfig: function(e) {
+    if (this.props.onTouchTap) this.props.onTouchTap(e, this.props.index, 'add');
   }
 
 });

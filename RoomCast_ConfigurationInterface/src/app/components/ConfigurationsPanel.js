@@ -10,6 +10,35 @@ var ConfigurationsPanel = React.createClass({
 
     mixins: [NutellaMixin],
 
+    componentDidMount: function() {
+        var self = this;
+        self.didReceivedFirstConfigs = false;
+        self.lastSavedNames = {};
+
+        // Subscribe for future changes
+        nutella.net.subscribe('configs/update', function (message, channel, from_component_id, from_resource_id) {
+            if(message.length !== 0) {
+                self.updatePlaceholders(message);
+            }
+        });
+    },
+
+    componentWillReceiveProps: function() {
+        if(!this.didReceivedFirstConfigs && this.props.configs.length !== 0) {
+            // Set initial placeholders
+            this.updatePlaceholders(this.props.configs);
+            this.didReceivedFirstConfigs = true;
+        }
+    },
+
+    updatePlaceholders: function(configs) {
+            for (var c in configs) {
+                if (configs.hasOwnProperty(c)) {
+                    this.lastSavedNames[c] = configs[c].name;
+                }
+            }
+    },
+
     shouldComponentUpdate: function() {
         return this.props.configs.length !== 0;
     },
@@ -18,11 +47,22 @@ var ConfigurationsPanel = React.createClass({
         this.props.onChangeConfig(menuItem.configId);
     },
 
+    handleDeleteConfig: function(menuItem) {
+        console.log('deleting configId', menuItem.configId);
+        this.props.onDeleteConfig(menuItem.configId);
+    },
+
+    handleInputChange: function(id, value) {
+        this.props.onUpdateConfigName(id, value);
+    },
+
     render: function() {
 
+        var self = this;
         var dropdown = null;
         var menuItems = [];
 
+        // TODO: list from last one without sorting?
         var configs = this.props.configs;
         if(configs.length !== 0) {
             var ids = [];
@@ -38,10 +78,20 @@ var ConfigurationsPanel = React.createClass({
             ids.sort(sortNumber);
 
             ids.forEach(function(id, i) {
-                menuItems.push({configId: id, text: configs[id].name});
+                menuItems.push({configId: id, text: configs[id].name, lastSavedName: self.lastSavedNames[id]});
             });
 
-            dropdown = (<DropDownMenu menuItems={menuItems} configMenu={true} autoWidth={false} onChange={this.handleChangeConfig} />);
+            // Add last item: new configuration
+            menuItems.push({configId: 0, text: '', lastSavedName: 'Add configuration'});
+
+            dropdown = (<DropDownMenu
+                menuItems={menuItems}
+                configMenu={true}
+                autoWidth={false}
+                onChange={this.handleChangeConfig}
+                onDeleteConfig={this.handleDeleteConfig}
+                onAddEmptyConfig={this.props.onAddEmptyConfig}
+                onInputChange={this.handleInputChange} />);
         }
 
         return (

@@ -4,6 +4,7 @@ var Paper = Mui.Paper;
 var Dom = require('../../../../node_modules/material-ui/src/js/utils/dom');
 var KeyLine = require('../../../../node_modules/material-ui/src/js/utils/key-line');
 var MenuItem = require('./menu-item.jsx');
+var ConfigField = require('../ConfigField');
 
 var Menu = React.createClass({
 
@@ -20,7 +21,7 @@ var Menu = React.createClass({
     },
 
     getInitialState: function() {
-        return { nestedMenuShown: false }
+        return { hasToUpdateValues: false }
     },
 
     getDefaultProps: function() {
@@ -37,22 +38,37 @@ var Menu = React.createClass({
 
         //Set the menu with
         //this._setKeyWidth(el);
-        var menuWidth = document.getElementsByClassName('resources-panel')[0].offsetWidth / 3;
+        var menuWidth = document.getElementsByClassName('resources-panel')[0].offsetWidth / 2.4;
         //Update the menu width
         el.style.width = menuWidth + 'px';
 
-        //Save the initial menu height for later
+        //Save the initial menu height and item height for later
         this._initialMenuHeight = el.offsetHeight + KeyLine.Desktop.GUTTER_LESS;
+        this._itemHeight = el.offsetHeight / (this.props.menuItems.length);
 
         //Show or Hide the menu according to visibility
         this._renderVisibility();
     },
 
     componentDidUpdate: function(prevProps, prevState) {
+        this.updateHeight(this.props.menuItems.length);
         if (this.props.visible !== prevProps.visible) this._renderVisibility();
     },
 
+    updateHeight: function(numItems) {
+        if(this.props.visible) {
+
+            // Compute new height
+            this._initialMenuHeight = this._itemHeight * numItems + KeyLine.Desktop.GUTTER_LESS;
+
+            // Update menu height
+            this.getDOMNode().style.height = this._initialMenuHeight + 'px';
+
+        }
+    },
+
     render: function() {
+
         var classes = 'mui-menu';
         if(this.props.hideable) {
             classes += ' mui-menu-hideable';
@@ -63,9 +79,10 @@ var Menu = React.createClass({
 
         return (
             <Paper ref="paperContainer" zDepth={this.props.zDepth} className={classes}>
-        {this._getChildren()}
+                {this._getChildren()}
             </Paper>
         );
+
     },
 
     _getChildren: function() {
@@ -73,9 +90,6 @@ var Menu = React.createClass({
             menuItem,
             itemComponent,
             isSelected;
-
-        //This array is used to keep track of all nested menu refs
-        this._nestedChildren = [];
 
         for (var i=0; i < this.props.menuItems.length; i++) {
             menuItem = this.props.menuItems[i];
@@ -88,119 +102,107 @@ var Menu = React.createClass({
                 number,
                 toggle,
                 onClick,
-        ...other
-        } = menuItem;
+                ...other
+                } = menuItem;
 
-        itemComponent = (
-            <MenuItem
-              {...other}
-                selected={isSelected}
-                key={i}
-                index={i}
-                icon={menuItem.icon}
-                data={menuItem.data}
-                attribute={menuItem.attribute}
-                number={menuItem.number}
-                toggle={menuItem.toggle}
-                onClick={this._onItemClick}
-                onTouchTap={this._onItemTap}
-                lastItem={i===this.props.menuItems.length}>
+            var menuContent;
 
-              {menuItem.text}
+            if(this.props.configMenu) {
 
-            </MenuItem>
-        );
-        children.push(itemComponent);
-    }
+                var lastItem = i === this.props.menuItems.length - 1;
 
-    if(this.props.configMenu) {
+                menuContent = ( <ConfigField ref={'configField_' + lastItem}
+                                             placeholder={menuItem.lastSavedName}
+                                             value={menuItem.text}
+                                             configId={menuItem.configId}
+                                             hasToUpdateValues={this.state.hasToUpdateValues}
+                                             lastItem={lastItem}
+                                             onUpdatedValues={this.handleUpdatedValues}
+                                             onChange={this.handleInputChange} /> );
 
-        var newField = (
-            <div className='config-text-field-div'>
-                <input className='config-input'
-                    placeholder={'New name'}
-                    onChange={console.log('change')} />
-            </div>
-        );
-
-        var lastItem = (
-            <MenuItem
-              {...other}
-            selected={isSelected}
-            key={i}
-            index={i}
-            data={menuItem.data}
-            attribute={menuItem.attribute}
-            number={menuItem.number}
-            toggle={menuItem.toggle}
-            onClick={this._onItemClick}
-            onTouchTap={this._onItemTap}
-            lastItem={true} >
-
-              {newField}
-
-        </MenuItem>);
-
-        children.push(lastItem);
-
-    }
-
-    return children;
-},
-
-_setKeyWidth: function(el) {
-    var menuWidth = this.props.autoWidth ?
-    KeyLine.getIncrementalDim(el.offsetWidth) + 'px' :
-        '100%';
-
-    //Update the menu width
-    Dom.withoutTransition(el, function() {
-        el.style.width = menuWidth;
-    });
-},
-
-_renderVisibility: function() {
-    var el;
-
-    if (this.props.hideable) {
-        el = this.getDOMNode();
-        var innerContainer = this.refs.paperContainer.getInnerContainer().getDOMNode();
-
-        if (this.props.visible) {
-
-            //Open the menu
-            el.style.height = this._initialMenuHeight + 'px';
-            //This is to account for fast clicks
-            if (this.props.visible) {
-                innerContainer.style.overflow = 'visible';
+            } else {
+                menuContent = menuItem.text;
             }
 
-        } else {
+            itemComponent = (
+                <MenuItem
+                    {...other}
+                    selected={isSelected}
+                    key={i}
+                    index={i}
+                    icon={menuItem.icon}
+                    data={menuItem.data}
+                    attribute={menuItem.attribute}
+                    number={menuItem.number}
+                    toggle={menuItem.toggle}
+                    onTouchTap={this._onItemTap}
+                    lastItem={lastItem}
+                    lastConfig={this.props.menuItems.length === 2} >
 
-        //Close the menu
-        el.style.height = '0px';
+                    {menuContent}
 
-        //Set the overflow to hidden so that animation works properly
-        innerContainer.style.overflow = 'hidden';
+                </MenuItem>
+            );
+
+            children.push(itemComponent);
+        }
+
+        this._numItems = children.length;
+        return children;
+    },
+
+    _setKeyWidth: function(el) {
+        var menuWidth = this.props.autoWidth ?
+        KeyLine.getIncrementalDim(el.offsetWidth) + 'px' :
+            '100%';
+
+        //Update the menu width
+        Dom.withoutTransition(el, function() {
+            el.style.width = menuWidth;
+        });
+    },
+
+    _renderVisibility: function() {
+        var el;
+
+        if (this.props.hideable) {
+            el = this.getDOMNode();
+            var innerContainer = this.refs.paperContainer.getInnerContainer().getDOMNode();
+
+            if (this.props.visible) {
+
+                //Open the menu
+                el.style.height = this._initialMenuHeight + 'px';
+                //This is to account for fast clicks
+                if (this.props.visible) {
+                    innerContainer.style.overflow = 'visible';
+                }
+
+            } else {
+
+                //Close the menu
+                el.style.height = '0px';
+
+                //Set the overflow to hidden so that animation works properly
+                innerContainer.style.overflow = 'hidden';
+            }
+        }
+    },
+
+    handleInputChange: function(id, value) {
+        this.props.onInputChange(id, value);
+    },
+
+    _onItemTap: function(e, index, action) {
+       // if(action === 'delete' || action === 'add') {
+            this.setState({hasToUpdateValues: true});
+      //  }
+        if (this.props.onItemTap) this.props.onItemTap(e, index, this.props.menuItems[index], action);
+    },
+
+    handleUpdatedValues: function() {
+        this.setState({hasToUpdateValues: false});
     }
-}
-},
-
-handleLogout: function() {
-    this.props.onLogout();
-},
-
-_onItemClick: function(e, index) {
-    if (this.props.onItemClick) this.props.onItemClick(e, index, this.props.menuItems[index]);
-},
-
-_onItemTap: function(e, index) {
-    if (this.props.onItemTap) this.props.onItemTap(e, index, this.props.menuItems[index]);
-},
-
-_onItemToggle: function(e, index, toggled) {
-    if (this.props.onItemToggle) this.props.onItemToggle(e, index, this.props.menuItems[index], toggled);
-}
 
 });
 

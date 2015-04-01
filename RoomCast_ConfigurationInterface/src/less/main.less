@@ -17,6 +17,11 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 @color-mui-deselected: #cdcdcd;
 @menu-item-hover-color: rgba(0, 0, 0, .035);
 
+// MIXINS
+.hidden {
+  color: transparent;
+}
+
 // CODE
 
 html, body {
@@ -323,6 +328,7 @@ html, body {
 .config-text-field-div {
   position: relative;
   input {
+    width: 50%;
     float: left;
     line-height: inherit;
     border: none;

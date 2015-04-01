@@ -124,6 +124,62 @@ var Main = React.createClass({
         this.handleUpdatedCurrentConfig(this.state.configs[configId].mapping)
     },
 
+    handleDeleteConfig: function(configId) {
+        var configs = this.state.configs;
+        delete configs[configId];
+        this.handleUpdatedConfigs(configs);
+    },
+
+    handleAddEmptyConfig: function(configName) {
+        var configs = this.state.configs;
+        var newConfigId = 1;
+
+        // Find max id
+        if(configs.length !== 0) {
+            var ids = [];
+            for (var c in configs) {
+                if (configs.hasOwnProperty(c)) {
+                    ids.push(+c);
+                }
+            }
+            newConfigId = Math.max.apply(null, ids) + 1;
+        }
+
+        // Save current config
+        this.saveLocalConfigs();
+
+        // Add new config
+        configs[newConfigId] = {
+            "name": configName,
+            "mapping": [{
+                "family": "iPad",
+                "items": [{
+                    "name": "",
+                    "channels": []
+                }]
+            }, {
+                "family": "Mac",
+                "items": [{
+                    "name": "",
+                    "channels": []
+                }]
+            }]
+        };
+        this.handleUpdatedConfigs(configs);
+
+        console.log('new assigned id', newConfigId);
+
+        // Update current local configuration to selected one
+        this.handleUpdatedCurrentConfigId(newConfigId);
+        this.handleUpdatedCurrentConfig(this.state.configs[newConfigId].mapping)
+    },
+
+    handleUpdateConfigName: function(id, value) {
+        var configs = this.state.configs;
+        configs[id].name = value;
+        this.handleUpdatedConfigs(configs);
+    },
+
     render: function () {
 
         return (
@@ -137,7 +193,10 @@ var Main = React.createClass({
                     selectedChannel={this.state.selectedChannel}
                     onSelectedChannel={this.handleSelection}
                     onAddRow={this.handleAddRow}
-                    onChangeConfig={this.handleChangeConfig} />
+                    onChangeConfig={this.handleChangeConfig}
+                    onDeleteConfig={this.handleDeleteConfig}
+                    onAddEmptyConfig={this.handleAddEmptyConfig}
+                    onUpdateConfigName={this.handleUpdateConfigName} />
 
                 <ChannelsPanel
                     ref={'channelsPanel'}
