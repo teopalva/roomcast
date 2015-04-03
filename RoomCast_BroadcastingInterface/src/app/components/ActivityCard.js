@@ -6,54 +6,84 @@ var d3 = require('d3');
 
 var ActivityCard = React.createClass({
 
-    handleTouchCard: function(e) {
-        var self = this;
-
-        // TODO move after counter
-        nutella.net.publish('currentConfig/update', +this.props.configId);
-
-    },
-
     componentDidMount: function() {
         var self= this;
+        this._colorSelected = '#00bcd4';
+        this._timerDuration = 1500;
 
-        // TODO touchstart
-        d3.selectAll('.activity-card').on('mousedown', function() {
-
-            var svg = d3.select(this)
-                .select('.card-svg')
-                .append('svg')
-                .style({
-                    width: self.props.cardStyle['width'],
-                    height: self.props.cardStyle['height']
-                });
-
-            svg.append('circle')
-                .attr({
-                    cx: self.props.cardStyle['width'] / 2,
-                    cy: self.props.cardStyle['height'] / 2,
-                    r: '50px'
-                })
-                .style({
-                    fill: 'red'
-                });
-
-        });
-
-        d3.selectAll('.activity-card').on('mouseup', function() {
-            d3.selectAll('.activity-card')
-                .select('.card-svg')
-                .select('svg')
-                .remove();
-        });
-
+        d3.select(this.getDOMNode())
+            .on('touchstart', function() {
+                self.cardTouchIn.call(self, this);
+            })
+            .on('mousedown', function() {
+                self.cardTouchIn.call(self, this);
+            })
+            .on('touchend', function() {
+                self.cardTouchOut.call(self);
+            })
+            .on('mouseup', function() {
+                self.cardTouchOut.call(self);
+            });
 
     },
 
-    componentWillReceiveProps: function() {
-        if(+this.props.currentConfigId === +this.props.configId) {
+    cardTouchIn: function(el) {
+        var self = this;
+
+        var cardWidth = this.props.cardStyle['width'];
+        var cardHeight = this.props.cardStyle['height'];
+        var circleRadius = Math.sqrt(Math.pow(cardWidth, 2) + Math.pow(cardHeight, 2)) / 2;
+
+        var publishAfterTransition = function() {
+            var action = function() {
+                nutella.net.publish('currentConfig/update', +self.props.configId);
+            };
+            self._timeoutId = setTimeout(action, self._timerDuration);
+        };
+
+        var svg = d3.select(el)
+            .select('.card-svg')
+            .append('svg')
+            .style({
+                width: cardWidth,
+                height: cardHeight
+            });
+
+        svg.append('circle')
+            .attr({
+                cx: cardWidth / 2,
+                cy: cardHeight / 2,
+                r: '0px'
+            })
+            .style({
+                fill: this._colorSelected
+            })
+            .transition()
+            .call(publishAfterTransition)
+            .duration(self._timerDuration)
+            .attr({
+                r: circleRadius
+            });
+
+    },
+
+    cardTouchOut: function() {
+        d3.selectAll('.activity-card')
+            .select('.card-svg')
+            .select('svg')
+            .remove();
+
+        window.clearTimeout(this._timeoutId);
+    },
+
+    componentWillReceiveProps: function(newProps) {
+        if(+newProps.currentConfigId === +newProps.configId) {
             this.setState({
                 isSelected: true
+            });
+        } else {
+            this.setState({
+                isSelected: false
             });
         }
 
@@ -68,7 +98,7 @@ var ActivityCard = React.createClass({
     render: function () {
 
         var selectedCardStyle = {
-            //backgroundColor: '#00bcd4',
+            backgroundColor: this._colorSelected,
             color: 'white'
         };
 
@@ -88,8 +118,6 @@ var ActivityCard = React.createClass({
             }
 
         }
-
-        // onTouchTap={this.handleTouchCard}
 
         return (
 
