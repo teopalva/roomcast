@@ -54,6 +54,39 @@ nutella.net.handle_requests('configs/retrieve', lambda do |request, component_id
                               end
                                               end)
 
+nutella.net.subscribe('currentConfig/update', lambda do |message, component_id, resource_id|
+
+                                        new_config = message
+
+                                        puts 'currentConfig/update:'
+                                        puts new_config
+
+                                        # Update
+                                        if new_config != nil
+                                          configs_db.transaction {
+                                            configs_db[:currentConfig] = new_config
+                                          }
+                                        end
+
+                                        puts 'Updated DB'
+
+                                        # Notify Update
+                                        configs_db.transaction {
+                                          publish_current_config_update(new_config)
+                                        }
+
+                                      end)
+
+nutella.net.handle_requests('currentConfig/retrieve', lambda do |request, component_id, resource_id|
+                                                puts 'request: ' + request
+                                                reply = {}
+                                                  configs_db.transaction {
+                                                    reply = configs_db['currentConfig']
+                                                  }
+                                                  puts reply
+                                                  reply
+                                              end)
+
 nutella.net.subscribe('channels/update', lambda do |message, component_id, resource_id|
 
                                         new_channels = message
@@ -89,6 +122,11 @@ nutella.net.handle_requests('channels/retrieve', lambda do |request, component_i
 def publish_configs_update(configs)
   nutella.net.publish('configs/updated', configs)
   puts 'Sent configs/updated'
+end
+
+def publish_current_config_update(config)
+  nutella.net.publish('currentConfig/updated', config)
+  puts 'Sent currentConfig/updated'
 end
 
 def publish_channels_update(channels)

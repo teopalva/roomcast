@@ -16,6 +16,8 @@ var Main = React.createClass({
             self.nutellaRequestConfigs();
         });
 
+        // TODO subscribe to changed configs
+
     },
 
     /**

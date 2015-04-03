@@ -1,0 +1,55 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Broadcasting Interface</title>
+    <meta name="description" content="The interface for teachers to play configurations in real-time.">
+    <meta name="viewport" content="width=device-width, initial-scale=1; user-scalable=0">
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+    
+    <!-- Nutella -->
+  <script src="mqttws31.js" type="text/javascript" charset="utf-8"></script>
+  <script src="nutella_lib.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        // Parse the query parameters
+        var query_parameters = NUTELLA.parseURLParameters();
+
+        // Get an instance of nutella. 
+        try {
+            var nutella = NUTELLA.init('roomcast', '52.1.142.215', 'broadcasting-interface');
+        } catch (e) {
+            console.warn('nutella init error');
+        }
+
+        // (Optional) Set the resourceId
+        // nutella.setResourceId('my_resource_id');
+    </script>
+
+    <!-- This script adds the Roboto font to our project. For more detail go to this site:  http://www.google.com/fonts#UsePlace:use/Collection:Roboto:400,300,500 -->
+    <script>
+        var WebFontConfig = {
+            google: {
+                families: ['Roboto:400,300,200,100,500:latin']
+            }
+        };
+        (function () {
+            var wf = document.createElement('script');
+            wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+                '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+            wf.type = 'text/javascript';
+            wf.async = 'true';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(wf, s);
+        })();
+    </script>
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>

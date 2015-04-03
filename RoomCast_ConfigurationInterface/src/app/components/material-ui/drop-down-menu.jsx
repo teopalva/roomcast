@@ -107,7 +107,7 @@ var DropDownMenu = React.createClass({
 
                 var nextKey, nextConfigId;
                 var currentIndex = this.state.selectedIndex;
-                
+
                 if(currentIndex !== key) {
 
                     // We're not deleting the current selected item, just delete
