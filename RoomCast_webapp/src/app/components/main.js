@@ -48,6 +48,8 @@ var Main = React.createClass({
                 nutella.net.subscribe('currentConfig/switched', function (message, channel, from_component_id, from_resource_id) {
                     //self.updateChannelsForRid(message, self.state.rid);
                     // TODO show identity screen on iPad
+                    var url = 'roomcast' + '://' + 'promptNewActivityScreen';
+                    document.location.href = url;
                     console.warn('switch config', message);
                 });
                 nutella.net.subscribe('channels/updated', function (message, channel, from_component_id, from_resource_id) {

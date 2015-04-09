@@ -46,10 +46,10 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
         var htmlString: NSString?
         
         if let htmlFile = htmlFile {
-            htmlString = NSString(contentsOfFile: htmlFile, encoding: NSUTF8StringEncoding, error: nil)!
+            htmlString = NSString(contentsOfFile: htmlFile as String, encoding: NSUTF8StringEncoding, error: nil)!
             if let htmlString = htmlString {
                 var bundle: String = NSBundle.mainBundle().bundlePath
-                webView.loadHTMLString(htmlString, baseURL: NSURL(fileURLWithPath: "\(bundle)/assets/menu")!)
+                webView.loadHTMLString(htmlString as String, baseURL: NSURL(fileURLWithPath: "\(bundle)/assets/menu")!)
             } else {
                 println("Bundle not found.")
             }
@@ -78,33 +78,38 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
         //var actionType: NSString = "playChannel"
         
         // Ignore legit webview requests so they load normally
-        if(request.URL.scheme! != appScheme) {
+        if(request.URL!.scheme! != appScheme) {
             return true;
         }
         
         // Get the action from the path
-        var actionType: NSString = request.URL.host!
+        var actionType: NSString = request.URL!.host!
         
         // Deserialize the request JSON
-        var jsonDictString: String? = request.URL.fragment?.stringByReplacingPercentEscapesUsingEncoding(NSASCIIStringEncoding)
+        var jsonDictString: String? = request.URL!.fragment?.stringByReplacingPercentEscapesUsingEncoding(NSASCIIStringEncoding)
         
         var parameters = Dictionary<String, String>()
         // Deserialize JSON fragment string into Swift dictionary
         if let jsonDictString = jsonDictString {
             var error : NSError?
             let JSONData = jsonDictString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
-            let JSONDictionary: Dictionary = NSJSONSerialization.JSONObjectWithData(JSONData!, options: nil, error: &error) as NSDictionary
-            for (key, value) in JSONDictionary {
-                let keyName = key as String
-                let keyValue: String = value as String
-                parameters[keyName] = keyValue
+            
+            if let JSONDictionary = NSJSONSerialization.JSONObjectWithData(JSONData!, options: nil, error: &error) as? NSDictionary {
+                for (key, value) in JSONDictionary {
+                    let keyName = key as! String
+                    let keyValue: String = value as! String
+                    parameters[keyName] = keyValue
+                }
             }
+            
         }
         
         // Act based on actionType
         switch actionType {
         case "playChannel":
             playChannel(parameters)
+        case "promptNewActivityScreen":
+            promptNewActivityScreen()
         case "getResourceIdentity":
             getResourceIdentity()
         case "setResourceIdentity":
@@ -121,7 +126,7 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
     func playChannel(parameters: Dictionary<String, String>) {
         url = parameters["url"] as String?
         if let url = url {
-            if(countElements(url) < 7) {
+            if(count(url) < 7) {
                 return
             }
             if (url.substringWithRange(Range<String.Index>(start: url.startIndex, end: advance(url.startIndex, 7))) == "http://") {
@@ -139,12 +144,16 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
         }
     }
     
+    func promptNewActivityScreen() {
+        self.performSegueWithIdentifier("newActivitySegue", sender: self)
+    }
+    
     func getResourceIdentity() {
         let rid = retrieveResourceIdentity()
         if let rid = rid {
             handleUpdatedRid(rid)
         } else {
-            setModalRightNav(); 
+            setModalRightNav();
         }
         //componentDidMountCallback()
     }
@@ -160,8 +169,19 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        var nextVC = segue.destinationViewController as ChannelViewController
-        nextVC.url = url
+        switch (segue.identifier!) {
+        case "playChannelSegue":
+            var nextVC = segue.destinationViewController as! ChannelViewController
+            nextVC.url = url
+            break
+        case "newActivitySegue":
+            // do nothing
+            break
+        default:
+            // do nothing
+            break
+        }
+        
     }
     
     @IBAction func unwindToMenu(unwindSegue: UIStoryboardSegue) {

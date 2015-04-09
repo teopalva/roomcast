@@ -1,15 +1,15 @@
 //
-//  ViewController.swift
-//  RoomCast_iPad_broadcastingApp
+//  NewActivityViewController.swift
+//  RoomCast_iPad_webapp
 //
-//  Created by Matteo Palvarini on 03/04/15.
+//  Created by Matteo Palvarini on 09/04/15.
 //  Copyright (c) 2015 Matteo Palvarini. All rights reserved.
 //
 
 import UIKit
 import WebKit
 
-class MainViewController: UIViewController, UIWebViewDelegate {
+class NewActivityViewController: UIViewController, UIWebViewDelegate {
     
     var webView: UIWebView!
     
@@ -24,19 +24,19 @@ class MainViewController: UIViewController, UIWebViewDelegate {
         
         self.view = self.webView
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Load main interface from local files
-        var htmlFile: NSString? = NSBundle.mainBundle().pathForResource("index", ofType: "html", inDirectory: "./assets/main")
+        var htmlFile: NSString? = NSBundle.mainBundle().pathForResource("index", ofType: "html", inDirectory: "./assets/new-activity")
         var htmlString: NSString?
         
         if let htmlFile = htmlFile {
             htmlString = NSString(contentsOfFile: htmlFile as String, encoding: NSUTF8StringEncoding, error: nil)!
             if let htmlString = htmlString {
                 var bundle: String = NSBundle.mainBundle().bundlePath
-                webView.loadHTMLString(htmlString as String, baseURL: NSURL(fileURLWithPath: "\(bundle)/assets/main")!)
+                webView.loadHTMLString(htmlString as String, baseURL: NSURL(fileURLWithPath: "\(bundle)/assets/new-activity")!)
                 println("Page loaded.")
             } else {
                 println("Bundle not found.")
@@ -44,19 +44,23 @@ class MainViewController: UIViewController, UIWebViewDelegate {
         } else {
             println("File not found.")
         }
-    
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    // Hide the status bar
-    override func prefersStatusBarHidden() -> Bool {
-        return true;
+    
+    /*
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
-
-
+    */
+    
 }
-

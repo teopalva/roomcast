@@ -47,10 +47,10 @@ class ChannelViewController: UIViewController, WKNavigationDelegate, UIWebViewDe
         var htmlString: NSString?
         
         if let htmlFile = htmlFile {
-            htmlString = NSString(contentsOfFile: htmlFile, encoding: NSUTF8StringEncoding, error: nil)!
+            htmlString = NSString(contentsOfFile: htmlFile as String, encoding: NSUTF8StringEncoding, error: nil)!
             if let htmlString = htmlString {
                 var bundle: String = NSBundle.mainBundle().bundlePath
-                loadingWebView.loadHTMLString(htmlString, baseURL: NSURL(fileURLWithPath: "\(bundle)/assets/loading")!)
+                loadingWebView.loadHTMLString(htmlString as String, baseURL: NSURL(fileURLWithPath: "\(bundle)/assets/loading")!)
             } else {
                 println("Bundle not found.")
             }
