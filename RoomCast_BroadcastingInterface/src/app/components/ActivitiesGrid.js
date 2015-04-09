@@ -67,10 +67,16 @@ var ActivitiesGrid = React.createClass({
             }
         }
 
+        // Flip order
+        var cards_ = [];
+        for(var i=cards.length-1; i>=0; i--) {
+            cards_.push(cards[i]);
+        }
+
         return (
 
             <div className='activities-grid' style={gridStyle} >
-                {cards}
+                {cards_}
             </div>
 
         );

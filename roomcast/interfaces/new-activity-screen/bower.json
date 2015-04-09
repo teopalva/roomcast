@@ -1,0 +1,29 @@
+{
+  "name": "new-activity-screen",
+  "version": "0.1.0",
+  "authors": [
+    "Matteo Palvarini <matteo.palvarini@gmail.com>"
+  ],
+  "description": "This screen is launched on each iPad every time a new configuration is launched.",
+  "main": "index.html",
+  "keywords": [
+    "nutella",
+    "interface",
+    "web"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "resolutions": {
+    "nutella_lib": "~0.3.0"
+  },
+  "dependencies": {
+    "nutella_lib": "~0.3.0"
+  }
+}

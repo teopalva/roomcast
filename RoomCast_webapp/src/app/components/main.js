@@ -8,7 +8,7 @@ var RightNav = require('./material-ui/right-nav.jsx');
 var Main = React.createClass({
 
     componentDidMount: function() {
-        var self=this;
+        var self = this;
 
         /*
         var iOS = (window.navigator.userAgent.match(/(iPad|iPhone)/g) ? true : false);
@@ -33,6 +33,7 @@ var Main = React.createClass({
                 var url = 'roomcast' + '://' + 'getResourceIdentity';
                 document.location.href = url;
 
+                // TODO check that rid is within current available rids
                 if(self.state.rid) {
                     // Get current assigned channels (mapping)
                     nutella.net.request('mapping/retrieve', 'all', function (response) {
@@ -43,6 +44,11 @@ var Main = React.createClass({
                 // Subscribe for future changes
                 nutella.net.subscribe('mapping/updated', function (message, channel, from_component_id, from_resource_id) {
                     self.updateChannelsForRid(message, self.state.rid);
+                });
+                nutella.net.subscribe('currentConfig/switched', function (message, channel, from_component_id, from_resource_id) {
+                    //self.updateChannelsForRid(message, self.state.rid);
+                    // TODO show identity screen on iPad
+                    console.warn('switch config', message);
                 });
                 nutella.net.subscribe('channels/updated', function (message, channel, from_component_id, from_resource_id) {
                     self.handleUpdatedChannelsCatalogue(message);
@@ -202,7 +208,7 @@ var Main = React.createClass({
 
         var menuItems = [];
         this.state.mapping.forEach(function (f) {
-            for (var i in f.items) {
+                for (var i in f.items) {
                 menuItems.push({
                         id: f.items[i].name,
                         text: f.items[i].name,
@@ -211,6 +217,9 @@ var Main = React.createClass({
                 );
             }
         });
+
+        console.log(this.state.mapping);
+        console.log(menuItems);
 
         var backgroundMessageStyle = {
             position: 'fixed',
@@ -242,10 +251,18 @@ var Main = React.createClass({
 
                 <div className="grid"> {channels} </div>
 
-                <FloatingActionButton className='controlButton' iconClassName="muidocs-icon-action-grade" secondary={true} onTouchTap={this.handleControlButton} />
+                <FloatingActionButton className='controlButton'
+                                      iconClassName="muidocs-icon-action-grade"
+                                      secondary={true}
+                                      onTouchTap={this.handleControlButton} />
 
-                <RightNav ref='rightNav' docked={false} modal={false} menuItems={menuItems} onItemTap={this.handleItemTap} canLogout={canLogout} onLogout={this.handleLogout} />
-
+                <RightNav ref='rightNav'
+                          docked={false}
+                          modal={false}
+                          menuItems={menuItems}
+                          onItemTap={this.handleItemTap}
+                          canLogout={canLogout}
+                          onLogout={this.handleLogout} />
             </div>
 
         );
