@@ -65,8 +65,6 @@ var IdentityCard = React.createClass({
 
             <Paper className={className} style={cardStyle} onTouchTap={this.handleSelectedIdentity}  >
 
-                <div className='card-svg'> </div>
-
                 <div className='card-name'>
 
                     <span> {this.props.name} </span>

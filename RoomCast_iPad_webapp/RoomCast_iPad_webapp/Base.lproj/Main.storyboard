@@ -21,7 +21,7 @@
                     <connections>
                         <outlet property="launchView" destination="B3S-Kk-ulr" id="IFL-ik-myp"/>
                         <segue destination="icA-u6-ddF" kind="show" identifier="playChannelSegue" id="7vT-Et-L4G"/>
-                        <segue destination="neh-Cq-IvE" kind="presentation" identifier="newActivitySegue" id="e9w-YK-P32"/>
+                        <segue destination="neh-Cq-IvE" kind="show" identifier="newActivitySegue" id="e9w-YK-P32"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
