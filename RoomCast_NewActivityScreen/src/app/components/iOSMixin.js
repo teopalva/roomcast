@@ -10,7 +10,7 @@ var iOSMixin = {
         var url = appName + '://' + actionType + "#" + escapedJsonParameters;
         console.log('launching url: ', url);
         document.location.href = url;
-
+        
     }
 
 

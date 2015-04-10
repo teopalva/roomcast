@@ -2,13 +2,14 @@ var React = require('react');
 var Mui = require('material-ui');
 var Paper = Mui.Paper;
 var NutellaMixin = require('./NutellaMixin');
+var iOSMixin = require('./iOSMixin');
 
 /**
  * @prop channel
  */
 var Channel = React.createClass({
 
-    mixins: [NutellaMixin],
+    mixins: [NutellaMixin, iOSMixin],
 
     componentDidMount: function() {
 
@@ -40,19 +41,11 @@ var Channel = React.createClass({
 
     handleClick: function() {
 
-        // JavaScript to send an action to iOS code
-        var appName = 'roomcast';
-        var actionType = 'playChannel';
-        // TODO generalize
         var actionParameters = {
             'name': this.props.channel.name,
             'url': this.props.channel.url
         };
-        var jsonString = (JSON.stringify(actionParameters));
-        var escapedJsonParameters = escape(jsonString);
-        var url = appName + '://' + actionType + "#" + escapedJsonParameters;
-        console.log('launching url: ', url);
-        document.location.href = url;
+        this.iOScall('playChannel', actionParameters);
 
     },
 

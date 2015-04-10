@@ -2,8 +2,11 @@
 var React = require('react');
 var Mui = require('material-ui');
 var Paper = Mui.Paper;
+var iOSMixin = require('./iOSMixin');
 
 var IdentityCard = React.createClass({
+
+    mixins: [iOSMixin],
 
     componentDidMount: function() {
         var self= this;
@@ -18,6 +21,7 @@ var IdentityCard = React.createClass({
     },
 
     handleSelectedIdentity: function() {
+        var self = this;
 
         if(!this.props.hasBeenSelected) {
 
@@ -30,7 +34,10 @@ var IdentityCard = React.createClass({
 
             // Trigger native animation
             var callback = function() {
-                console.log('call iOS');
+                var actionParameters = {
+                    rid: self.props.name
+                };
+                self.iOScall('discardNewActivityScreen', actionParameters);
             };
             setTimeout(callback, 500);
         }

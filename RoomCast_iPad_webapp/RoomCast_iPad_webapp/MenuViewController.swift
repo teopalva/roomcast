@@ -110,10 +110,13 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
             playChannel(parameters)
         case "promptNewActivityScreen":
             promptNewActivityScreen()
+        case "discardNewActivityScreen":
+            discardNewActivityScreen()
         case "getResourceIdentity":
             getResourceIdentity()
         case "setResourceIdentity":
-            setResourceIdentity(parameters)
+            let rid = parameters["rid"] as String!
+            setResourceIdentity(rid)
         case "logout":
             logout()
         default:
@@ -148,6 +151,10 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
         self.performSegueWithIdentifier("newActivitySegue", sender: self)
     }
     
+    func discardNewActivityScreen() {
+        
+    }
+    
     func getResourceIdentity() {
         let rid = retrieveResourceIdentity()
         if let rid = rid {
@@ -158,8 +165,7 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
         //componentDidMountCallback()
     }
     
-    func setResourceIdentity(parameters: Dictionary<String, String>) {
-        let rid = parameters["rid"] as String!
+    func setResourceIdentity(rid: String) {
         storeResourceIdentity(rid)
         handleUpdatedRid(rid)
     }
