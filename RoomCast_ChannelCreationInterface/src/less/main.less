@@ -25,6 +25,7 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 html, body {
   height: 100%;
   width: 100%;
+  overflow: auto;
   background-color: #e9eaed;
   box-sizing: border-box;
 }
@@ -71,8 +72,8 @@ html, body {
   width: 100%;
   padding: @margin-top 0 @pad1 @pad1;
 
-  display: table;
-  clear: both;
+  //display: table;
+  //clear: both;
   position: relative;
   [class*='col-'] {
     float: left;
@@ -159,4 +160,16 @@ html, body {
 
     }
   }
+}
+
+////////////////////////////////////////
+
+.catalogue-card-style {
+  :hover {
+    color: black;
+  }
+}
+
+.zoomed-card-style {
+
 }

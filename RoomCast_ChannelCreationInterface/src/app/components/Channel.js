@@ -17,10 +17,36 @@ var Channel = React.createClass({
 
     handleClick: function() {
 
+    },
 
+    getInitialState: function () {
+        return  {
+            selected: false
+        }
+    },
+
+    componentWillReceiveProps: function(nextProps) {
+        if(nextProps.selected) {
+            this.setState({
+                selected: true
+            });
+        } else {
+            this.setState({
+                selected: false
+            });
+        }
     },
 
     render: function() {
+
+        var cardStyle;
+
+        if(this.state.selected) {
+            cardStyle = 'catalogue-card-style';
+        }
+         else {
+                cardStyle = 'zoomed-card-style';
+        }
 
         var style = {
             backgroundImage: 'url(' + this.getUrlForAsset(this.props.channel.screenshot, 'screenshot') + ')',
@@ -48,6 +74,7 @@ var Channel = React.createClass({
                     </div>
 
                 </div>
+
             </Paper>);
 
     }

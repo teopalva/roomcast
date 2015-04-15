@@ -1,9 +1,8 @@
 
 var React = require('react');
-var Mui = require('material-ui');
 var Channel = require('./Channel');
-var Paper = Mui.Paper;
-var TopBar = require('./TopBar');
+var CataloguePage = require('./CataloguePage');
+var DetailPage = require('./DetailPage');
 
 var Main = React.createClass({
 
@@ -25,7 +24,8 @@ var Main = React.createClass({
     getInitialState: function () {
         return  {
             channels: [],
-            selectedChannel: null
+            selectedChannel: null,
+            page: 'catalogue'
         }
     },
 
@@ -38,6 +38,15 @@ var Main = React.createClass({
     setSelectedChannel: function(selectedChannel) {
         this.setState({
             selectedChannel: selectedChannel
+        });
+    },
+
+    /**
+     * @param page 'catalogue' or 'detail'
+     */
+    setPage: function(page) {
+        this.setState({
+            page: page
         });
     },
 
@@ -58,24 +67,25 @@ var Main = React.createClass({
                 channels.push(
                     <div className="col-1-3">
                         <Channel
-                            channel={this.state.channels[ch]} />
+                            channel={this.state.channels[ch]}
+                            selected={this.state.selectedChannel === ch} />
                     </div>);
             }
         }
 
-        return (
+        var page;
+        switch (this.state.page) {
+            case 'catalogue':
+                page = <CataloguePage
+                   channels={channels}
+                   onSave={this.handleSave}
+                   onUndo={this.handleUndo} />;
+                break;
+            case 'detail':
+                page = <DetailPage />;
+        }
 
-            <div>
-
-                <TopBar
-                    onSave={this.handleSave}
-                    onUndo={this.handleUndo} />
-
-                <div className="grid"> {channels} </div>
-
-            </div>
-
-        );
+        return page;
     }
 
 });
