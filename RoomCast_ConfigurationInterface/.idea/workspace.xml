@@ -61,21 +61,33 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ChannelsPanel.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ChannelsPanel.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/components/ChannelsPanel.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.5638075">
+            <state vertical-scroll-proportion="0.0">
               <caret line="129" column="0" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
-              <folding />
+              <folding>
+                <marker date="1427257441000" expanded="true" signature="2062:3977" placeholder="&lt;xml/&gt;" />
+                <marker date="1427257441000" expanded="true" signature="2112:3704" placeholder="&lt;xml/&gt;" />
+                <marker date="1427257441000" expanded="true" signature="2174:2538" placeholder="&lt;xml/&gt;" />
+                <marker date="1427257441000" expanded="true" signature="2251:2511" placeholder="&lt;xml/&gt;" />
+                <marker date="1427257441000" expanded="true" signature="2333:2480" placeholder="&lt;xml/&gt;" />
+                <marker date="1427257441000" expanded="true" signature="2560:2699" placeholder="&lt;xml/&gt;" />
+                <marker date="1427257441000" expanded="true" signature="2721:2932" placeholder="&lt;xml/&gt;" />
+                <marker date="1427257441000" expanded="true" signature="2954:3678" placeholder="&lt;xml/&gt;" />
+                <marker date="1427257441000" expanded="true" signature="3036:3650" placeholder="&lt;xml/&gt;" />
+                <marker date="1427257441000" expanded="true" signature="3122:3355" placeholder="&lt;xml/&gt;" />
+                <marker date="1427257441000" expanded="true" signature="3385:3618" placeholder="&lt;xml/&gt;" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.less" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.less" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/less/main.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.75">
-              <caret line="203" column="0" selection-start-line="203" selection-start-column="0" selection-end-line="214" selection-end-column="1" />
+            <state vertical-scroll-proportion="0.3325967">
+              <caret line="107" column="8" selection-start-line="107" selection-start-column="5" selection-end-line="107" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -392,7 +404,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1920" y="-622" width="1920" height="1053" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -787,18 +799,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/less/main.less">
+    <entry file="file://$PROJECT_DIR$/src/app/components/ChannelsPanel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.75">
-          <caret line="203" column="0" selection-start-line="203" selection-start-column="0" selection-end-line="214" selection-end-column="1" />
-          <folding />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="129" column="0" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
+          <folding>
+            <marker date="1427257441000" expanded="true" signature="2062:3977" placeholder="&lt;xml/&gt;" />
+            <marker date="1427257441000" expanded="true" signature="2112:3704" placeholder="&lt;xml/&gt;" />
+            <marker date="1427257441000" expanded="true" signature="2174:2538" placeholder="&lt;xml/&gt;" />
+            <marker date="1427257441000" expanded="true" signature="2251:2511" placeholder="&lt;xml/&gt;" />
+            <marker date="1427257441000" expanded="true" signature="2333:2480" placeholder="&lt;xml/&gt;" />
+            <marker date="1427257441000" expanded="true" signature="2560:2699" placeholder="&lt;xml/&gt;" />
+            <marker date="1427257441000" expanded="true" signature="2721:2932" placeholder="&lt;xml/&gt;" />
+            <marker date="1427257441000" expanded="true" signature="2954:3678" placeholder="&lt;xml/&gt;" />
+            <marker date="1427257441000" expanded="true" signature="3036:3650" placeholder="&lt;xml/&gt;" />
+            <marker date="1427257441000" expanded="true" signature="3122:3355" placeholder="&lt;xml/&gt;" />
+            <marker date="1427257441000" expanded="true" signature="3385:3618" placeholder="&lt;xml/&gt;" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/components/ChannelsPanel.js">
+    <entry file="file://$PROJECT_DIR$/src/less/main.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.5638075">
-          <caret line="129" column="0" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.3325967">
+          <caret line="107" column="8" selection-start-line="107" selection-start-column="5" selection-end-line="107" selection-end-column="8" />
           <folding />
         </state>
       </provider>

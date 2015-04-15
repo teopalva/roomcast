@@ -41,6 +41,11 @@ var Main = React.createClass({
         });
     },
 
+    handleSelectedChannel: function(selectedChannel) {
+        this.setSelectedChannel(selectedChannel);
+        this.setPage('detail');
+    },
+
     /**
      * @param page 'catalogue' or 'detail'
      */
@@ -67,8 +72,10 @@ var Main = React.createClass({
                 channels.push(
                     <div className="col-1-3">
                         <Channel
+                            channelId={ch}
                             channel={this.state.channels[ch]}
-                            selected={this.state.selectedChannel === ch} />
+                            selected={this.state.selectedChannel === ch}
+                            onSelectChannel={this.handleSelectedChannel} />
                     </div>);
             }
         }
@@ -82,7 +89,8 @@ var Main = React.createClass({
                    onUndo={this.handleUndo} />;
                 break;
             case 'detail':
-                page = <DetailPage />;
+                page = <DetailPage
+                    channel={this.state.channels[this.state.selectedChannel]} />;
         }
 
         return page;

@@ -37,15 +37,25 @@ var Channel = React.createClass({
         }
     },
 
+    handleSelectChannel: function() {
+        this.props.onSelectChannel(this.props.channelId);
+        console.log('click');
+    },
+
     render: function() {
 
         var cardStyle;
+        var hoveringLayer = null;
+        var onTouchTap;
 
-        if(this.state.selected) {
-            cardStyle = 'catalogue-card-style';
+        if(!this.state.selected) {
+            cardStyle = ' catalogue-card-style';
+            cardStyle += ' hovering-layer';
+            onTouchTap = this.handleSelectChannel;
         }
-         else {
-                cardStyle = 'zoomed-card-style';
+        else {
+            cardStyle = 'detail-card-style';
+
         }
 
         var style = {
@@ -54,9 +64,9 @@ var Channel = React.createClass({
         };
 
         return (
-            <Paper className='channel' style={style} ref='channelRef' onTouchTap={this.props.handleClick} >
+            <Paper className={'channel' + cardStyle} style={style} onTouchTap={onTouchTap} >
 
-                <div className='channel-div' >
+                <div className='channel-div'>
 
                     <div className='channel-caption'>
 
