@@ -251,7 +251,6 @@ var Main = React.createClass({
 
                 {backgroundMessage}
 
-                <div className="grid"> {channels} </div>
 
                 <FloatingActionButton className='controlButton'
                                       iconClassName="muidocs-icon-action-grade"

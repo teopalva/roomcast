@@ -30,26 +30,26 @@ var MenuItem = React.createClass({
       }
       if(this.props.currentSelected) {
           classes += ' mui-is-current-selected';
-      }
+        }
 
-    var icon;
-    var data;
-    var iconRight;
-    var attribute;
-    var number;
+        var icon;
+        var data;
+        var iconRight;
+        var attribute;
+        var number;
 
-    if (this.props.iconClassName) icon = <FontIcon className={'mui-menu-item-icon ' + this.props.iconClassName} />;
-    if (this.props.iconRightClassName) iconRight = <FontIcon className={'mui-menu-item-icon-right ' + this.props.iconRightClassName} />;
-    if (this.props.data) data = <span className="mui-menu-item-data">{this.props.data}</span>;
-    if (this.props.number !== undefined) number = <span className="mui-menu-item-number">{this.props.number}</span>;
-    if (this.props.attribute !== undefined) attribute = <span className="mui-menu-item-attribute">{this.props.attribute}</span>;
+        if (this.props.iconClassName) icon = <FontIcon className={'mui-menu-item-icon ' + this.props.iconClassName} />;
+        if (this.props.iconRightClassName) iconRight = <FontIcon className={'mui-menu-item-icon-right ' + this.props.iconRightClassName} />;
+        if (this.props.data) data = <span className="mui-menu-item-data">{this.props.data}</span>;
+        if (this.props.number !== undefined) number = <span className="mui-menu-item-number">{this.props.number}</span>;
+        if (this.props.attribute !== undefined) attribute = <span className="mui-menu-item-attribute">{this.props.attribute}</span>;
 
-    return (
-      <div
-        key={this.props.index}
-        className={classes}
-        onTouchTap={this._handleTouchTap}
-        onClick={this._handleOnClick}>
+        return (
+        <div
+            key={this.props.index}
+            className={classes}
+            onTouchTap={this._handleTouchTap}
+            onClick={this._handleOnClick}>
 
         {icon}
         {this.props.children}

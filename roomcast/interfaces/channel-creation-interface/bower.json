@@ -1,0 +1,29 @@
+{
+  "name": "channel-creation-interface",
+  "version": "0.1.0",
+  "authors": [
+    "Matteo Palvarini <matteo.palvarini@gmail.com>"
+  ],
+  "description": "This interface allows the teacher/developer to add/delete or modify the channels catalogue of RoomCast",
+  "main": "index.html.",
+  "keywords": [
+    "nutella",
+    "interface",
+    "web"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "resolutions": {
+    "nutella_lib": "~0.3.0"
+  },
+  "dependencies": {
+    "nutella_lib": "~0.3.0"
+  }
+}

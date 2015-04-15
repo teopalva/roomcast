@@ -14,6 +14,11 @@ var Main = React.createClass({
         nutella.net.request('channels/retrieve', 'all', function (response) {
             self.handleUpdatedChannelsCatalogue(response);
             self.nutellaRequestConfigs();
+
+            nutella.net.subscribe('channels/updated', function (message, channel, from_component_id, from_resource_id) {
+                self.handleUpdatedChannelsCatalogue(message);
+            });
+
         });
 
         // TODO subscribe to changed configs
