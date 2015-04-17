@@ -23,25 +23,25 @@ var Main = React.createClass({
                 });
 
                 /*
-                // Add routing
-                //var channels = self.getChannels();
-                Router.addRoute('', function () {
-                    self.slidePage(
-                        <CataloguePage
-                            key='home'
-                            channels={self.getChannels()}
-                            onSave={self.handleSave}
-                            onUndo={self.handleUndo}/>
-                    );
-                }.bind(self));
-                Router.addRoute('detail', function () {
-                    self.slidePage(
-                        <DetailPage
-                            channel={self.state.channels[self.state.selectedChannel]}/>
-                    );
-                }.bind(self));
-                Router.start();
-                */
+                 // Add routing
+                 //var channels = self.getChannels();
+                 Router.addRoute('', function () {
+                 self.slidePage(
+                 <CataloguePage
+                 key='home'
+                 channels={self.getChannels()}
+                 onSave={self.handleSave}
+                 onUndo={self.handleUndo}/>
+                 );
+                 }.bind(self));
+                 Router.addRoute('detail', function () {
+                 self.slidePage(
+                 <DetailPage
+                 channel={self.state.channels[self.state.selectedChannel]}/>
+                 );
+                 }.bind(self));
+                 Router.start();
+                 */
 
             });
 
@@ -73,13 +73,17 @@ var Main = React.createClass({
 
     handleSelectedChannel: function(selectedChannel) {
         this.setSelectedChannel(selectedChannel);
-        //this.setPage('detail');
     },
 
     handleExitSelection: function() {
-      this.setState({
-          selectedChannel: null
-      });
+        this.setState({
+            selectedChannel: null
+        });
+        if(this.refs.channelSelected) {
+            if(this.refs.channelSelected.state.flipped) {
+                this.refs.channelSelected.flipCardBack();
+            }
+        }
     },
 
     /**
@@ -103,13 +107,15 @@ var Main = React.createClass({
         var channels = [];
         for (var ch in this.state.channels) {
             if (this.state.channels.hasOwnProperty(ch)) {
+                var ref = 'channel';
+                var sel = this.state.selectedChannel === ch? 'Selected' : '';
                 channels.push(
                     <div className="col-size">
                         <Channel
+                            ref={ref+sel}
                             channelId={ch}
                             channel={this.state.channels[ch]}
                             selected={this.state.selectedChannel === ch}
-
                             onSelectChannel={this.handleSelectedChannel} />
                     </div>);
             }

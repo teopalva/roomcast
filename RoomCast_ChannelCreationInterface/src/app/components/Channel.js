@@ -28,7 +28,7 @@ var Channel = React.createClass({
     getInitialState: function () {
         return  {
             selected: false,
-            frontSide: true
+            flipped: false
         }
     },
 
@@ -53,6 +53,9 @@ var Channel = React.createClass({
 
     flipCard: function() {
         var self = this;
+        this.setState({
+            flipped: true
+        });
         function callbackFlip() {
             self.addCSSClass(self.refs.cardFront.getDOMNode(), ' hidden');
             self.removeCSSClass(self.refs.cardBack.getDOMNode(), 'hidden');
@@ -63,19 +66,15 @@ var Channel = React.createClass({
 
     flipCardBack: function() {
         var self = this;
+        this.setState({
+            flipped: false
+        });
         function callbackFlip() {
             self.addCSSClass(self.refs.cardBack.getDOMNode(), ' hidden');
             self.removeCSSClass(self.refs.cardFront.getDOMNode(), 'hidden');
             self.flipY(self.refs.card.getDOMNode(), 90, 0, true);
         }
         this.flipY(this.refs.card.getDOMNode(), 180, 90, true, callbackFlip);
-    },
-
-    rotateY: function(node, angle) {
-        node.style.transform="rotateY(" + angle + "deg)";
-        node.style.webkitTransform="rotateY(" + angle + "deg)";
-        node.style.OTransform="rotateY(" + angle + "deg)";
-        node.style.MozTransform="rotateY(" + angle + "deg)";
     },
 
     addCSSClass: function(node, class_) {
@@ -85,8 +84,6 @@ var Channel = React.createClass({
     removeCSSClass: function(node, class_) {
         var regex = new RegExp("(?:^|\\s)" + class_ + "(?!\\S)", "g");
         node.className = node.className.replace(regex, '');
-        console.log(regex, node.className.replace(regex, ''));
-
     },
 
     render: function() {
