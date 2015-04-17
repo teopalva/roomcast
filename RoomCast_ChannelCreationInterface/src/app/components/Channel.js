@@ -3,13 +3,14 @@ var React = require('react');
 var Mui = require('material-ui');
 var Paper = Mui.Paper;
 var NutellaMixin = require('./NutellaMixin');
+var AnimationMixin = require('./AnimationMixin');
 
 /**
  * @prop channel
  */
 var Channel = React.createClass({
 
-    mixins: [NutellaMixin],
+    mixins: [NutellaMixin, AnimationMixin],
 
     componentDidMount: function() {
 
@@ -19,9 +20,15 @@ var Channel = React.createClass({
 
     },
 
+    /**
+     * State
+     * @returns selected: boolean
+     *          side: 'front' or 'back'
+     */
     getInitialState: function () {
         return  {
-            selected: false
+            selected: false,
+            frontSide: true
         }
     },
 
@@ -44,18 +51,34 @@ var Channel = React.createClass({
 
     },
 
+    flipCard: function() {
+        //this.flipY(this.getDOMNode(), 0, 90);
+        this.rotateY(this.refs.card.getDOMNode(), 180);
+
+    },
+
+    rotateY: function(node, angle) {
+        node.style.transform="rotateY(" + angle + "deg)";
+        node.style.webkitTransform="rotateY(" + angle + "deg)";
+        node.style.OTransform="rotateY(" + angle + "deg)";
+        node.style.MozTransform="rotateY(" + angle + "deg)";
+    },
+
     render: function() {
 
         var cardStyle;
         var onTouchTap;
+        var cornerIcon;
 
         if(!this.state.selected) {
             cardStyle = ' catalogue-card-style';
             cardStyle += ' hovering-layer';
             onTouchTap = this.handleSelectChannel;
+            cornerIcon = <div className='corner-icon'> <i className="fa fa-times"></i> </div>;
         }
         else {
             cardStyle = ' detail-card-style';
+            cornerIcon = <div className='corner-icon'> <i className="fa fa-info-circle" onTouchTap={this.flipCard} ></i> </div>;
         }
 
         var style = {
@@ -67,6 +90,8 @@ var Channel = React.createClass({
             <Paper className={'channel' + cardStyle} style={style} onTouchTap={onTouchTap} >
 
                 <div className='channel-div'>
+
+                    {cornerIcon}
 
                     <div className='channel-caption'>
 

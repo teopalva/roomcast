@@ -21,7 +21,6 @@ var CataloguePage = React.createClass({
 
     updateDimensions: function() {
         var height = this.refs.gridRef.getDOMNode().offsetHeight;
-        console.log(height);
 
         this.setState({height: height});
     },
