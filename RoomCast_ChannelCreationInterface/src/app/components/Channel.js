@@ -87,30 +87,55 @@ var Channel = React.createClass({
         };
 
         return (
-            <Paper className={'channel' + cardStyle} style={style} onTouchTap={onTouchTap} >
 
-                <div className='channel-div'>
+            <div className={'card-container' + cardStyle}>
 
-                    {cornerIcon}
+                <div className={'card'} ref='card'>
 
-                    <div className='channel-caption'>
+                    <div className='card-front' ref='cardFront'>
 
-                        <div className='icon-name-wrapper'>
+                        <Paper className={'channel' } style={style} onTouchTap={onTouchTap} >
 
-                            <img className='channel-icon'> </img>
+                            <div className='channel-div'>
 
-                            <div className='name-wrapper'>
-                                <p className='channel-name'> {this.props.channel.name} </p>
-                                <p className='channel-description'> description... </p>
+                                {cornerIcon}
+
+                                <div className='channel-caption'>
+
+                                    <div className='icon-name-wrapper'>
+
+                                        <img className='channel-icon'> </img>
+
+                                        <div className='name-wrapper'>
+                                            <p className='channel-name'> {this.props.channel.name} </p>
+                                            <p className='channel-description'> description... </p>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
                             </div>
 
-                        </div>
+                        </Paper>
+
+                    </div>
+
+                    <div className='card-back' ref='cardBack'>
+                        <Paper className='channel'>
+
+                            text
+
+                        </Paper>
 
                     </div>
 
                 </div>
 
-            </Paper>);
+            </div>
+
+
+        );
 
     }
 
