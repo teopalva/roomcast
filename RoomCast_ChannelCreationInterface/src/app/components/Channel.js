@@ -52,9 +52,23 @@ var Channel = React.createClass({
     },
 
     flipCard: function() {
-        //this.flipY(this.getDOMNode(), 0, 90);
-        this.rotateY(this.refs.card.getDOMNode(), 180);
+        var self = this;
+        function callbackFlip() {
+            self.addCSSClass(self.refs.cardFront.getDOMNode(), ' hidden');
+            self.removeCSSClass(self.refs.cardBack.getDOMNode(), 'hidden');
+            self.flipY(self.refs.card.getDOMNode(), 90, 180, false);
+        }
+        this.flipY(this.refs.card.getDOMNode(), 0, 90, false, callbackFlip);
+    },
 
+    flipCardBack: function() {
+        var self = this;
+        function callbackFlip() {
+            self.addCSSClass(self.refs.cardBack.getDOMNode(), ' hidden');
+            self.removeCSSClass(self.refs.cardFront.getDOMNode(), 'hidden');
+            self.flipY(self.refs.card.getDOMNode(), 90, 0, true);
+        }
+        this.flipY(this.refs.card.getDOMNode(), 180, 90, true, callbackFlip);
     },
 
     rotateY: function(node, angle) {
@@ -62,6 +76,17 @@ var Channel = React.createClass({
         node.style.webkitTransform="rotateY(" + angle + "deg)";
         node.style.OTransform="rotateY(" + angle + "deg)";
         node.style.MozTransform="rotateY(" + angle + "deg)";
+    },
+
+    addCSSClass: function(node, class_) {
+        node.className += class_;
+    },
+
+    removeCSSClass: function(node, class_) {
+        var regex = new RegExp("(?:^|\\s)" + class_ + "(?!\\S)", "g");
+        node.className = node.className.replace(regex, '');
+        console.log(regex, node.className.replace(regex, ''));
+
     },
 
     render: function() {
@@ -121,8 +146,9 @@ var Channel = React.createClass({
 
                     </div>
 
-                    <div className='card-back' ref='cardBack'>
+                    <div className='card-back hidden' ref='cardBack'>
                         <Paper className='channel'>
+                            <div className='corner-icon'> <i className="fa fa-info-circle" onTouchTap={this.flipCardBack} ></i> </div>;
 
                             text
 

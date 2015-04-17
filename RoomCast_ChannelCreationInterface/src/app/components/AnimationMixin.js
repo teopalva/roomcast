@@ -1,8 +1,15 @@
 
-
 var AnimationMixin = {
 
-    flipY: function(node, startDeg, endDeg) {
+    /**
+     * Flips element wrt vertical axis
+     * @param node DOM node
+     * @param startDeg
+     * @param endDeg
+     * @param ccw true if animated in ccw direction
+     * @param callback called at the end of the animation
+     */
+    flipY: function(node, startDeg, endDeg, ccw, callback) {
         var self = this;
 
         this.ny = startDeg;
@@ -10,23 +17,26 @@ var AnimationMixin = {
         if(this.rotYINT) {
             clearInterval(this.rotYINT);
         }
+
         function rotate() {
-            self.startYRotate(node, startDeg, endDeg);
+            if(ccw) {
+                self.ny -= 5;
+            } else {
+                self.ny += 5;
+            }
+            node.style.transform="rotateY(" + self.ny + "deg)";
+            node.style.webkitTransform="rotateY(" + self.ny + "deg)";
+            node.style.OTransform="rotateY(" + self.ny + "deg)";
+            node.style.MozTransform="rotateY(" + self.ny + "deg)";
+            if (self.ny === endDeg) {
+                clearInterval(self.rotYINT);
+                if(callback) {
+                    callback();
+                }
+            }
         }
         this.rotYINT = setInterval(rotate, 4);
 
-    },
-
-    startYRotate: function(node, startDeg, endDeg) {
-        this.ny += 5;
-        node.style.transform="rotateY(" + this.ny + "deg)";
-        node.style.webkitTransform="rotateY(" + this.ny + "deg)";
-        node.style.OTransform="rotateY(" + this.ny + "deg)";
-        node.style.MozTransform="rotateY(" + this.ny + "deg)";
-        if (this.ny === endDeg) {
-            clearInterval(this.rotYINT);
-           // if (this.ny >= 360) this.ny = 0;
-        }
     }
 
 };
