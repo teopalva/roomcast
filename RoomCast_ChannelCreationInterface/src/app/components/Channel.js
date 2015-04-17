@@ -40,12 +40,13 @@ var Channel = React.createClass({
     handleSelectChannel: function() {
         this.props.onSelectChannel(this.props.channelId);
         console.log('click');
+        //document.location.href = '#detail';
+
     },
 
     render: function() {
 
         var cardStyle;
-        var hoveringLayer = null;
         var onTouchTap;
 
         if(!this.state.selected) {
@@ -54,8 +55,7 @@ var Channel = React.createClass({
             onTouchTap = this.handleSelectChannel;
         }
         else {
-            cardStyle = 'detail-card-style';
-
+            cardStyle = ' detail-card-style';
         }
 
         var style = {

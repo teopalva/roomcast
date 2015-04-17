@@ -3,21 +3,51 @@ var React = require('react');
 var Channel = require('./Channel');
 var CataloguePage = require('./CataloguePage');
 var DetailPage = require('./DetailPage');
+//var PageSliderMixin = require('./PageSliderMixin');
+//var Router = require('./Router');
 
 var Main = React.createClass({
 
-    componentDidMount: function() {
+    //mixins: [PageSliderMixin],
+
+    componentWillMount: function() {
         var self = this;
 
-        // Get current channels catalogue
-        nutella.net.request('channels/retrieve', 'all', function (response) {
-            self.setChannels(response);
+        try {
+            // Get current channels catalogue
+            nutella.net.request('channels/retrieve', 'all', function (response) {
+                self.setChannels(response);
 
-            nutella.net.subscribe('channels/updated', function (message, channel, from_component_id, from_resource_id) {
-                self.setChannels(message);
+                nutella.net.subscribe('channels/updated', function (message, channel, from_component_id, from_resource_id) {
+                    self.setChannels(message);
+                });
+
+                /*
+                // Add routing
+                //var channels = self.getChannels();
+                Router.addRoute('', function () {
+                    self.slidePage(
+                        <CataloguePage
+                            key='home'
+                            channels={self.getChannels()}
+                            onSave={self.handleSave}
+                            onUndo={self.handleUndo}/>
+                    );
+                }.bind(self));
+                Router.addRoute('detail', function () {
+                    self.slidePage(
+                        <DetailPage
+                            channel={self.state.channels[self.state.selectedChannel]}/>
+                    );
+                }.bind(self));
+                Router.start();
+                */
+
             });
 
-        });
+        } catch(e) {
+            console.error(e, e.trace());
+        }
 
     },
 
@@ -43,7 +73,13 @@ var Main = React.createClass({
 
     handleSelectedChannel: function(selectedChannel) {
         this.setSelectedChannel(selectedChannel);
-        this.setPage('detail');
+        //this.setPage('detail');
+    },
+
+    handleExitSelection: function() {
+      this.setState({
+          selectedChannel: null
+      });
     },
 
     /**
@@ -63,30 +99,38 @@ var Main = React.createClass({
         console.log('undo');
     },
 
-    render: function () {
-        var self = this;
-
+    getChannels: function() {
         var channels = [];
         for (var ch in this.state.channels) {
             if (this.state.channels.hasOwnProperty(ch)) {
                 channels.push(
-                    <div className="col-1-3">
+                    <div className="col-size">
                         <Channel
                             channelId={ch}
                             channel={this.state.channels[ch]}
                             selected={this.state.selectedChannel === ch}
+
                             onSelectChannel={this.handleSelectedChannel} />
                     </div>);
             }
         }
+        return channels;
+    },
+
+    render: function () {
+        var self = this;
+
+        var channels = this.getChannels();
 
         var page;
         switch (this.state.page) {
             case 'catalogue':
                 page = <CataloguePage
-                   channels={channels}
-                   onSave={this.handleSave}
-                   onUndo={this.handleUndo} />;
+                    channels={channels}
+                    isSelected={this.state.selectedChannel != null}
+                    onSave={this.handleSave}
+                    onUndo={this.handleUndo}
+                    onExitSelection={this.handleExitSelection} />;
                 break;
             case 'detail':
                 page = <DetailPage
