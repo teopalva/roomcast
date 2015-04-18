@@ -21,22 +21,21 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 .clickable {
   cursor: pointer;
 }
-.flipMiddle {
-  /*-webkit-transform-origin: 50% 50%;
-  -moz-transform-origin: 50% 50%;
-  -o-transform-origin: 50% 50%;
-  transform-origin: 50% 50%;*/
-  .vendor(transform-origin, 50% 50%)
-}
 .vendor(@property, @value) {
   -webkit-@{property}: @value;
   -o-@{property}: @value;
   -moz-@{property}: @value;
   @{property}: @value;
 }
+.flipMiddle {
+  .vendor(transform-origin, 50% 50%)
+}
 .hidden {
   opacity: 0;
-  pointer-events: none;
+}
+.shown {
+  opacity: 1;
+  z-index: 31;
 }
 
 // CODE
@@ -94,7 +93,7 @@ html, body {
   position: relative;
   .grid {
     width: 100%;
-    padding: @margin-top 0 @pad1 @pad1;
+    padding: @margin-top 0 0 @pad1;
     display: table;
     //clear: both;
     position: relative;
@@ -148,9 +147,29 @@ html, body {
     position: relative;
     .vendor(transform-style, preserve-3d);
     .flipMiddle;
+    .delete-icon{
+      position: absolute;
+      right: 10px;
+      top: 0;
+      .hidden;
+      i {
+        color: @color-mui-pink;
+        font-size: 5em;
+      }
+    }
+    .flip-icon {
+      position: absolute;
+      right: 10px;
+      top: 0;
+      .shown;
+      i {
+        color: @color-mui-blue;
+        font-size: 5em;
+        -webkit-text-stroke: 2px white;
+      }
+    }
     .card-front {
       position: relative;
-      //.vendor(backface-visibility, hidden);
       .channel {
         // aspect ratio: 10:7.23
         width: 100%;
@@ -228,10 +247,8 @@ html, body {
       top: 0;
       left: 0;
       .flipMiddle;
-      transform: rotateY(180deg);
+      .vendor(transform, rotateY(180deg));
       display: block;
-      //background-color: red;
-      //.vendor(backface-visibility, hidden);
       .channel {
         width: 100%;
         height: 0;
@@ -258,38 +275,15 @@ html, body {
 
 .hovering-layer {
   cursor: pointer;
-  :hover {
-    background-color: rgba(0,0,0,0.5);
+  &:hover .channel {
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,0.6);
   }
-  .channel-div {
-    * {
-      pointer-events: none;
-    }
+  &:hover .card .delete-icon {
+    .shown;
   }
-
+  &:hover .card .delete-icon i:hover {
+    .vendor(text-stroke-width, 2px);
+    .vendor(text-stroke-color, white);
+    -webkit-text-stroke: 2px white;
+  }
 }
-
-/*
-///////////   Detail Page    /////////////
-.detail-page {
-  overflow: hidden;
-
-  .card-detail {
-    width: 67%;
-    position: relative;
-    display: inline-block;
-    float: left;
-    padding-left: 100px;
-    padding-right: 100px;
-    overflow: hidden;
-  }
-
-  .right-bar-detail {
-    width: 33%;
-    position: relative;
-    float: right;
-    background-color: white;
-  }
-
-}
-*/

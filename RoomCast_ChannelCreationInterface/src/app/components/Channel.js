@@ -13,11 +13,19 @@ var Channel = React.createClass({
     mixins: [NutellaMixin, AnimationMixin],
 
     componentDidMount: function() {
+        var self = this;
 
-    },
+        /*
+        // Style the icon in the corner of the card
+        self.addCSSClass(self.refs.cornerIcon.getDOMNode(), 'hidden');
+        this.refs.cardContainer.getDOMNode().onmouseover = function() {
+            self.addCSSClass(self.refs.cornerIcon.getDOMNode(), 'shown');
+        };
 
-    handleClick: function() {
-
+        this.refs.cardContainer.getDOMNode().onmouseout = function() {
+            self.removeCSSClass(self.refs.cornerIcon.getDOMNode(), 'shown');
+        };
+*/
     },
 
     /**
@@ -47,8 +55,6 @@ var Channel = React.createClass({
     handleSelectChannel: function() {
         this.props.onSelectChannel(this.props.channelId);
         console.log('click');
-        //document.location.href = '#detail';
-
     },
 
     flipCard: function() {
@@ -57,7 +63,7 @@ var Channel = React.createClass({
             flipped: true
         });
         function callbackFlip() {
-            self.addCSSClass(self.refs.cardFront.getDOMNode(), ' hidden');
+            self.addCSSClass(self.refs.cardFront.getDOMNode(), 'hidden');
             self.removeCSSClass(self.refs.cardBack.getDOMNode(), 'hidden');
             self.flipY(self.refs.card.getDOMNode(), 90, 180, false);
         }
@@ -70,7 +76,7 @@ var Channel = React.createClass({
             flipped: false
         });
         function callbackFlip() {
-            self.addCSSClass(self.refs.cardBack.getDOMNode(), ' hidden');
+            self.addCSSClass(self.refs.cardBack.getDOMNode(), 'hidden');
             self.removeCSSClass(self.refs.cardFront.getDOMNode(), 'hidden');
             self.flipY(self.refs.card.getDOMNode(), 90, 0, true);
         }
@@ -78,7 +84,7 @@ var Channel = React.createClass({
     },
 
     addCSSClass: function(node, class_) {
-        node.className += class_;
+        node.className += ' ' + class_;
     },
 
     removeCSSClass: function(node, class_) {
@@ -96,11 +102,11 @@ var Channel = React.createClass({
             cardStyle = ' catalogue-card-style';
             cardStyle += ' hovering-layer';
             onTouchTap = this.handleSelectChannel;
-            cornerIcon = <div className='corner-icon'> <i className="fa fa-times"></i> </div>;
+            cornerIcon = <div className='corner-icon delete-icon' > <i className="fa fa-times" ref='cornerIcon'></i> </div>;
         }
         else {
             cardStyle = ' detail-card-style';
-            cornerIcon = <div className='corner-icon'> <i className="fa fa-info-circle" onTouchTap={this.flipCard} ></i> </div>;
+            cornerIcon = <div className='corner-icon flip-icon' > <i className="fa fa-info-circle" ref='cornerIcon' onTouchTap={this.flipCard} ></i> </div>;
         }
 
         var style = {
@@ -110,17 +116,17 @@ var Channel = React.createClass({
 
         return (
 
-            <div className={'card-container' + cardStyle}>
+            <div className={'card-container' + cardStyle} ref='cardContainer' >
 
                 <div className={'card'} ref='card'>
 
+                    {cornerIcon}
+
                     <div className='card-front' ref='cardFront'>
 
-                        <Paper className={'channel' } style={style} onTouchTap={onTouchTap} >
+                        <Paper className='channel' style={style} onTouchTap={onTouchTap} >
 
                             <div className='channel-div'>
-
-                                {cornerIcon}
 
                                 <div className='channel-caption'>
 
@@ -145,7 +151,8 @@ var Channel = React.createClass({
 
                     <div className='card-back hidden' ref='cardBack'>
                         <Paper className='channel'>
-                            <div className='corner-icon'> <i className="fa fa-info-circle" onTouchTap={this.flipCardBack} ></i> </div>;
+
+                            <div className='corner-icon flip'> <i className="fa fa-info-circle" onTouchTap={this.flipCardBack} ></i> </div>
 
                             text
 
