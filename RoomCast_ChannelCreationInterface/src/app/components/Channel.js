@@ -63,8 +63,8 @@ var Channel = React.createClass({
             flipped: true
         });
         function callbackFlip() {
-            self.addCSSClass(self.refs.cardFront.getDOMNode(), 'hidden');
-            self.removeCSSClass(self.refs.cardBack.getDOMNode(), 'hidden');
+            self.addCSSClass(self.refs.cardFront.getDOMNode(), 'hidden-card');
+            self.removeCSSClass(self.refs.cardBack.getDOMNode(), 'hidden-card');
             self.flipY(self.refs.card.getDOMNode(), 90, 180, false);
         }
         this.flipY(this.refs.card.getDOMNode(), 0, 90, false, callbackFlip);
@@ -76,8 +76,8 @@ var Channel = React.createClass({
             flipped: false
         });
         function callbackFlip() {
-            self.addCSSClass(self.refs.cardBack.getDOMNode(), 'hidden');
-            self.removeCSSClass(self.refs.cardFront.getDOMNode(), 'hidden');
+            self.addCSSClass(self.refs.cardBack.getDOMNode(), 'hidden-card');
+            self.removeCSSClass(self.refs.cardFront.getDOMNode(), 'hidden-card');
             self.flipY(self.refs.card.getDOMNode(), 90, 0, true);
         }
         this.flipY(this.refs.card.getDOMNode(), 180, 90, true, callbackFlip);
@@ -118,11 +118,11 @@ var Channel = React.createClass({
 
             <div className={'card-container' + cardStyle} ref='cardContainer' >
 
-                <div className={'card'} ref='card'>
+                <div className='card' ref='card'>
 
-                    {cornerIcon}
+                    <div className={'card-front' } ref='cardFront'>
 
-                    <div className='card-front' ref='cardFront'>
+                        {cornerIcon}
 
                         <Paper className='channel' style={style} onTouchTap={onTouchTap} >
 
@@ -149,7 +149,7 @@ var Channel = React.createClass({
 
                     </div>
 
-                    <div className='card-back hidden' ref='cardBack'>
+                    <div className='card-back hidden-card' ref='cardBack'>
                         <Paper className='channel'>
 
                             <div className='corner-icon flip'> <i className="fa fa-info-circle" onTouchTap={this.flipCardBack} ></i> </div>
