@@ -6,7 +6,10 @@ var NutellaMixin = require('./NutellaMixin');
 var AnimationMixin = require('./AnimationMixin');
 
 /**
+ * @prop channelId
  * @prop channel
+ * @prop selected
+ * @prop onselectedChannel
  */
 var Channel = React.createClass({
 
@@ -83,6 +86,10 @@ var Channel = React.createClass({
         this.flipY(this.refs.card.getDOMNode(), 180, 90, true, callbackFlip);
     },
 
+    handleDeleteCard: function() {
+        this.props.onDeleteCard(this.props.channelId);
+    },
+
     addCSSClass: function(node, class_) {
         node.className += ' ' + class_;
     },
@@ -102,7 +109,7 @@ var Channel = React.createClass({
             cardStyle = ' catalogue-card-style';
             cardStyle += ' hovering-layer';
             onTouchTap = this.handleSelectChannel;
-            cornerIcon = <div className='corner-icon delete-icon' > <i className="fa fa-times" ref='cornerIcon'></i> </div>;
+            cornerIcon = <div className='corner-icon delete-icon' > <i className="fa fa-times" ref='cornerIcon' onTouchTap={this.handleDeleteCard}></i> </div>;
         }
         else {
             cardStyle = ' detail-card-style';

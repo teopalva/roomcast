@@ -62,7 +62,6 @@ var ConfigurationsPanel = React.createClass({
         var dropdown = null;
         var menuItems = [];
 
-        // TODO: list from last one without sorting?
         var configs = this.props.configs;
         if(configs.length !== 0) {
             var ids = [];
