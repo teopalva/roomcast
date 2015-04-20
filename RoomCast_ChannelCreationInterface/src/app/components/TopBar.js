@@ -8,7 +8,26 @@ var FloatingActionButton = Mui.FloatingActionButton;
 var TopBar = React.createClass({
 
     handleAddCard: function() {
-        this.props.onAddCard();
+        this.scrollTo(document.body, 0, 200, this.props.onAddCard);
+    },
+
+    scrollTo: function(element, to, duration, callback) {
+        var self = this;
+
+        if (duration < 0) {
+            return;
+        }
+        var difference = to - element.scrollTop;
+        var perTick = difference / duration * 10;
+
+        setTimeout(function() {
+            element.scrollTop = element.scrollTop + perTick;
+            if (element.scrollTop === to) {
+                callback();
+                return;
+            }
+            self.scrollTo(element, to, duration - 10, callback);
+        }, 10);
     },
 
     render: function() {
