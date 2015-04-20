@@ -24,18 +24,20 @@ var TopBar = React.createClass({
 
                     <div className='top-bar-container' >
 
-                        <div className='plus-button' >
-                            <FloatingActionButton
-                                secondary={true}
-                                mini={true}
-                                onTouchTap={this.handleAddCard} >
+                        <div className='top-bar-container-inner' >
 
-                                <i className="icon ion-plus-round" ></i>
+                            <div className='plus-button' >
+                                <FloatingActionButton
+                                    secondary={true}
+                                    mini={true}
+                                    onTouchTap={this.handleAddCard} >
 
-                            </FloatingActionButton>
-                        </div>
+                                    <i className="icon ion-plus-round" ></i>
 
-                        <div className='channels-panel-save-buttons-div' >
+                                </FloatingActionButton>
+                            </div>
+
+                            <div className='channels-panel-save-buttons-div' >
 
                                 <div className='div-button-container-final-button'>
                                     <RaisedButton className='save-button' label='Save changes' secondary={true} onTouchTap={this.props.onSave} />
@@ -44,6 +46,8 @@ var TopBar = React.createClass({
                                 <div className='div-button-container-final-button'>
                                     <RaisedButton className='undo-button' label='Undo changes' primary={true} onTouchTap={this.props.onUndo} />
                                 </div>
+
+                            </div>
 
                         </div>
 
