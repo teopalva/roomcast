@@ -1,7 +1,6 @@
 
 var React = require('react');
 var Mui = require('material-ui');
-var Paper = Mui.Paper;
 var ColorCell = require('./ColorCell');
 
 var ColorPicker = React.createClass({
@@ -17,18 +16,11 @@ var ColorPicker = React.createClass({
             '#e7d4e8',
             '#fee0b6',
             '#d1e5f0',
-            //'#f46d43',
+            '#f46d43',
             '#bdbdbd',
             '#a8ddb5'
         );
-        this.paletteSize_ = this.palette_.length;
-        this.cellsPerRow_ = 3;  // TODO compute
 
-    },
-
-    getInitialState: function () {
-        return  {
-        }
     },
 
     render: function() {
@@ -45,15 +37,11 @@ var ColorPicker = React.createClass({
 
         return (
 
-            <Paper>
-
                 <div className='color-picker' >
 
                     {colorsGrid}
 
                 </div>
-
-            </Paper>
 
         );
 

@@ -5,10 +5,6 @@ var Paper = Mui.Paper;
 
 var ColorCell = React.createClass({
 
-    componentWillMount: function() {
-
-    },
-
     handlePickColor: function() {
         this.props.onPickColor(this.props.color);
     },
@@ -16,8 +12,6 @@ var ColorCell = React.createClass({
     render: function() {
 
         var style = {
-            height: this.props.size[1],
-            width: this.props.size[0],
             backgroundColor: this.props.color
         };
 

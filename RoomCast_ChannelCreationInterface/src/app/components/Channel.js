@@ -54,7 +54,7 @@ var Channel = React.createClass({
     },
 
     componentWillUpdate: function() {
-        this.prepareForRender();
+        //this.prepareForRender();
     },
 
     handleSelectChannel: function() {
@@ -145,7 +145,6 @@ var Channel = React.createClass({
             if (this.state.modifyField === 'icon') {
                 colorPicker =
                     <ColorPicker ref='colorPicker'
-                                 cellSize={[this.colorCellWidth_, this.colorCellHeight_]}
                                  onPickColor={this.props.onPickColor}/>;
                 onTouchTapIcon = null;
             }
@@ -211,6 +210,8 @@ var Channel = React.createClass({
 
                     <div className='card-front' ref='cardFront'>
 
+                        {colorPicker}
+
                         <div className='corner-icon flip-icon' > <i className="fa fa-info-circle" ref='cornerIcon' onTouchTap={this.flipCard} ></i> </div>
 
                         <Paper className='channel' style={style} >
@@ -221,11 +222,7 @@ var Channel = React.createClass({
 
                                     <div className='icon-name-wrapper'>
 
-                                        <div className='channel-icon' ref='channelIcon' style={iconStyle} onTouchTap={onTouchTapIcon} >
-
-                                            {colorPicker}
-
-                                        </div>
+                                        <div className='channel-icon' ref='channelIcon' style={iconStyle} onTouchTap={onTouchTapIcon} > </div>
 
                                         <div className='name-wrapper'>
                                             <p className='channel-name'> {this.props.channel.name} </p>
