@@ -21,10 +21,6 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 .clickable {
   cursor: pointer;
 }
-.modifiable {
-  box-shadow: inset 0 0 0 1000px rgba(0,0,0,0.8);
-  border: solid 1px white;
-}
 .vendor(@property, @value) {
   -webkit-@{property}: @value;
   -o-@{property}: @value;
@@ -221,9 +217,6 @@ html, body {
                 float: left;
                 vertical-align: bottom;
                 border:1px solid transparent;
-                &:hover {
-                  .modifiable;
-                }
               }
               .name-wrapper {
                 width: 83%;
@@ -308,7 +301,12 @@ html, body {
   }
 }
 
-
+.modifiable {
+  &:hover {
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,0.8);
+    border: solid 1px white;
+  }
+}
 
 ////////////////////////////////////////
 
@@ -340,7 +338,7 @@ html, body {
 ///////////////   ColorPicker   ////////////
 
 .color-picker {
-  position: fixed;
+  position: absolute;
   bottom: -2em;
   .color-cell {
     width: 2em;

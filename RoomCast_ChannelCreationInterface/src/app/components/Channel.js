@@ -49,39 +49,13 @@ var Channel = React.createClass({
             this.setState({
                 selected: false
             });
+            this.setModifyField(null);
         }
 
-    },
-
-    componentWillUpdate: function() {
-        //this.prepareForRender();
     },
 
     handleSelectChannel: function() {
         this.props.onSelectChannel(this.props.channelId);
-    },
-
-    prepareForRender: function() {
-        var self = this;
-        console.log('prepare for render');
-
-        if(this.state.selected) {
-            console.log('selected, ', this.state.modifyField);
-
-            switch (this.state.modifyField) {
-
-                case 'icon':
-                    var iconWidth = Math.ceil(self.refs.channelIcon.getDOMNode().offsetWidth);
-                    var iconHeight = Math.ceil(self.refs.channelIcon.getDOMNode().offsetHeight);
-                    var n = self.refs.colorPicker.cellsPerRow_;
-                    this.colorCellWidth_ = iconWidth / n;
-                    this.colorCellHeight_ = iconHeight / n;
-                    break;
-
-                default:
-                // do nothing
-            }
-        }
     },
 
     handleModifyIcon: function() {
@@ -222,7 +196,7 @@ var Channel = React.createClass({
 
                                     <div className='icon-name-wrapper'>
 
-                                        <div className='channel-icon' ref='channelIcon' style={iconStyle} onTouchTap={onTouchTapIcon} > </div>
+                                        <div className='channel-icon modifiable' ref='channelIcon' style={iconStyle} onTouchTap={onTouchTapIcon} > </div>
 
                                         <div className='name-wrapper'>
                                             <p className='channel-name'> {this.props.channel.name} </p>
