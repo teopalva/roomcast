@@ -287,16 +287,17 @@ html, body {
 }
 .flip-icon {
   position: absolute;
-  right: 10px;
-  top: 0;
+  right: 13px;
+  top: 5px;
+  -webkit-text-stroke: 2px white;
+  cursor: pointer;
   .shown;
   i {
     color: @color-mui-blue;
-    opacity: 0.5;
-    font-size: 5em;
+    font-size: 4.5em;
     -webkit-text-stroke: 2px white;
     &:hover {
-      opacity: 1;
+      color: darken(#00BCD4, 10%);
     }
   }
 }

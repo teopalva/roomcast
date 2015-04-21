@@ -129,7 +129,7 @@ var Channel = React.createClass({
 
                 <Paper className='channel'>
 
-                    <div className='corner-icon flip-icon'> <i className="fa fa-info-circle" onTouchTap={this.flipCardBack} ></i> </div>
+                    <div className='corner-icon flip-icon'> <i className="ion ion-android-settings" onTouchTap={this.flipCardBack} ></i> </div>
 
                     text
 
@@ -186,7 +186,7 @@ var Channel = React.createClass({
 
                         {colorPicker}
 
-                        <div className='corner-icon flip-icon' > <i className="fa fa-info-circle" ref='cornerIcon' onTouchTap={this.flipCard} ></i> </div>
+                        <div className='corner-icon flip-icon' > <i className="ion ion-android-settings" ref='cornerIcon' onTouchTap={this.flipCard} ></i> </div>
 
                         <Paper className='channel' style={style} >
 
