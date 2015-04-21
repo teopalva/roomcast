@@ -152,6 +152,44 @@ var Main = React.createClass({
         this.setChannels(channels);
     },
 
+    handleSetName: function(value) {
+        this.updateField('name', value);
+    },
+
+    handleSetIcon: function(color) {
+        this.updateField('icon', color);
+    },
+
+    handleSetScreenshot: function(value) {
+        this.updateField('screenshot', value);
+    },
+
+    handleSetDescription: function(value) {
+        this.updateField('description', value);
+    },
+
+    handleSetUrl: function(value) {
+        this.updateField('url', value);
+    },
+
+    handleSetType: function(value) {
+        this.updateField('type', value);
+    },
+
+    updateField: function(field, value) {
+        var channels = this.state.channels;
+        var channel = channels[this.state.selectedChannel];
+        channel[field] = value;
+        channels[this.state.selectedChannel] = channel;
+        this.setChannels(channels);
+
+        // Exit modify field mode
+        if(this.refs.channelSelected) {
+            this.refs.channelSelected.setModifyField(null);
+        }
+
+    },
+
     /**
      * Synchronizes the local copy of the catalogue
      * @param publish true if you also want to save the changes to the server
@@ -197,7 +235,8 @@ var Main = React.createClass({
                                 channel={channels[id]}
                                 selected={self.state.selectedChannel === id}
                                 onSelectChannel={self.handleSelectedChannel}
-                                onDeleteCard={self.handleDeleteCard} />
+                                onDeleteCard={self.handleDeleteCard}
+                                onPickColor={self.handleSetIcon} />
                         </div>);
                 }
             });

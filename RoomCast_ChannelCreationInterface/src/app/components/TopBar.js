@@ -43,18 +43,18 @@ var TopBar = React.createClass({
 
                     <div className='top-bar-container' >
 
+                        <div className='plus-button' >
+                            <FloatingActionButton
+                                secondary={true}
+                                mini={true}
+                                onTouchTap={this.handleAddCard} >
+
+                                <i className="icon ion-plus-round" ></i>
+
+                            </FloatingActionButton>
+                        </div>
+
                         <div className='top-bar-container-inner' >
-
-                            <div className='plus-button' >
-                                <FloatingActionButton
-                                    secondary={true}
-                                    mini={true}
-                                    onTouchTap={this.handleAddCard} >
-
-                                    <i className="icon ion-plus-round" ></i>
-
-                                </FloatingActionButton>
-                            </div>
 
                             <div className='channels-panel-save-buttons-div' >
 

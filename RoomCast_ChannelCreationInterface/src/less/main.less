@@ -67,25 +67,23 @@ html, body {
   background-color: white;
   z-index: 100;
 
-
-
-  .top-bar-container-inner {
+  .top-bar-container {
     width: 100%;
-    margin: auto;
+    height: 60px;
     position: relative;
-    display: inline-block;
-    vertical-align: middle;
 
     .plus-button {
       margin-left: @pad1;
+      margin-bottom: 9px;
+      margin-top: 9px;
       position: absolute;
       display: inline-block;
       vertical-align: middle;
       .mui-floating-action-button {
         position: relative;
         .mui-floating-action-button-container {
-          width: 36px;
-          height: 36px;
+          width: 42px;
+          height: 42px;
         }
       }
       .ion-plus-round {
@@ -95,19 +93,21 @@ html, body {
       }
     }
 
-    .channels-panel-save-buttons-div {
-      text-align: center;
-      .div-button-container-final-button {
-        display: inline-block;
-        margin-right: 10px;
+    .top-bar-container-inner {
+      width: 100%;
+      margin: auto;
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+      .channels-panel-save-buttons-div {
+        text-align: center;
+        .div-button-container-final-button {
+          display: inline-block;
+          margin-right: 10px;
+        }
       }
     }
-  }
-  
-  .top-bar-container {
-    width: 100%;
-    height: 60px;
-    position: relative;
+
   }
   .top-bar-container:before {
     content: '';
@@ -203,25 +203,25 @@ html, body {
             background-color: rgba(0, 0, 0, 0.4);
             .icon-name-wrapper {
               width: 100%;
-              //height: 100%;
               position: absolute;
               bottom: 10%;
               overflow: auto;
               .channel-icon {
+                cursor: pointer;
                 width: 15%;
                 height: 0;
                 padding-bottom: 15%;
                 margin-left: 2%;
                 background-color: white;
-                //position: absolute;
-                //bottom: 0;
+                position: relative;
+                float: left;
                 vertical-align: bottom;
               }
               .name-wrapper {
-                //height: 100%;
                 width: 83%;
                 display: inline-block;
                 position: absolute;
+                float: right;
                 top: 20%;
                 .channel-name {
                   color: #ffffff;
@@ -274,7 +274,6 @@ html, body {
   }
 }
 
-
 .delete-icon{
   position: absolute;
   right: 10px;
@@ -292,8 +291,12 @@ html, body {
   .shown;
   i {
     color: @color-mui-blue;
+    opacity: 0.5;
     font-size: 5em;
     -webkit-text-stroke: 2px white;
+    &:hover {
+      opacity: 1;
+    }
   }
 }
 
@@ -321,6 +324,22 @@ html, body {
     .vendor(text-stroke-width, 2px);
     .vendor(text-stroke-color, white);
     -webkit-text-stroke: 2px white;
+  }
+}
+
+///////////////   ColorPicker   ////////////
+
+.color-picker {
+  .color-cell {
+    cursor: pointer;
+    display: inline;
+    float: left;
+    &:hover {
+      border: solid black 2px;
+      height: 25px;
+      width: 25px;
+      //position: absolute;
+    }
   }
 }
 

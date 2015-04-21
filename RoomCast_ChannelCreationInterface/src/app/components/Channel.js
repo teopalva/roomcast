@@ -4,6 +4,7 @@ var Mui = require('material-ui');
 var Paper = Mui.Paper;
 var NutellaMixin = require('./NutellaMixin');
 var AnimationMixin = require('./AnimationMixin');
+var ColorPicker = require('./ColorPicker');
 
 /**
  * @prop channelId
@@ -16,19 +17,7 @@ var Channel = React.createClass({
     mixins: [NutellaMixin, AnimationMixin],
 
     componentDidMount: function() {
-        var self = this;
 
-        /*
-        // Style the icon in the corner of the card
-        self.addCSSClass(self.refs.cornerIcon.getDOMNode(), 'hidden');
-        this.refs.cardContainer.getDOMNode().onmouseover = function() {
-            self.addCSSClass(self.refs.cornerIcon.getDOMNode(), 'shown');
-        };
-
-        this.refs.cardContainer.getDOMNode().onmouseout = function() {
-            self.removeCSSClass(self.refs.cornerIcon.getDOMNode(), 'shown');
-        };
-*/
     },
 
     /**
@@ -39,8 +28,16 @@ var Channel = React.createClass({
     getInitialState: function () {
         return  {
             selected: false,
-            flipped: false
+            flipped: false,
+            modifyField: null
         }
+    },
+
+    setModifyField: function(field) {
+        console.log('setting', field);
+        this.setState({
+            modifyField: field
+        });
     },
 
     componentWillReceiveProps: function(nextProps) {
@@ -53,11 +50,42 @@ var Channel = React.createClass({
                 selected: false
             });
         }
+
+    },
+
+    componentWillUpdate: function() {
+        this.prepareForRender();
     },
 
     handleSelectChannel: function() {
         this.props.onSelectChannel(this.props.channelId);
-        console.log('click');
+    },
+
+    prepareForRender: function() {
+        var self = this;
+        console.log('prepare for render');
+
+        if(this.state.selected) {
+            console.log('selected, ', this.state.modifyField);
+
+            switch (this.state.modifyField) {
+
+                case 'icon':
+                    var iconWidth = Math.ceil(self.refs.channelIcon.getDOMNode().offsetWidth);
+                    var iconHeight = Math.ceil(self.refs.channelIcon.getDOMNode().offsetHeight);
+                    var n = self.refs.colorPicker.cellsPerRow_;
+                    this.colorCellWidth_ = iconWidth / n;
+                    this.colorCellHeight_ = iconHeight / n;
+                    break;
+
+                default:
+                // do nothing
+            }
+        }
+    },
+
+    handleModifyIcon: function() {
+        this.setModifyField('icon');
     },
 
     flipCard: function() {
@@ -101,37 +129,51 @@ var Channel = React.createClass({
 
     render: function() {
 
-        var cardStyle;
-        var onTouchTap;
-        var cornerIcon;
-
-        if(!this.state.selected) {
-            cardStyle = ' catalogue-card-style';
-            cardStyle += ' hovering-layer';
-            onTouchTap = this.handleSelectChannel;
-            cornerIcon = <div className='corner-icon delete-icon' > <i className="fa fa-times" ref='cornerIcon' onTouchTap={this.handleDeleteCard}></i> </div>;
-        }
-        else {
-            cardStyle = ' detail-card-style';
-            cornerIcon = <div className='corner-icon flip-icon' > <i className="fa fa-info-circle" ref='cornerIcon' onTouchTap={this.flipCard} ></i> </div>;
-        }
+        var colorPicker = null;
+        var onTouchTapIcon = this.handleModifyIcon;
 
         var style = {
             backgroundImage: 'url(' + this.getUrlForAsset(this.props.channel.screenshot, 'screenshot') + ')',
             backgroundSize: '100% 100%'
         };
 
-        return (
+        var iconStyle = {
+            backgroundColor: this.props.channel.icon
+        };
 
-            <div className={'card-container' + cardStyle} ref='cardContainer' >
+        if(this.state.selected) {
+            if (this.state.modifyField === 'icon') {
+                colorPicker =
+                    <ColorPicker ref='colorPicker'
+                                 cellSize={[this.colorCellWidth_, this.colorCellHeight_]}
+                                 onPickColor={this.props.onPickColor}/>;
+                onTouchTapIcon = null;
+            }
+        }
+
+        var cardBack =
+            <div className='card-back hidden-card' ref='cardBack'>
+
+                <Paper className='channel'>
+
+                    <div className='corner-icon flip-icon'> <i className="fa fa-info-circle" onTouchTap={this.flipCardBack} ></i> </div>
+
+                    text
+
+                </Paper>
+
+            </div>;
+
+        var catalogueCard =
+            <div className='card-container hovering-layer catalogue-card-style' ref='cardContainer' >
 
                 <div className='card' ref='card'>
 
-                    <div className={'card-front' } ref='cardFront'>
+                    <div className='card-front' ref='cardFront'>
 
-                        {cornerIcon}
+                        <div className='corner-icon delete-icon' > <i className="fa fa-times" ref='cornerIcon' onTouchTap={this.handleDeleteCard}></i> </div>
 
-                        <Paper className='channel' style={style} onTouchTap={onTouchTap} >
+                        <Paper className='channel' style={style} onTouchTap={this.handleSelectChannel} >
 
                             <div className='channel-div'>
 
@@ -139,7 +181,7 @@ var Channel = React.createClass({
 
                                     <div className='icon-name-wrapper'>
 
-                                        <img className='channel-icon'> </img>
+                                        <div className='channel-icon' ref='channelIcon' style={iconStyle} > </div>
 
                                         <div className='name-wrapper'>
                                             <p className='channel-name'> {this.props.channel.name} </p>
@@ -156,23 +198,57 @@ var Channel = React.createClass({
 
                     </div>
 
-                    <div className='card-back hidden-card' ref='cardBack'>
-                        <Paper className='channel'>
+                    {cardBack}
 
-                            <div className='corner-icon flip'> <i className="fa fa-info-circle" onTouchTap={this.flipCardBack} ></i> </div>
+                </div>
 
-                            text
+            </div>;
+
+        var detailCard =
+            <div className='card-container detail-card-style' ref='cardContainer' >
+
+                <div className='card' ref='card'>
+
+                    <div className='card-front' ref='cardFront'>
+
+                        <div className='corner-icon flip-icon' > <i className="fa fa-info-circle" ref='cornerIcon' onTouchTap={this.flipCard} ></i> </div>
+
+                        <Paper className='channel' style={style} >
+
+                            <div className='channel-div'>
+
+                                <div className='channel-caption'>
+
+                                    <div className='icon-name-wrapper'>
+
+                                        <div className='channel-icon' ref='channelIcon' style={iconStyle} onTouchTap={onTouchTapIcon} >
+
+                                            {colorPicker}
+
+                                        </div>
+
+                                        <div className='name-wrapper'>
+                                            <p className='channel-name'> {this.props.channel.name} </p>
+                                            <p className='channel-description'> description... </p>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
 
                         </Paper>
 
                     </div>
 
+                    {cardBack}
+
                 </div>
 
-            </div>
+            </div>;
 
-
-        );
+        return this.state.selected? detailCard : catalogueCard;
 
     }
 
