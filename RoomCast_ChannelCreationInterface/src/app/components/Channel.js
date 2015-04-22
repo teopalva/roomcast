@@ -5,6 +5,7 @@ var Paper = Mui.Paper;
 var NutellaMixin = require('./NutellaMixin');
 var AnimationMixin = require('./AnimationMixin');
 var ColorPicker = require('./ColorPicker');
+var TextField = Mui.TextField;
 
 /**
  * @prop channelId
@@ -34,7 +35,6 @@ var Channel = React.createClass({
     },
 
     setModifyField: function(field) {
-        console.log('setting', field);
         this.setState({
             modifyField: field
         });
@@ -101,6 +101,30 @@ var Channel = React.createClass({
         node.className = node.className.replace(regex, '');
     },
 
+    handleSetName: function() {
+        var value = this.refs['textFieldName' + this.props.channelId].getValue();
+        this.props.onSetName(value);
+    },
+
+    handleSetDescription: function(e) {
+        var value = this.refs['textFieldDescription' + this.props.channelId].getValue();
+            this.props.onSetDescription(value);
+    },
+
+    validateInputName: function() {
+        var value = this.refs['textFieldName' + this.props.channelId].getValue();
+        if(value.length > 30) {
+            event.returnValue = false;
+        }
+    },
+
+    validateInputDescription: function() {
+        var value = this.refs['textFieldDescription' + this.props.channelId].getValue();
+        if(value.length > 50) {
+            event.returnValue = false;
+        }
+    },
+
     render: function() {
 
         var colorPicker = null;
@@ -158,7 +182,7 @@ var Channel = React.createClass({
 
                                         <div className='name-wrapper'>
                                             <p className='channel-name'> {this.props.channel.name} </p>
-                                            <p className='channel-description'> description... </p>
+                                            <p className='channel-description'> {this.props.channel.description} </p>
                                         </div>
 
                                     </div>
@@ -198,9 +222,22 @@ var Channel = React.createClass({
 
                                         <div className='channel-icon modifiable' ref='channelIcon' style={iconStyle} onTouchTap={onTouchTapIcon} > </div>
 
-                                        <div className='name-wrapper'>
-                                            <p className='channel-name'> {this.props.channel.name} </p>
-                                            <p className='channel-description'> description... </p>
+                                        <div className='name-wrapper-edit'>
+
+                                            <TextField
+                                                ref={'textFieldName' + this.props.channelId}
+                                                hintText={'Channel name'}
+                                                value={this.props.channel.name}
+                                                onChange={this.handleSetName}
+                                                onKeyPress={this.validateInputName} />
+
+                                            <TextField
+                                                ref={'textFieldDescription' + this.props.channelId}
+                                                hintText={'Channel description'}
+                                                value={this.props.channel.description}
+                                                onChange={this.handleSetDescription}
+                                                onKeyPress={this.validateInputDescription} />
+
                                         </div>
 
                                     </div>

@@ -236,7 +236,9 @@ var Main = React.createClass({
                                 selected={self.state.selectedChannel === id}
                                 onSelectChannel={self.handleSelectedChannel}
                                 onDeleteCard={self.handleDeleteCard}
-                                onPickColor={self.handleSetIcon} />
+                                onPickColor={self.handleSetIcon}
+                                onSetName={self.handleSetName}
+                                onSetDescription={self.handleSetDescription} />
                         </div>);
                 }
             });

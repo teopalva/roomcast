@@ -25,17 +25,17 @@
         <entry file="file://$PROJECT_DIR$/src/app/components/main.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="187" column="58" selection-start-line="187" selection-start-column="38" selection-end-line="187" selection-end-column="58" />
+              <caret line="166" column="4" selection-start-line="166" selection-start-column="4" selection-end-line="166" selection-end-column="4" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Channel.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Channel.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/components/Channel.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.5532544">
-              <caret line="146" column="83" selection-start-line="146" selection-start-column="83" selection-end-line="146" selection-end-column="83" />
+            <state vertical-scroll-proportion="-11.814815">
+              <caret line="224" column="73" selection-start-line="224" selection-start-column="73" selection-end-line="224" selection-end-column="73" />
               <folding />
             </state>
           </provider>
@@ -61,11 +61,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.less" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.less" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/less/main.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.916667">
-              <caret line="299" column="30" selection-start-line="299" selection-start-column="30" selection-end-line="299" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.7469325">
+              <caret line="395" column="21" selection-start-line="395" selection-start-column="21" selection-end-line="395" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -93,9 +93,9 @@
         <option value="$PROJECT_DIR$/src/app/components/CataloguePage.js" />
         <option value="$PROJECT_DIR$/src/web/index.html" />
         <option value="$PROJECT_DIR$/src/app/components/TopBar.js" />
-        <option value="$PROJECT_DIR$/src/app/components/main.js" />
         <option value="$PROJECT_DIR$/src/app/components/ColorCell.js" />
         <option value="$PROJECT_DIR$/src/app/components/ColorPicker.js" />
+        <option value="$PROJECT_DIR$/src/app/components/main.js" />
         <option value="$PROJECT_DIR$/src/app/components/Channel.js" />
         <option value="$PROJECT_DIR$/src/less/main.less" />
       </list>
@@ -888,23 +888,23 @@
     <entry file="file://$PROJECT_DIR$/src/app/components/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="187" column="58" selection-start-line="187" selection-start-column="38" selection-end-line="187" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/less/main.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.916667">
-          <caret line="299" column="30" selection-start-line="299" selection-start-column="30" selection-end-line="299" selection-end-column="30" />
+          <caret line="166" column="4" selection-start-line="166" selection-start-column="4" selection-end-line="166" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/components/Channel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.5532544">
-          <caret line="146" column="83" selection-start-line="146" selection-start-column="83" selection-end-line="146" selection-end-column="83" />
+        <state vertical-scroll-proportion="-11.814815">
+          <caret line="224" column="73" selection-start-line="224" selection-start-column="73" selection-end-line="224" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/less/main.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7469325">
+          <caret line="395" column="21" selection-start-line="395" selection-start-column="21" selection-end-line="395" selection-end-column="21" />
           <folding />
         </state>
       </provider>
