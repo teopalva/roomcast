@@ -8,6 +8,7 @@ var ColorPicker = require('./ColorPicker');
 var TextField = Mui.TextField;
 var RadioButtonGroup = Mui.RadioButtonGroup;
 var RadioButton = Mui.RadioButton;
+var FlatButton = Mui.FlatButton;
 
 /**
  * @prop channelId
@@ -263,6 +264,8 @@ var Channel = React.createClass({
 
                         {colorPicker}
 
+
+
                         <div className='corner-icon flip-icon' > <i className="ion ion-android-settings" ref='cornerIcon' onTouchTap={this.flipCard} ></i> </div>
 
                         <Paper className='channel' style={style} >
@@ -270,6 +273,13 @@ var Channel = React.createClass({
                             <div className='channel-div'>
 
                                 <div className='channel-caption'>
+
+                                    <div className='upload-button-container' >
+                                        <FlatButton secondary={true}>
+                                            <span className="mui-flat-button-label upload-image-button">Upload screenshot</span>
+                                            <input type="file" id="imageButton" className="upload-image-input"></input>
+                                        </FlatButton>
+                                    </div>
 
                                     <div className='icon-name-wrapper'>
 

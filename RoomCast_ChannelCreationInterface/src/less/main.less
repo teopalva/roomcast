@@ -36,6 +36,7 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 .hidden-card {
   opacity: 0;
   pointer-events: none;
+  cursor: default;
 }
 .shown {
   opacity: 1;
@@ -451,4 +452,42 @@ html, body {
 }
 .mui-radio-button:last-child {
   margin-bottom: 10px;
+}
+
+.upload-button-container {
+  position: absolute;
+  z-index: 30;
+  margin-left: 2%;
+  margin-top: -50px;
+  .mui-flat-button {
+    background-color: rgba(255,255,255,0.8);
+    &:hover {
+      background-color: rgba(255,255,255,1);
+    }
+  }
+}
+
+.upload-image-button {
+  white-space: pre;
+  cursor: pointer;
+  position: relative;
+  text-align: center;
+  line-height: 24px;
+  width: 50%;
+  top: 0;
+  left: 0;
+  margin-top: 24px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.upload-image-input {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
 }
