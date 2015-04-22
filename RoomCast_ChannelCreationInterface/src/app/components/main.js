@@ -146,7 +146,7 @@ var Main = React.createClass({
             "screenshot": "roomcast-default-channel.png",
             "description": "",
             "url": "",
-            "type": ""
+            "type": "web"
         };
 
         this.setChannels(channels);
@@ -238,7 +238,9 @@ var Main = React.createClass({
                                 onDeleteCard={self.handleDeleteCard}
                                 onPickColor={self.handleSetIcon}
                                 onSetName={self.handleSetName}
-                                onSetDescription={self.handleSetDescription} />
+                                onSetDescription={self.handleSetDescription}
+                                onSetType={self.handleSetType}
+                                onSetUrl={self.handleSetUrl} />
                         </div>);
                 }
             });

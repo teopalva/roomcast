@@ -270,6 +270,10 @@ html, body {
         position: relative;
         background: white;
         margin-bottom: 20px;
+        .mui-paper-container {
+          height: 100%;
+          position: absolute;
+        }
       }
     }
   }
@@ -306,6 +310,35 @@ html, body {
   &:hover {
     box-shadow: inset 0 0 0 1000px rgba(0,0,0,0.8);
     border: solid 1px white;
+  }
+}
+
+//////////////   Card back   ////////////
+
+
+.flex-centered {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flex-content {
+  width: 100%;
+  margin-left: 12%;
+  font-size: 1.5vw;
+  div:first-child {
+  }
+}
+
+.url-div {
+  span {
+    cursor: default;
+    margin-right: 5px;
+    font-size: 1.3vw;
+  }
+  div:first-child {
+    float: left;
   }
 }
 
@@ -364,8 +397,12 @@ html, body {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.23) !important;
 }
 
-.mui-text-field .mui-text-field-input, .mui-text-field .mui-text-field-textarea {
+.card-front .mui-text-field .mui-text-field-input, .mui-text-field .mui-text-field-textarea {
   color: white;
+}
+
+.card-back .mui-text-field .mui-text-field-input, .mui-text-field .mui-text-field-textarea {
+  color: black;
 }
 
 .name-wrapper-edit {
@@ -376,7 +413,8 @@ html, body {
   top: 0;
 }
 
-.mui-text-field {
+.card-front .mui-text-field {
+  height: 43px;
   &:first-child {
     width: 256px - 30;
     margin: 0 0 0 3%;
@@ -398,4 +436,19 @@ html, body {
     padding: 0 0 0 0;
     line-height: 0;
   }
+}
+
+.card-back .mui-text-field {
+  bottom: -17px;
+}
+
+.mui-enhanced-switch-input {
+
+}
+
+.mui-radio-button:first-child {
+  margin-bottom: 30px;
+}
+.mui-radio-button:last-child {
+  margin-bottom: 10px;
 }

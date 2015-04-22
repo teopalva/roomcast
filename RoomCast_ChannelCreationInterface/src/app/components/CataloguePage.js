@@ -102,7 +102,8 @@ var CataloguePage = React.createClass({
                 <TopBar
                     onSave={this.enableSaveDialog}
                     onUndo={this.enableUndoDialog}
-                    onAddCard={this.props.onAddCard} />
+                    onAddCard={this.props.onAddCard}
+                    onExitSelection={this.props.onExitSelection} />
 
                 <div className='content-div'>
                     <div className="grid" ref='gridRef' >

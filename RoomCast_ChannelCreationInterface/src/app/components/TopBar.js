@@ -8,6 +8,7 @@ var FloatingActionButton = Mui.FloatingActionButton;
 var TopBar = React.createClass({
 
     handleAddCard: function() {
+        this.props.onExitSelection();
         this.scrollTo(document.body, 0, 200, this.props.onAddCard);
     },
 

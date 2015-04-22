@@ -6,6 +6,8 @@ var NutellaMixin = require('./NutellaMixin');
 var AnimationMixin = require('./AnimationMixin');
 var ColorPicker = require('./ColorPicker');
 var TextField = Mui.TextField;
+var RadioButtonGroup = Mui.RadioButtonGroup;
+var RadioButton = Mui.RadioButton;
 
 /**
  * @prop channelId
@@ -106,9 +108,18 @@ var Channel = React.createClass({
         this.props.onSetName(value);
     },
 
-    handleSetDescription: function(e) {
+    handleSetDescription: function() {
         var value = this.refs['textFieldDescription' + this.props.channelId].getValue();
-            this.props.onSetDescription(value);
+        this.props.onSetDescription(value);
+    },
+
+    handleSetType: function(e, value) {
+        this.props.onSetType(value);
+    },
+
+    handleSetUrl: function() {
+        var value = this.refs['textFieldUrl' + this.props.channelId].getValue();
+        this.props.onSetUrl(value);
     },
 
     validateInputName: function() {
@@ -148,6 +159,18 @@ var Channel = React.createClass({
             }
         }
 
+        var urlPlaceholder;
+        switch(this.props.channel.type) {
+            case 'web':
+                urlPlaceholder = 'URL:';
+                break;
+            case 'iOS':
+                urlPlaceholder = 'Custom URL:';
+                break;
+            default:
+                urlPlaceholder = 'URL:';
+        }
+
         var cardBack =
             <div className='card-back hidden-card' ref='cardBack'>
 
@@ -155,7 +178,37 @@ var Channel = React.createClass({
 
                     <div className='corner-icon flip-icon'> <i className="ion ion-android-settings" onTouchTap={this.flipCardBack} ></i> </div>
 
-                    text
+                    <div className='flex-centered' >
+                        <div className='flex-content' >
+
+                            <RadioButtonGroup
+                                name="radio_buttons"
+                                ref={'radioButtons' + this.props.channelId}
+                                defaultSelected={this.props.channel.type}
+                                onChange={this.handleSetType} >
+                                <RadioButton
+                                    value="web"
+                                    label="Web channel"
+                                    defaultChecked={true} />
+                                <RadioButton
+                                    value="iOS"
+                                    label="iOS app channel" />
+                            </RadioButtonGroup>
+
+                            <div className='url-div' >
+
+                                <span> {urlPlaceholder} </span>
+                                <TextField
+                                    ref={'textFieldUrl' + this.props.channelId}
+                                    hintText={''}
+                                    value={this.props.channel.url}
+                                    multiLine={true}
+                                    onChange={this.handleSetUrl} />
+
+                            </div>
+                        </div>
+
+                    </div>
 
                 </Paper>
 
