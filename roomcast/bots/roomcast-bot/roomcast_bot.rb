@@ -34,7 +34,7 @@ nutella.net.subscribe('configs/update', lambda do |message, component_id, resour
 
                                         # Notify Update
                                         configs_db.transaction {
-                                          
+
                                           # Notify change of all configs
                                           publish_configs_update(new_configs)
 
@@ -162,6 +162,37 @@ nutella.net.handle_requests('channels/retrieve', lambda do |request, component_i
                                                    reply
                                                  end
                                                end)
+
+nutella.net.subscribe('channel/storeImage', lambda do |message, component_id, resource_id|
+
+                                            puts 'channel/storeImage:'
+                                            puts message
+                                            puts message['data']
+
+                                            begin
+
+                                              # Update
+                                              if message != nil
+                                                image = JSON.parse(message['data'])
+                                                puts 'Parsed image:'
+                                                puts image
+                                                File.open(message['name'],'wb') do |f|
+                                                  f.write params[image].read
+                                                end
+                                              end
+
+                                            rescue => exception
+
+                                              puts exception
+                                              puts exception.backtrace
+                                              raise exception
+                                            end
+
+                                            puts 'Stored image'
+
+                                            # Notify Update
+
+                                          end)
 
 
 def publish_configs_update(configs)

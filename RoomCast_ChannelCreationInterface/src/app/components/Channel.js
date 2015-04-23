@@ -148,6 +148,9 @@ var Channel = React.createClass({
 
             // Set name
             this.props.onSetScreenshot(node.files[0].name);
+            // Store name
+            this['imageData' + this.props.channelId] = [];
+            this['imageData' + this.props.channelId][0] = node.files[0].name;
         }
     },
 
@@ -158,12 +161,16 @@ var Channel = React.createClass({
         this.refs['channel' + this.props.channelId].getDOMNode().style.backgroundImage = 'url(' + imageData + ')';
 
         // Store locally
-        this['imageData' + this.props.channelId] = imageData;
+        this['imageData' + this.props.channelId] [1] = imageData;
 
         // Serialize and send to bot
         var json_text = JSON.stringify(imageData, null, 2);
         console.log(json_text);
-        this['serializedImageData' + this.props.channelId] = json_text;
+        this['serializedImageData' + this.props.channelId] = [];
+        this['serializedImageData' + this.props.channelId] [0] = this['imageData' + this.props.channelId] [0];
+        this['serializedImageData' + this.props.channelId] [1] = json_text;
+
+        this.handleStoreImageOnServer();
 
     },
 
@@ -173,7 +180,11 @@ var Channel = React.createClass({
     handleStoreImageOnServer: function() {
         if(this['imageData' + this.props.channelId]) {
             nutella.net.publish('channel/deleteImage', this.oldImageUrl_);
-            nutella.net.publish('channel/storeImage', this['serializedImageData' + this.props.channelId]);
+            //nutella.net.publish('channel/storeImage', this['serializedImageData' + this.props.channelId]);
+            var name = this['serializedImageData' + this.props.channelId][0];
+            var data = this['serializedImageData' + this.props.channelId][1];
+            nutella.net.publish('channel/storeImage', {'name': name, 'data': data});
+            console.log(this['serializedImageData' + this.props.channelId]);
         }
     },
 
@@ -184,7 +195,7 @@ var Channel = React.createClass({
 
         var backgroundImage;
         if(this['imageData' + this.props.channelId]) {
-            backgroundImage = 'url(' + this['imageData' + this.props.channelId] + ')';
+            backgroundImage = 'url(' + this['imageData' + this.props.channelId][1] + ')';
         } else {
             backgroundImage = 'url(' + this.getUrlForAsset(this.props.channel.screenshot, 'screenshot') + ')';
         }
