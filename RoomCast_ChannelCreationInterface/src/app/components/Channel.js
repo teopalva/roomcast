@@ -179,12 +179,9 @@ var Channel = React.createClass({
      */
     handleStoreImageOnServer: function() {
         if(this['imageData' + this.props.channelId]) {
-            nutella.net.publish('channel/deleteImage', this.oldImageUrl_);
-            //nutella.net.publish('channel/storeImage', this['serializedImageData' + this.props.channelId]);
-            var name = this['serializedImageData' + this.props.channelId][0];
+            var id = this.props.channelId;
             var data = this['serializedImageData' + this.props.channelId][1];
-            nutella.net.publish('channel/storeImage', {'name': name, 'data': data});
-            console.log(this['serializedImageData' + this.props.channelId]);
+            nutella.net.publish('channel/storeImage', {'id': id, 'data': data});
         }
     },
 
@@ -197,7 +194,8 @@ var Channel = React.createClass({
         if(this['imageData' + this.props.channelId]) {
             backgroundImage = 'url(' + this['imageData' + this.props.channelId][1] + ')';
         } else {
-            backgroundImage = 'url(' + this.getUrlForAsset(this.props.channel.screenshot, 'screenshot') + ')';
+            //backgroundImage = 'url(' + this.getUrlForAsset(this.props.channel.screenshot, 'screenshot') + ')';
+            backgroundImage = 'url(' + this.props.backgroundImage + ')';
         }
         var style = {
             backgroundImage: backgroundImage,

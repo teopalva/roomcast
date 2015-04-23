@@ -3,12 +3,8 @@ var React = require('react');
 var Channel = require('./Channel');
 var CataloguePage = require('./CataloguePage');
 var DetailPage = require('./DetailPage');
-//var PageSliderMixin = require('./PageSliderMixin');
-//var Router = require('./Router');
 
 var Main = React.createClass({
-
-    //mixins: [PageSliderMixin],
 
     componentWillMount: function() {
         var self = this;
@@ -18,31 +14,13 @@ var Main = React.createClass({
             nutella.net.request('channels/retrieve', 'all', function (response) {
                 self.setChannels(response);
 
+                nutella.net.request('channels/retrieveImages', 'all', function (response) {
+                    self.setbackgroundImages(response);
+                });
+
                 nutella.net.subscribe('channels/updated', function (message, channel, from_component_id, from_resource_id) {
                     self.setChannels(message);
                 });
-
-                /*
-                 // Add routing
-                 //var channels = self.getChannels();
-                 Router.addRoute('', function () {
-                 self.slidePage(
-                 <CataloguePage
-                 key='home'
-                 channels={self.getChannels()}
-                 onSave={self.handleSave}
-                 onUndo={self.handleUndo}/>
-                 );
-                 }.bind(self));
-                 Router.addRoute('detail', function () {
-                 self.slidePage(
-                 <DetailPage
-                 channel={self.state.channels[self.state.selectedChannel]}/>
-                 );
-                 }.bind(self));
-                 Router.start();
-                 */
-
             });
 
         } catch(e) {
@@ -51,11 +29,16 @@ var Main = React.createClass({
 
     },
 
+    componentDidMount: function() {
+
+    },
+
     getInitialState: function () {
         return  {
             channels: [],
             selectedChannel: null,
-            page: 'catalogue'
+            page: 'catalogue',
+            backgroundImages: null
         }
     },
 
@@ -75,6 +58,18 @@ var Main = React.createClass({
         this.setState({
             selectedChannel: selectedChannel
         });
+    },
+
+    setbackgroundImages: function(b) {
+        this.setState({
+            backgroundImages: b
+        });
+    },
+
+    setbackgroundImageForChannel: function(chId, img) {
+        var backgroundImages = this.state.backgroundImages;
+        backgroundImages[chId] = img;
+        this.setbackgroundImages(backgroundImages);
     },
 
     /**
@@ -234,6 +229,7 @@ var Main = React.createClass({
                                 ref={ref+sel}
                                 channelId={id}
                                 channel={channels[id]}
+                                backgroundImage={self.state.backgroundImages? self.state.backgroundImages[id] : null}
                                 selected={self.state.selectedChannel === id}
                                 onSelectChannel={self.handleSelectedChannel}
                                 onDeleteCard={self.handleDeleteCard}

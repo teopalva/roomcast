@@ -15,6 +15,7 @@ puts 'Initializing RoomCast...'
 # Open the database
 configs_db = nutella.persist.getJsonStore('db/configs.json')
 channels_db = nutella.persist.getJsonStore('db/channels.json')
+channelsData_db = nutella.persist.getJsonStore('db/channels-data.json')
 
 nutella.net.subscribe('configs/update', lambda do |message, component_id, resource_id|
 
@@ -167,18 +168,18 @@ nutella.net.subscribe('channel/storeImage', lambda do |message, component_id, re
 
                                             puts 'channel/storeImage:'
                                             puts message
-                                            puts message['data']
+                                            puts message['id']
 
                                             begin
 
                                               # Update
                                               if message != nil
-                                                image = JSON.parse(message['data'])
-                                                puts 'Parsed image:'
-                                                puts image
-                                                File.open(message['name'],'wb') do |f|
-                                                  f.write params[image].read
-                                                end
+                                                channelsData_db.transaction {
+                                                  db = channelsData_db['images']
+                                                  id = '%d' % message['id']
+                                                  db[id] = []
+                                                  db[id] = message['data']
+                                                }
                                               end
 
                                             rescue => exception
@@ -191,9 +192,22 @@ nutella.net.subscribe('channel/storeImage', lambda do |message, component_id, re
                                             puts 'Stored image'
 
                                             # Notify Update
+                                            # managed at the end by channels update
 
                                           end)
 
+nutella.net.handle_requests('channels/retrieveImages', lambda do |request, component_id, resource_id|
+                                                       reply = {}
+                                                       if request == {}
+                                                         reply
+                                                       elsif request == 'all'
+                                                         channelsData_db.transaction {
+                                                           reply = channelsData_db['images']
+                                                         }
+                                                         puts reply
+                                                         reply
+                                                       end
+                                                     end)
 
 def publish_configs_update(configs)
   nutella.net.publish('configs/updated', configs)
