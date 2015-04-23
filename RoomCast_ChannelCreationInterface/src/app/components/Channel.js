@@ -21,7 +21,8 @@ var Channel = React.createClass({
     mixins: [NutellaMixin, AnimationMixin],
 
     componentDidMount: function() {
-
+        this.oldImageUrl_ = this.props.channel.screenshot;
+        this['imageData' + this.props.channelId] = null;
     },
 
     /**
@@ -137,13 +138,58 @@ var Channel = React.createClass({
         }
     },
 
+    handleUploadImage: function(e) {
+        console.log('handle', e, e.target, e.target.files);
+        var node = e.target;
+        if (node.files && node.files[0]) {
+            var reader = new FileReader();
+            reader.onload = this.handleLoadedImage;
+            reader.readAsDataURL(node.files[0]);
+
+            // Set name
+            this.props.onSetScreenshot(node.files[0].name);
+        }
+    },
+
+    handleLoadedImage: function(e) {
+        console.log(e.target);
+        var imageData = e.target.result;
+
+        this.refs['channel' + this.props.channelId].getDOMNode().style.backgroundImage = 'url(' + imageData + ')';
+
+        // Store locally
+        this['imageData' + this.props.channelId] = imageData;
+
+        // Serialize and send to bot
+        var json_text = JSON.stringify(imageData, null, 2);
+        console.log(json_text);
+        this['serializedImageData' + this.props.channelId] = json_text;
+
+    },
+
+    /**
+     * Called on every Channel every time Save Changes is pressed
+     */
+    handleStoreImageOnServer: function() {
+        if(this['imageData' + this.props.channelId]) {
+            nutella.net.publish('channel/deleteImage', this.oldImageUrl_);
+            nutella.net.publish('channel/storeImage', this['serializedImageData' + this.props.channelId]);
+        }
+    },
+
     render: function() {
 
         var colorPicker = null;
         var onTouchTapIcon = this.handleModifyIcon;
 
+        var backgroundImage;
+        if(this['imageData' + this.props.channelId]) {
+            backgroundImage = 'url(' + this['imageData' + this.props.channelId] + ')';
+        } else {
+            backgroundImage = 'url(' + this.getUrlForAsset(this.props.channel.screenshot, 'screenshot') + ')';
+        }
         var style = {
-            backgroundImage: 'url(' + this.getUrlForAsset(this.props.channel.screenshot, 'screenshot') + ')',
+            backgroundImage: backgroundImage,
             backgroundSize: '100% 100%'
         };
 
@@ -224,7 +270,10 @@ var Channel = React.createClass({
 
                         <div className='corner-icon delete-icon' > <i className="fa fa-times" ref='cornerIcon' onTouchTap={this.handleDeleteCard}></i> </div>
 
-                        <Paper className='channel' style={style} onTouchTap={this.handleSelectChannel} >
+                        <Paper className='channel'
+                               ref={'channel' + this.props.channelId}
+                               style={style}
+                               onTouchTap={this.handleSelectChannel} >
 
                             <div className='channel-div'>
 
@@ -268,7 +317,9 @@ var Channel = React.createClass({
 
                         <div className='corner-icon flip-icon' > <i className="ion ion-android-settings" ref='cornerIcon' onTouchTap={this.flipCard} ></i> </div>
 
-                        <Paper className='channel' style={style} >
+                        <Paper className='channel'
+                               ref={'channel' + this.props.channelId}
+                               style={style} >
 
                             <div className='channel-div'>
 
@@ -277,7 +328,7 @@ var Channel = React.createClass({
                                     <div className='upload-button-container' >
                                         <FlatButton secondary={true}>
                                             <span className="mui-flat-button-label upload-image-button">Upload screenshot</span>
-                                            <input type="file" id="imageButton" className="upload-image-input"></input>
+                                            <input type="file" id="imageButton" className="upload-image-input" onChange={this.handleUploadImage} ></input>
                                         </FlatButton>
                                     </div>
 

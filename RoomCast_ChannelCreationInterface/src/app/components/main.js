@@ -98,6 +98,7 @@ var Main = React.createClass({
             self.setChannels(response);
         });
         this.setSelectedChannel(null);
+        // TODO add set to null the screenshots stored locally on each channel
     },
 
     handleSelectedChannel: function(selectedChannel) {
@@ -240,7 +241,8 @@ var Main = React.createClass({
                                 onSetName={self.handleSetName}
                                 onSetDescription={self.handleSetDescription}
                                 onSetType={self.handleSetType}
-                                onSetUrl={self.handleSetUrl} />
+                                onSetUrl={self.handleSetUrl}
+                                onSetScreenshot={self.handleSetScreenshot}/>
                         </div>);
                 }
             });
