@@ -170,8 +170,6 @@ var Channel = React.createClass({
         this['serializedImageData' + this.props.channelId] [0] = this['imageData' + this.props.channelId] [0];
         this['serializedImageData' + this.props.channelId] [1] = json_text;
 
-        this.handleStoreImageOnServer();
-
     },
 
     /**
@@ -194,7 +192,6 @@ var Channel = React.createClass({
         if(this['imageData' + this.props.channelId]) {
             backgroundImage = 'url(' + this['imageData' + this.props.channelId][1] + ')';
         } else {
-            //backgroundImage = 'url(' + this.getUrlForAsset(this.props.channel.screenshot, 'screenshot') + ')';
             backgroundImage = 'url(' + this.props.backgroundImage + ')';
         }
         var style = {

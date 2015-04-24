@@ -30,7 +30,7 @@ var Main = React.createClass({
     },
 
     componentDidMount: function() {
-
+        this.reactChannels_ = [];
     },
 
     getInitialState: function () {
@@ -82,18 +82,20 @@ var Main = React.createClass({
     },
 
     handleSave: function() {
-        console.log('save');
+        var self = this;
         this.saveLocalCatalogue(true);
+
+        this.getIds().forEach(function(id) {
+            self.refs['channel' + id].handleStoreImageOnServer();
+        });
     },
 
     handleUndo: function() {
         var self = this;
-        console.log('undo');
         nutella.net.request('channels/retrieve', 'all', function (response) {
             self.setChannels(response);
         });
         this.setSelectedChannel(null);
-        // TODO add set to null the screenshots stored locally on each channel
     },
 
     handleSelectedChannel: function(selectedChannel) {
@@ -101,14 +103,21 @@ var Main = React.createClass({
     },
 
     handleExitSelection: function() {
+        var self = this;
+
         this.setState({
             selectedChannel: null
         });
-        if(this.refs.channelSelected) {
-            if(this.refs.channelSelected.state.flipped) {
-                this.refs.channelSelected.flipCardBack();
+
+        this.getIds().forEach(function(id) {
+            var ch = self.refs['channel' + id];
+            if(ch.state.selected) {
+                if(ch.state.flipped) {
+                    ch.flipCardBack();
+                }
             }
-        }
+        });
+
     },
 
     handleDeleteCard: function(id) {
@@ -117,12 +126,8 @@ var Main = React.createClass({
         this.setChannels(channels);
     },
 
-    handleAddCard: function() {
-
+    getIds: function() {
         var channels = this.state.channels;
-        var newChannelId = 1;
-
-        // Find max id
         if(channels.length !== 0) {
             var ids = [];
             for (var c in channels) {
@@ -130,8 +135,17 @@ var Main = React.createClass({
                     ids.push(+c);
                 }
             }
-            newChannelId = Math.max.apply(null, ids) + 1;
         }
+        return ids;
+    },
+
+    handleAddCard: function() {
+
+        var channels = this.state.channels;
+
+        // Find max id
+        var ids = this.getIds();
+        var newChannelId = Math.max.apply(null, ids) + 1;
 
         // Save current catalogue
         this.saveLocalCatalogue();
@@ -173,16 +187,25 @@ var Main = React.createClass({
     },
 
     updateField: function(field, value) {
-        var channels = this.state.channels;
-        var channel = channels[this.state.selectedChannel];
-        channel[field] = value;
-        channels[this.state.selectedChannel] = channel;
-        this.setChannels(channels);
+        //try {
+            var self = this;
+            var channels = this.state.channels;
+            var channel = channels[this.state.selectedChannel];
+            channel[field] = value;
+            channels[this.state.selectedChannel] = channel;
+            this.setChannels(channels);
 
-        // Exit modify field mode
-        if(this.refs.channelSelected) {
-            this.refs.channelSelected.setModifyField(null);
-        }
+            // Exit modify field mode
+            this.getIds().forEach(function (id) {
+                var ch = self.refs['channel' + id];
+                if (ch.state.selected) {
+                    ch.setModifyField(null);
+                }
+            });
+        //}
+        //catch(e) {
+            // Unwanted click, do nothing
+        //}
 
     },
 
@@ -203,6 +226,7 @@ var Main = React.createClass({
         var self = this;
         var channels = this.state.channels;
         var reactChannels = [];
+        self.reactChannels_ = [];
 
         // Show from last in db (most recent)
         if(channels.length !== 0) {
@@ -223,23 +247,27 @@ var Main = React.createClass({
                 if (channels.hasOwnProperty(id)) {
                     var ref = 'channel';
                     var sel = self.state.selectedChannel === id ? 'Selected' : '';
+                    var channel =
+                        <Channel
+                            ref={'channel' + id}
+                            channelId={id}
+                            channel={channels[id]}
+                            backgroundImage={self.state.backgroundImages? self.state.backgroundImages[id] : null}
+                            selected={self.state.selectedChannel === id}
+                            onSelectChannel={self.handleSelectedChannel}
+                            onDeleteCard={self.handleDeleteCard}
+                            onPickColor={self.handleSetIcon}
+                            onSetName={self.handleSetName}
+                            onSetDescription={self.handleSetDescription}
+                            onSetType={self.handleSetType}
+                            onSetUrl={self.handleSetUrl}
+                            onSetScreenshot={self.handleSetScreenshot}/>;
                     reactChannels.push(
                         <div className="col-size">
-                            <Channel
-                                ref={ref+sel}
-                                channelId={id}
-                                channel={channels[id]}
-                                backgroundImage={self.state.backgroundImages? self.state.backgroundImages[id] : null}
-                                selected={self.state.selectedChannel === id}
-                                onSelectChannel={self.handleSelectedChannel}
-                                onDeleteCard={self.handleDeleteCard}
-                                onPickColor={self.handleSetIcon}
-                                onSetName={self.handleSetName}
-                                onSetDescription={self.handleSetDescription}
-                                onSetType={self.handleSetType}
-                                onSetUrl={self.handleSetUrl}
-                                onSetScreenshot={self.handleSetScreenshot}/>
+                            {channel}
                         </div>);
+                    // Store for future ref
+                    self.reactChannels_.push(channel);
                 }
             });
         }
