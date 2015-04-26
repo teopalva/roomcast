@@ -73,7 +73,6 @@ nutella.net.handle_requests('mapping/retrieve', lambda do |request, from|
 nutella.net.subscribe('currentConfig/update', lambda do |message, from|
 
                                               new_config = message
-
                                               puts 'currentConfig/update:'
                                               puts new_config
 
@@ -91,7 +90,6 @@ nutella.net.subscribe('currentConfig/update', lambda do |message, from|
 
 # Reacts to updates to config id by publishing the updated mapping
 nutella.net.subscribe('currentConfig/updated', lambda do |message, from|
-
                                                begin
                                                  configs = configs_db['configs']
                                                  id = '%d' % configs_db['currentConfig']
@@ -116,10 +114,9 @@ nutella.net.handle_requests('currentConfig/retrieve', lambda do |request, from|
 nutella.net.subscribe('channels/update', lambda do |message, from|
 
                                          new_channels = message
-
                                          # Update
                                          if new_channels != nil
-                                           channels_db[:channels] = new_channels
+                                           channels_db['channels'] = new_channels
                                          end
 
                                          # Notify Update

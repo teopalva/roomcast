@@ -9,6 +9,7 @@ var TextField = Mui.TextField;
 var RadioButtonGroup = Mui.RadioButtonGroup;
 var RadioButton = Mui.RadioButton;
 var FlatButton = Mui.FlatButton;
+//var queue = require("queue-async");
 
 /**
  * @prop channelId
@@ -21,8 +22,8 @@ var Channel = React.createClass({
     mixins: [NutellaMixin, AnimationMixin],
 
     componentDidMount: function() {
-        this.oldImageUrl_ = this.props.channel.screenshot;
-        this['imageData' + this.props.channelId] = null;
+        this.imageFile = null;
+        this.imageData_ = null;
     },
 
     /**
@@ -139,50 +140,37 @@ var Channel = React.createClass({
     },
 
     handleUploadImage: function(e) {
-        console.log('handle', e, e.target, e.target.files);
         var node = e.target;
         if (node.files && node.files[0]) {
-
-            
             var reader = new FileReader();
             reader.onload = this.handleLoadedImage;
             reader.readAsDataURL(node.files[0]);
-            // Set name
-            this.props.onSetScreenshot(node.files[0].name);
-            // Store name
-            this['imageData' + this.props.channelId] = [];
-            this['imageData' + this.props.channelId][0] = node.files[0].name;
-
-
+            // Store file for later upload
+            this.imageFile_ = node.files[0];
         }
     },
 
     handleLoadedImage: function(e) {
-        console.log(e.target);
+        // Set as temporary screenshot
         var imageData = e.target.result;
-
+        this.imageData_ = imageData;
         this.refs['channel' + this.props.channelId].getDOMNode().style.backgroundImage = 'url(' + imageData + ')';
-
-        // Store locally
-        this['imageData' + this.props.channelId] [1] = imageData;
-
-        // Serialize and send to bot
-        var json_text = JSON.stringify(imageData, null, 2);
-        console.log(json_text);
-        this['serializedImageData' + this.props.channelId] = [];
-        this['serializedImageData' + this.props.channelId] [0] = this['imageData' + this.props.channelId] [0];
-        this['serializedImageData' + this.props.channelId] [1] = json_text;
-
     },
 
     /**
      * Called on every Channel every time Save Changes is pressed
      */
     handleStoreImageOnServer: function() {
-        if(this['imageData' + this.props.channelId]) {
-            var id = this.props.channelId;
-            var data = this['serializedImageData' + this.props.channelId][1];
-            //nutella.net.publish('channel/storeImage', {'id': id, 'data': data});
+        var self = this;
+        if(this.imageFile_) {
+            ReactMain.imagesQueue++;
+            nutella.net.bin.uploadFile(this.imageFile_, function(url) {
+                self.props.onSetScreenshot(self.props.channelId, url);
+                ReactMain.imagesQueue--;
+                if(ReactMain.imagesQueue === 0) {
+                    self.props.onSaveCallback();
+                }
+            });
         }
     },
 
@@ -192,10 +180,10 @@ var Channel = React.createClass({
         var onTouchTapIcon = this.handleModifyIcon;
 
         var backgroundImage;
-        if(this['imageData' + this.props.channelId]) {
-            backgroundImage = 'url(' + this['imageData' + this.props.channelId][1] + ')';
+        if(this.imageData_) {
+            backgroundImage = 'url(' + this.imageData_ + ')';
         } else {
-            backgroundImage = 'url(' + this.props.backgroundImage + ')';
+            backgroundImage = 'url(' + this.props.channel.screenshot + ')';
         }
         var style = {
             backgroundImage: backgroundImage,
