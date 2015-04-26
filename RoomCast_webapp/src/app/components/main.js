@@ -251,7 +251,6 @@ var Main = React.createClass({
 
                 {backgroundMessage}
 
-
                 <FloatingActionButton className='controlButton'
                                       iconClassName="muidocs-icon-action-grade"
                                       secondary={true}
@@ -273,47 +272,3 @@ var Main = React.createClass({
 });
 
 module.exports = Main;
-
-/*
-var CHANNELS = {
-    '01': {name: 'Admin', icon: '', screenshot: './assets/channels/Roomquake/Admin.png', description: 'description: first channel', url: 'http://matteopalvarini.com/viz/Project3'},
-    '02': {name: 'AggregateView', icon: '', screenshot: './assets/channels/Roomquake/AggregateView.png',  description: '', url:'http://google.it'},
-    '03': {name: 'Seismograph1', icon: '', screenshot: './assets/channels/Roomquake/Seismograph1.png',  description: '', url:'roomquake.seismometer://'},
-    '04': {name: 'Seismograph2', icon: '', screenshot: './assets/channels/Roomquake/Seismograph2.png',  description: '', url:'http://d3js.org'},
-    '05': {name: 'Seismograph3', icon: '', screenshot: './assets/channels/Roomquake/Seismograph3.png',  description: '', url:'roomquake.seismometer://'},
-    '06': {name: 'Seismograph4', icon: '', screenshot: './assets/channels/Roomquake/Seismograph4.png',  description: '', url:'roomquake.seismometer://'},
-    '07': {name: 'StudentsForms', icon: '', screenshot: './assets/channels/Roomquake/StudentsForms.png',  description: '', url:'http://uic.edu'}
-};
-*/
-
-var MAPPING = [{
-    "family": "iPad",
-    "items": [{
-        "name": "iPad1",
-        "channels": ["01", "02", "03", "04", "05", "06", "07"]
-    }, {
-        "name": "iPad2",
-        "channels": []
-    }, {
-        "name": "iPad3",
-        "channels": ["01", "02", "04", "07"]
-    }, {
-        "name": "iPad4",
-        "channels": ["01", "02", "03", "04", "05", "06", "07"]
-    }, {
-        "name": "iPad5",
-        "channels": ["01", "02", "04", "07"]
-    }]
-}, {
-    "family": "Mac",
-    "items": [{
-        "name": "mac1",
-        "channels": ["01", "02"]
-    }, {
-        "name": "mac2",
-        "channels": ["01"]
-    }, {
-        "name": "mac3",
-        "channels": ["01", "02"]
-    }]
-}];

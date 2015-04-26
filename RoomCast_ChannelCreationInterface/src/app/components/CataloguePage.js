@@ -106,6 +106,9 @@ var CataloguePage = React.createClass({
                     onExitSelection={this.props.onExitSelection} />
 
                 <div className='content-div'>
+
+                    {this.props.backgroudMessage}
+
                     <div className="grid" ref='gridRef' >
                         {overlay}
                         {this.props.channels}

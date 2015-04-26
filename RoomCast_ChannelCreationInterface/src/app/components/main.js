@@ -27,9 +27,10 @@ var Main = React.createClass({
 
     getInitialState: function () {
         return  {
-            channels: [],
+            channels: {},
             selectedChannel: null,
-            page: 'catalogue'
+            page: 'catalogue',
+            backgroundMessage: null
         }
     },
 
@@ -131,8 +132,8 @@ var Main = React.createClass({
 
     getIds: function() {
         var channels = this.state.channels;
+        var ids = [];
         if(channels.length !== 0) {
-            var ids = [];
             for (var c in channels) {
                 if (channels.hasOwnProperty(c)) {
                     ids.push(+c);
@@ -217,6 +218,12 @@ var Main = React.createClass({
         });
     },
 
+    handleUpdatedBackgroundMessage: function(m) {
+        this.setState({
+            backgroundMessage: m
+        });
+    },
+
     /**
      * Synchronizes the local copy of the catalogue
      * @param publish true if you also want to save the changes to the server
@@ -286,12 +293,28 @@ var Main = React.createClass({
 
         var channels = this.getChannels();
 
+        var backgroundMessageStyle = {
+            position: 'fixed',
+            left: '0',
+            bottom: '50%',
+            width: '100%',
+            fontSize: '2.5vw',
+            textAlign: 'center',
+            color: '#9197a3',
+            fontWeight: '300'
+        };
+        var backgroundMessage = null;
+        if(this.getIds().length === 0) {
+            backgroundMessage = <p style={backgroundMessageStyle} > {'Empty Catalogue'} </p>;
+        }
+
         var page;
         switch (this.state.page) {
             case 'catalogue':
                 page = <CataloguePage
                     channels={channels}
                     isSelected={this.state.selectedChannel != null}
+                    backgroudMessage={backgroundMessage}
                     onSave={this.handleSave}
                     onUndo={this.handleUndo}
                     onExitSelection={this.handleExitSelection}
