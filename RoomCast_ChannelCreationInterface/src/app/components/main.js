@@ -18,7 +18,7 @@ var Main = React.createClass({
                     self.setbackgroundImages(response);
                 });
 
-                nutella.net.subscribe('channels/updated', function (message, channel, from_component_id, from_resource_id) {
+                nutella.net.subscribe('channels/updated', function (message, from) {
                     self.setChannels(message);
                 });
             });

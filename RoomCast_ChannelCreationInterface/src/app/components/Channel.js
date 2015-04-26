@@ -142,15 +142,18 @@ var Channel = React.createClass({
         console.log('handle', e, e.target, e.target.files);
         var node = e.target;
         if (node.files && node.files[0]) {
+
+            
             var reader = new FileReader();
             reader.onload = this.handleLoadedImage;
             reader.readAsDataURL(node.files[0]);
-
             // Set name
             this.props.onSetScreenshot(node.files[0].name);
             // Store name
             this['imageData' + this.props.channelId] = [];
             this['imageData' + this.props.channelId][0] = node.files[0].name;
+
+
         }
     },
 
@@ -179,7 +182,7 @@ var Channel = React.createClass({
         if(this['imageData' + this.props.channelId]) {
             var id = this.props.channelId;
             var data = this['serializedImageData' + this.props.channelId][1];
-            nutella.net.publish('channel/storeImage', {'id': id, 'data': data});
+            //nutella.net.publish('channel/storeImage', {'id': id, 'data': data});
         }
     },
 

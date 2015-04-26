@@ -16,7 +16,7 @@ var ConfigurationsPanel = React.createClass({
         self.lastSavedNames = {};
 
         // Subscribe for future changes
-        nutella.net.subscribe('configs/update', function (message, channel, from_component_id, from_resource_id) {
+        nutella.net.subscribe('configs/update', function (message, from) {
             if(message.length !== 0) {
                 self.updatePlaceholders(message);
             }

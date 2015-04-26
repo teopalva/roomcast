@@ -10,15 +10,15 @@ module.exports = {
             baseDir: [dest, src]
         },
         files: [
-      dest + '/**'
-    ]
+            dest + '/**'
+        ]
     },
     less: {
         src: src + '/less/main.less',
         watch: [
-      src + '/less/**',
-      mui + '/less/**'
-    ],
+            src + '/less/**',
+            mui + '/less/**'
+        ],
         dest: dest
     },
     markup: {
@@ -37,6 +37,10 @@ module.exports = {
         src: mui + '/less/material-ui-icons/fonts/**',
         dest: dest + '/fonts'
     },
+    nutella3: {
+        src: './node_modules/nutella_lib/dist/nutella_lib.js',
+        dest: dest
+    },
     browserify: {
         // Enable source maps
         debug: true,
@@ -46,6 +50,6 @@ module.exports = {
             entries: src + '/app/app.js',
             dest: dest,
             outputName: 'app.js'
-    }]
+        }]
     }
 };
