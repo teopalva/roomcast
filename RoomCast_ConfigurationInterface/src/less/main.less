@@ -135,7 +135,7 @@ html, body {
 }
 
 ///////// Channel /////////
-.channel-div {
+/*.channel-div {
   display: inline-block;
   text-align: center;
   width: @channel-icon-width;
@@ -151,6 +151,8 @@ html, body {
   display: block;
   margin: 0 auto;
 }
+*/ // TODO
+
 ////////////////////////////
 
 .div-button-container {
@@ -220,41 +222,6 @@ html, body {
   margin-bottom: 10px;
   //line-height: 10px;
 }
-
-////////////////////////////
-
-///////// Channel Info /////////
-.channel-info-div {
-  height: 40%;
-  max-height: 40%;
-  width: 100%;
-  margin: auto;
-  text-align: center;
-  overflow: hidden;
-  img {
-    max-width: 100%;
-    max-height: 85%;
-    border: solid 1px rgb(0,0,0);
-    -webkit-box-reflect: below 0
-    -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.7, transparent), to(rgba(255,255,255,.5)));
-    -webkit-transition: all 0.3s;
-    -webkit-transform-origin: 50% 100%;
-  }
-}
-.dock-base {
-  width: 90%;
-  height: 80px;
-  margin: 0 auto;
-  z-index: -10;
-  background-color: #888;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#000000));
-  background-image: -webkit-linear-gradient(top, #333, #999);
-  opacity: .5;
-  border-bottom: 2px #aaa solid;
-  -webkit-transform-origin: 50% 100%;
-  -webkit-transform: rotateX(20deg);
-}
-////////////////////////////
 
 ///////// Channels List /////////
 .channels-list-div {
@@ -339,5 +306,92 @@ html, body {
     }
   }
 }
+
 ////////////////////////////
+
+.card-container {
+  width: 100%;
+  //height: 100%;
+  position: relative;
+  margin-left: 25%;
+}
+.card {
+  width: 50%;
+}
+
+.channel {
+  // aspect ratio: 10:7.23
+  width: 100%;
+  height: 0;
+  padding-bottom: 72.30%;
+  position: relative;
+  background: white;
+  margin-bottom: 20px;
+  .channel-div {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    .channel-caption {
+      width: 100%;
+      height: 27%;
+      position: absolute;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.4);
+      .icon-name-wrapper {
+        width: 100%;
+        position: absolute;
+        bottom: 10%;
+        overflow: auto;
+        .channel-icon {
+          cursor: default;
+          width: 15%;
+          height: 0;
+          padding-bottom: 15%;
+          margin-left: 2%;
+          background-color: white;
+          position: relative;
+          float: left;
+          vertical-align: bottom;
+          border:1px solid transparent;
+        }
+        .name-wrapper {
+          width: 83%;
+          display: inline-block;
+          position: absolute;
+          float: right;
+          top: 20%;
+          .channel-name {
+            color: #ffffff;
+            font-size: 1.3vw;
+            cursor: default;
+            margin: 0 0 4% 3%;
+            padding: 0 0 0 0;
+            vertical-align: middle;
+            @media (min-width: 1025px) and (max-width: 1480px) {
+              margin: 0 0 3% 3%;
+            }
+            @media (max-width: 1024px) {
+              margin: 0 0 2% 3%;
+            }
+            @media (max-width: 900px) {
+              margin: 0 0 1% 3%;
+            }
+          }
+          .channel-description {
+            color: #ffffff;
+            font-size: 0.8vw;
+            cursor: default;
+            margin: 0 0 0 3%;
+            padding: 0 0 0 0;
+            line-height: 0;
+          }
+        }
+      }
+
+    }
+  }
+}
+
+////////////////////////////
+
 

@@ -44,12 +44,10 @@ var Channel = React.createClass({
                 id: this.props.id,
                 belongsTo: this.props.belongsTo,
                 imgNode: imgNode,
-                channel: this
+                channel: this,
+                channelData: this.props.channelData
             };
             this.props.onSelectedChannel(newSelected);
-
-            // show channel info
-            // TODO
         }
 
     },

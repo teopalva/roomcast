@@ -79,6 +79,7 @@ var ChannelsPanel = React.createClass({
         ];
 
         return (
+
             <div className="channels-panel">
 
                 <Paper className='channels-panel-paper'>
@@ -92,8 +93,7 @@ var ChannelsPanel = React.createClass({
                     </div>
 
                     <ChannelInfo
-                        selectedChannel={this.props.selectedChannel}
-                        channels={this.props.channels} />
+                        selectedChannel={this.props.selectedChannel} />
 
                     <ChannelsList
                         channels={this.props.channels}
