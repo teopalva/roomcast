@@ -161,7 +161,7 @@ var Main = React.createClass({
         channels[newChannelId] = {
             "name": " ",
             "icon": "",
-            "screenshot": "roomcast-default-channel.png",
+            "screenshot": "http://localhost:57882/2413e677923c146b5ebbe4500b5580c9.png",
             "description": "",
             "url": "",
             "type": "web"

@@ -58,20 +58,15 @@ var Channel = React.createClass({
             paddingTop:'3px',
             marginBottom:'0'};
 
-        var imgStyle = null;
-        var selectedStyle = {
-            border: '3px solid black'
-        };
-        var deselectedStyle = {
-            border: null
+        var iconStyle = {
+            backgroundColor: this.props.channelData.icon
         };
 
         // style channels in channels list
         if(this.props.belongsTo==='channels') {
             if(this.props.respectiveSelected) {
-                imgStyle = selectedStyle;
+                iconStyle.border = '3px solid black';
             } else {
-                imgStyle = deselectedStyle;
             }
         }
 
@@ -79,17 +74,16 @@ var Channel = React.createClass({
         if(this.props.belongsTo==='resources') {
             var currentSelected = this.props.currentSelectedChannel;
             if(currentSelected && (currentSelected.channel == this) && currentSelected.id===this.props.id) {
-                imgStyle = selectedStyle;
+                iconStyle.border = '3px solid black';
             } else {
-                imgStyle = deselectedStyle;
             }
         }
 
         var broker = query_parameters.broker, runId = 'RoomQuake', imgType = 'screenshot_rect';
 
         return (
-            <div className='channel-div' onClick={this.handleSelectedChannel}>
-                <img className='channel-icon' ref='channelIcon' style={imgStyle} src={'http://' + broker + ':57880/roomcast/main-interface/assets/channels/' + runId + '/' + imgType + '/' + this.props.imgPath}> </img>
+            <div className='channel-catalogue' onClick={this.handleSelectedChannel}>
+                <div className='channel-icon' ref='channelIcon' style={iconStyle} > </div>
                 <p style={pStyle}> {this.props.name} </p>
             </div>);
 

@@ -50,7 +50,7 @@ var DropDownMenu = React.createClass({
             classes += ' mui-open';
         }
 
-        console.log('selected:', this.state.selectedIndex, this.props.menuItems);
+        //console.log('selected:', this.state.selectedIndex, this.props.menuItems); // TODO check performance
 
         return (
             <div className={classes}>

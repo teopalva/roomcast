@@ -83,6 +83,8 @@ var PoolRow = React.createClass({
                 channelsList.push(<Channel
                     ref={'channel'}
                     id={chId}
+                    key={chId}
+                    channelData={itsChannel}
                     name={itsChannel.name}
                     imgPath={itsChannel.screenshot}
                     onSelectedChannel={self.handleSelectedChannel}
