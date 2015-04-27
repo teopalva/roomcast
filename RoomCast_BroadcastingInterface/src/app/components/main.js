@@ -14,7 +14,7 @@ var Main = React.createClass({
             self.setConfigs(response);
 
             // Subscribe for future changes
-            nutella.net.subscribe('configs/updated', function (message, channel, from_component_id, from_resource_id) {
+            nutella.net.subscribe('configs/updated', function (message, from) {
                 self.setConfigs(message);
 
             });
@@ -24,7 +24,7 @@ var Main = React.createClass({
                 self.setCurrentConfig(response);
 
                 // Subscribe for future changes
-                nutella.net.subscribe('currentConfig/updated', function (message, channel, from_component_id, from_resource_id) {
+                nutella.net.subscribe('currentConfig/updated', function (message, from) {
                     self.setCurrentConfig(message);
 
                 });

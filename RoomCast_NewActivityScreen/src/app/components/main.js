@@ -12,11 +12,11 @@ var Main = React.createClass({
             self.extractIdentitiesFromMapping(response);
         });
 
-        nutella.net.subscribe('mapping/updated', function (message, channel, from_component_id, from_resource_id) {
+        nutella.net.subscribe('mapping/updated', function (message, from) {
             self.extractIdentitiesFromMapping(message);
         });
 
-        nutella.net.subscribe('currentConfig/switched', function (message, channel, from_component_id, from_resource_id) {
+        nutella.net.subscribe('currentConfig/switched', function (message, from) {
             self.extractIdentitiesFromMapping(message);
         });
 

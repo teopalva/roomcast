@@ -17,6 +17,7 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 html, body {
   height: 100%;
   width: 100%;
+  min-width: 1000px;
   background-color: #e9eaed;
   box-sizing: border-box;
 }
@@ -32,7 +33,7 @@ html, body {
   width: 100%;
   padding: @pad1 0 @pad1 @pad1;
   display: table;
-  clear: both;
+  //clear: both;
   position: relative;
   [class*='col-'] {
     float: left;
@@ -55,6 +56,7 @@ html, body {
   padding-bottom: 72.30%;
   position: relative;
   background: white;
+  margin-bottom: 20px;
   .channel-div {
     width: 100%;
     height: 100%;
@@ -64,10 +66,9 @@ html, body {
       height: 27%;
       position: absolute;
       bottom: 0;
-      background-color: rgba(0,0,0,0.4);
+      background-color: rgba(0, 0, 0, 0.4);
       .icon-name-wrapper {
         width: 100%;
-        //height: 100%;
         position: absolute;
         bottom: 10%;
         overflow: auto;
@@ -77,19 +78,21 @@ html, body {
           padding-bottom: 15%;
           margin-left: 2%;
           background-color: white;
-          //position: absolute;
-          //bottom: 0;
+          position: relative;
+          float: left;
           vertical-align: bottom;
+          border:1px solid transparent;
         }
         .name-wrapper {
-          //height: 100%;
           width: 83%;
           display: inline-block;
           position: absolute;
+          float: right;
           top: 20%;
           .channel-name {
             color: #ffffff;
             font-size: 1.3vw;
+            cursor: default;
             margin: 0 0 4% 3%;
             padding: 0 0 0 0;
             vertical-align: middle;
@@ -106,6 +109,7 @@ html, body {
           .channel-description {
             color: #ffffff;
             font-size: 0.8vw;
+            cursor: default;
             margin: 0 0 0 3%;
             padding: 0 0 0 0;
             line-height: 0;

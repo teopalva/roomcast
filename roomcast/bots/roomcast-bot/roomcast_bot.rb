@@ -24,7 +24,7 @@ nutella.net.subscribe('configs/update', lambda do |message, from|
 
                                         # Update
                                         if new_configs != nil
-                                          configs_db[:configs] = new_configs
+                                          configs_db['configs'] = new_configs
                                         end
 
                                         puts 'Updated DB'
@@ -78,7 +78,7 @@ nutella.net.subscribe('currentConfig/update', lambda do |message, from|
 
                                               # Update
                                               if new_config != nil
-                                                configs_db[:currentConfig] = new_config
+                                                configs_db['currentConfig'] = new_config
                                               end
 
                                               puts 'Updated DB'
@@ -105,7 +105,6 @@ nutella.net.subscribe('currentConfig/updated', lambda do |message, from|
 
 nutella.net.handle_requests('currentConfig/retrieve', lambda do |request, from|
                                                       puts 'request: ' + request
-                                                      reply = {}
                                                       reply = configs_db['currentConfig']
                                                       puts reply
                                                       reply
