@@ -262,6 +262,7 @@ html, body {
   display: block;
   position: relative;
   overflow: scroll;
+  padding-left: @default-margin;
   .grid {
     width: 100%;
     height: 100%;
@@ -277,6 +278,7 @@ html, body {
     }
     [class*='col-']:last-of-type {
       padding-right: @pad1;
+      padding-bottom: @channels-footer - 5;
     }
   }
   .col-1-3 {
