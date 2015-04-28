@@ -1,8 +1,8 @@
 var React = require('react');
 var Mui = require('material-ui');
-var Channel = require('./Channel');
+var ChannelCard = require('./ChannelCard');
 
-var ChannelsList = React.createClass({
+var ChannelsCatalogue = React.createClass({
 
     handleSelectedChannel: function(ch) {
         this.props.onSelectedChannel(ch);
@@ -33,26 +33,37 @@ var ChannelsList = React.createClass({
                 respectiveSelected = true;
             }
 
-            channels.push(<Channel
+            channels.push(<ChannelCard
                 id={key}
                 key={key}
                 channelData={chs[key]}
-                name={chs[key].name}
-                imgPath={chs[key].screenshot}
+                channelId={key}
                 onSelectedChannel={this.handleSelectedChannel}
                 currentSelectedChannel={this.props.selectedChannel}
                 belongsTo='channels'
                 respectiveSelected={respectiveSelected} />);
         }
 
-        return (
-            <div className='channels-list-div'>
-                {channels}
-            </div>);
+        var backgroundMessage = null; //TODO
+        var overlay = null; /*<div className="grid-overlay"  onTouchTap={this.props.onExitSelection} ></div>;
+        if(this.props.isSelected) {
+            overlay = <div className="grid-overlay is-shown"  onTouchTap={this.props.onExitSelection} ></div>;
+        }*/
 
+        return (
+            <div className='content-div'>
+
+                {backgroundMessage}
+
+                <div className="grid" ref='gridRef' >
+                    {overlay}
+                    {channels}
+                </div>
+            </div>
+        )
     }
 
 });
 
-module.exports = ChannelsList;
+module.exports = ChannelsCatalogue;
 

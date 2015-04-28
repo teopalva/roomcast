@@ -54,10 +54,6 @@ var Channel = React.createClass({
 
     render: function() {
 
-        var pStyle = {
-            paddingTop:'3px',
-            marginBottom:'0'};
-
         var iconStyle = {
             backgroundColor: this.props.channelData.icon
         };
@@ -82,9 +78,9 @@ var Channel = React.createClass({
         var broker = query_parameters.broker, runId = 'RoomQuake', imgType = 'screenshot_rect';
 
         return (
-            <div className='channel-catalogue' onClick={this.handleSelectedChannel}>
+            <div className='channel-item' onClick={this.handleSelectedChannel}>
                 <div className='channel-icon' ref='channelIcon' style={iconStyle} > </div>
-                <p style={pStyle}> {this.props.name} </p>
+                <span> {this.props.name} </span>
             </div>);
 
     }

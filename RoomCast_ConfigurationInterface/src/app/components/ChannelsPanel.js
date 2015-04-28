@@ -1,8 +1,8 @@
 var React = require('react');
 var Mui = require('material-ui');
 var Paper = Mui.Paper;
-var ChannelInfo = require('./ChannelInfo');
-var ChannelsList = require('./ChannelsList');
+var ChannelInfo = require('./ChannelCard');
+var ChannelsCatalogue = require('./ChannelsCatalogue');
 var RaisedButton = Mui.RaisedButton_;
 var Dialog = Mui.Dialog_;
 var FlatButton = Mui.FlatButton;
@@ -92,10 +92,7 @@ var ChannelsPanel = React.createClass({
                         </div>
                     </div>
 
-                    <ChannelInfo
-                        selectedChannel={this.props.selectedChannel} />
-
-                    <ChannelsList
+                    <ChannelsCatalogue
                         channels={this.props.channels}
                         onSelectedChannel={this.handleSelectedChannel}
                         selectedChannel={this.props.selectedChannel} />
