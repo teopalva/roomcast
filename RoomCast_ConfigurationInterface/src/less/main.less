@@ -83,6 +83,7 @@ html, body {
   }
   td:first-child {
     width: 10px;
+    min-width: 10px;
     .remove-row-div {
       width: 100%;
       height: 100%;
@@ -121,11 +122,12 @@ html, body {
     vertical-align: middle;
   }
   th:first-child {
-    // delete row width
     width: 10px;
+    min-width: 10px;
   }
   th:nth-child(2) {
-    width: 10%;
+    width: 20%;
+    min-width: 20%;
     text-align: center;
     font-size: 2em;
     font-weight: 300;
@@ -145,6 +147,7 @@ html, body {
   margin-top: 10px;
   .channel-icon {
     cursor: pointer;
+    border-radius: 25px;
     width: @channel-icon-width;
     height: @channel-icon-width;
     background-color: white;
