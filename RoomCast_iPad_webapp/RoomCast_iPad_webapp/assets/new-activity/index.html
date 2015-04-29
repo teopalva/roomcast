@@ -12,43 +12,37 @@
 
 <body>
 
-    <!-- Nutella -->
-    <script src="mqttws31.js" type="text/javascript" charset="utf-8"></script>
-    <script src="nutella_lib.js" type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript">
-        // Parse the query parameters
-        var query_parameters = NUTELLA.parseURLParameters();
-        
-        try {
-            var nutella = NUTELLA.init('roomcast', '52.1.142.215', 'new-activity-screen');
-        } catch (e) {
-            console.warn('nutella init error');
+<!-- Nutella -->
+<script src="nutella_lib.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+
+    // Parse the query parameters
+    var query_parameters = NUTELLA.parseURLParameters();
+
+    // Get an instance of nutella.
+    var nutella = NUTELLA.init('52.1.142.215', 'roomcast', 'default', 'new-activity-screen');
+
+</script>
+
+<!-- This script adds the Roboto font to our project. For more detail go to this site:  http://www.google.com/fonts#UsePlace:use/Collection:Roboto:400,300,500 -->
+<script>
+    var WebFontConfig = {
+        google: {
+            families: ['Roboto:400,300,200,100,500:latin']
         }
-    
-        console.log('nutella.js ready');
-        // (Optional) Set the resourceId
-        // nutella.setResourceId('my_resource_id');
-    </script>
-
-    <!-- This script adds the Roboto font to our project. For more detail go to this site:  http://www.google.com/fonts#UsePlace:use/Collection:Roboto:400,300,500 -->
-    <script>
-        var WebFontConfig = {
-            google: {
-                families: ['Roboto:400,300,200,100,500:latin']
-            }
-        };
-        (function () {
-            var wf = document.createElement('script');
-            wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+    };
+    (function () {
+        var wf = document.createElement('script');
+        wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
                 '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-            wf.type = 'text/javascript';
-            wf.async = 'true';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(wf, s);
-        })();
-    </script>
+        wf.type = 'text/javascript';
+        wf.async = 'true';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(wf, s);
+    })();
+</script>
 
-    <script src="app.js"></script>
+<script src="app.js"></script>
 
 
 
