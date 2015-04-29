@@ -11,28 +11,17 @@ var Paper = Mui.Paper;
  * @prop currentSelectedChannel
  * @prop belongsTo
  */
-var Channel = React.createClass({
+var ChannelItem = React.createClass({
 
     /**
      * Manages the interactions with the channels.
      */
     handleSelectedChannel: function() {
 
-        var self = this;
         var imgNode = this.refs.channelIcon.getDOMNode();
         var currentSelected = this.props.currentSelectedChannel;
 
-        /**
-         * Returns true if the clicked channel, has the same id, belongs to the channels list and the user is coming from the resources pool.
-         * @param id
-         * @param belongsTo
-         * @returns {boolean}
-         */
-        var isRespectiveChannel = function(id, belongsTo) {
-            return id === self.props.id && belongsTo === 'resources' && self.props.belongsTo === 'channels';
-        };
-
-        if(currentSelected && currentSelected.id===this.props.id && (currentSelected.imgNode == imgNode || isRespectiveChannel(currentSelected.id, currentSelected.belongsTo))) {
+        if(currentSelected && currentSelected.imgNode && currentSelected.id === this.props.id && currentSelected.imgNode == imgNode) {
 
             // set not selected
             this.props.onSelectedChannel(null);
@@ -58,32 +47,25 @@ var Channel = React.createClass({
             backgroundColor: this.props.channelData.icon
         };
 
-        // style channels in channels list
-        if(this.props.belongsTo==='channels') {
-            if(this.props.respectiveSelected) {
-                iconStyle.border = '3px solid black';
-            } else {
-            }
-        }
-
         // style channels in resources list
         if(this.props.belongsTo==='resources') {
             var currentSelected = this.props.currentSelectedChannel;
-            if(currentSelected && (currentSelected.channel == this) && currentSelected.id===this.props.id) {
+            if(currentSelected && (currentSelected.channel == this) && currentSelected.id === this.props.id) {
                 iconStyle.border = '3px solid black';
-            } else {
             }
+
         }
 
         return (
             <div className='channel-item' onClick={this.handleSelectedChannel}>
                 <div className='channel-icon' ref='channelIcon' style={iconStyle} > </div>
                 <span> {this.props.name} </span>
-            </div>);
+            </div>
+        );
 
     }
 
 });
 
-module.exports = Channel;
+module.exports = ChannelItem;
 

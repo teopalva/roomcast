@@ -9,7 +9,22 @@ var Paper = Mui.Paper;
 var ChannelCard = React.createClass({
 
     handleSelectCard: function() {
-        this.props.onSelectedChannel(null);
+
+        if(this.props.currentSelectedChannel && this.props.currentSelectedChannel.id === this.props.channelId) {
+            this.props.onSelectedChannel(null);
+        } else {
+            // set selected channel (state)
+            var newSelected = {
+                id: this.props.channelId,
+                belongsTo: 'channels',
+                imgNode: null,
+                channel: null,
+                channelData: this.props.channelData
+            };
+            this.props.onSelectedChannel(newSelected);
+
+        }
+
     },
 
     render: function() {

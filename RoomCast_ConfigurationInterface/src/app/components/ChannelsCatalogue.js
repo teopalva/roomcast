@@ -40,14 +40,11 @@ var ChannelsCatalogue = React.createClass({
                 channelId={key}
                 currentSelectedChannel={this.props.selectedChannel}
                 respectiveSelected={respectiveSelected}
-                onSelectedChannel={this.handleSelectedChannel} />);
+                onSelectedChannel={this.handleSelectedChannel} />
+            );
         }
 
         var backgroundMessage = null; //TODO
-        var overlay = null; /*<div className="grid-overlay"  onTouchTap={this.props.onExitSelection} ></div>;
-        if(this.props.isSelected) {
-            overlay = <div className="grid-overlay is-shown"  onTouchTap={this.props.onExitSelection} ></div>;
-        }*/
 
         return (
             <div className='content-div'>
@@ -55,7 +52,6 @@ var ChannelsCatalogue = React.createClass({
                 {backgroundMessage}
 
                 <div className="grid" ref='gridRef' >
-                    {overlay}
                     {channels}
                 </div>
             </div>

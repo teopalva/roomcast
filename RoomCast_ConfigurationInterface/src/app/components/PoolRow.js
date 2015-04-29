@@ -1,6 +1,6 @@
 var React = require('react');
 var Mui = require('material-ui');
-var Channel = require('./Channel');
+var ChannelItem = require('./ChannelItem');
 var ContextButton = require('./ContextButton');
 var GlobalButton = require('./GlobalButton');
 var ButtonInteractionsMixin = require('./ButtonInteractionsMixin');
@@ -80,7 +80,7 @@ var PoolRow = React.createClass({
 
             var itsChannel = self.props.channels[chId];
             if(itsChannel) {
-                channelsList.push(<Channel
+                channelsList.push(<ChannelItem
                     ref={'channel'}
                     id={chId}
                     key={chId}
