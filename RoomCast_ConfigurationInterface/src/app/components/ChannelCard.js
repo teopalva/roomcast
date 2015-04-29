@@ -8,12 +8,22 @@ var Paper = Mui.Paper;
  */
 var ChannelCard = React.createClass({
 
-    getCardSelected: function() {
+    handleSelectCard: function() {
+        this.props.onSelectedChannel(null);
+    },
+
+    render: function() {
 
         var style = {
             backgroundImage: 'url(' + this.props.channelData.screenshot + ')',
             backgroundSize: '100% 100%'
         };
+
+        if(this.props.currentSelectedChannel) {
+            if(this.props.currentSelectedChannel.id !== this.props.channelId) {
+                style.opacity = '0.5';
+            }
+        }
 
         var iconStyle = {
             backgroundColor: this.props.channelData.icon
@@ -29,7 +39,8 @@ var ChannelCard = React.createClass({
                 <Paper className='channel-card'
                        ref={'channel' + this.props.channelId}
                        zDepth={3}
-                       style={style} >
+                       style={style}
+                       onTouchTap={this.handleSelectCard} >
 
                     <div className='channel-div'>
 
@@ -52,36 +63,6 @@ var ChannelCard = React.createClass({
                 </Paper>
 
             </div>);
-
-    },
-
-    getCardDefault: function() {
-
-        var style = {
-            backgroundImage: 'url(' + 'http://localhost:57882/2413e677923c146b5ebbe4500b5580c9.png' + ')',
-            backgroundSize: '100% 100%'
-        };
-
-        var iconStyle = {
-            backgroundColor: 'red'
-        };
-
-        return (
-            <Paper className='channel-card'
-                   zDepth={3}
-                   style={style} >
-
-                <div className='channel-div'> </div>
-
-            </Paper>
-        )
-
-    },
-
-    render: function() {
-        var card;
-        card = this.getCardSelected();
-        return card;
 
     }
 

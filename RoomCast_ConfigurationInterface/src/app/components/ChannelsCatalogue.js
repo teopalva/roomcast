@@ -38,10 +38,9 @@ var ChannelsCatalogue = React.createClass({
                 key={key}
                 channelData={chs[key]}
                 channelId={key}
-                onSelectedChannel={this.handleSelectedChannel}
                 currentSelectedChannel={this.props.selectedChannel}
-                belongsTo='channels'
-                respectiveSelected={respectiveSelected} />);
+                respectiveSelected={respectiveSelected}
+                onSelectedChannel={this.handleSelectedChannel} />);
         }
 
         var backgroundMessage = null; //TODO

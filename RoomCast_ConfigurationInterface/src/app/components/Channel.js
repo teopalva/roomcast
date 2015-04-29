@@ -75,8 +75,6 @@ var Channel = React.createClass({
             }
         }
 
-        var broker = query_parameters.broker, runId = 'RoomQuake', imgType = 'screenshot_rect';
-
         return (
             <div className='channel-item' onClick={this.handleSelectedChannel}>
                 <div className='channel-icon' ref='channelIcon' style={iconStyle} > </div>
