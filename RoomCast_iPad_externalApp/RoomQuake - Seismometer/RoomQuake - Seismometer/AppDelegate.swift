@@ -59,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     /**
     *   Called everytime the app is called (launched or resumed)
     */
-    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String, annotation: AnyObject?) -> Bool {
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
         
         println("Calling Application Bundle ID: \(sourceApplication)");
         println("URL scheme: \(url.scheme)");

@@ -29,7 +29,7 @@ class ViewController: UIViewController {
         
         let nsObject: AnyObject? = NSBundle.mainBundle().infoDictionary!["CFBundleName"]
         
-        appTitleLabel.text = nsObject as String?
+        appTitleLabel.text = nsObject as! String?
         
     }
 
