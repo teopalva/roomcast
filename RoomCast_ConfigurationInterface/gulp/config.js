@@ -25,6 +25,10 @@ module.exports = {
         src: src + "/web/**",
         dest: dest
     },
+    nutella: {
+        src: src + '../node_modules/nutella_lib/dist/nutella_lib.js',
+        dest: dest
+    },
     css: {
         src: src + "/css/**",
         dest: dest
@@ -36,10 +40,6 @@ module.exports = {
     muiFonts: {
         src: mui + '/less/material-ui-icons/fonts/**',
         dest: dest + '/fonts'
-    },
-    nutella3: {
-        src: './node_modules/nutella_lib/dist/nutella_lib.js',
-        dest: dest
     },
     browserify: {
         // Enable source maps
