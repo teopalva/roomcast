@@ -1,4 +1,4 @@
-var dest = '../roomcast/interfaces/configuration-interface',
+var dest = '../roomcast/interfaces/channel-creation-interface',
     src = './src',
     mui = './node_modules/material-ui/src';
 
@@ -10,23 +10,19 @@ module.exports = {
             baseDir: [dest, src]
         },
         files: [
-            dest + '/**'
-        ]
+      dest + '/**'
+    ]
     },
     less: {
         src: src + '/less/main.less',
         watch: [
-            src + '/less/**',
-            mui + '/less/**'
-        ],
+      src + '/less/**',
+      mui + '/less/**'
+    ],
         dest: dest
     },
     markup: {
         src: src + "/web/**",
-        dest: dest
-    },
-    nutella: {
-        src: src + '../node_modules/nutella_lib/dist/nutella_lib.js',
         dest: dest
     },
     css: {
@@ -50,6 +46,6 @@ module.exports = {
             entries: src + '/app/app.js',
             dest: dest,
             outputName: 'app.js'
-        }]
+    }]
     }
 };
