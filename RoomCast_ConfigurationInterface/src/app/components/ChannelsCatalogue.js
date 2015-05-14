@@ -34,17 +34,30 @@ var ChannelsCatalogue = React.createClass({
             }
 
             channels.push(<ChannelCard
-                id={key}
-                key={key}
-                channelData={chs[key]}
-                channelId={key}
-                currentSelectedChannel={this.props.selectedChannel}
-                respectiveSelected={respectiveSelected}
-                onSelectedChannel={this.handleSelectedChannel} />
+                    id={key}
+                    key={key}
+                    channelData={chs[key]}
+                    channelId={key}
+                    currentSelectedChannel={this.props.selectedChannel}
+                    respectiveSelected={respectiveSelected}
+                    onSelectedChannel={this.handleSelectedChannel} />
             );
         }
 
-        var backgroundMessage = null; //TODO
+        var backgroundMessageStyle = {
+            position: 'absolute',
+            left: '0',
+            bottom: '50%',
+            width: '100%',
+            fontSize: '2.5vw',
+            textAlign: 'center',
+            color: '#9197a3',
+            fontWeight: '300'
+        };
+        var backgroundMessage = null;
+        if(channels.length === 0) {
+            backgroundMessage = <p style={backgroundMessageStyle} > {'Empty Catalogue'} </p>;
+        }
 
         return (
             <div className='content-div'>

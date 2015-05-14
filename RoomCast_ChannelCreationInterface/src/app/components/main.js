@@ -3,6 +3,7 @@ var React = require('react');
 var Channel = require('./Channel');
 var CataloguePage = require('./CataloguePage');
 var DetailPage = require('./DetailPage');
+var UploadingScreen = require('./UploadingScreen');
 
 var Main = React.createClass({
 
@@ -30,7 +31,8 @@ var Main = React.createClass({
             channels: {},
             selectedChannel: null,
             page: 'catalogue',
-            backgroundMessage: null
+            backgroundMessage: null,
+            isUploading: false
         }
     },
 
@@ -39,7 +41,6 @@ var Main = React.createClass({
         var callback = function() {
             if(publish) {
                 nutella.net.publish('channels/update', self.state.channels);
-                console.log('publishing', channels);
             }
         };
         this.setState({
@@ -76,6 +77,9 @@ var Main = React.createClass({
             this.saveLocalCatalogue(true);
         } else {
             // Launch task to save images (if needed) on each channel, then publish
+            self.setState({
+                isUploading: true
+            });
             this.getIds().forEach(function(id) {
                 self.refs['channel' + id].handleStoreImageOnServer();
             });
@@ -84,9 +88,14 @@ var Main = React.createClass({
 
     },
 
+    /**
+     * Called when last saving on server has finished.
+     */
     handleSaveCallback: function() {
-        console.log("All done!");
         this.saveLocalCatalogue(true);
+        this.setState({
+            isUploading: false
+        });
     },
 
     handleUndo: function() {
@@ -133,7 +142,7 @@ var Main = React.createClass({
     getIds: function() {
         var channels = this.state.channels;
         var ids = [];
-        if(channels.length !== 0) {
+        if(Object.keys(channels).length !== 0) {
             for (var c in channels) {
                 if (channels.hasOwnProperty(c)) {
                     ids.push(+c);
@@ -183,10 +192,7 @@ var Main = React.createClass({
         var channel = channels[channelId];
         channel.screenshot = value;
         channels[channelId] = channel;
-        console.log(channel, channels);
         this.setChannels(channels);
-        console.warn('saved', value, channelId);
-
     },
 
     handleSetDescription: function(value) {
@@ -315,6 +321,7 @@ var Main = React.createClass({
                     channels={channels}
                     isSelected={this.state.selectedChannel != null}
                     backgroudMessage={backgroundMessage}
+                    isUploading={this.state.isUploading}
                     onSave={this.handleSave}
                     onUndo={this.handleUndo}
                     onExitSelection={this.handleExitSelection}

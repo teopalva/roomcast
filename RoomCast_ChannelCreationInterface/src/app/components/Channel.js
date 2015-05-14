@@ -122,6 +122,15 @@ var Channel = React.createClass({
 
     handleSetUrl: function() {
         var value = this.refs['textFieldUrl' + this.props.channelId].getValue();
+        switch(this.props.channel.type) {
+            case 'web':
+                value = 'http://' + value;
+                break;
+            case 'iOS':
+                value = value + '://';
+                break;
+            default:
+        }
         this.props.onSetUrl(value);
     },
 
@@ -165,7 +174,6 @@ var Channel = React.createClass({
         if(this.imageFile_) {
             ReactMain.imagesQueue++;
             nutella.net.bin.uploadFile(this.imageFile_, function(url) {
-                console.log('got url', url);
                 self.props.onSetScreenshot(self.props.channelId, url);
                 ReactMain.imagesQueue--;
                 if(ReactMain.imagesQueue === 0) {
@@ -205,12 +213,19 @@ var Channel = React.createClass({
         }
 
         var urlPlaceholder;
+        var urlPrefix = null;
+        var urlSuffix = null;
+        var urlCleaned = this.props.channel.url;
         switch(this.props.channel.type) {
             case 'web':
                 urlPlaceholder = 'URL:';
+                urlPrefix = 'http://';
+                urlCleaned = urlCleaned.slice(7, urlCleaned.length);
                 break;
             case 'iOS':
                 urlPlaceholder = 'Custom URL:';
+                urlSuffix = '://';
+                urlCleaned = urlCleaned.slice(0, urlCleaned.length - 3);
                 break;
             default:
                 urlPlaceholder = 'URL:';
@@ -242,13 +257,15 @@ var Channel = React.createClass({
 
                             <div className='url-div' >
 
-                                <span> {urlPlaceholder} </span>
+                                <span className='urlPlaceholder'> {urlPlaceholder} </span>
+                                <span> {urlPrefix} </span>
                                 <TextField
                                     ref={'textFieldUrl' + this.props.channelId}
                                     hintText={''}
-                                    value={this.props.channel.url}
+                                    value={urlCleaned}
                                     multiLine={true}
                                     onChange={this.handleSetUrl} />
+                                <span> {urlSuffix} </span>
 
                             </div>
                         </div>
