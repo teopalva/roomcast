@@ -24,8 +24,9 @@ var Main = React.createClass({
                 self.setCurrentConfig(response);
 
                 // Subscribe for future changes
-                nutella.net.subscribe('currentConfig/updated', function (message, from) {
+                nutella.net.subscribe('currentConfig/ack_updated', function (message, from) {
                     self.setCurrentConfig(message);
+                    console.log('received currentConfig/updated', message);
 
                 });
 
