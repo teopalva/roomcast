@@ -29,7 +29,8 @@ var Main = React.createClass({
     getInitialState: function () {
         return  {
             identities: [],
-            page: 1
+            page: 1,
+            app_id: null
         }
     },
 
@@ -45,8 +46,13 @@ var Main = React.createClass({
         });
     },
 
-    handleSwitchPage: function(page) {
+    handleSwitchPage: function(page, value) {
         this.setPage(page);
+        if(value) {
+            this.setState({
+                app_id: value
+            });
+        }
     },
 
     render: function () {
@@ -65,6 +71,7 @@ var Main = React.createClass({
             case 3:
                 page = <RunIdPage
                     onSwitchPage={this.handleSwitchPage}
+                    app_id={this.state.app_id}
                     values={[]} />;
                 break;
             default:

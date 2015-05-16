@@ -5,12 +5,17 @@ var IdentitiesGrid = require('./IdentitiesGrid');
 var AppIdPage = React.createClass({
 
     componentWillMount: function() {
-        nutella.net.request('app_runs_list', 'req', function(response) {
-            console.log('resp:', response);
-        });
-
-        this.setState({
-            values: ['1', '2', '3']
+        var self = this;
+        nutella.net.request('runs_list', 'req', function(response) {
+            var app_ids = [];
+            for(var app_id in response) {
+                if(response.hasOwnProperty(app_id)) {
+                    app_ids.push(app_id);
+                }
+            }
+            self.setState({
+                values: app_ids
+            });
         });
     },
 
@@ -33,7 +38,7 @@ var AppIdPage = React.createClass({
         };
 
         var backgroundMessage = null;
-        if(this.state.values.length == 0) {
+        if(this.state.values.length === 0) {
             backgroundMessage = <p className='backgroundMessage' > No available apps </p>;
         }
 

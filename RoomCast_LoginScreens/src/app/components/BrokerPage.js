@@ -9,7 +9,6 @@ var BrokerPage = React.createClass({
     handleSetBroker: function() {
         var broker = this.refs.textFieldBroker.getValue();
         if(broker.length !== 0) {
-            console.log('set broker', broker);
             // store in iPad
             this.props.onSwitchPage(2);
         } else {

@@ -5,24 +5,26 @@ var IdentitiesGrid = require('./IdentitiesGrid');
 var RunIdPage = React.createClass({
 
     componentWillMount: function() {
-        nutella.net.request('app_runs_list', 'req', function(response) {
-            console.log('resp:', response);
-        });
-
-        this.setState({
-            values: ['1', '2', '3', '4', '5']
+        var self = this;
+        var run_ids = [];
+        nutella.net.request('runs_list', 'req', function(response) {
+            response[self.props.app_id].runs.forEach(function(run_id) {
+                run_ids.push(run_id);
+            });
+            self.setState({
+                values: run_ids
+            });
         });
     },
 
     getInitialState: function () {
         return  {
             hasBeenSelected: false,
-            values: []
+            values: undefined
         }
     },
 
     render: function () {
-        var self = this;
 
         var titlesDivStyle = {
             height: window.innerHeight * (1/3)
@@ -32,9 +34,24 @@ var RunIdPage = React.createClass({
             height: window.innerHeight * (2/3)
         };
 
-        var backgroundMessage = null;
-        if(this.state.values.length == 0) {
-            backgroundMessage = <p className='backgroundMessage' > No available runs </p>;
+        var run_ids_grid = null;
+
+        if(this.state.values) {
+            var backgroundMessage = null;
+            if(this.state.values.length === 0) {
+                backgroundMessage = <p className='backgroundMessage' > No available runs </p>;
+            }
+
+            run_ids_grid = (
+                <div className='grid-div' style={gridDivStyle} >
+
+                    {backgroundMessage}
+                    <IdentitiesGrid
+                        identities={this.state.values}
+                        type='run_id' />
+
+                </div>
+            );
         }
 
         return (
@@ -48,14 +65,7 @@ var RunIdPage = React.createClass({
 
                 </div>
 
-                <div className='grid-div' style={gridDivStyle} >
-
-                    {backgroundMessage}
-                    <IdentitiesGrid
-                        identities={this.state.values}
-                        type='run_id' />
-
-                </div>
+                {run_ids_grid}
 
             </div>
 
