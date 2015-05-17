@@ -14,6 +14,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        // TODO delete
+        let errordelete = Locksmith.deleteDataForUserAccount("roomcast")
 
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         var storyboard = UIStoryboard(name: "Main", bundle: nil)

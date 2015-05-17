@@ -31,8 +31,8 @@
     <orderEntry type="library" scope="PROVIDED" name="ansi (v1.5.0, RVM: ruby-2.1.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bson (v3.0.2, RVM: ruby-2.1.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="json (v1.8.2, RVM: ruby-2.1.5) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="mongo (v2.0.3, RVM: ruby-2.1.5) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="mongo (v2.0.4, RVM: ruby-2.1.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mqtt (v0.3.1, RVM: ruby-2.1.5) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="nutella_lib (v0.4.12, RVM: ruby-2.1.5) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="nutella_lib (v0.4.14, RVM: ruby-2.1.5) [gem]" level="application" />
   </component>
 </module>

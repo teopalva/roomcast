@@ -67,7 +67,6 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
         // Dispose of any resources that can be recreated.
     }
     
-    
     // Hide the status bar
     override func prefersStatusBarHidden() -> Bool {
         return true;
@@ -242,7 +241,7 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
         let broker = LoginViewController.retrieveBroker()
         let app_id = LoginViewController.retrieveAppId()
         let run_id = LoginViewController.retrieveRunId()
-        let script: String = "nutella.init('\(broker)', \(app_id), \(run_id), 'main-interface')";
+        let script: String = "var nutella = NUTELLA.init('\(broker!)', \(app_id), \(run_id), 'main-interface')";
         self.webView.stringByEvaluatingJavaScriptFromString(script)
     }
     

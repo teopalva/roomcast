@@ -46,6 +46,7 @@ var IdentityCard = React.createClass({
                             app_id: ReactMain.login.app_id,
                             run_id: self.props.name
                         };
+                        console.log('storing', actionParameters);
                         self.iOScall('storeLoginValues', actionParameters);
                     }
 

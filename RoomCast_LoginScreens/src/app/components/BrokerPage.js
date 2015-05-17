@@ -23,19 +23,31 @@ var BrokerPage = React.createClass({
     },
 
     handleSetBroker: function() {
+        console.log('click');
         var self = this;
         var broker = this.refs.textFieldBroker.getValue();
+        broker = '52.1.142.215'; // TODO clean
         if(broker.length !== 0) {
 
             // Start nutella
-            window.nutella = NUTELLA.init(broker, null, null, 'login-screens', function(connected) {
+            nutella = NUTELLA.init(broker, 'app_id', 'run_id', 'login-screens'); /*, function(connected) {
+
                 if(connected) {
-                    window.ReactMain.login.broker = broker;
-                    self.props.onSwitchPage(2);
+                   // window.ReactMain.login.broker = broker;
+                    //self.props.onSwitchPage(2);
+                    console.log('connected', connected, 'ok');
                 } else {
-                    self.setErrorText('Invalid broker.');
+                    //self.setErrorText('Invalid broker.');
+                    console.log('connected', connected, 'ko');
                 }
-            });
+
+            }); */
+
+            var action = function() {
+                window.ReactMain.login.broker = broker;
+                self.props.onSwitchPage(2);
+            };
+            self._timeoutId = setTimeout(action, 2000);
 
         } else {
             this.setErrorText('You must set a broker.');

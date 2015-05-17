@@ -113,23 +113,25 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
         let broker = parameters["broker"] as String!
         let app_id = parameters["app_id"] as String!
         let run_id = parameters["run_id"] as String!
+        
+        let error = Locksmith.deleteDataForUserAccount("roomcast")
 
         if let storedBroker = LoginViewController.retrieveBroker() {
-            let error = Locksmith.updateData(["broker": broker], forUserAccount: "roomcast")
+            let error1 = Locksmith.updateData(["broker": broker], forUserAccount: "roomcast")
         } else {
-            let error = Locksmith.saveData(["broker": broker], forUserAccount: "roomcast")
+            let error1 = Locksmith.saveData(["broker": broker], forUserAccount: "roomcast")
         }
         
         if let storedAppId = LoginViewController.retrieveAppId() {
-            let error = Locksmith.updateData(["app_id": broker], forUserAccount: "roomcast")
+            let error2 = Locksmith.updateData(["app_id": app_id], forUserAccount: "roomcast")
         } else {
-            let error = Locksmith.saveData(["app_id": broker], forUserAccount: "roomcast")
+            let error2 = Locksmith.saveData(["app_id": app_id], forUserAccount: "roomcast")
         }
         
         if let storedRunId = LoginViewController.retrieveRunId() {
-            let error = Locksmith.updateData(["run_id": broker], forUserAccount: "roomcast")
+            let error3 = Locksmith.updateData(["run_id": run_id], forUserAccount: "roomcast")
         } else {
-            let error = Locksmith.saveData(["run_id": broker], forUserAccount: "roomcast")
+            let error3 = Locksmith.saveData(["run_id": run_id], forUserAccount: "roomcast")
         }
         
         self.login()
