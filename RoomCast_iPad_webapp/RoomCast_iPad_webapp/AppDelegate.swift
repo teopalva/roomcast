@@ -13,11 +13,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        var storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        var initialViewController: UIViewController
+        let (dictionary, error) = Locksmith.loadDataForUserAccount("roomcast")
+        if let dictionary = dictionary {
+            let broker = dictionary.objectForKey("broker") as? String
+            if let broker = broker {
+                initialViewController = storyboard.instantiateViewControllerWithIdentifier("MenuViewController") as! UIViewController
+            } else {
+                initialViewController = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! UIViewController
+            }
+        } else {
+            initialViewController = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! UIViewController
+        }
+    
+        self.window?.rootViewController = initialViewController
+        self.window?.makeKeyAndVisible()
+        
         return true
     }
+    
+    
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

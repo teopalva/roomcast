@@ -1,14 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="2gc-h3-E4k">
+            <objects>
+                <viewController storyboardIdentifier="LoginViewController" id="0HR-jZ-7yD" customClass="LoginViewController" customModule="RoomCast_iPad_webapp" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1gj-xl-dMj"/>
+                        <viewControllerLayoutGuide type="bottom" id="QWI-u0-aZv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1bf-vN-Gyg">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="showDetail" identifier="loginSegue" id="TrB-VU-Wjf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bVn-qW-DsJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="441" y="-533"/>
+        </scene>
         <!--Menu View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MenuViewController" customModule="RoomCast_iPad_webapp" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MenuViewController" id="BYZ-38-t0r" customClass="MenuViewController" customModule="RoomCast_iPad_webapp" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -30,7 +51,7 @@
         <!--New Activity View Controller-->
         <scene sceneID="VPa-L8-Bl1">
             <objects>
-                <viewController id="neh-Cq-IvE" customClass="NewActivityViewController" customModule="RoomCast_iPad_webapp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="neh-Cq-IvE" customClass="NewActivityViewController" customModule="RoomCast_iPad_webapp" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="33n-z9-vzP"/>
                         <viewControllerLayoutGuide type="bottom" id="GYs-2O-lhd"/>
@@ -52,7 +73,7 @@
         <!--Channel View Controller-->
         <scene sceneID="tec-eb-pNy">
             <objects>
-                <viewController id="icA-u6-ddF" customClass="ChannelViewController" customModule="RoomCast_iPad_webapp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="icA-u6-ddF" customClass="ChannelViewController" customModule="RoomCast_iPad_webapp" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xFh-9m-iCD"/>
                         <viewControllerLayoutGuide type="bottom" id="ZDc-3Z-qvT"/>

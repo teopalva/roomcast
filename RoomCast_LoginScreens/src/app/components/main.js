@@ -10,20 +10,6 @@ var RunIdPage = require('./RunIdPage');
 var Main = React.createClass({
 
     componentDidMount: function() {
-        var self = this;
-
-        nutella.net.request('mapping/retrieve', 'all', function (response) {
-            self.extractIdentitiesFromMapping(response);
-        });
-
-        nutella.net.subscribe('mapping/updated', function (message, from) {
-            self.extractIdentitiesFromMapping(message);
-        });
-
-        nutella.net.subscribe('currentConfig/switched', function (message, from) {
-            self.extractIdentitiesFromMapping(message);
-        });
-
     },
 
     getInitialState: function () {

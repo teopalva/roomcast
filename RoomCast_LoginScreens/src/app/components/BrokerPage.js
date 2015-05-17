@@ -6,11 +6,37 @@ var RaisedButton = Mui.RaisedButton;
 
 var BrokerPage = React.createClass({
 
+    componentWillMount: function() {
+        this.updateDimensions();
+    },
+
+    componentDidMount: function() {
+        window.addEventListener("resize", this.updateDimensions);
+    },
+
+    componentWillUnmount: function() {
+        window.removeEventListener("resize", this.updateDimensions);
+    },
+
+    updateDimensions: function() {
+        this.setState({innerHeight: window.innerHeight});
+    },
+
     handleSetBroker: function() {
+        var self = this;
         var broker = this.refs.textFieldBroker.getValue();
         if(broker.length !== 0) {
-            // store in iPad
+
+            // Start nutella
+            window.nutella = NUTELLA.init(broker, null, null, 'login-screens', function() {
+                self.setErrorText('Invalid broker.');
+                self.props.onSwitchPage(1);
+            });
+
+            // Store
+            window.ReactMain.login.broker = broker;
             this.props.onSwitchPage(2);
+
         } else {
             this.setErrorText('You must set a broker.');
         }
@@ -18,7 +44,8 @@ var BrokerPage = React.createClass({
 
     getInitialState: function () {
         return  {
-            errorText: null
+            errorText: null,
+            innerHeight: window.innerHeight
         }
     },
 
@@ -30,6 +57,7 @@ var BrokerPage = React.createClass({
 
     validateInput:  function() {
         var input = this.refs.textFieldBroker.getValue();
+        console.log(input);
         if (input.length === 0) {
             this.setErrorText('You must set a broker.');
         } else {
@@ -41,11 +69,11 @@ var BrokerPage = React.createClass({
         var self = this;
 
         var titlesDivStyle = {
-            height: window.innerHeight * (1/3)
+            height: this.state.innerHeight * (1/3)
         };
 
         var gridDivStyle = {
-            height: window.innerHeight * (2/3)
+            height: this.state.innerHeight * (2/3)
         };
 
         return (

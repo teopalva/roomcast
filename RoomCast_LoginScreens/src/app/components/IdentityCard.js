@@ -33,20 +33,22 @@ var IdentityCard = React.createClass({
             });
 
             var callback = function() {
+
                 if(self.props.type === 'app_id') {
-                    var actionParameters = {
-                        app_id: self.props.name
-                    };
-                    self.iOScall('storeLoginValues', actionParameters);
+                    ReactMain.login.app_id = self.props.name;
                     self.props.onSwitchPage(3, self.props.name);
+
                 } else {
+
                     if(self.props.type === 'run_id') {
-                        actionParameters = {
+                        var actionParameters = {
+                            broker: ReactMain.login.broker,
+                            app_id: ReactMain.login.app_id,
                             run_id: self.props.name
                         };
                         self.iOScall('storeLoginValues', actionParameters);
-                        self.iOScall('login');
                     }
+
                 }
             };
             setTimeout(callback, 500);

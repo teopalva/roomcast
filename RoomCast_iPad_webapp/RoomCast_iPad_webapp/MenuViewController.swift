@@ -75,7 +75,6 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
         
         // These need to match the values defined in JavaScript: roomcast://playChannel
         var appScheme: NSString = "roomcast"
-        //var actionType: NSString = "playChannel"
         
         // Ignore legit webview requests so they load normally
         if(request.URL!.scheme! != appScheme) {

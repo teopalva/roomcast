@@ -18,5 +18,6 @@
     // For more details see: https://facebook.github.io/react/docs/top-level-api.html#react.render
     //window.ReactMain = 'Main component';
     window.ReactMain = React.render(<Main />, document.body);
+    ReactMain.login = {};
 
 })();

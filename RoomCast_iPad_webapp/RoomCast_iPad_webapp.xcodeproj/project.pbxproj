@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB3C97031B07E19900ED0974 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3C97021B07E19900ED0974 /* LoginViewController.swift */; };
 		AB56F5C81AAD1F3700457AC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABD0E5581AA0D09600248C1E /* Main.storyboard */; };
 		AB5B4FE41AAD00EE00BA57C3 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB5B4FE31AAD00EE00BA57C3 /* Launch Screen.xib */; };
 		AB5B4FE61AAD0DD600BA57C3 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5B4FE51AAD0DD600BA57C3 /* LaunchView.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB3C97021B07E19900ED0974 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		AB5B4FE31AAD00EE00BA57C3 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		AB5B4FE51AAD0DD600BA57C3 /* LaunchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		AB5CEECC1AABA18600EE48C9 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				ABD0E5541AA0D09600248C1E /* AppDelegate.swift */,
+				AB3C97021B07E19900ED0974 /* LoginViewController.swift */,
 				ABD0E5561AA0D09600248C1E /* MenuViewController.swift */,
 				AB5B4FE51AAD0DD600BA57C3 /* LaunchView.swift */,
 				AB6BEC911AAA892900478F8E /* BasicWebView.swift */,
@@ -254,6 +257,7 @@
 				AB6BEC921AAA892900478F8E /* BasicWebView.swift in Sources */,
 				ABD0E5551AA0D09600248C1E /* AppDelegate.swift in Sources */,
 				AB5B4FE61AAD0DD600BA57C3 /* LaunchView.swift in Sources */,
+				AB3C97031B07E19900ED0974 /* LoginViewController.swift in Sources */,
 				ABE93AB31AAEAA16000C5562 /* Locksmith.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -373,7 +377,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = RoomCast_iPad_webapp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -385,7 +389,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = RoomCast_iPad_webapp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

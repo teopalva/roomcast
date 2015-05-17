@@ -22,7 +22,7 @@ var AppIdPage = React.createClass({
     getInitialState: function () {
         return  {
             hasBeenSelected: false,
-            values: []
+            values: undefined
         }
     },
 
@@ -37,9 +37,25 @@ var AppIdPage = React.createClass({
             height: window.innerHeight * (2/3)
         };
 
-        var backgroundMessage = null;
-        if(this.state.values.length === 0) {
-            backgroundMessage = <p className='backgroundMessage' > No available apps </p>;
+        var app_ids_grid = null;
+
+        if(this.state.values) {
+            var backgroundMessage = null;
+            if(this.state.values.length === 0) {
+                backgroundMessage = <p className='backgroundMessage' > No available apps </p>;
+            }
+
+            app_ids_grid = (
+                <div className='grid-div' style={gridDivStyle} >
+
+                    {backgroundMessage}
+                    <IdentitiesGrid
+                        identities={this.state.values}
+                        type='app_id'
+                        onSwitchPage={this.props.onSwitchPage} />
+
+                </div>
+            );
         }
 
         return (
@@ -53,15 +69,7 @@ var AppIdPage = React.createClass({
 
                 </div>
 
-                <div className='grid-div' style={gridDivStyle} >
-
-                    {backgroundMessage}
-                    <IdentitiesGrid
-                        identities={this.state.values}
-                        type='app_id'
-                        onSwitchPage={this.props.onSwitchPage} />
-
-                </div>
+                {app_ids_grid}
 
             </div>
 

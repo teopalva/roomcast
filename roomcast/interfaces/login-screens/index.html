@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Login Screens</title>
     <meta name="description" content="Startup login for RoomCast on iPad.">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 
@@ -15,14 +15,18 @@
 <!-- Nutella -->
 <script src="nutella_lib.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
-
-    // Parse the query parameters
-    var query_parameters = NUTELLA.parseURLParameters();
-
-    // Get an instance of nutella.
-    var nutella = NUTELLA.init(query_parameters.broker, query_parameters.app_id, query_parameters.run_id, 'login-screens');
-
+var nutella;
 </script>
+
+<!--script type="text/javascript">
+
+// Parse the query parameters
+var query_parameters = NUTELLA.parseURLParameters();
+
+// Get an instance of nutella.
+var nutella = NUTELLA.init(query_parameters.broker, query_parameters.app_id, query_parameters.run_id, 'login-screens');
+
+</script-->
 
 <!-- This script adds the Roboto font to our project. For more detail go to this site:  http://www.google.com/fonts#UsePlace:use/Collection:Roboto:400,300,500 -->
 <script>
