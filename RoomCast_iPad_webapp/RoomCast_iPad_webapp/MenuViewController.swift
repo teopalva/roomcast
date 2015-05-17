@@ -26,6 +26,9 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
         self.webView.scalesPageToFit = false
         self.webView.multipleTouchEnabled = false
         self.webView.delegate = self
+        
+        // Initialize Nutella
+        self.nutellaInit()
     }
     
     override func viewDidLoad() {
@@ -116,6 +119,8 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
         case "setResourceIdentity":
             let rid = parameters["rid"] as String!
             setResourceIdentity(rid)
+        case "login":
+            nutellaInit()
         case "logout":
             logout()
         default:
@@ -230,6 +235,14 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
     
     func handleLogout() {
         let script: String = "ReactMain.handleLogout()";
+        self.webView.stringByEvaluatingJavaScriptFromString(script)
+    }
+    
+    func nutellaInit() {
+        let broker = LoginViewController.retrieveBroker()
+        let app_id = LoginViewController.retrieveAppId()
+        let run_id = LoginViewController.retrieveRunId()
+        let script: String = "nutella.init('\(broker)', \(app_id), \(run_id), 'main-interface')";
         self.webView.stringByEvaluatingJavaScriptFromString(script)
     }
     

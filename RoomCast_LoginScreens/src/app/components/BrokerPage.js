@@ -28,14 +28,14 @@ var BrokerPage = React.createClass({
         if(broker.length !== 0) {
 
             // Start nutella
-            window.nutella = NUTELLA.init(broker, null, null, 'login-screens', function() {
-                self.setErrorText('Invalid broker.');
-                self.props.onSwitchPage(1);
+            window.nutella = NUTELLA.init(broker, null, null, 'login-screens', function(connected) {
+                if(connected) {
+                    window.ReactMain.login.broker = broker;
+                    self.props.onSwitchPage(2);
+                } else {
+                    self.setErrorText('Invalid broker.');
+                }
             });
-
-            // Store
-            window.ReactMain.login.broker = broker;
-            this.props.onSwitchPage(2);
 
         } else {
             this.setErrorText('You must set a broker.');
@@ -57,7 +57,6 @@ var BrokerPage = React.createClass({
 
     validateInput:  function() {
         var input = this.refs.textFieldBroker.getValue();
-        console.log(input);
         if (input.length === 0) {
             this.setErrorText('You must set a broker.');
         } else {

@@ -4,7 +4,7 @@ var IdentitiesGrid = require('./IdentitiesGrid');
 
 var AppIdPage = React.createClass({
 
-    componentWillMount: function() {
+    componentDidMount: function() {
         var self = this;
         nutella.net.request('runs_list', 'req', function(response) {
             var app_ids = [];
@@ -16,6 +16,7 @@ var AppIdPage = React.createClass({
             self.setState({
                 values: app_ids
             });
+            console.log(app_ids);
         });
     },
 

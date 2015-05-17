@@ -102,8 +102,6 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
         switch actionType {
         case "storeLoginValues":
             storeLoginValues(parameters)
-        case "login":
-            login()
         default:
             return false
         }
@@ -116,26 +114,28 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
         let app_id = parameters["app_id"] as String!
         let run_id = parameters["run_id"] as String!
 
-        if let storedBroker = retrieveBroker() {
+        if let storedBroker = LoginViewController.retrieveBroker() {
             let error = Locksmith.updateData(["broker": broker], forUserAccount: "roomcast")
         } else {
             let error = Locksmith.saveData(["broker": broker], forUserAccount: "roomcast")
         }
         
-        if let storedAppId = retrieveAppId() {
+        if let storedAppId = LoginViewController.retrieveAppId() {
             let error = Locksmith.updateData(["app_id": broker], forUserAccount: "roomcast")
         } else {
             let error = Locksmith.saveData(["app_id": broker], forUserAccount: "roomcast")
         }
         
-        if let storedRunId = retrieveRunId() {
+        if let storedRunId = LoginViewController.retrieveRunId() {
             let error = Locksmith.updateData(["run_id": broker], forUserAccount: "roomcast")
         } else {
             let error = Locksmith.saveData(["run_id": broker], forUserAccount: "roomcast")
         }
+        
+        self.login()
     }
     
-    func retrieveBroker() -> String? {
+    class func retrieveBroker() -> String? {
         let (dictionary, error) = Locksmith.loadDataForUserAccount("roomcast")
         if let dictionary = dictionary {
             return dictionary.objectForKey("broker") as? String
@@ -144,7 +144,7 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
         }
     }
     
-    func retrieveRunId() -> String? {
+    class func retrieveRunId() -> String? {
         let (dictionary, error) = Locksmith.loadDataForUserAccount("roomcast")
         if let dictionary = dictionary {
             return dictionary.objectForKey("run_id") as? String
@@ -153,7 +153,7 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
         }
     }
     
-    func retrieveAppId() -> String? {
+    class func retrieveAppId() -> String? {
         let (dictionary, error) = Locksmith.loadDataForUserAccount("roomcast")
         if let dictionary = dictionary {
             return dictionary.objectForKey("app_id") as? String
@@ -163,7 +163,7 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
     }
     
     func login() {
-        let broker = self.retrieveBroker()
+        let broker = LoginViewController.retrieveBroker()
         if let broker = broker {
             self.performSegueWithIdentifier("loginSegue", sender: self)
         }
