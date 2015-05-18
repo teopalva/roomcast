@@ -5,14 +5,17 @@ var iOSMixin = {
 
         // JavaScript to send an action to iOS code
         var appName = 'roomcast';
-        var jsonString = (JSON.stringify(actionParameters));
-        var escapedJsonParameters = escape(jsonString);
-        var url = appName + '://' + actionType + "#" + escapedJsonParameters;
-        console.log('launching url: ', url);
+        var url;
+        if(actionParameters) {
+            var jsonString = (JSON.stringify(actionParameters));
+            var escapedJsonParameters = escape(jsonString);
+            url = appName + '://' + actionType + "#" + escapedJsonParameters;
+        } else {
+            url = appName + '://' + actionType;
+        }
         document.location.href = url;
-
+        console.log('launching url: ', url);
     }
-
 
 };
 

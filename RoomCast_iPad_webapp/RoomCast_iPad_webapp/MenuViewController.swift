@@ -17,6 +17,9 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
     // Channel's url
     var url: String? = nil
     
+    // Package (resource) id, i.e. rid
+    var package_id: String? = nil
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -114,6 +117,8 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
             logout()
         case "requestLogin":
             reactLogin()
+        case "responsePackageId":
+            self.package_id = parameters["package_id"] as String!
         default:
             return false
         }
@@ -128,14 +133,24 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
                 return
             }
             if (url.substringWithRange(Range<String.Index>(start: url.startIndex, end: advance(url.startIndex, 7))) == "http://") {
+                
+                // Pass extra info to the web channel
+                self.url = url + "&package_id=\(self.package_id)"
+                println(self.url)
+                
+                // Play web channel
                 self.performSegueWithIdentifier("playChannelSegue", sender: self)
+                
             } else {
+                
+                // Play native channel
                 let customUrl: NSURL = NSURL(string:url)!
                 if (UIApplication.sharedApplication().canOpenURL(customUrl)) {
                     UIApplication.sharedApplication().openURL(customUrl)
                 } else {
                     println("Could not open " + url)
                 }
+                
             }
         } else {
             println("Empty Channel!")
@@ -161,6 +176,7 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
     }
     
     func setResourceIdentity(rid: String) {
+        self.package_id = rid
         storeResourceIdentity(rid)
         handleUpdatedRid(rid)
     }
@@ -240,6 +256,11 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
         let run_id = LoginViewController.retrieveRunId()
         
         let script: String = "ReactLogin('\(broker!)', '\(app_id!)', '\(run_id!)')";
+        self.webView.stringByEvaluatingJavaScriptFromString(script)
+    }
+    
+    func requestPackageId() {
+        let script: String = "ReactMain.requestPackageId()";
         self.webView.stringByEvaluatingJavaScriptFromString(script)
     }
     

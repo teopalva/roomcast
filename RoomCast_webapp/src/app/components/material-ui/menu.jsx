@@ -111,9 +111,9 @@ var Menu = React.createClass({
     var logoutButton =  <div className='logout-button-div'>
                             <RaisedButton className='logout-button' label='Logout' primary={true} onTouchTap={this.handleLogout} />
                         </div>;
-    if(this.props.canLogout) {
+    //if(this.props.canLogout) {
         children.push(logoutButton);
-    }
+    //}
 
     return children;
 },

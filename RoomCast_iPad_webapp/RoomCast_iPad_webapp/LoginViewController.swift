@@ -171,9 +171,8 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch (segue.identifier!) {
-        case "playChannelSegue":
-            var nextVC = segue.destinationViewController as! ChannelViewController
-            nextVC.url = url
+        case "loginSegue":
+            // do nothing
             break
         default:
             // do nothing
@@ -184,20 +183,7 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
     
     //////////// REACT.js METHODS ////////////
     
-    func handleUpdatedRid(rid: String) {
-        let script: String = "ReactMain.handleSelectedResource('\(rid)')"
-        self.webView.stringByEvaluatingJavaScriptFromString(script)
-    }
-    
-    func setModalRightNav() {
-        let script: String = "ReactMain.setModalRightNav()"
-        self.webView.stringByEvaluatingJavaScriptFromString(script)
-    }
-    
-    func handleLogout() {
-        let script: String = "ReactMain.handleLogout()";
-        self.webView.stringByEvaluatingJavaScriptFromString(script)
-    }
+
     
     //////////////////////////////////////////
     

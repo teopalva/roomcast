@@ -4,8 +4,11 @@ var Channel = require('./Channel');
 var Mui = require('material-ui');
 var FloatingActionButton = Mui.FloatingActionButton;
 var RightNav = require('./material-ui/right-nav.jsx');
+var iOSMixin = require('./iOSMixin');
 
 var Main = React.createClass({
+
+    mixins: [iOSMixin],
 
     componentDidMount: function() {
         var self = this;
@@ -173,18 +176,21 @@ var Main = React.createClass({
         var actionParameters = {
             'rid': menuItem.id
         };
-        var jsonString = (JSON.stringify(actionParameters));
-        var escapedJsonParameters = escape(jsonString);
-        var url = 'roomcast' + '://' + 'setResourceIdentity' + "#" + escapedJsonParameters;
-        document.location.href = url;
+        this.iOScall('setResourceIdentity', actionParameters);
     },
 
     handleLogout: function() {
         this.handleSelectedResource(null);
 
         // Logout from iOS
-        var url = 'roomcast' + '://' + 'logout';
-        document.location.href = url;
+        this.iOScall('logout');
+    },
+
+    requestPackageId: function() {
+        var actionParameters = {
+            package_id: this.state.rid
+        };
+        this.iOScall('responsePackageId', actionParameters);
     },
 
     render: function() {
@@ -243,10 +249,7 @@ var Main = React.createClass({
 
                 <div className="grid"> {channels} </div>
 
-                <FloatingActionButton className='controlButton'
-                                      iconClassName="muidocs-icon-action-grade"
-                                      secondary={true}
-                                      onTouchTap={this.handleControlButton} />
+                <i className="controlButton icon ion-android-lock" onTouchTap={this.handleControlButton} ></i>
 
                 <RightNav ref='rightNav'
                           docked={false}

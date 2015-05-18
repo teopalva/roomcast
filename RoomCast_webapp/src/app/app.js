@@ -19,11 +19,17 @@
     // For more details see: https://facebook.github.io/react/docs/top-level-api.html#react.render
     //window.ReactMain = 'Main component';
 
-    document.location.href = 'roomcast://requestLogin';
-
-    window.ReactLogin = function(broker, app_id, run_id) {
-        window.nutella = NUTELLA.init(broker, app_id, run_id, 'main-interface');
+    var iOS = (window.navigator.userAgent.match(/(iPad|iPhone)/g) ? true : false);
+    if(iOS) {
+        console.log('iOS version');
+        document.location.href = 'roomcast://requestLogin';
+        window.ReactLogin = function(broker, app_id, run_id) {
+            window.nutella = NUTELLA.init(broker, app_id, run_id, 'main-interface');
+            window.ReactMain = React.render(<Main />, document.body);
+        };
+    } else {
         window.ReactMain = React.render(<Main />, document.body);
-    };
+    }
+
 
 })();
