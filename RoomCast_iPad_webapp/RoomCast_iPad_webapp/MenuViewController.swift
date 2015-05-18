@@ -29,6 +29,8 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
         self.webView.scalesPageToFit = false
         self.webView.multipleTouchEnabled = false
         self.webView.delegate = self
+        
+        self.package_id = retrieveResourceIdentity()
 
     }
     
@@ -102,23 +104,32 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
         switch actionType {
         case "playChannel":
             playChannel(parameters)
+            break
         case "promptNewActivityScreen":
             promptNewActivityScreen()
+            break
         case "discardNewActivityScreen":
             discardNewActivityScreen()
+            break
         case "getResourceIdentity":
             getResourceIdentity()
+            break
         case "setResourceIdentity":
             let rid = parameters["rid"] as String!
             setResourceIdentity(rid)
+            break
         case "login":
             nutellaInit()
+            break
         case "logout":
             logout()
+            break
         case "requestLogin":
             reactLogin()
+            break
         case "responsePackageId":
             self.package_id = parameters["package_id"] as String!
+            break
         default:
             return false
         }
@@ -127,7 +138,7 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
     }
     
     func playChannel(parameters: Dictionary<String, String>) {
-        url = parameters["url"] as String?
+        self.url = parameters["url"] as String!
         if let url = url {
             if(count(url) < 7) {
                 return
@@ -135,8 +146,10 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
             if (url.substringWithRange(Range<String.Index>(start: url.startIndex, end: advance(url.startIndex, 7))) == "http://") {
                 
                 // Pass extra info to the web channel
-                self.url = url + "&package_id=\(self.package_id)"
-                println(self.url)
+                if let package_id = self.package_id {
+                    self.url = self.url! + "&package_id=\(package_id)"
+                }
+                println("url" + self.url!)
                 
                 // Play web channel
                 self.performSegueWithIdentifier("playChannelSegue", sender: self)

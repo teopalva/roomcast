@@ -23,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         var initialViewController: UIViewController
+        
+        /*
         let (dictionary, error) = Locksmith.loadDataForUserAccount("roomcast_broker")
         if let dictionary = dictionary {
             let broker = dictionary.objectForKey("broker") as? String
@@ -34,6 +36,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             initialViewController = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! UIViewController
         }
+*/
+        
+        initialViewController = storyboard.instantiateViewControllerWithIdentifier("MenuViewController") as! UIViewController
+
     
         self.window?.rootViewController = initialViewController
         self.window?.makeKeyAndVisible()

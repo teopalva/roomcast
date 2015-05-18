@@ -12,10 +12,6 @@ import WebKit
 class LoginViewController: UIViewController, UIWebViewDelegate {
     
     var webView: UIWebView!
-    @IBOutlet var launchView: UIView!
-    
-    // Channel's url
-    var url: String? = nil
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
