@@ -13,12 +13,13 @@
                         <viewControllerLayoutGuide type="top" id="1gj-xl-dMj"/>
                         <viewControllerLayoutGuide type="bottom" id="QWI-u0-aZv"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="1bf-vN-Gyg">
+                    <view key="view" contentMode="scaleToFill" id="1bf-vN-Gyg" customClass="UIWebView">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="webView" destination="1bf-vN-Gyg" id="Csb-wH-SHD"/>
                         <segue destination="BYZ-38-t0r" kind="showDetail" identifier="loginSegue" id="TrB-VU-Wjf"/>
                     </connections>
                 </viewController>

@@ -11,18 +11,14 @@ import WebKit
 
 class LoginViewController: UIViewController, UIWebViewDelegate {
     
-    var webView: UIWebView!
+    //weak var webView: UIWebView!
+    @IBOutlet weak var webView: UIWebView!
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        self.webView = BasicWebView()
-        self.webView.scrollView.bounces = false
-        self.webView.scalesPageToFit = false
-        self.webView.multipleTouchEnabled = false
-        self.webView.delegate = self
+        //self.webView = BasicWebView()
         
-        self.view = self.webView
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
@@ -31,6 +27,13 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.webView.scrollView.bounces = false
+        self.webView.scalesPageToFit = false
+        self.webView.multipleTouchEnabled = false
+        self.webView.delegate = self
+        
+        //self.view = self.webView
         
         // Load main menu from local files
         var htmlFile: NSString? = NSBundle.mainBundle().pathForResource("index", ofType: "html", inDirectory: "./assets/login")
@@ -51,6 +54,7 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
     }
     
     override func didReceiveMemoryWarning() {
+        println("memory warning")
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
@@ -98,6 +102,7 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
         switch actionType {
         case "storeLoginValues":
             storeLoginValues(parameters)
+            break
         default:
             return false
         }
@@ -110,52 +115,27 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
         let app_id = parameters["app_id"] as String!
         let run_id = parameters["run_id"] as String!
                 
-        if let storedBroker = LoginViewController.retrieveBroker() {
-            let error1 = Locksmith.updateData(["broker": broker], forUserAccount: "roomcast_broker")
-        } else {
-            let error1 = Locksmith.saveData(["broker": broker], forUserAccount: "roomcast_broker")
-        }
-        
-        if let storedAppId = LoginViewController.retrieveAppId() {
-            let error2 = Locksmith.updateData(["app_id": app_id], forUserAccount: "roomcast_app_id")
-        } else {
-            let error2 = Locksmith.saveData(["app_id": app_id], forUserAccount: "roomcast_app_id")
-        }
-        
-        if let storedRunId = LoginViewController.retrieveRunId() {
-            let error3 = Locksmith.updateData(["run_id": run_id], forUserAccount: "roomcast_run_id")
-        } else {
-            let error3 = Locksmith.saveData(["run_id": run_id], forUserAccount: "roomcast_run_id")
-        }
-        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setValue(broker, forKey: DefaultsKeys.broker)
+        defaults.setValue(app_id, forKey: DefaultsKeys.app_id)
+        defaults.setValue(run_id, forKey: DefaultsKeys.run_id)
+
         self.login()
     }
     
     class func retrieveBroker() -> String? {
-        let (dictionary, error) = Locksmith.loadDataForUserAccount("roomcast_broker")
-        if let dictionary = dictionary {
-            return dictionary.objectForKey("broker") as? String
-        } else {
-            return nil
-        }
+        let defaults = NSUserDefaults.standardUserDefaults()
+        return defaults.valueForKey(DefaultsKeys.broker) as? String
     }
     
     class func retrieveRunId() -> String? {
-        let (dictionary, error) = Locksmith.loadDataForUserAccount("roomcast_run_id")
-        if let dictionary = dictionary {
-            return dictionary.objectForKey("run_id") as? String
-        } else {
-            return nil
-        }
+        let defaults = NSUserDefaults.standardUserDefaults()
+        return defaults.valueForKey(DefaultsKeys.run_id) as? String
     }
     
     class func retrieveAppId() -> String? {
-        let (dictionary, error) = Locksmith.loadDataForUserAccount("roomcast_app_id")
-        if let dictionary = dictionary {
-            return dictionary.objectForKey("app_id") as? String
-        } else {
-            return nil
-        }
+        let defaults = NSUserDefaults.standardUserDefaults()
+        return defaults.valueForKey(DefaultsKeys.app_id) as? String
     }
     
     func login() {

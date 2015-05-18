@@ -118,9 +118,6 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
             let rid = parameters["rid"] as String!
             setResourceIdentity(rid)
             break
-        case "login":
-            nutellaInit()
-            break
         case "logout":
             logout()
             break
@@ -147,9 +144,9 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
                 
                 // Pass extra info to the web channel
                 if let package_id = self.package_id {
-                    self.url = self.url! + "&package_id=\(package_id)"
+                    let escaped_id = package_id.stringByReplacingOccurrencesOfString(" ", withString: "%20")
+                    self.url = self.url! + "&package_id=\(escaped_id)"
                 }
-                println("url" + self.url!)
                 
                 // Play web channel
                 self.performSegueWithIdentifier("playChannelSegue", sender: self)
@@ -219,29 +216,22 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
     }
     
     func retrieveResourceIdentity() -> String? {
-        println("fetching rid")
-        let (dictionary, error) = Locksmith.loadDataForUserAccount("roomcast")
-        if let dictionary = dictionary {
-            return dictionary.objectForKey("rid") as? String
-        } else {
-            return nil
-        }
+        let defaults = NSUserDefaults.standardUserDefaults()
+        return defaults.valueForKey(DefaultsKeys.rid) as? String
     }
     
     func storeResourceIdentity(rid: String) {
         println("storing \(rid)")
-        if let storedRid = retrieveResourceIdentity() {
-            let error = Locksmith.updateData(["rid": rid], forUserAccount: "roomcast")
-        } else {
-            let error = Locksmith.saveData(["rid": rid], forUserAccount: "roomcast")
-        }
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setValue(rid, forKey: DefaultsKeys.rid)
     }
     
     func logout() {
-        Locksmith.deleteDataForUserAccount("roomcast")
-        Locksmith.deleteDataForUserAccount("roomcast_broker")
-        Locksmith.deleteDataForUserAccount("roomcast_app_id")
-        Locksmith.deleteDataForUserAccount("roomcast_run_id")
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setValue(nil, forKey: DefaultsKeys.broker)
+        defaults.setValue(nil, forKey: DefaultsKeys.app_id)
+        defaults.setValue(nil, forKey: DefaultsKeys.run_id)
+        defaults.setValue(nil, forKey: DefaultsKeys.rid)
         self.performSegueWithIdentifier("unwindToLoginSegue", sender: self)
     }
     
@@ -275,17 +265,6 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
     func requestPackageId() {
         let script: String = "ReactMain.requestPackageId()";
         self.webView.stringByEvaluatingJavaScriptFromString(script)
-    }
-    
-    func nutellaInit() {
-        let broker = LoginViewController.retrieveBroker()
-        let app_id = LoginViewController.retrieveAppId()
-        let run_id = LoginViewController.retrieveRunId()
-        //let script: String = "window.nutella = NUTELLA.init('\(broker!)', '\(app_id!)', '\(run_id!)', 'main-interface')";
-        //let script: String = "window.nutella = NUTELLA.init('52.1.142.215', 'test_0.4.20', 'run3', 'main-interface', function(connected){if(connected){ document.location.href = 'roomcast://loadMenu'; }})";
-        //let script: String = "var nutella = NUTELLA.init('52.1.142.215', 'test_0.4.20', 'run3', 'main-interface'); var action = function() {document.location.href = 'roomcast://loadMenu';}; setTimeout(action, 2000);";
-        //self.webView.stringByEvaluatingJavaScriptFromString(script)
-        
     }
     
     //////////////////////////////////////////
