@@ -16,13 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         // TODO delete
-        let errordelete = Locksmith.deleteDataForUserAccount("roomcast")
+        let errordelete1 = Locksmith.deleteDataForUserAccount("roomcast_broker")
+        let errordelete2 = Locksmith.deleteDataForUserAccount("roomcast_app_id")
+        let errordelete3 = Locksmith.deleteDataForUserAccount("roomcast_run_id")
 
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         var storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         var initialViewController: UIViewController
-        let (dictionary, error) = Locksmith.loadDataForUserAccount("roomcast")
+        let (dictionary, error) = Locksmith.loadDataForUserAccount("roomcast_broker")
         if let dictionary = dictionary {
             let broker = dictionary.objectForKey("broker") as? String
             if let broker = broker {

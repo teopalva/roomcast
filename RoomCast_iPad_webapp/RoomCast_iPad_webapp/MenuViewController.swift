@@ -26,24 +26,15 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
         self.webView.scalesPageToFit = false
         self.webView.multipleTouchEnabled = false
         self.webView.delegate = self
-        
-        // Initialize Nutella
-        self.nutellaInit()
+
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        /*
-        // Load from external website
-        var url : String? = "http://52.1.142.215:57880/roomcast/main-interface/index.html?run_id=roomcast&broker=52.1.142.215"
-        if let url = url {
-        let requestURL = NSURL(string:url)
-        let request = NSURLRequest(URL: requestURL!)
-        self.webView!.loadRequest(request)
-        }
-        */
-        
+        loadInterface()
+    }
+    
+    func loadInterface() {
         // Load main menu from local files
         var htmlFile: NSString? = NSBundle.mainBundle().pathForResource("index", ofType: "html", inDirectory: "./assets/menu")
         var htmlString: NSString?
@@ -59,7 +50,6 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
         } else {
             println("File not found.")
         }
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -122,6 +112,8 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
             nutellaInit()
         case "logout":
             logout()
+        case "requestLogin":
+            reactLogin()
         default:
             return false
         }
@@ -217,7 +209,11 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
     }
     
     func logout() {
-        let error = Locksmith.deleteDataForUserAccount("roomcast")
+        Locksmith.deleteDataForUserAccount("roomcast")
+        Locksmith.deleteDataForUserAccount("roomcast_broker")
+        Locksmith.deleteDataForUserAccount("roomcast_app_id")
+        Locksmith.deleteDataForUserAccount("roomcast_run_id")
+        self.performSegueWithIdentifier("unwindToLoginSegue", sender: self)
     }
     
     //////////// REACT.js METHODS ////////////
@@ -237,12 +233,25 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
         self.webView.stringByEvaluatingJavaScriptFromString(script)
     }
     
+    func reactLogin() {
+        
+        let broker = LoginViewController.retrieveBroker()
+        let app_id = LoginViewController.retrieveAppId()
+        let run_id = LoginViewController.retrieveRunId()
+        
+        let script: String = "ReactLogin('\(broker!)', '\(app_id!)', '\(run_id!)')";
+        self.webView.stringByEvaluatingJavaScriptFromString(script)
+    }
+    
     func nutellaInit() {
         let broker = LoginViewController.retrieveBroker()
         let app_id = LoginViewController.retrieveAppId()
         let run_id = LoginViewController.retrieveRunId()
-        let script: String = "var nutella = NUTELLA.init('\(broker!)', \(app_id), \(run_id), 'main-interface')";
-        self.webView.stringByEvaluatingJavaScriptFromString(script)
+        //let script: String = "window.nutella = NUTELLA.init('\(broker!)', '\(app_id!)', '\(run_id!)', 'main-interface')";
+        //let script: String = "window.nutella = NUTELLA.init('52.1.142.215', 'test_0.4.20', 'run3', 'main-interface', function(connected){if(connected){ document.location.href = 'roomcast://loadMenu'; }})";
+        //let script: String = "var nutella = NUTELLA.init('52.1.142.215', 'test_0.4.20', 'run3', 'main-interface'); var action = function() {document.location.href = 'roomcast://loadMenu';}; setTimeout(action, 2000);";
+        //self.webView.stringByEvaluatingJavaScriptFromString(script)
+        
     }
     
     //////////////////////////////////////////

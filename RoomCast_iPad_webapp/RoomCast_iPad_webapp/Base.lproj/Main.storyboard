@@ -24,7 +24,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bVn-qW-DsJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="441" y="-533"/>
+            <point key="canvasLocation" x="441" y="-534"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -43,6 +43,7 @@
                         <outlet property="launchView" destination="B3S-Kk-ulr" id="IFL-ik-myp"/>
                         <segue destination="icA-u6-ddF" kind="show" identifier="playChannelSegue" id="7vT-Et-L4G"/>
                         <segue destination="neh-Cq-IvE" kind="presentation" identifier="newActivitySegue" modalPresentationStyle="pageSheet" id="e9w-YK-P32"/>
+                        <segue destination="0HR-jZ-7yD" kind="showDetail" identifier="unwindToLoginSegue" id="oPr-Zj-vsi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

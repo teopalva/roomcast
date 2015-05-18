@@ -20,8 +20,8 @@
 		ABD0E5571AA0D09600248C1E /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD0E5561AA0D09600248C1E /* MenuViewController.swift */; };
 		ABD0E55C1AA0D09600248C1E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABD0E55B1AA0D09600248C1E /* Images.xcassets */; };
 		ABD0E56B1AA0D09600248C1E /* RoomCast_iPad_webappTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD0E56A1AA0D09600248C1E /* RoomCast_iPad_webappTests.swift */; };
-		ABE93AB31AAEAA16000C5562 /* Locksmith.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE93AB11AAEAA16000C5562 /* Locksmith.swift */; };
-		ABE93AB41AAEAA16000C5562 /* LocksmithRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE93AB21AAEAA16000C5562 /* LocksmithRequest.swift */; };
+		ABF33F451B09349200548932 /* Locksmith.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF33F431B09349200548932 /* Locksmith.swift */; };
+		ABF33F461B09349200548932 /* LocksmithRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF33F441B09349200548932 /* LocksmithRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,8 +52,8 @@
 		ABD0E5641AA0D09600248C1E /* RoomCast_iPad_webappTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoomCast_iPad_webappTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABD0E5691AA0D09600248C1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABD0E56A1AA0D09600248C1E /* RoomCast_iPad_webappTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCast_iPad_webappTests.swift; sourceTree = "<group>"; };
-		ABE93AB11AAEAA16000C5562 /* Locksmith.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locksmith.swift; sourceTree = "<group>"; };
-		ABE93AB21AAEAA16000C5562 /* LocksmithRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocksmithRequest.swift; sourceTree = "<group>"; };
+		ABF33F431B09349200548932 /* Locksmith.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locksmith.swift; sourceTree = "<group>"; };
+		ABF33F441B09349200548932 /* LocksmithRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocksmithRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,7 +105,7 @@
 				ABBB69181AA7C2BE00B781E4 /* NativeView.swift */,
 				AB5B4FE31AAD00EE00BA57C3 /* Launch Screen.xib */,
 				ABD0E5581AA0D09600248C1E /* Main.storyboard */,
-				ABE93AB01AAEA9FA000C5562 /* Keychain */,
+				ABF33F471B0934C700548932 /* Keychain */,
 				ABD0E55B1AA0D09600248C1E /* Images.xcassets */,
 				AB5CEECC1AABA18600EE48C9 /* assets */,
 				ABD0E5521AA0D09600248C1E /* Supporting Files */,
@@ -138,11 +138,11 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		ABE93AB01AAEA9FA000C5562 /* Keychain */ = {
+		ABF33F471B0934C700548932 /* Keychain */ = {
 			isa = PBXGroup;
 			children = (
-				ABE93AB11AAEAA16000C5562 /* Locksmith.swift */,
-				ABE93AB21AAEAA16000C5562 /* LocksmithRequest.swift */,
+				ABF33F431B09349200548932 /* Locksmith.swift */,
+				ABF33F441B09349200548932 /* LocksmithRequest.swift */,
 			);
 			name = Keychain;
 			sourceTree = "<group>";
@@ -249,16 +249,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABE93AB41AAEAA16000C5562 /* LocksmithRequest.swift in Sources */,
 				ABD0E5571AA0D09600248C1E /* MenuViewController.swift in Sources */,
 				AB71A9751AD6F510007C9C8D /* NewActivityViewController.swift in Sources */,
+				ABF33F461B09349200548932 /* LocksmithRequest.swift in Sources */,
 				ABBB69191AA7C2BE00B781E4 /* NativeView.swift in Sources */,
+				ABF33F451B09349200548932 /* Locksmith.swift in Sources */,
 				ABBC0C411AA6E31700EA5FED /* ChannelViewController.swift in Sources */,
 				AB6BEC921AAA892900478F8E /* BasicWebView.swift in Sources */,
 				ABD0E5551AA0D09600248C1E /* AppDelegate.swift in Sources */,
 				AB5B4FE61AAD0DD600BA57C3 /* LaunchView.swift in Sources */,
 				AB3C97031B07E19900ED0974 /* LoginViewController.swift in Sources */,
-				ABE93AB31AAEAA16000C5562 /* Locksmith.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
