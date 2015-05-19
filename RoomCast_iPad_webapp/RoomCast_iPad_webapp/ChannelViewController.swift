@@ -42,6 +42,11 @@ class ChannelViewController: UIViewController, WKNavigationDelegate, UIWebViewDe
         self.view = self.loadingWebView
         self.view.addSubview(self.nativeView)
         
+        // Clear cache
+        NSURLCache.sharedURLCache().removeAllCachedResponses()
+        NSURLCache.sharedURLCache().diskCapacity = 0
+        NSURLCache.sharedURLCache().memoryCapacity = 0
+        
         // Load loading page
         var htmlFile: NSString? = NSBundle.mainBundle().pathForResource("index", ofType: "html", inDirectory: "./assets/loading")
         var htmlString: NSString?

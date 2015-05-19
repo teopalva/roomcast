@@ -146,6 +146,7 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
                 if let package_id = self.package_id {
                     let escaped_id = package_id.stringByReplacingOccurrencesOfString(" ", withString: "%20")
                     self.url = self.url! + "&package_id=\(escaped_id)"
+                    println(self.url)
                 }
                 
                 // Play web channel
