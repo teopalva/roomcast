@@ -241,6 +241,14 @@ var Main = React.createClass({
             canLogout = false;
         }
 
+        var touchDivStyle = {
+            width: '80px',
+            height: '60px',
+            position: 'fixed',
+            bottom: 0,
+            right: 0
+        };
+
         return (
 
             <div className='outerDiv'>
@@ -249,7 +257,9 @@ var Main = React.createClass({
 
                 <div className="grid"> {channels} </div>
 
-                <i className="controlButton icon ion-android-lock" onTouchTap={this.handleControlButton} ></i>
+                <div style={touchDivStyle} onTouchTap={this.handleControlButton} >
+                    <i className="controlButton icon ion-android-lock"  ></i>
+                </div>
 
                 <RightNav ref='rightNav'
                           docked={false}

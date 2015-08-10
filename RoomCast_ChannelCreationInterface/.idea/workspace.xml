@@ -26,7 +26,12 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="90" column="7" selection-start-line="90" selection-start-column="7" selection-end-line="90" selection-end-column="7" />
-              <folding />
+              <folding>
+                <marker date="1431558393000" expanded="true" signature="6954:7805" placeholder="&lt;xml/&gt;" />
+                <marker date="1431558393000" expanded="true" signature="7871:7976" placeholder="&lt;xml/&gt;" />
+                <marker date="1431558393000" expanded="true" signature="8828:9271" placeholder="&lt;xml/&gt;" />
+                <marker date="1431558393000" expanded="true" signature="9346:9438" placeholder="&lt;xml/&gt;" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -34,9 +39,19 @@
       <file leaf-file-name="TopBar.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/components/TopBar.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8854167">
+            <state vertical-scroll-proportion="0.12082671">
               <caret line="52" column="72" selection-start-line="52" selection-start-column="32" selection-end-line="52" selection-end-column="72" />
-              <folding />
+              <folding>
+                <marker date="1429674184000" expanded="true" signature="1015:2374" placeholder="&lt;xml/&gt;" />
+                <marker date="1429674184000" expanded="true" signature="1058:2354" placeholder="&lt;xml/&gt;" />
+                <marker date="1429674184000" expanded="true" signature="1087:2328" placeholder="&lt;xml/&gt;" />
+                <marker date="1429674184000" expanded="true" signature="1149:1546" placeholder="&lt;xml/&gt;" />
+                <marker date="1429674184000" expanded="true" signature="1208:1515" placeholder="&lt;xml/&gt;" />
+                <marker date="1429674184000" expanded="true" signature="1572:2300" placeholder="&lt;xml/&gt;" />
+                <marker date="1429674184000" expanded="true" signature="1644:2268" placeholder="&lt;xml/&gt;" />
+                <marker date="1429674184000" expanded="true" signature="1728:1964" placeholder="&lt;xml/&gt;" />
+                <marker date="1429674184000" expanded="true" signature="1998:2232" placeholder="&lt;xml/&gt;" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -214,7 +229,7 @@
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1280" />
-    <option name="height" value="717" />
+    <option name="height" value="773" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -240,6 +255,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -350,7 +366,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -419,11 +434,11 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="717" extended-state="6" />
+    <frame x="0" y="23" width="1280" height="773" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5056818" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.036682617" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.03524229" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -433,13 +448,13 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32917964" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32917964" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -514,7 +529,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="81" column="0" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1431558393000" expanded="true" signature="6954:7805" placeholder="&lt;xml/&gt;" />
+            <marker date="1431558393000" expanded="true" signature="7871:7976" placeholder="&lt;xml/&gt;" />
+            <marker date="1431558393000" expanded="true" signature="8828:9271" placeholder="&lt;xml/&gt;" />
+            <marker date="1431558393000" expanded="true" signature="9346:9438" placeholder="&lt;xml/&gt;" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -582,7 +602,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="132" column="61" selection-start-line="132" selection-start-column="61" selection-end-line="132" selection-end-column="61" />
-          <folding />
+          <folding>
+            <marker date="1431558393000" expanded="true" signature="6954:7805" placeholder="&lt;xml/&gt;" />
+            <marker date="1431558393000" expanded="true" signature="7871:7976" placeholder="&lt;xml/&gt;" />
+            <marker date="1431558393000" expanded="true" signature="8828:9271" placeholder="&lt;xml/&gt;" />
+            <marker date="1431558393000" expanded="true" signature="9346:9438" placeholder="&lt;xml/&gt;" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -657,7 +682,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1431558393000" expanded="true" signature="6954:7805" placeholder="&lt;xml/&gt;" />
+            <marker date="1431558393000" expanded="true" signature="7871:7976" placeholder="&lt;xml/&gt;" />
+            <marker date="1431558393000" expanded="true" signature="8828:9271" placeholder="&lt;xml/&gt;" />
+            <marker date="1431558393000" expanded="true" signature="9346:9438" placeholder="&lt;xml/&gt;" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -914,7 +944,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="45" column="16" selection-start-line="45" selection-start-column="16" selection-end-line="45" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -922,7 +951,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="18" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -937,7 +965,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="90" column="7" selection-start-line="90" selection-start-column="7" selection-end-line="90" selection-end-column="7" />
-          <folding />
+          <folding>
+            <marker date="1431558393000" expanded="true" signature="6954:7805" placeholder="&lt;xml/&gt;" />
+            <marker date="1431558393000" expanded="true" signature="7871:7976" placeholder="&lt;xml/&gt;" />
+            <marker date="1431558393000" expanded="true" signature="8828:9271" placeholder="&lt;xml/&gt;" />
+            <marker date="1431558393000" expanded="true" signature="9346:9438" placeholder="&lt;xml/&gt;" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1011,9 +1044,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/components/TopBar.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8854167">
+        <state vertical-scroll-proportion="0.12082671">
           <caret line="52" column="72" selection-start-line="52" selection-start-column="32" selection-end-line="52" selection-end-column="72" />
-          <folding />
+          <folding>
+            <marker date="1429674184000" expanded="true" signature="1015:2374" placeholder="&lt;xml/&gt;" />
+            <marker date="1429674184000" expanded="true" signature="1058:2354" placeholder="&lt;xml/&gt;" />
+            <marker date="1429674184000" expanded="true" signature="1087:2328" placeholder="&lt;xml/&gt;" />
+            <marker date="1429674184000" expanded="true" signature="1149:1546" placeholder="&lt;xml/&gt;" />
+            <marker date="1429674184000" expanded="true" signature="1208:1515" placeholder="&lt;xml/&gt;" />
+            <marker date="1429674184000" expanded="true" signature="1572:2300" placeholder="&lt;xml/&gt;" />
+            <marker date="1429674184000" expanded="true" signature="1644:2268" placeholder="&lt;xml/&gt;" />
+            <marker date="1429674184000" expanded="true" signature="1728:1964" placeholder="&lt;xml/&gt;" />
+            <marker date="1429674184000" expanded="true" signature="1998:2232" placeholder="&lt;xml/&gt;" />
+          </folding>
         </state>
       </provider>
     </entry>
