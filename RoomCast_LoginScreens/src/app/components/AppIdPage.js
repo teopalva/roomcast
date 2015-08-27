@@ -7,12 +7,7 @@ var AppIdPage = React.createClass({
     componentDidMount: function() {
         var self = this;
 
-        console.log('nutella app_id', nutella);
-
-        nutella.net.request('channels/retrieve', 'all', function (response) {
-            console.log(response);
-        });
-
+        /*
         nutella.net.request('runs_list', 'req', function(response) {
             var app_ids = [];
             for(var app_id in response) {
@@ -23,14 +18,14 @@ var AppIdPage = React.createClass({
             self.setState({
                 values: app_ids
             });
-            console.log(app_ids);
         });
+        */
     },
 
     getInitialState: function () {
         return  {
             hasBeenSelected: false,
-            values: undefined
+            values: this.props.values
         }
     },
 
@@ -65,6 +60,7 @@ var AppIdPage = React.createClass({
                 </div>
             );
         } else {
+
             backgroundMessage = <p className='backgroundMessage' > An error occurred </p>;
             app_ids_grid = (
                 <div className='grid-div' style={gridDivStyle} >

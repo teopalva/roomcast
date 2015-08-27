@@ -26,26 +26,38 @@ var BrokerPage = React.createClass({
     handleSetBroker: function() {
         var self = this;
         var broker = this.refs.textFieldBroker.getValue();
-        //broker = '52.1.142.215'; // TODO clean
+
         if(broker.length !== 0) {
 
             // Start nutella
             window.nutella = NUTELLA.init(broker, 'app_id', 'run_id', 'login-screens', function(connected) {
                 if(connected) {
-                   // window.ReactMain.login.broker = broker;
-                    //self.props.onSwitchPage(2);
-                    console.log('connected', connected, 'ok');
+
+                    nutella.net.request('runs_list', 'req', function(response) {
+                        var app_ids = [];
+                        for(var app_id in response) {
+                            if(response.hasOwnProperty(app_id)) {
+                                app_ids.push(app_id);
+                            }
+                        }
+                        self.setState({
+                            app_ids: app_ids
+                        }, callback);
+                    });
+
+                    var callback = function() {
+                        if(!self.state.app_ids) {
+                            self.setErrorText('Invalid broker.');
+                        } else {
+                            window.ReactMain.login.broker = broker;
+                            self.props.onSwitchPage(2, {app_ids: self.state.app_ids});
+                        }
+                    };
+
                 } else {
-                    //self.setErrorText('Invalid broker.');
-                    console.log('connected', connected, 'ko');
+                    self.setErrorText('Invalid broker.');
                 }
             });
-
-            var action = function() {
-                window.ReactMain.login.broker = broker;
-                self.props.onSwitchPage(2);
-            };
-            self._timeoutId = setTimeout(action, 2000);
 
         } else {
             this.setErrorText('You must set a broker.');
@@ -55,7 +67,8 @@ var BrokerPage = React.createClass({
     getInitialState: function () {
         return  {
             errorText: null,
-            innerHeight: window.innerHeight
+            innerHeight: window.innerHeight,
+            app_ids: undefined
         }
     },
 

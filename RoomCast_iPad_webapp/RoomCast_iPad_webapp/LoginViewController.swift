@@ -9,17 +9,24 @@
 import UIKit
 import WebKit
 
-class LoginViewController: UIViewController, WKNavigationDelegate {
+class LoginViewController: UIViewController, WKNavigationDelegate, UIWebViewDelegate {
     
     var webView: WKWebView!
+    var loadingWebView: UIWebView!
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.webView = WKWebView()
         self.webView.navigationDelegate = self
+        self.loadingWebView = UIWebView()
+        self.loadingWebView.delegate = self
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
+    }
+    
+    func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
+        self.view = self.webView
     }
     
     func pathForBuggyWKWebView(filePath: String?) -> String? {
@@ -42,8 +49,25 @@ class LoginViewController: UIViewController, WKNavigationDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view = self.webView
+        self.view = self.loadingWebView
         
+        // Load loading page
+        var htmlFile: NSString? = NSBundle.mainBundle().pathForResource("index", ofType: "html", inDirectory: "./assets/loading")
+        var htmlString: NSString?
+        
+        if let htmlFile = htmlFile {
+            htmlString = NSString(contentsOfFile: htmlFile as String, encoding: NSUTF8StringEncoding, error: nil)!
+            if let htmlString = htmlString {
+                var bundle: String = NSBundle.mainBundle().bundlePath
+                loadingWebView.loadHTMLString(htmlString as String, baseURL: NSURL(fileURLWithPath: "\(bundle)/assets/loading")!)
+            } else {
+                println("Bundle not found.")
+            }
+        } else {
+            println("File not found.")
+        }
+        
+        // Load login page
         let orgFolder = NSBundle.mainBundle().resourcePath! + "/assets/login";
         var newFilePath = pathForBuggyWKWebView(orgFolder)
         self.webView.loadRequest(NSURLRequest(URL: NSURL.fileURLWithPath(newFilePath! + "/index.html")!))

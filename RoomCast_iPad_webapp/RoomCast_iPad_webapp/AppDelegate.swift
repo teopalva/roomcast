@@ -20,8 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var initialViewController: UIViewController
         
         let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setValue(nil, forKey: DefaultsKeys.broker) // TODO remove
-
+        //defaults.setValue(nil, forKey: DefaultsKeys.broker) // force reset broker
         
         let broker = defaults.valueForKey(DefaultsKeys.broker) as? String
         if let broker = broker {
@@ -29,7 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             initialViewController = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! UIViewController
         }
-
         
         //initialViewController = storyboard.instantiateViewControllerWithIdentifier("MenuViewController") as! UIViewController
         

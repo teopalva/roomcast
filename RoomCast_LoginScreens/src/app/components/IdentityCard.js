@@ -36,7 +36,7 @@ var IdentityCard = React.createClass({
 
                 if(self.props.type === 'app_id') {
                     ReactMain.login.app_id = self.props.name;
-                    self.props.onSwitchPage(3, self.props.name);
+                    self.props.onSwitchPage(3, {app_id: self.props.name});
 
                 } else {
 
@@ -46,7 +46,6 @@ var IdentityCard = React.createClass({
                             app_id: ReactMain.login.app_id,
                             run_id: self.props.name
                         };
-                        console.log('storing', actionParameters);
                         self.iOScall('storeLoginValues', actionParameters);
                     }
 

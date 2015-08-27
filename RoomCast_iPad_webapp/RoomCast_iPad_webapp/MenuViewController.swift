@@ -222,7 +222,6 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
     }
     
     func storeResourceIdentity(rid: String) {
-        println("storing \(rid)")
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setValue(rid, forKey: DefaultsKeys.rid)
     }

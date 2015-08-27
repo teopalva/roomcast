@@ -16,7 +16,8 @@ var Main = React.createClass({
         return  {
             identities: [],
             page: 1,
-            app_id: null
+            app_ids: undefined,
+            app_id: undefined
         }
     },
 
@@ -32,12 +33,19 @@ var Main = React.createClass({
         });
     },
 
-    handleSwitchPage: function(page, value) {
+    handleSwitchPage: function(page, params) {
         this.setPage(page);
-        if(value) {
-            this.setState({
-                app_id: value
-            });
+        if(params) {
+            if(params.app_ids) {
+                this.setState({
+                    app_ids: params.app_ids
+                });
+            }
+            if(params.app_id) {
+                this.setState({
+                    app_id: params.app_id
+                });
+            }
         }
     },
 
@@ -52,7 +60,7 @@ var Main = React.createClass({
             case 2:
                 page = <AppIdPage
                     onSwitchPage={this.handleSwitchPage}
-                    values={[]} />;
+                    values={this.state.app_ids} />;
                 break;
             case 3:
                 page = <RunIdPage
