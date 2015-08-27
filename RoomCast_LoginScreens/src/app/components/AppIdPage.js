@@ -64,6 +64,14 @@ var AppIdPage = React.createClass({
 
                 </div>
             );
+        } else {
+            backgroundMessage = <p className='backgroundMessage' > An error occurred </p>;
+            app_ids_grid = (
+                <div className='grid-div' style={gridDivStyle} >
+                    {backgroundMessage}
+                </div>
+            );
+
         }
 
         return (

@@ -3,6 +3,7 @@ var React = require('react');
 var Mui = require('material-ui');
 var TextField = Mui.TextField;
 var RaisedButton = Mui.RaisedButton;
+var NUTELLA = require('nutella_lib');
 
 var BrokerPage = React.createClass({
 
@@ -23,15 +24,16 @@ var BrokerPage = React.createClass({
     },
 
     handleSetBroker: function() {
-        console.log('click');
         var self = this;
         var broker = this.refs.textFieldBroker.getValue();
-        broker = '52.1.142.215'; // TODO clean
+        //broker = '52.1.142.215'; // TODO clean
         if(broker.length !== 0) {
 
             // Start nutella
-            nutella = NUTELLA.init(broker, 'app_id', 'run_id', 'login-screens'); /*, function(connected) {
+            window.nutella = NUTELLA.init(broker, 'app_id', 'run_id', 'login-screens');/*, function(connected) {
 
+                console.log('broker:',broker,'connected?',connected);
+                /*
                 if(connected) {
                    // window.ReactMain.login.broker = broker;
                     //self.props.onSwitchPage(2);
@@ -41,7 +43,8 @@ var BrokerPage = React.createClass({
                     console.log('connected', connected, 'ko');
                 }
 
-            }); */
+
+            });*/
 
             var action = function() {
                 window.ReactMain.login.broker = broker;

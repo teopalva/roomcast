@@ -20,26 +20,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var initialViewController: UIViewController
         
         let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setValue(nil, forKey: DefaultsKeys.broker)
+        defaults.setValue(nil, forKey: DefaultsKeys.broker) // TODO remove
 
-        /*
+        
         let broker = defaults.valueForKey(DefaultsKeys.broker) as? String
         if let broker = broker {
             initialViewController = storyboard.instantiateViewControllerWithIdentifier("MenuViewController") as! UIViewController
         } else {
             initialViewController = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! UIViewController
         }
-        */
+
         
-        initialViewController = storyboard.instantiateViewControllerWithIdentifier("MenuViewController") as! UIViewController
+        //initialViewController = storyboard.instantiateViewControllerWithIdentifier("MenuViewController") as! UIViewController
         
         self.window?.rootViewController = initialViewController
         self.window?.makeKeyAndVisible()
         
         return true
     }
-    
-    
     
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
