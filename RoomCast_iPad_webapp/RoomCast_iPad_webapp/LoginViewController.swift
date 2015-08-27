@@ -9,47 +9,44 @@
 import UIKit
 import WebKit
 
-class LoginViewController: UIViewController, UIWebViewDelegate {
+class LoginViewController: UIViewController, WKNavigationDelegate {
     
-    //weak var webView: UIWebView!
-    @IBOutlet weak var webView: UIWebView!
+    var webView: WKWebView!
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
-        //self.webView = BasicWebView()
-        
+        self.webView = WKWebView()
+        self.webView.navigationDelegate = self
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
-        //self.view = self.webView
+    }
+    
+    func pathForBuggyWKWebView(filePath: String?) -> String? {
+        let fileMgr = NSFileManager.defaultManager()
+        let tmpPath = NSTemporaryDirectory().stringByAppendingPathComponent("www")
+        var error: NSErrorPointer = nil
+        if !fileMgr.createDirectoryAtPath(tmpPath, withIntermediateDirectories: true, attributes: nil, error: error) {
+            println("Couldn't create www subdirectory. \(error)")
+            return nil
+        }
+        let dstPath = tmpPath.stringByAppendingPathComponent(filePath!.lastPathComponent)
+        if !fileMgr.fileExistsAtPath(dstPath) {
+            if !fileMgr.copyItemAtPath(filePath!, toPath: dstPath, error: error) {
+                println("Couldn't copy file to /tmp/www. \(error)")
+                return nil
+            }
+        }
+        return dstPath
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view = self.webView
         
-        self.webView.scrollView.bounces = false
-        self.webView.scalesPageToFit = false
-        self.webView.multipleTouchEnabled = false
-        self.webView.delegate = self
-        
-        //self.view = self.webView
-        
-        // Load main menu from local files
-        var htmlFile: NSString? = NSBundle.mainBundle().pathForResource("index", ofType: "html", inDirectory: "./assets/login")
-        var htmlString: NSString?
-        
-        if let htmlFile = htmlFile {
-            htmlString = NSString(contentsOfFile: htmlFile as String, encoding: NSUTF8StringEncoding, error: nil)!
-            if let htmlString = htmlString {
-                var bundle: String = NSBundle.mainBundle().bundlePath
-                webView.loadHTMLString(htmlString as String, baseURL: NSURL(fileURLWithPath: "\(bundle)/assets/login")!)
-            } else {
-                println("Bundle not found.")
-            }
-        } else {
-            println("File not found.")
-        }
+        let orgFolder = NSBundle.mainBundle().resourcePath! + "/assets/login";
+        var newFilePath = pathForBuggyWKWebView(orgFolder)
+        self.webView.loadRequest(NSURLRequest(URL: NSURL.fileURLWithPath(newFilePath! + "/index.html")!))
         
     }
     
@@ -59,21 +56,23 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    
     // Hide the status bar
     override func prefersStatusBarHidden() -> Bool {
         return true;
     }
     
-    // Controller for the web view
-    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    // Controller for the WK web view
+    func webView(webView: WKWebView, decidePolicyForNavigationAction navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void) {
+        
+        var request = navigationAction.request
         
         // These need to match the values defined in JavaScript: roomcast://playChannel
         var appScheme: NSString = "roomcast"
-        
+
         // Ignore legit webview requests so they load normally
         if(request.URL!.scheme! != appScheme) {
-            return true;
+            decisionHandler(WKNavigationActionPolicy.Allow)
+            return
         }
         
         // Get the action from the path
@@ -95,7 +94,6 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
                     parameters[keyName] = keyValue
                 }
             }
-            
         }
         
         // Act based on actionType
@@ -104,10 +102,11 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
             storeLoginValues(parameters)
             break
         default:
-            return false
+            decisionHandler(WKNavigationActionPolicy.Cancel)
+            return
         }
         
-        return false
+        decisionHandler(WKNavigationActionPolicy.Cancel)
     }
     
     func storeLoginValues(parameters: Dictionary<String, String>) {

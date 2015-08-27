@@ -30,10 +30,7 @@ var BrokerPage = React.createClass({
         if(broker.length !== 0) {
 
             // Start nutella
-            window.nutella = NUTELLA.init(broker, 'app_id', 'run_id', 'login-screens');/*, function(connected) {
-
-                console.log('broker:',broker,'connected?',connected);
-                /*
+            window.nutella = NUTELLA.init(broker, 'app_id', 'run_id', 'login-screens', function(connected) {
                 if(connected) {
                    // window.ReactMain.login.broker = broker;
                     //self.props.onSwitchPage(2);
@@ -42,9 +39,7 @@ var BrokerPage = React.createClass({
                     //self.setErrorText('Invalid broker.');
                     console.log('connected', connected, 'ko');
                 }
-
-
-            });*/
+            });
 
             var action = function() {
                 window.ReactMain.login.broker = broker;
