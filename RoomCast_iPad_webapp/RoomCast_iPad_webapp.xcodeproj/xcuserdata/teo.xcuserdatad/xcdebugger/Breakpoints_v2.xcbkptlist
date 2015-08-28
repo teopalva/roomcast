@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoomCast_iPad_webapp/MenuViewController.swift"
-            timestampString = "453612022.46184"
+            timestampString = "462493022.322196"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
             landmarkName = "loadInterface()"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoomCast_iPad_webapp/MenuViewController.swift"
-            timestampString = "462484514.581293"
+            timestampString = "462493022.322196"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "261"
-            endingLineNumber = "261"
+            startingLineNumber = "290"
+            endingLineNumber = "290"
             landmarkName = "reactLogin()"
             landmarkType = "5">
          </BreakpointContent>
@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoomCast_iPad_webapp/MenuViewController.swift"
-            timestampString = "462484514.581293"
+            timestampString = "462493022.322196"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "242"
-            endingLineNumber = "242"
+            startingLineNumber = "271"
+            endingLineNumber = "271"
             landmarkName = "handleUpdatedRid(_:)"
             landmarkType = "5">
          </BreakpointContent>

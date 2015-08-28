@@ -9,9 +9,9 @@
 import UIKit
 import WebKit
 
-class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDelegate {
+class MenuViewController: UIViewController, UIWebViewDelegate, WKNavigationDelegate {
     
-    var webView: UIWebView!
+    var webView: WKWebView!
     @IBOutlet var launchView: UIView!
     
     // Channel's url
@@ -23,20 +23,25 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        // TODO: currently using UIWebView because of bug of WK when loading local files
-        self.webView = BasicWebView()
+        self.webView = WKWebView()
+        self.webView.navigationDelegate = self
         self.webView.scrollView.bounces = false
-        self.webView.scalesPageToFit = false
+        //self.webView.scalesPageToFit = false
         self.webView.multipleTouchEnabled = false
-        self.webView.delegate = self
+        //self.webView.delegate = self
         
         self.package_id = retrieveResourceIdentity()
 
     }
     
+    func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
+        self.view = self.webView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadInterface()
+        self.view = self.webView
+        loadInterfaceWK()
     }
     
     func loadInterface() {
@@ -57,6 +62,30 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
         }
     }
     
+    func pathForBuggyWKWebView(filePath: String?) -> String? {
+        let fileMgr = NSFileManager.defaultManager()
+        let tmpPath = NSTemporaryDirectory().stringByAppendingPathComponent("www_menu")
+        var error: NSErrorPointer = nil
+        if !fileMgr.createDirectoryAtPath(tmpPath, withIntermediateDirectories: true, attributes: nil, error: error) {
+            println("Couldn't create www subdirectory. \(error)")
+            return nil
+        }
+        let dstPath = tmpPath.stringByAppendingPathComponent(filePath!.lastPathComponent)
+        if !fileMgr.fileExistsAtPath(dstPath) {
+            if !fileMgr.copyItemAtPath(filePath!, toPath: dstPath, error: error) {
+                println("Couldn't copy file to /tmp/www. \(error)")
+                return nil
+            }
+        }
+        return dstPath
+    }
+    
+    func loadInterfaceWK() {
+        let orgFolder = NSBundle.mainBundle().resourcePath! + "/assets/menu";
+        var newFilePath = pathForBuggyWKWebView(orgFolder)
+        self.webView.loadRequest(NSURLRequest(URL: NSURL.fileURLWithPath(newFilePath! + "/index.html")!))
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -67,15 +96,17 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
         return true;
     }
     
-    // Controller for the web view
-    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    // Controller for the WK web view
+    func webView(webView: WKWebView, decidePolicyForNavigationAction navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void) {
         
+        var request = navigationAction.request
         // These need to match the values defined in JavaScript: roomcast://playChannel
         var appScheme: NSString = "roomcast"
         
         // Ignore legit webview requests so they load normally
         if(request.URL!.scheme! != appScheme) {
-            return true;
+            decisionHandler(WKNavigationActionPolicy.Allow)
+            return
         }
         
         // Get the action from the path
@@ -128,10 +159,11 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
             self.package_id = parameters["package_id"] as String!
             break
         default:
-            return false
+            decisionHandler(WKNavigationActionPolicy.Cancel)
+            return
         }
         
-        return false
+        decisionHandler(WKNavigationActionPolicy.Cancel)
     }
     
     func playChannel(parameters: Dictionary<String, String>) {
@@ -192,10 +224,6 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
         handleUpdatedRid(rid)
     }
     
-    func webViewDidFinishLoad(webView: UIWebView) {
-        self.view = self.webView
-    }
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch (segue.identifier!) {
         case "playChannelSegue":
@@ -239,17 +267,18 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
     
     func handleUpdatedRid(rid: String) {
         let script: String = "ReactMain.handleSelectedResource('\(rid)')"
-        self.webView.stringByEvaluatingJavaScriptFromString(script)
+        //self.webView.stringByEvaluatingJavaScriptFromString(script)
+        self.webView.evaluateJavaScript(script, completionHandler: nil)
     }
     
     func setModalRightNav() {
         let script: String = "ReactMain.setModalRightNav()"
-        self.webView.stringByEvaluatingJavaScriptFromString(script)
+        self.webView.evaluateJavaScript(script, completionHandler: nil)
     }
     
     func handleLogout() {
         let script: String = "ReactMain.handleLogout()";
-        self.webView.stringByEvaluatingJavaScriptFromString(script)
+        self.webView.evaluateJavaScript(script, completionHandler: nil)
     }
     
     func reactLogin() {
@@ -259,13 +288,12 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
         let run_id = LoginViewController.retrieveRunId()
         
         let script: String = "ReactLogin('\(broker!)', '\(app_id!)', '\(run_id!)')";
-        self.webView.stringByEvaluatingJavaScriptFromString(script)
-        println("logging", script)
+        self.webView.evaluateJavaScript(script, completionHandler: nil)
     }
     
     func requestPackageId() {
         let script: String = "ReactMain.requestPackageId()";
-        self.webView.stringByEvaluatingJavaScriptFromString(script)
+        self.webView.evaluateJavaScript(script, completionHandler: nil)
     }
     
     //////////////////////////////////////////
