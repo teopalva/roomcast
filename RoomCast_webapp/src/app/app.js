@@ -20,18 +20,16 @@
     //window.ReactMain = 'Main component';
 
     var iOS = (window.navigator.userAgent.match(/(iPad|iPhone)/g) ? true : false);
-    if(iOS) {
-        console.log('iOS version');
-        /*document.location.href = 'roomcast://requestLogin';
+    var props;
+    /*if(iOS) {
         window.ReactLogin = function(broker, app_id, run_id) {
-            window.nutella = NUTELLA.init(broker, app_id, run_id, 'main-interface');
-            window.ReactMain = React.render(<Main />, document.body);
+            props = {params:[broker, app_id, run_id]};
+            window.ReactMain = React.render(React.createElement(Main, props), document.body);
         };
-        */
-        window.ReactMain = React.render(<Main />, document.body);
-    } else {
-        window.ReactMain = React.render(<Main />, document.body);
-    }
-
+        document.location.href = 'roomcast://requestLogin';
+    } else {*/
+        props = {params:['52.1.142.215', 't1', 'default']};
+        window.ReactMain = React.render(React.createElement(Main, props), document.body);
+    //}
 
 })();

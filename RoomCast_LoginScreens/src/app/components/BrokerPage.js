@@ -33,18 +33,6 @@ var BrokerPage = React.createClass({
             window.nutella = NUTELLA.init(broker, 'app_id', 'run_id', 'login-screens', function(connected) {
                 if(connected) {
 
-                    nutella.net.request('runs_list', 'req', function(response) {
-                        var app_ids = [];
-                        for(var app_id in response) {
-                            if(response.hasOwnProperty(app_id)) {
-                                app_ids.push(app_id);
-                            }
-                        }
-                        self.setState({
-                            app_ids: app_ids
-                        }, callback);
-                    });
-
                     var callback = function() {
                         if(!self.state.app_ids) {
                             self.setErrorText('Invalid broker.');
@@ -53,6 +41,18 @@ var BrokerPage = React.createClass({
                             self.props.onSwitchPage(2, {app_ids: self.state.app_ids});
                         }
                     };
+
+                    nutella.net.request('runs_list', 'req', function (response) {
+                        var app_ids = [];
+                        for (var app_id in response) {
+                            if (response.hasOwnProperty(app_id)) {
+                                app_ids.push(app_id);
+                            }
+                        }
+                        self.setState({
+                            app_ids: app_ids
+                        }, callback);
+                    });
 
                 } else {
                     self.setErrorText('Invalid broker.');

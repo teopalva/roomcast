@@ -6,20 +6,6 @@ var AppIdPage = React.createClass({
 
     componentDidMount: function() {
         var self = this;
-
-        /*
-        nutella.net.request('runs_list', 'req', function(response) {
-            var app_ids = [];
-            for(var app_id in response) {
-                if(response.hasOwnProperty(app_id)) {
-                    app_ids.push(app_id);
-                }
-            }
-            self.setState({
-                values: app_ids
-            });
-        });
-        */
     },
 
     getInitialState: function () {

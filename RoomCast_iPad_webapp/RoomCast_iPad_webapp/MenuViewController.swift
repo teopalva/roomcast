@@ -260,6 +260,7 @@ class MenuViewController: UIViewController, UIWebViewDelegate { //WKNavigationDe
         
         let script: String = "ReactLogin('\(broker!)', '\(app_id!)', '\(run_id!)')";
         self.webView.stringByEvaluatingJavaScriptFromString(script)
+        println("logging", script)
     }
     
     func requestPackageId() {
