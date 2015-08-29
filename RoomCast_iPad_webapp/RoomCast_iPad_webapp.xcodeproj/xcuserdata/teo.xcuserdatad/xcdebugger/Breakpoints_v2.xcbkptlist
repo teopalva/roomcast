@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoomCast_iPad_webapp/ChannelViewController.swift"
-            timestampString = "453666883.365707"
+            timestampString = "462573315.350464"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
             landmarkName = "backToMenu()"
             landmarkType = "5">
          </BreakpointContent>

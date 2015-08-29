@@ -65,6 +65,7 @@ class ChannelViewController: UIViewController, WKNavigationDelegate, UIWebViewDe
         
         // Load content from external website
         if let url = url {
+            println("launching", url)
             let requestURL = NSURL(string:url)
             let request = NSURLRequest(URL: requestURL!)
             self.webView.loadRequest(request)

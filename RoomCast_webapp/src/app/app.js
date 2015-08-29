@@ -21,15 +21,15 @@
 
     var iOS = (window.navigator.userAgent.match(/(iPad|iPhone)/g) ? true : false);
     var props;
-    /*if(iOS) {
+    if(iOS) {
         window.ReactLogin = function(broker, app_id, run_id) {
             props = {params:[broker, app_id, run_id]};
             window.ReactMain = React.render(React.createElement(Main, props), document.body);
         };
         document.location.href = 'roomcast://requestLogin';
-    } else {*/
+    } else {
         props = {params:['52.1.142.215', 't1', 'default']};
         window.ReactMain = React.render(React.createElement(Main, props), document.body);
-    //}
+    }
 
 })();

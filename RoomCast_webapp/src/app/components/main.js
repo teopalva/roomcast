@@ -14,8 +14,6 @@ var Main = React.createClass({
     componentDidMount: function() {
         var self = this;
 
-        console.log(self.state, self.props);
-
         window.nutella = NUTELLA.init(self.state.params[0], self.state.params[1], self.state.params[2], 'main-interface', function(connected) {
             if(connected) {
 
@@ -30,8 +28,7 @@ var Main = React.createClass({
                     self.handleUpdatedChannelsCatalogue(response);
 
                     // Fetch from iOS device
-                    var url = 'roomcast' + '://' + 'getResourceIdentity';
-                    document.location.href = url;
+                    document.location.href = 'roomcast' + '://' + 'getResourceIdentity';
 
                     // TODO check that rid is within current available rids
                     // If at startup info on id is already in state
@@ -54,11 +51,12 @@ var Main = React.createClass({
                         console.warn('switch config', message);
                     });
                     nutella.net.subscribe('channels/updated', function (message, from) {
-                        self.handleUpdatedChannelsCatalogue(message);
+                        console.log('channels/updated',message);
+                        self.handleUpdatedChannelsCatalogue(message, function() {
+                            self.updateChannelsContent();
+                        });
                     });
                 });
-
-
 
             }
         });
@@ -115,8 +113,28 @@ var Main = React.createClass({
         this.handleUpdatedChannels(myChannels);
     },
 
+    /**
+     * Updates content of current channels after changes in catalogue
+     */
+    updateChannelsContent: function() {
+        var channels = this.state.channels;
+        var myChannelsId = Object.keys(channels);
+        var myChannels = [];
+        myChannelsId.forEach(function (id) {
+            myChannels.push(self.state.channelsCatalogue[+id]);
+        });
+        if (myChannels.length === 0) {
+            self.handleUpdatedBackgroundMessage('No available channels');
+            if(!self.state.rid) {
+                self.handleUpdatedBackgroundMessage('No identity set');
+            }
+        } else {
+            self.handleUpdatedBackgroundMessage(null);
+        }
+        this.handleUpdatedChannels(myChannels);
+    },
+
     getInitialState: function() {
-        console.log(this.props);
         return {
             params: this.props.params,
             rid: null,
@@ -145,10 +163,16 @@ var Main = React.createClass({
         });
     },
 
-    handleUpdatedChannelsCatalogue: function(cat) {
-        this.setState({
-            channelsCatalogue: cat
-        });
+    handleUpdatedChannelsCatalogue: function(cat, callback) {
+        if(callback) {
+            this.setState({
+                channelsCatalogue: cat
+            }, callback);
+        } else {
+            this.setState({
+                channelsCatalogue: cat
+            });
+        }
     },
 
     handleUpdatedBackgroundMessage: function(m) {
