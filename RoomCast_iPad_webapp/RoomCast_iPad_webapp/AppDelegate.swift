@@ -20,20 +20,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var initialViewController: UIViewController
         
         let defaults = NSUserDefaults.standardUserDefaults()
-        //defaults.setValue(nil, forKey: DefaultsKeys.broker) // force reset broker
         defaults.setValue("52.1.142.215", forKey: DefaultsKeys.broker)
         defaults.setValue("t1", forKey: DefaultsKeys.app_id)
         defaults.setValue("default", forKey: DefaultsKeys.run_id)
+        defaults.setValue(nil, forKey: DefaultsKeys.broker) // force reset broker
         
-        /*
+        
         let broker = defaults.valueForKey(DefaultsKeys.broker) as? String
         if let broker = broker {
             initialViewController = storyboard.instantiateViewControllerWithIdentifier("MenuViewController") as! UIViewController
         } else {
             initialViewController = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! UIViewController
-        }*/
+        }
         
-        initialViewController = storyboard.instantiateViewControllerWithIdentifier("MenuViewController") as! UIViewController
+        //initialViewController = storyboard.instantiateViewControllerWithIdentifier("MenuViewController") as! UIViewController
         
         self.window?.rootViewController = initialViewController
         self.window?.makeKeyAndVisible()
