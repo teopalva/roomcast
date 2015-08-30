@@ -11,6 +11,8 @@ import WebKit
 
 class LoginViewController: UIViewController, WKNavigationDelegate, UIWebViewDelegate {
     
+    // Placeholder view to initialize the main view (solved BIG BUG!)
+    @IBOutlet var launchView: LaunchView!
     var webView: WKWebView!
     var loadingWebView: UIWebView!
     
@@ -18,6 +20,8 @@ class LoginViewController: UIViewController, WKNavigationDelegate, UIWebViewDele
         super.init(coder: aDecoder)
         self.webView = WKWebView()
         self.webView.navigationDelegate = self
+        self.webView.scrollView.bounces = false
+        self.webView.multipleTouchEnabled = false
         self.loadingWebView = UIWebView()
         self.loadingWebView.delegate = self
     }
@@ -26,13 +30,12 @@ class LoginViewController: UIViewController, WKNavigationDelegate, UIWebViewDele
     }
     
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
-        println("login finished navigation")
         self.view = self.webView
     }
     
     func pathForBuggyWKWebView(filePath: String?) -> String? {
         let fileMgr = NSFileManager.defaultManager()
-        let tmpPath = NSTemporaryDirectory().stringByAppendingPathComponent("www")
+        let tmpPath = NSTemporaryDirectory().stringByAppendingPathComponent("www_login")
         var error: NSErrorPointer = nil
         if !fileMgr.createDirectoryAtPath(tmpPath, withIntermediateDirectories: true, attributes: nil, error: error) {
             println("Couldn't create www subdirectory. \(error)")
@@ -50,8 +53,7 @@ class LoginViewController: UIViewController, WKNavigationDelegate, UIWebViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.view = self.loadingWebView
-        self.view = self.webView
+        self.view = self.loadingWebView
         
         // Load loading page
         var htmlFile: NSString? = NSBundle.mainBundle().pathForResource("index", ofType: "html", inDirectory: "./assets/loading")
@@ -70,10 +72,10 @@ class LoginViewController: UIViewController, WKNavigationDelegate, UIWebViewDele
         }
         
         // Load login page
-        let orgFolder = NSBundle.mainBundle().resourcePath! + "/assets/menu";
+        let orgFolder = NSBundle.mainBundle().resourcePath! + "/assets/login";
         var newFilePath = pathForBuggyWKWebView(orgFolder)
-        //self.webView.loadRequest(NSURLRequest(URL: NSURL.fileURLWithPath(newFilePath! + "/index.html")!))
-        self.webView.loadRequest(NSURLRequest(URL: NSURL(string: "http://www.google.com/")!))
+        self.webView.loadRequest(NSURLRequest(URL: NSURL.fileURLWithPath(newFilePath! + "/index.html")!))
+        //self.webView.loadRequest(NSURLRequest(URL: NSURL(string: "http://www.google.com/")!))
         
     }
     
