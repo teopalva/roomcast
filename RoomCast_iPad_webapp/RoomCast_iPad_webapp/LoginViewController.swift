@@ -26,6 +26,7 @@ class LoginViewController: UIViewController, WKNavigationDelegate, UIWebViewDele
     }
     
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
+        println("login finished navigation")
         self.view = self.webView
     }
     
@@ -49,7 +50,8 @@ class LoginViewController: UIViewController, WKNavigationDelegate, UIWebViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view = self.loadingWebView
+        //self.view = self.loadingWebView
+        self.view = self.webView
         
         // Load loading page
         var htmlFile: NSString? = NSBundle.mainBundle().pathForResource("index", ofType: "html", inDirectory: "./assets/loading")
@@ -59,7 +61,7 @@ class LoginViewController: UIViewController, WKNavigationDelegate, UIWebViewDele
             htmlString = NSString(contentsOfFile: htmlFile as String, encoding: NSUTF8StringEncoding, error: nil)!
             if let htmlString = htmlString {
                 var bundle: String = NSBundle.mainBundle().bundlePath
-                loadingWebView.loadHTMLString(htmlString as String, baseURL: NSURL(fileURLWithPath: "\(bundle)/assets/loading")!)
+                //loadingWebView.loadHTMLString(htmlString as String, baseURL: NSURL(fileURLWithPath: "\(bundle)/assets/loading")!)
             } else {
                 println("Bundle not found.")
             }
@@ -68,9 +70,10 @@ class LoginViewController: UIViewController, WKNavigationDelegate, UIWebViewDele
         }
         
         // Load login page
-        let orgFolder = NSBundle.mainBundle().resourcePath! + "/assets/login";
+        let orgFolder = NSBundle.mainBundle().resourcePath! + "/assets/menu";
         var newFilePath = pathForBuggyWKWebView(orgFolder)
-        self.webView.loadRequest(NSURLRequest(URL: NSURL.fileURLWithPath(newFilePath! + "/index.html")!))
+        //self.webView.loadRequest(NSURLRequest(URL: NSURL.fileURLWithPath(newFilePath! + "/index.html")!))
+        self.webView.loadRequest(NSURLRequest(URL: NSURL(string: "http://www.google.com/")!))
         
     }
     
