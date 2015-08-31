@@ -29,7 +29,11 @@
         document.location.href = 'roomcast://requestLogin';
     } else {
         props = {params:['52.1.142.215', 't1', 'default']};
-        window.ReactMain = React.render(React.createElement(Main, props), document.body);
+        try {
+            window.ReactMain = React.render(React.createElement(Main, props), document.body);
+        } catch (e) {
+            console.log(e);
+        }
     }
 
 })();

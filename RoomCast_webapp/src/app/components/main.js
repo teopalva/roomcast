@@ -17,8 +17,7 @@ var Main = React.createClass({
         window.nutella = NUTELLA.init(self.state.params[0], self.state.params[1], self.state.params[2], 'main-interface', function(connected) {
             if(connected) {
 
-                console.log('nutella connected');
-
+                //self.setState({rid: 'Pack1'});  // TODO geenralize for browser
                 if(!self.state.rid) {
                     self.handleUpdatedBackgroundMessage('No identity set');
                 }
@@ -51,9 +50,8 @@ var Main = React.createClass({
                         console.warn('switch config', message);
                     });
                     nutella.net.subscribe('channels/updated', function (message, from) {
-                        console.log('channels/updated',message);
                         self.handleUpdatedChannelsCatalogue(message, function() {
-                            self.updateChannelsContent();
+                            self.updateChannelsForRid(self.state.mapping, self.state.rid);
                         });
                     });
                 });
@@ -99,27 +97,6 @@ var Main = React.createClass({
                 }
             }
         });
-        myChannelsId.forEach(function (id) {
-            myChannels.push(self.state.channelsCatalogue[+id]);
-        });
-        if (myChannels.length === 0) {
-            self.handleUpdatedBackgroundMessage('No available channels');
-            if(!self.state.rid) {
-                self.handleUpdatedBackgroundMessage('No identity set');
-            }
-        } else {
-            self.handleUpdatedBackgroundMessage(null);
-        }
-        this.handleUpdatedChannels(myChannels);
-    },
-
-    /**
-     * Updates content of current channels after changes in catalogue
-     */
-    updateChannelsContent: function() {
-        var channels = this.state.channels;
-        var myChannelsId = Object.keys(channels);
-        var myChannels = [];
         myChannelsId.forEach(function (id) {
             myChannels.push(self.state.channelsCatalogue[+id]);
         });
