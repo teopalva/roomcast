@@ -17,7 +17,6 @@ var Main = React.createClass({
         window.nutella = NUTELLA.init(self.state.params[0], self.state.params[1], self.state.params[2], 'main-interface', function(connected) {
             if(connected) {
 
-                //self.setState({rid: 'Pack1'});  // TODO geenralize for browser
                 if(!self.state.rid) {
                     self.handleUpdatedBackgroundMessage('No identity set');
                 }
