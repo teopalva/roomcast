@@ -9,17 +9,17 @@ var Main = React.createClass({
     componentDidMount: function() {
         var self = this;
 
-        window.nutella = NUTELLA.init(self.props.params.broker, self.props.params.app_id, self.props.params.run_id, 'identity-selector', function(connected) {
+        window.nutella_identity_selector = NUTELLA.init(self.props.params.broker, self.props.params.app_id, self.props.params.run_id, 'identity-selector', function(connected) {
             if(connected) {
-                window.nutella.net.request('mapping/retrieve', 'all', function (response) {
+                window.nutella_identity_selector.net.request('mapping/retrieve', 'all', function (response) {
                     self.extractIdentitiesFromMapping(response);
                 });
 
-                window.nutella.net.subscribe('mapping/updated', function (message, from) {
+                window.nutella_identity_selector.net.subscribe('mapping/updated', function (message, from) {
                     self.extractIdentitiesFromMapping(message);
                 });
 
-                window.nutella.net.subscribe('currentConfig/switched', function (message, from) {
+                window.nutella_identity_selector.net.subscribe('currentConfig/switched', function (message, from) {
                     if(self.isMounted()) {
                         self.extractIdentitiesFromMapping(message);
                     }

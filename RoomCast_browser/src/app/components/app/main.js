@@ -38,10 +38,7 @@ var Main = React.createClass({
                     });
                     nutella.net.subscribe('currentConfig/switched', function (message, from) {
                         //self.updateChannelsForRid(message, self.state.rid);// TODO
-                        console.log('LOG');
-                        console.log('self:' , self);
                         self.setState({rid: null, modal: 'activity'});
-                        console.warn('switch config', message);
                     });
                     nutella.net.subscribe('channels/updated', function (message, from) {
                         nutella.net.request('mapping/retrieve', 'all', function (response) {
@@ -180,7 +177,6 @@ var Main = React.createClass({
     },
 
     handleSetRid: function(rid) {
-        console.log('setting...', rid);
         this.handleSelectedResource(rid);
     },
 
