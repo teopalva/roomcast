@@ -8,7 +8,6 @@ var AppIdPage = React.createClass({
     },
 
     getInitialState: function () {
-        console.log(this.props.values);
         return  {
             hasBeenSelected: false,
         }

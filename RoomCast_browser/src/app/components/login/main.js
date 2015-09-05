@@ -82,6 +82,10 @@ var Main = React.createClass({
         }
     },
 
+    handleLogin: function(params) {
+      this.props.onSwitchPage(2, params);
+    },
+
     render: function () {
 
         var page = null;
@@ -99,7 +103,8 @@ var Main = React.createClass({
                 page = <RunIdPage
                     onSwitchPage={this.handleSwitchPage}
                     app_id={this.state.app_id}
-                    values={[]} />;
+                    values={[]}
+                    onLogin={this.handleLogin} />;
                 break;
             default:
         }

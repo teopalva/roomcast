@@ -4,17 +4,15 @@ var Channel = require('./Channel');
 var Mui = require('material-ui');
 var FloatingActionButton = Mui.FloatingActionButton;
 var RightNav = require('./material-ui/right-nav.jsx');
-var iOSMixin = require('./iOSMixin');
 var NUTELLA = require('nutella_lib');
+var IdentitySelector = require('../identity-selector/main');
 
 var Main = React.createClass({
-
-    mixins: [iOSMixin],
 
     componentDidMount: function() {
         var self = this;
 
-        window.nutella = NUTELLA.init(self.state.params[0], self.state.params[1], self.state.params[2], 'main-interface', function(connected) {
+        window.nutella = NUTELLA.init(self.props.params.broker, self.props.params.app_id, self.props.params.run_id, 'app', function(connected) {
             if(connected) {
 
                 if(!self.state.rid) {
@@ -24,9 +22,6 @@ var Main = React.createClass({
                 // Get current channels catalogue
                 nutella.net.request('channels/retrieve', 'all', function (response) {
                     self.handleUpdatedChannelsCatalogue(response);
-
-                    // Fetch from iOS device
-                    document.location.href = 'roomcast' + '://' + 'getResourceIdentity';
 
                     // TODO check that rid is within current available rids: if rids changed, catch error and ask for new one
                     // If at startup info on id is already in state
@@ -41,11 +36,10 @@ var Main = React.createClass({
                     nutella.net.subscribe('mapping/updated', function (message, from) {
                         self.updateChannelsForRid(message, self.state.rid);
                     });
-                    nutella.net.subscribe('currentConfig/switched', function (message, from) {
+                    nutella.net.subscribe('currentConfig/ack_updated', function (message, from) {
                         //self.updateChannelsForRid(message, self.state.rid);// TODO
-                        // Show identity screen on iPad
-                        var url = 'roomcast' + '://' + 'promptNewActivityScreen';
-                        document.location.href = url;
+                        console.log('self:' , self);
+                        self.setState({rid: null, modal: 'activity'});
                         console.warn('switch config', message);
                     });
                     nutella.net.subscribe('channels/updated', function (message, from) {
@@ -100,7 +94,6 @@ var Main = React.createClass({
         });
         for(var i=0; i<myChannelsId.length; i++) {
             var id = myChannelsId[i];
-            console.log(self.state.channelsCatalogue);
             if(self.state.channelsCatalogue[+id] !== undefined) {
                 myChannels.push(self.state.channelsCatalogue[+id]);
             }
@@ -118,12 +111,12 @@ var Main = React.createClass({
 
     getInitialState: function() {
         return {
-            params: this.props.params,
             rid: null,
             channels: [],
             mapping: [],
             channelsCatalogue: {},
-            backgroundMessage: null
+            backgroundMessage: null,
+            modal: null
         };
     },
 
@@ -183,29 +176,38 @@ var Main = React.createClass({
 
     handleItemTap: function(menuItem) {
         this.handleSelectedResource(menuItem.id);
+    },
 
-        // Store in iOS
-        var actionParameters = {
-            'rid': menuItem.id
-        };
-        this.iOScall('setResourceIdentity', actionParameters);
+    handleSetRid: function(rid) {
+        console.log('setting...', rid);
+        this.handleSelectedResource(rid);
     },
 
     handleLogout: function() {
-        this.handleSelectedResource(null);
-
-        // Logout from iOS
-        this.iOScall('logout');
+        //this.handleSelectedResource(null);
+        this.props.onSwitchPage(1);
     },
 
-    requestPackageId: function() {
-        var actionParameters = {
-            package_id: this.state.rid
-        };
-        this.iOScall('responsePackageId', actionParameters);
+    promptIdentitySelector: function(mode) {
+        return (
+            <IdentitySelector
+            params = {this.props.params}
+            onSetRid = {this.handleSetRid}
+            mode = {mode}/>);
+    },
+
+    componentWillUnmount: function() {
+        console.log('unmounting');
     },
 
     render: function() {
+
+        if(!this.state.rid) {
+            if(this.state.modal === 'activity') {
+                return this.promptIdentitySelector('activity');
+            }
+            return this.promptIdentitySelector('id');
+        }
 
         var self = this;
         var channels = [];
