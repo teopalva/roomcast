@@ -36,8 +36,9 @@ var Main = React.createClass({
                     nutella.net.subscribe('mapping/updated', function (message, from) {
                         self.updateChannelsForRid(message, self.state.rid);
                     });
-                    nutella.net.subscribe('currentConfig/ack_updated', function (message, from) {
+                    nutella.net.subscribe('currentConfig/switched', function (message, from) {
                         //self.updateChannelsForRid(message, self.state.rid);// TODO
+                        console.log('LOG');
                         console.log('self:' , self);
                         self.setState({rid: null, modal: 'activity'});
                         console.warn('switch config', message);

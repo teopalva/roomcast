@@ -20,8 +20,9 @@ var Main = React.createClass({
                 });
 
                 window.nutella.net.subscribe('currentConfig/switched', function (message, from) {
-                    console.log('switched from selector', self.isMounted());
-                    self.extractIdentitiesFromMapping(message);
+                    if(self.isMounted()) {
+                        self.extractIdentitiesFromMapping(message);
+                    }
                 });
             } else {
                 console.warn('nutella error in identity-selector');
