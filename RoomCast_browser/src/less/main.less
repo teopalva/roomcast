@@ -28,7 +28,7 @@ html, body {
 .outerDiv {
 }
 .grid {
-  z-index: 1;
+  z-index: 100;
   width: 100%;
   padding: @pad1 0 @pad1 @pad1;
   display: table;
@@ -146,9 +146,23 @@ html, body {
   overflow: scroll;
 }
 
-.channel-frame {
+.player {
   width: 100%;
   height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  //z-index: 100;
+  .channel-frame {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .back-button {
+    //z-index: 110;
+  }
 }
 
 .back-button {

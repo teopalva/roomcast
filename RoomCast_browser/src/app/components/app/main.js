@@ -94,7 +94,10 @@ var Main = React.createClass({
         for(var i=0; i<myChannelsId.length; i++) {
             var id = myChannelsId[i];
             if(self.state.channelsCatalogue[+id] !== undefined) {
-                myChannels.push(self.state.channelsCatalogue[+id]);
+                // Add info on id of the channel
+                var ch = self.state.channelsCatalogue[+id];
+                ch['id'] = id;
+                myChannels.push(ch);
             }
         }
         if (myChannels.length === 0) {
@@ -117,7 +120,7 @@ var Main = React.createClass({
             backgroundMessage: null,
             modal: null,
             playing: null,
-            players: {}
+            players: []
         };
     },
 
@@ -158,36 +161,30 @@ var Main = React.createClass({
     },
 
     handleSetPlaying: function(id) {
-        var self = this;
-        var player;
-        var goBack = function() {
-            self.setState({playing: null});
-
-            // Hide all players
-            var players = self.state.players;
-            for(var p in players) {
-                if(players.hasOwnProperty(p)) {
-                    players[p].refs['player_' + id].setState({playing: false});
-                }
-            }
-        };
-
-        // Create player if it doesn't exist
-        if(this.state.players[id]) {
-            player = this.state.players[id];
-            player.setState({playing: true});
-        } else {
-            player =
-                <Player
-                    chId={id}
-                    ref={'player_' + id}
-                    url={this.state.channelsCatalogue[+id].url}
-                    onBackButton={goBack} />
-        }
-
         var players = this.state.players;
-        players[id] = player;
+        if(players.indexOf(id) === -1) {
+            players.push(id);
+        }
         this.setState({playing: id, players: players});
+
+        /*
+        // Use player if it already exists
+        if(this.state.players.indexOf(id)) {
+            this.refs['player_' + id].setState({playing: true});
+        }
+        */
+    },
+
+    handleBacktoMenu: function() {
+        var self = this;
+        this.setState({playing: null});
+
+        // Hide all players
+        var ids = this.state.players;
+        ids.forEach(function(id) {
+            self.refs['player_' + id].setState({playing: false});
+        });
+
     },
 
     handleControlButton: function() {
@@ -224,9 +221,9 @@ var Main = React.createClass({
     promptIdentitySelector: function(mode) {
         return (
             <IdentitySelector
-            params = {this.props.params}
-            onSetRid = {this.handleSetRid}
-            mode = {mode}/>);
+                params = {this.props.params}
+                onSetRid = {this.handleSetRid}
+                mode = {mode}/>);
     },
 
     componentWillUnmount: function() {
@@ -242,12 +239,6 @@ var Main = React.createClass({
             return this.promptIdentitySelector('id');
         }
 
-        /*
-        if(this.state.playing) {
-           return this.state.players[this.state.playing];
-        }
-        */
-
         var self = this;
         var channels = [];
         for (var ch in this.state.channels) {
@@ -255,7 +246,7 @@ var Main = React.createClass({
                 channels.push(
                     <div className="col-1-3" key={ch} >
                         <Channel
-                            chId={ch}
+                            chId={this.state.channels[ch].id}
                             channel={this.state.channels[ch]}
                             onSetPlaying={this.handleSetPlaying} />
                     </div>);
@@ -305,13 +296,27 @@ var Main = React.createClass({
         };
 
         var players = [];
-        //this.state.players
+        var ids = this.state.players;
+        ids.forEach(function(id) {
+            var p_id = self.state.playing;
+            var playing = p_id === id;
+            var player =
+                <Player
+                    key={id}
+                    chId={id}
+                    ref={'player_' + id}
+                    playing={playing}
+                    url={self.state.channelsCatalogue[+id].url}
+                    name={self.state.channelsCatalogue[+id].name}
+                    onBackButton={self.handleBacktoMenu} />;
+            players.push(player);
+        });
 
         return (
 
             <div className='outerDiv'>
 
-                {this.state.players[this.state.playing]}
+                {players}
 
                 {backgroundMessage}
 
