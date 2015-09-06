@@ -45,7 +45,7 @@ var Channel = React.createClass({
             'name': this.props.channel.name,
             'url': this.props.channel.url
         };
-        this.iOScall('playChannel', actionParameters);
+        this.props.onSetPlaying(this.props.chId);
 
     },
 

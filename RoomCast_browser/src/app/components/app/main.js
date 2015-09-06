@@ -6,6 +6,7 @@ var FloatingActionButton = Mui.FloatingActionButton;
 var RightNav = require('./material-ui/right-nav.jsx');
 var NUTELLA = require('nutella_lib');
 var IdentitySelector = require('../identity-selector/main');
+var Player = require('./Player');
 
 var Main = React.createClass({
 
@@ -114,7 +115,9 @@ var Main = React.createClass({
             mapping: [],
             channelsCatalogue: {},
             backgroundMessage: null,
-            modal: null
+            modal: null,
+            playing: null,
+            players: {}
         };
     },
 
@@ -152,6 +155,39 @@ var Main = React.createClass({
         this.setState({
             backgroundMessage: m
         });
+    },
+
+    handleSetPlaying: function(id) {
+        var self = this;
+        var player;
+        var goBack = function() {
+            self.setState({playing: null});
+
+            // Hide all players
+            var players = self.state.players;
+            for(var p in players) {
+                if(players.hasOwnProperty(p)) {
+                    players[p].refs['player_' + id].setState({playing: false});
+                }
+            }
+        };
+
+        // Create player if it doesn't exist
+        if(this.state.players[id]) {
+            player = this.state.players[id];
+            player.setState({playing: true});
+        } else {
+            player =
+                <Player
+                    chId={id}
+                    ref={'player_' + id}
+                    url={this.state.channelsCatalogue[+id].url}
+                    onBackButton={goBack} />
+        }
+
+        var players = this.state.players;
+        players[id] = player;
+        this.setState({playing: id, players: players});
     },
 
     handleControlButton: function() {
@@ -194,7 +230,7 @@ var Main = React.createClass({
     },
 
     componentWillUnmount: function() {
-        console.log('unmounting');
+        console.log('unmounting app main');
     },
 
     render: function() {
@@ -206,6 +242,12 @@ var Main = React.createClass({
             return this.promptIdentitySelector('id');
         }
 
+        /*
+        if(this.state.playing) {
+           return this.state.players[this.state.playing];
+        }
+        */
+
         var self = this;
         var channels = [];
         for (var ch in this.state.channels) {
@@ -213,7 +255,9 @@ var Main = React.createClass({
                 channels.push(
                     <div className="col-1-3" key={ch} >
                         <Channel
-                            channel={this.state.channels[ch]} />
+                            chId={ch}
+                            channel={this.state.channels[ch]}
+                            onSetPlaying={this.handleSetPlaying} />
                     </div>);
             }
         }
@@ -260,9 +304,14 @@ var Main = React.createClass({
             right: 0
         };
 
+        var players = [];
+        //this.state.players
+
         return (
 
             <div className='outerDiv'>
+
+                {this.state.players[this.state.playing]}
 
                 {backgroundMessage}
 
