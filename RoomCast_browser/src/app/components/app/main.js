@@ -292,7 +292,8 @@ var Main = React.createClass({
             height: '60px',
             position: 'fixed',
             bottom: 0,
-            right: 0
+            right: 0,
+            zIndex: 80
         };
 
         var players = [];
@@ -312,9 +313,18 @@ var Main = React.createClass({
             players.push(player);
         });
 
+        var outerDivStyle = null;
+        if(this.state.playing) {
+            outerDivStyle = {
+                position: 'relative',
+                height: '100vh',
+                overflow: 'hidden'
+            };
+        }
+
         return (
 
-            <div className='outerDiv'>
+            <div className='outerDiv' style={outerDivStyle} >
 
                 {players}
 

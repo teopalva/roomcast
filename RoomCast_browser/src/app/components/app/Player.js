@@ -115,11 +115,11 @@ var Player = React.createClass({
 
                 <div className='back-button' style={buttonStyle} >
                     <FloatingActionButton
-                        secondary={true}
+                        primary={true}
                         mini={true}
                         onTouchTap={this.props.onBackButton} >
 
-                        <i className="icon ion-plus-round" ></i>
+                        <i className="icon ion-ios-arrow-back" ></i>
 
                     </FloatingActionButton>
                 </div>
