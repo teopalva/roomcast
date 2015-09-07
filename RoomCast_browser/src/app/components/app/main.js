@@ -48,6 +48,11 @@ var Main = React.createClass({
                             });
                         });
                     });
+
+                    // Subscribe to teacher forced logout
+                    nutella.net.subscribe('logout/all', function (message, from) {
+                        self.handleLogout();
+                    });
                 });
 
             }
