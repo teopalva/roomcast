@@ -9,19 +9,18 @@ var AppIdPage = React.createClass({
 
     getInitialState: function () {
         return  {
-            hasBeenSelected: false,
+            hasBeenSelected: false
         }
     },
 
     render: function () {
-        var self = this;
 
         var titlesDivStyle = {
-            height: window.innerHeight * (1/3)
+            height: window.innerHeight * (0.4)
         };
 
         var gridDivStyle = {
-            height: window.innerHeight * (2/3)
+            height: window.innerHeight * (0.6)
         };
 
         var app_ids_grid = null;
@@ -55,8 +54,8 @@ var AppIdPage = React.createClass({
 
                 <div className='titles-div' style={titlesDivStyle} >
 
-                    <span className='title' > RoomCast login </span>
-                    <span className='title' > app_id: </span>
+                    <img src='assets/Logo_alpha.png' className='rc-logo' />
+                    <span className='title' > application name: </span>
 
                 </div>
 
