@@ -1,0 +1,18 @@
+defaults write com.apple.finder AppleShowAllFiles NO
+
+ssh -i ec2_private_key.pem ubuntu@52.1.142.215
+gem update nutella_framework
+gem update
+
+rake version:bump:patch
+rake install
+
+bundle install
+rake compile
+rake build - creates new gem
+gem push nutella_framework-0.4.32.gem
+
+ssh -i ec2_private_key.pem ubuntu@52.1.142.215
+
+cd ~/.nutella/data/roomcast-bot/t1/default
+cat configs.json | python -m json.tool

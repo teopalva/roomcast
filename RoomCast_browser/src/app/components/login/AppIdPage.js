@@ -13,6 +13,22 @@ var AppIdPage = React.createClass({
         }
     },
 
+    handleSetBroker: function(event) {
+        if (event.type == "keydown") {
+            var charCode;
+            if (event.charCode) {
+                charCode = event.charCode;
+            }
+            else {
+                charCode = event.keyCode;
+            }
+        }
+        if (charCode == 13) {
+            var broker = this.refs['input'].getDOMNode().value;
+            this.props.initWithBroker(broker);
+        }
+    },
+
     render: function () {
 
         var titlesDivStyle = {
@@ -48,9 +64,19 @@ var AppIdPage = React.createClass({
             );
         }
 
+        var brokerStyle = {
+            backgroundColor: '#e9eaed',
+            border: 'solid 1px white',
+            position: 'absolute',
+            right: '5px',
+            top: '5px'
+        };
+
         return (
 
             <div className='main-div' >
+
+                <input style={brokerStyle} ref='input' onKeyDown={this.handleSetBroker} ></input>
 
                 <div className='titles-div' style={titlesDivStyle} >
 

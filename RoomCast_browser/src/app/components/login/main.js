@@ -11,8 +11,12 @@ var NUTELLA = require('nutella_lib');
 var Main = React.createClass({
 
     componentDidMount: function() {
-        var self = this;
         var broker = '52.1.142.215';
+        this.initWithBroker(broker);
+    },
+
+    initWithBroker: function(broker) {
+        var self = this;
 
         // Start nutella
         window.nutella = NUTELLA.init(broker, 'app_id', 'run_id', 'login', function(connected) {
@@ -42,7 +46,6 @@ var Main = React.createClass({
                 console.log('Invalid broker.');
             }
         });
-
     },
 
     getInitialState: function () {
@@ -97,7 +100,8 @@ var Main = React.createClass({
             case 2:
                 page = <AppIdPage
                     onSwitchPage={this.handleSwitchPage}
-                    values={this.state.app_ids} />;
+                    values={this.state.app_ids}
+                    initWithBroker={this.initWithBroker} />;
                 break;
             case 3:
                 page = <RunIdPage
