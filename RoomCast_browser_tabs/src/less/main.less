@@ -14,8 +14,9 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 
 .vendor(@property, @value) {
   -webkit-@{property}: @value;
-  -khtml-@{property}: @value;
   -moz-@{property}: @value;
+  -ms-@{property}: @value;
+  -o-@{property}: @value;
   @{property}: @value;
 }
 
@@ -168,16 +169,20 @@ html, body {
   }
 }
 
-.back-button {
+.tabs-button {
   position: absolute;
   top: 30px;
   left: 30px;
   i {
     position: relative;
-    font-size: 35px;
+    font-size: 38px;
     color: white;
-    left: -2px;
+    top: 2px;
   }
+}
+
+.hidden-tabs {
+  .vendor(transform, translate(0,-31vh))
 }
 
 //////////// LOGIN ////////////

@@ -8,6 +8,9 @@ var NUTELLA = require('nutella_lib');
 var IdentitySelector = require('../identity-selector/main');
 var Player = require('./Player');
 
+var $ = require('jquery');
+require('jquery-ui/draggable');
+
 var Main = React.createClass({
 
     componentDidMount: function() {
@@ -225,7 +228,6 @@ var Main = React.createClass({
     },
 
     componentWillUnmount: function() {
-        console.log('unmounting app main');
     },
 
     /**
@@ -240,6 +242,15 @@ var Main = React.createClass({
      */
     handleOverlayTabs: function() {
         this.setState({tabs: false});
+    },
+
+    componentDidUpdate: function() {
+        if(!this.state.tabs) {
+            $(".draggable").draggable({
+                containment: ".outer-div"
+            });
+        }
+
     },
 
     render: function() {
@@ -286,12 +297,11 @@ var Main = React.createClass({
             textAlign: 'center',
             color: '#9197a3',
             fontWeight: '300'
-
         };
 
         var backgroundMessage = null;
         if(this.state.backgroundMessage) {
-            backgroundMessage = <p style={backgroundMessageStyle} > {this.state.backgroundMessage} </p>;
+            backgroundMessage = <p style={backgroundMessageStyle} >{this.state.backgroundMessage}</p>;
         }
 
         var canLogout = true;
@@ -337,10 +347,16 @@ var Main = React.createClass({
         var buttonStyle = {
             zIndex: 110
         };
+        var tabsButton = <div className='tabs-button draggable' style={buttonStyle} onTouchTap={this.handleTabsButton} >
+            <FloatingActionButton
+                primary={true}
+                mini={true} >
+                <i className="icon ion-ios-arrow-down draggable" ></i>
+            </FloatingActionButton>
+        </div>;
 
-        var tabsButton = null;
         var overlayTabs = null;
-        var tabsStyle = {};
+        var tabsClass = '';
         var overlayTabsStyle = {
             position: 'absolute',
             top: 0,
@@ -352,33 +368,19 @@ var Main = React.createClass({
 
         if(this.state.tabs) {
 
-            tabsStyle = {
-
-            };
             overlayTabs = <div style={overlayTabsStyle} onTouchTap={this.handleOverlayTabs} ></div>;
+            buttonStyle['opacity'] = 0;
+            buttonStyle['pointerEvents'] = 'none';
 
         } else {
-
-            tabsStyle = {
-                transform: 'translate(0,-31vh)'
-            };
-
-            tabsButton = <div className='back-button' style={buttonStyle} >
-                <FloatingActionButton
-                    primary={true}
-                    mini={true}
-                    onTouchTap={this.handleTabsButton} >
-                    <i className="icon ion-ios-arrow-back" ></i>
-                </FloatingActionButton>
-            </div>;
-
+            tabsClass = ' hidden-tabs';
         }
 
         return (
 
             <div className='outerDiv' style={outerDivStyle} >
 
-                <div className="grid" style={tabsStyle} >{channels}</div>
+                <div className={"grid" + tabsClass}>{channels}</div>
 
                 {tabsButton}
 
