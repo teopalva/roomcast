@@ -7,7 +7,7 @@ var IdentitiesGrid = React.createClass({
     componentWillMount: function() {
         this._externalMargin = 20;
         this._cardMargin = 20;
-        this._heightRatio = 2/3;
+        this._heightRatio = 0.6;
 
         this.computeGrid(this.props.identities);
     },

@@ -91,11 +91,11 @@ var BrokerPage = React.createClass({
         var self = this;
 
         var titlesDivStyle = {
-            height: this.state.innerHeight * (1/3)
+            height: this.state.innerHeight * (0.4)
         };
 
         var gridDivStyle = {
-            height: this.state.innerHeight * (2/3)
+            height: this.state.innerHeight * (0.6)
         };
 
         return (

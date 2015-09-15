@@ -3,6 +3,7 @@ var Mui = require('material-ui');
 var Paper = Mui.Paper;
 var NutellaMixin = require('./NutellaMixin');
 var iOSMixin = require('./iOSMixin');
+var $ = require('jquery');
 
 /**
  * @prop channel
@@ -12,6 +13,12 @@ var Channel = React.createClass({
     mixins: [NutellaMixin, iOSMixin],
 
     componentDidMount: function() {
+        $('.text-fit').each(function() {
+            $(this).css('font-size', '2em');
+            while( $(this).width() > $('.name-wrapper').width() - 10 ) {
+                $(this).css('font-size', (parseInt($(this).css('font-size')) - 1) + "px" );
+            }
+        });
     },
 
     handleClick: function() {
@@ -41,7 +48,7 @@ var Channel = React.createClass({
                             <div className='channel-icon' ref='channelIcon' style={iconStyle} > </div>
 
                             <div className='name-wrapper'>
-                                <p className='channel-name'> {this.props.channel.name} </p>
+                                <span className='channel-name text-fit'>{this.props.channel.name}</span>
                             </div>
 
                         </div>

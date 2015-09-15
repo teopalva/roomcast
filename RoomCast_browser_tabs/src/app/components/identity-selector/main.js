@@ -57,11 +57,11 @@ var Main = React.createClass({
     render: function () {
 
         var titlesDivStyle = {
-            height: window.innerHeight * (1/3)
+            height: window.innerHeight * (0.4)
         };
 
         var gridDivStyle = {
-            height: window.innerHeight * (2/3)
+            height: window.innerHeight * (0.6)
         };
 
         var label;
