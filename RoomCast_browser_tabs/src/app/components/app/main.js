@@ -250,10 +250,8 @@ var Main = React.createClass({
     },
 
     setupTabsButton: function() {
-        var self = this;
 
         var fix = function() {
-            console.log('fix');
             $("<div class='ui-draggable-iframeFix' style='background: #fff;'></div>")
                 .css({
                     top: 0,
@@ -265,7 +263,6 @@ var Main = React.createClass({
 
         };
         var unfix = function() {
-            console.log('unfix');
             $( ".ui-draggable-iframeFix" ).remove();
         };
 
@@ -279,12 +276,6 @@ var Main = React.createClass({
                     unfix();
                 }
             })
-            .click(function(){
-                if ( $(this).is('.ui-draggable-dragging') ) {
-                    return;
-                }
-                self.handleTabsButton();
-            });
 
     },
 
