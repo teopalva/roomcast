@@ -61,6 +61,7 @@ var Main = React.createClass({
             }
         });
 
+
     },
 
     /**
@@ -245,11 +246,45 @@ var Main = React.createClass({
     },
 
     componentDidUpdate: function() {
-        if(!this.state.tabs) {
-            $(".draggable").draggable({
-                containment: ".outer-div"
+        this.setupTabsButton();
+    },
+
+    setupTabsButton: function() {
+        var self = this;
+
+        var fix = function() {
+            console.log('fix');
+            $("<div class='ui-draggable-iframeFix' style='background: #fff;'></div>")
+                .css({
+                    top: 0,
+                    left: 0,
+                    width: window.innerWidth, height: window.innerHeight,
+                    position: "absolute", opacity: "0.001", zIndex: 1000
+                })
+                .appendTo("body");
+
+        };
+        var unfix = function() {
+            console.log('unfix');
+            $( ".ui-draggable-iframeFix" ).remove();
+        };
+
+        $(".tabs-button")
+            .draggable({
+                containment: ".outer-div",
+                start: function(event, ui) {
+                    fix();
+                },
+                stop: function(event, ui) {
+                    unfix();
+                }
+            })
+            .click(function(){
+                if ( $(this).is('.ui-draggable-dragging') ) {
+                    return;
+                }
+                self.handleTabsButton();
             });
-        }
 
     },
 
@@ -347,11 +382,12 @@ var Main = React.createClass({
         var buttonStyle = {
             zIndex: 110
         };
-        var tabsButton = <div className='tabs-button draggable' style={buttonStyle} onTouchTap={this.handleTabsButton} >
+
+        var tabsButton = <div className='tabs-button' style={buttonStyle} onTouchTap={this.handleTabsButton} >
             <FloatingActionButton
                 primary={true}
                 mini={true} >
-                <i className="icon ion-ios-arrow-down draggable" ></i>
+                <i className="icon ion-ios-arrow-down" ></i>
             </FloatingActionButton>
         </div>;
 
