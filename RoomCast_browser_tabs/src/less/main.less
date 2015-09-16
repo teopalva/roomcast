@@ -39,15 +39,13 @@ html, body {
   z-index: 200;
   padding: @pad1 0 @pad1 @pad1;
   width: 100%;
+  min-height: 31vh;
   white-space: nowrap;
   overflow-x: scroll;
   overflow-y: hidden;
   position: absolute;
   background-color: rgba(1,1,1,0.8);
   .vendor(transition, all 500ms ease-in-out);
-  &:before {
-    box-shadow: 0px -8px 16px rgba(0,0,0,.3);
-  }
 }
 .channel {
   // aspect ratio: 10:7.23

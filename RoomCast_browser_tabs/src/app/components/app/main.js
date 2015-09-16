@@ -19,10 +19,6 @@ var Main = React.createClass({
         window.nutella = NUTELLA.init(self.props.params.broker, self.props.params.app_id, self.props.params.run_id, 'app', function(connected) {
             if(connected) {
 
-                if(!self.state.rid) {
-                    self.handleUpdatedBackgroundMessage('No identity set');
-                }
-
                 // Get current channels catalogue
                 nutella.net.request('channels/retrieve', 'all', function (response) {
                     self.handleUpdatedChannelsCatalogue(response);
@@ -67,7 +63,7 @@ var Main = React.createClass({
     /**
      * Manages the modal sidebar right after state change
      */
-    componentWillReceiveProps: function() {
+    componentWillReceiveProps: function(nextProps) {
         var self = this;
         if(!this.state.rid) {
             this.refs.rightNav.open();
@@ -109,12 +105,12 @@ var Main = React.createClass({
             }
         }
         if (myChannels.length === 0) {
-            self.handleUpdatedBackgroundMessage('No available channels');
+            self.handleUpdatedBackgroundMessageTabs('No available channels');
             if(!self.state.rid) {
-                self.handleUpdatedBackgroundMessage('No identity set');
+                //self.handleUpdatedBackgroundMessage('No identity set');
             }
         } else {
-            self.handleUpdatedBackgroundMessage(null);
+            self.handleUpdatedBackgroundMessageTabs(null);
         }
         this.handleUpdatedChannels(myChannels);
     },
@@ -125,7 +121,8 @@ var Main = React.createClass({
             channels: [],
             mapping: [],
             channelsCatalogue: {},
-            backgroundMessage: null,
+            backgroundMessage: 'Select a channel.',
+            backgroundMessageTabs: null,
             modal: null,
             playing: null,
             players: [],
@@ -169,12 +166,27 @@ var Main = React.createClass({
         });
     },
 
+    handleUpdatedBackgroundMessageTabs: function(m) {
+        this.setState({
+            backgroundMessageTabs: m
+        });
+    },
+
     handleSetPlaying: function(id) {
+        var self = this;
         var players = this.state.players;
         if(players.indexOf(id) === -1) {
             players.push(id);
         }
-        this.setState({playing: id, players: players, tabs: false});
+        var callback = function() {
+            if(self.state.players.length === 0) {
+                self.setState({backgroundMessage: 'Select a channel.'});
+            } else {
+                self.setState({backgroundMessage: null});
+            }
+        };
+
+        this.setState({playing: id, players: players, tabs: false}, callback);
     },
 
     handleBacktoMenu: function() {
@@ -324,10 +336,25 @@ var Main = React.createClass({
             color: '#9197a3',
             fontWeight: '300'
         };
-
         var backgroundMessage = null;
         if(this.state.backgroundMessage) {
             backgroundMessage = <p style={backgroundMessageStyle} >{this.state.backgroundMessage}</p>;
+        }
+
+        var gridHeight = $('.grid').css('height');
+        var backgroundMessageTabsStyle = {
+            position: 'fixed',
+            left: '0',
+            top: (parseInt(gridHeight) / 2) - 10,
+            width: '100%',
+            fontSize: '2.5vw',
+            textAlign: 'center',
+            color: 'rgba(255,255,255,0.8)',
+            fontWeight: '300'
+        };
+        var backgroundMessageTabs = null;
+        if(this.state.backgroundMessageTabs) {
+            backgroundMessageTabs = <p style={backgroundMessageTabsStyle} >{this.state.backgroundMessageTabs}</p>;
         }
 
         var canLogout = true;
@@ -407,7 +434,7 @@ var Main = React.createClass({
 
             <div className='outerDiv' style={outerDivStyle} >
 
-                <div className={"grid" + tabsClass}>{channels}</div>
+                <div className={"grid" + tabsClass}>{backgroundMessageTabs},{channels}</div>
 
                 {tabsButton}
 

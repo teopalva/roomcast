@@ -13,6 +13,7 @@ var Channel = React.createClass({
     mixins: [NutellaMixin, iOSMixin],
 
     componentDidMount: function() {
+        // Font-size adaptation based on card width
         $('.text-fit').each(function() {
             $(this).css('font-size', '2em');
             while( $(this).width() > $('.name-wrapper').width() - 10 ) {
