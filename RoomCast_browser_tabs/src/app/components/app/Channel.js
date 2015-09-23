@@ -37,10 +37,14 @@ var Channel = React.createClass({
             backgroundColor: this.props.channel.icon
         };
 
+        var border = this.props.playing ? {
+            outline: 'solid 5px rgba(255,255,0,0.5)'
+        } : null;
+
         return (
             <Paper className='channel' style={style} ref='channelRef' onTouchTap={this.handleClick} >
 
-                <div className='channel-div'>
+                <div className='channel-div' style={border}>
 
                     <div className='channel-caption'>
 

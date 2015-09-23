@@ -37,8 +37,7 @@ var Main = React.createClass({
                         self.updateChannelsForRid(message, self.state.rid);
                     });
                     nutella.net.subscribe('currentConfig/switched', function (message, from) {
-                        //self.updateChannelsForRid(message, self.state.rid);// TODO
-                        self.setState({rid: null, modal: 'activity'});
+                        self.handleActivitySwitch(message);
                     });
                     nutella.net.subscribe('channels/updated', function (message, from) {
                         nutella.net.request('mapping/retrieve', 'all', function (response) {
@@ -302,6 +301,42 @@ var Main = React.createClass({
 
     },
 
+    /**
+     * Manages the transition between activities.
+     * If old identity is still within the new available ones, then keeps it.
+     * If not, it shows the identity-selector to pick the new one.
+     */
+    handleActivitySwitch: function(mapping) {
+        var ids = this.extractIdentitiesFromMapping(mapping);
+        var id = this.state.rid;
+        if(id) {
+            if(ids.indexOf(id) !== -1) {
+                this.updateChannelsForRid(mapping, this.state.rid);
+            } else {
+                this.setState({rid: null, modal: 'activity'});
+            }
+        } else {
+            this.setState({rid: null, modal: 'activity'});
+        }
+    },
+
+    /**
+     * Helper to extract identities from current mapping.
+     * @param mapping
+     * @returns {Array}
+     */
+    extractIdentitiesFromMapping: function(mapping) {
+        var ids = [];
+        mapping.forEach(function (f) {
+            for (var i in f.items) {
+                if(f.items.hasOwnProperty(i) && f.items[i].name !== '') {
+                    ids.push(f.items[i].name);
+                }
+            }
+        });
+        return ids;
+    },
+
     render: function() {
 
         if(!this.state.rid) {
@@ -320,6 +355,7 @@ var Main = React.createClass({
                         key={ch}
                         chId={this.state.channels[ch].id}
                         channel={this.state.channels[ch]}
+                        playing={this.state.playing === this.state.channels[ch].id}
                         onSetPlaying={this.handleSetPlaying} />
                 );
             }
@@ -330,10 +366,10 @@ var Main = React.createClass({
             for (var i in f.items) {
                 if(f.items.hasOwnProperty(i) && f.items[i].name !== '') {
                     menuItems.push({
-                            id: f.items[i].name,
-                            text: f.items[i].name,
-                            currentSelected: f.items[i].name === self.state.rid
-                        });
+                        id: f.items[i].name,
+                        text: f.items[i].name,
+                        currentSelected: f.items[i].name === self.state.rid
+                    });
                 }
             }
 
