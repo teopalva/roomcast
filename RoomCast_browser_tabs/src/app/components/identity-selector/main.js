@@ -35,7 +35,9 @@ var Main = React.createClass({
         var ids = [];
         mapping.forEach(function (f) {
             for (var i in f.items) {
-                ids.push(f.items[i].name);
+                if(f.items.hasOwnProperty(i) && f.items[i].name !== '') {
+                    ids.push(f.items[i].name);
+                }
             }
         });
         this.setIdentities(ids);

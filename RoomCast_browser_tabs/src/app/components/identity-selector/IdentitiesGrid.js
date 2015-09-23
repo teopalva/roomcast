@@ -67,14 +67,14 @@ var IdentitiesGrid = React.createClass({
         };
 
         this.props.identities.forEach(function(i) {
-            cards.push(
-                <IdentityCard
-                    key={i}
-                    name={i}
-                    cardStyle={cardStyle}
-                    hasBeenSelected={self.state.hasBeenSelected}
-                    onSelectedIdentity={self.setHasBeenSelected}
-                    onSetRid = {self.props.onSetRid} />);
+                cards.push(
+                    <IdentityCard
+                        key={i}
+                        name={i}
+                        cardStyle={cardStyle}
+                        hasBeenSelected={self.state.hasBeenSelected}
+                        onSelectedIdentity={self.setHasBeenSelected}
+                        onSetRid = {self.props.onSetRid} />);
         });
 
         return (
