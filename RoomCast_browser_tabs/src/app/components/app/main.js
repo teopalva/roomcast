@@ -81,6 +81,11 @@ var Main = React.createClass({
         }
     },
 
+    /**
+     * Updates current available channels.
+     * @param message list of channels
+     * @param rid current identity
+     */
     updateChannelsForRid: function(message, rid) {
 
         var self = this;
@@ -112,7 +117,13 @@ var Main = React.createClass({
         } else {
             self.handleUpdatedBackgroundMessageTabs(null);
         }
+        // update channels list
         this.handleUpdatedChannels(myChannels);
+        // logout from current channel (i.e. hide it) if not allowed anymore (for now)
+        console.log(myChannelsId, this.state.playing);
+        if(myChannelsId.indexOf(this.state.playing) === -1) {
+            this.setState({playing: null});
+        }
     },
 
     getInitialState: function() {
@@ -121,11 +132,11 @@ var Main = React.createClass({
             channels: [],
             mapping: [],
             channelsCatalogue: {},
-            backgroundMessage: 'Select a channel.',
+            backgroundMessage: 'Select a channel',
             backgroundMessageTabs: null,
             modal: null,
-            playing: null,
-            players: [],
+            playing: null, // id of the current displayed channel
+            players: [], // list of ids of the current played channels
             tabs: true
         };
     },
@@ -180,7 +191,7 @@ var Main = React.createClass({
         }
         var callback = function() {
             if(self.state.players.length === 0) {
-                self.setState({backgroundMessage: 'Select a channel.'});
+                self.setState({backgroundMessage: 'Select a channel'});
             } else {
                 self.setState({backgroundMessage: null});
             }
@@ -317,13 +328,15 @@ var Main = React.createClass({
         var menuItems = [];
         this.state.mapping.forEach(function (f) {
             for (var i in f.items) {
-                menuItems.push({
-                        id: f.items[i].name,
-                        text: f.items[i].name,
-                        currentSelected: f.items[i].name === self.state.rid
-                    }
-                );
+                if(f.items.hasOwnProperty(i) && f.items[i].name !== '') {
+                    menuItems.push({
+                            id: f.items[i].name,
+                            text: f.items[i].name,
+                            currentSelected: f.items[i].name === self.state.rid
+                        });
+                }
             }
+
         });
 
         var backgroundMessageStyle = {
@@ -339,6 +352,9 @@ var Main = React.createClass({
         var backgroundMessage = null;
         if(this.state.backgroundMessage) {
             backgroundMessage = <p style={backgroundMessageStyle} >{this.state.backgroundMessage}</p>;
+        }
+        if(this.state.playing === null) {
+            backgroundMessage = <p style={backgroundMessageStyle} >{'Select a channel'}</p>;
         }
 
         var gridHeight = $('.grid').css('height');
@@ -390,6 +406,7 @@ var Main = React.createClass({
 
         var outerDivStyle = null;
         if(this.state.playing) {
+            // prevent the scrolling only when there's a channel playing
             outerDivStyle = {
                 position: 'relative',
                 height: '100vh',
