@@ -3,16 +3,21 @@ var React = require('react');
 var Mui = require('material-ui');
 var FloatingActionButton = Mui.FloatingActionButton;
 var d3 = require('d3');
+var $ = require('jquery');
 var NUTELLA = require('nutella_lib');
 
 var Player = React.createClass({
 
     componentDidMount: function() {
+        var self = this;
         this.showLoading();
+        $('.channel-frame').load(function(){
+            self.handleOnLoad();
+        });
+        this.interval_ = null;
     },
 
     componentWillUnmount: function() {
-        console.log('UNMOUNTING player ' + this.props.name);
     },
 
     getInitialState: function () {
@@ -41,7 +46,7 @@ var Player = React.createClass({
             d3.select('#logo')
                 .attr({
                     width: window.innerWidth,
-                    height: window.innerHeight,
+                    height: window.innerHeight
                 });
 
             var colorBlue = function(id) {
@@ -77,13 +82,13 @@ var Player = React.createClass({
                 }
             };
 
-            setInterval(action, 200);
-
+            self.interval_ = setInterval(action, 200);
         });
     },
 
     hideLoading: function() {
         d3.select('#logo').remove();
+        clearInterval(this.interval_);
     },
 
     render: function () {
@@ -112,7 +117,7 @@ var Player = React.createClass({
 
             <div className='player' style={playerStyle} ref='player' >
 
-                <iframe className='channel-frame' src={url} onload={this.handleOnLoad} > </iframe>
+                <iframe className='channel-frame' src={url} > </iframe>
 
             </div>
 

@@ -119,7 +119,6 @@ var Main = React.createClass({
         // update channels list
         this.handleUpdatedChannels(myChannels);
         // logout from current channel (i.e. hide it) if not allowed anymore (for now)
-        console.log(myChannelsId, this.state.playing);
         if(myChannelsId.indexOf(this.state.playing) === -1) {
             this.setState({playing: null});
         }
