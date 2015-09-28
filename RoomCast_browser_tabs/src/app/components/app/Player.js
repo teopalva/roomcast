@@ -3,6 +3,7 @@ var React = require('react');
 var Mui = require('material-ui');
 var FloatingActionButton = Mui.FloatingActionButton;
 var d3 = require('d3');
+var NUTELLA = require('nutella_lib');
 
 var Player = React.createClass({
 
@@ -102,11 +103,16 @@ var Player = React.createClass({
             };
         }
 
+        var url = this.props.url;
+        var qp = this.props.nutellaParams;
+        var suffix = 'broker=' + qp.broker + '&app_id=' + qp.app_id + '&run_id=' + qp.run_id;
+        url = url.indexOf('?') === -1 ? url + '?' + suffix : url + '&' + suffix;
+
         return (
 
             <div className='player' style={playerStyle} ref='player' >
 
-                <iframe className='channel-frame' src={this.props.url} onload={this.handleOnLoad} > </iframe>
+                <iframe className='channel-frame' src={url} onload={this.handleOnLoad} > </iframe>
 
             </div>
 

@@ -436,6 +436,7 @@ var Main = React.createClass({
                     playing={playing}
                     url={self.state.channelsCatalogue[+id].url}
                     name={self.state.channelsCatalogue[+id].name}
+                    nutellaParams={self.props.params}
                     onBackButton={self.handleBacktoMenu} />;
             players.push(player);
         });
